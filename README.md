@@ -25,3 +25,20 @@ Repository workflow:
 - Keep specs, experiments, references, and implementation separate.
 - GitHub repository: `nana-nun/sidf-lab`.
 - Python environment: `.venv + requirements.txt`.
+
+Python setup:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+$env:PYTHONPATH = "src"
+python -m unittest discover -s tests
+```
+
+Minimal CLI check:
+
+```powershell
+$env:PYTHONPATH = "src"
+python -m sidf_lab.cli
+```
