@@ -4,6 +4,17 @@ GitHub repository: `nana-nun/sidf-lab`
 
 このファイルは、GitHub Issuesに登録する初期タスク候補です。実際のIssue作成後は、各Issue URLをこのファイルまたは `docs/research-state.md` に反映します。
 
+## Created Issues
+
+- #1: https://github.com/nana-nun/sidf-lab/issues/1
+- #2: https://github.com/nana-nun/sidf-lab/issues/2
+- #3: https://github.com/nana-nun/sidf-lab/issues/3
+- #4: https://github.com/nana-nun/sidf-lab/issues/4
+- #5: https://github.com/nana-nun/sidf-lab/issues/5
+- #6: https://github.com/nana-nun/sidf-lab/issues/6
+- #7: https://github.com/nana-nun/sidf-lab/issues/7
+- #8: https://github.com/nana-nun/sidf-lab/issues/8
+
 ## 1. [docs] 研究リポジトリ基盤を整備する
 
 Labels: `t:docs`, `p:1`
