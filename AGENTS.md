@@ -122,12 +122,12 @@ Git管理する結果は1実験あたり数MBまでを目安にする。大き�
 推奨ブランチ名:
 
 ```text
-docs/1-research-foundation
-impl/3-python-package-skeleton
-exp/4-model-c-cross-baseline
-exp/6-model-d-multires-cross
-ref/7-image-reconstruction-survey
-maint/2-project-workflow
+docs/issue-1-research-foundation
+impl/issue-3-python-package-skeleton
+exp/issue-4-model-c-cross-baseline
+exp/issue-6-model-d-multires-cross
+ref/issue-7-image-reconstruction-survey
+maint/issue-2-project-workflow
 ```
 
 Issue対応用のブランチ名には、必ずIssue番号を含める。
@@ -135,15 +135,15 @@ Issue対応用のブランチ名には、必ずIssue番号を含める。
 形式:
 
 ```text
-<type>/<issue-number>-<short-topic>
+<type>/issue-<number>-<branch-name>
 ```
 
 例:
 
 ```text
-impl/3-python-package-skeleton
-exp/4-model-c-cross-baseline
-docs/8-sidf-v0.3-draft
+impl/issue-3-python-package-skeleton
+exp/issue-4-model-c-cross-baseline
+docs/issue-8-sidf-v0.3-draft
 ```
 
 PR本文には最低限これを書く。
