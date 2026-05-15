@@ -50,6 +50,8 @@
 
 実験やテストで画像を生成した場合は、コンソール表示だけで終わらせず、PNGなどの成果物として保存します。実験結果を残す場合は `results/<date>-<short-name>/` に `config.json`、`metrics.json`、`notes.md`、主要画像を保存し、実行コマンド、seed、設定、metrics、decode time、限界を記録します。
 
+Git管理に含める主要画像は、`notes.md` から Markdown の画像参照 `![説明](image.png)` で表示できるようにします。画像ファイルは `notes.md` と同じ結果ディレクトリに置き、相対パスで参照してください。
+
 詳細な実験Issueの手順は `.agents/skills/sidf-lab-exp-issue/SKILL.md` を参照してください。
 
 ## Git and GitHub Workflow

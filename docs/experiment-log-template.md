@@ -35,6 +35,16 @@
 - Confidence map:
 - Difference image:
 
+## Images
+
+![Input or guide image](input-or-guide.png)
+
+![Baseline image](baseline.png)
+
+![Rendered image](rendered.png)
+
+![Difference image](difference.png)
+
 ## Result
 
 ## Interpretation
@@ -48,4 +58,5 @@ Notes:
 
 - `notes.md` は毎回保存する。
 - 画像生成がある場合は、表示だけで終わらせずPNGを保存する。
+- Git管理に含める主要画像は、`notes.md` から Markdown 画像参照で表示できるようにする。
 - `experiment_seed` と `decoder_seed` は分けて記録する。
