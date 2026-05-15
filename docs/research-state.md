@@ -43,6 +43,12 @@ Cross Variance      : 0.0016
 Background Variance : 0.0004
 ```
 
+保存形式つき再実行:
+
+- `results/2026-05-16-model-c-cross-baseline/`
+- `config.json`、`metrics.json`、`notes.md`、主要PNGを保存。
+- 今回のrunでは `MAD = 0.0117`、`Background Mean = 0.0074`、`Edge Leakage = 0.0089`。
+
 解釈:
 
 Model C は、SIDF v0.2.1 の基礎モデルとして有望。ただし創発性は弱く、安定化フィルタに近い。
@@ -88,4 +94,3 @@ Model D は confidence-aware multi-resolution reconstruction と呼ぶのが正�
 5. 関連する `references/notes/`
 6. baseline と metrics を明確にする。
 7. `Limitations` と `Next` を必ず書く。
-
