@@ -113,6 +113,32 @@ baselineは、noiseを加えたstatic guideをそのまま表示する `baseline
 - Difference image: `diff_model_c_vs_baseline.png`
 - Comparison image: `comparison.png`
 
+## Images
+
+### Comparison
+
+![Comparison of clean guide, static guide, baseline direct, Model C, and absolute difference](comparison.png)
+
+### Clean Guide
+
+![Clean synthetic cross guide](guide_clean.png)
+
+### Static Guide
+
+![Noisy static guide](static_guide.png)
+
+### Baseline Direct
+
+![Baseline direct rendering of the static guide](baseline_direct.png)
+
+### Model C Rendered
+
+![Model C rendered output](rendered_model_c.png)
+
+### Difference
+
+![Absolute difference between Model C and baseline direct](diff_model_c_vs_baseline.png)
+
 ## Result
 
 Model CのMAD、background mean、edge leakageを保存した。cross baselineの暫定目安である `Background Mean <= 0.02`、`Edge Leakage <= 0.02`、`MAD <= 0.03` と比較できる形式になった。

@@ -36,7 +36,7 @@ baselineは、noiseを加えたstatic guideをそのまま表示する `baseline
 | Edge leakage | 0.012088 | 0.008887 |
 | Cross variance | 0.000845 | 0.000997 |
 | Background variance | 0.000305 | 0.000221 |
-| Decode time seconds | 0.000000 | 0.682643 |
+| Decode time seconds | 0.000000 | 0.621025 |
 
 ## Saved Artifacts
 
@@ -49,6 +49,32 @@ baselineは、noiseを加えたstatic guideをそのまま表示する `baseline
 - Rendered image: `rendered_model_c.png`
 - Difference image: `diff_model_c_vs_baseline.png`
 - Comparison image: `comparison.png`
+
+## Images
+
+### Comparison
+
+![Comparison of clean guide, static guide, baseline direct, Model C, and absolute difference](comparison.png)
+
+### Clean Guide
+
+![Clean synthetic cross guide](guide_clean.png)
+
+### Static Guide
+
+![Noisy static guide](static_guide.png)
+
+### Baseline Direct
+
+![Baseline direct rendering of the static guide](baseline_direct.png)
+
+### Model C Rendered
+
+![Model C rendered output](rendered_model_c.png)
+
+### Difference
+
+![Absolute difference between Model C and baseline direct](diff_model_c_vs_baseline.png)
 
 ## Result
 

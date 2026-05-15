@@ -5,7 +5,7 @@
   "baseline_cross_variance": 0.0008449541388758731,
   "baseline_edge_leakage": 0.012087560549210289,
   "baseline_mad_vs_clean": 0.015025202454601769,
-  "decode_time_seconds": 0.6826431999797933,
+  "decode_time_seconds": 0.6210246999980882,
   "model_c_background_mean": 0.00740887865293885,
   "model_c_background_variance": 0.00022058045411978892,
   "model_c_cross_mean": 0.4968486421491774,
