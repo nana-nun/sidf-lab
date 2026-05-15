@@ -1,0 +1,16 @@
+{
+  "baseline_background_mean": 0.24302521219769813,
+  "baseline_background_variance": 0.021982270132699707,
+  "baseline_edge_leakage": null,
+  "baseline_foreground_mean": 0.7570631895181983,
+  "baseline_foreground_variance": 0.021766539015594392,
+  "baseline_mad_vs_clean": 0.022559684232269103,
+  "decode_time_seconds": 0.7013225000118837,
+  "edge_width_pixels": null,
+  "model_c_background_mean": 0.24006081944138621,
+  "model_c_background_variance": 0.02174183537770415,
+  "model_c_edge_leakage": null,
+  "model_c_foreground_mean": 0.7601374321719956,
+  "model_c_foreground_variance": 0.02215956924342476,
+  "model_c_mad_vs_clean": 0.02183896473235354
+}

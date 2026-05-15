@@ -49,6 +49,13 @@ Background Variance : 0.0004
 - `config.json`、`metrics.json`、`notes.md`、主要PNGを保存。
 - 今回のrunでは `MAD = 0.0117`、`Background Mean = 0.0074`、`Edge Leakage = 0.0089`。
 
+freeze候補benchmark:
+
+- `results/2026-05-16-model-c-freeze-benchmark/`
+- cross、diagonal、circle、thin line、soft gradientで `config.json`、`metrics.json`、`notes.md`、主要PNGを保存。
+- hard edge shapeでは `Model C MAD <= 0.0108`、`Background Mean <= 0.0063`、`Edge Leakage <= 0.0072`。
+- soft gradientでは edge leakage を不適用とし、列平均では大きな逆行や急な段差は見られなかった。
+
 解釈:
 
 Model C は、SIDF v0.2.1 の基礎モデルとして有望。ただし創発性は弱く、安定化フィルタに近い。
