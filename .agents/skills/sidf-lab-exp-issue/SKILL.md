@@ -29,8 +29,10 @@ Read:
 3. Start with small images and minimal sweeps.
 4. Save results under `results/<date>-<short-name>/`.
 5. Save generated images; never rely on console output or `plt.show()` alone.
-6. Record commands, seeds, sizes, config, metrics, decode time, date, and dependency versions when practical.
-7. Keep `Question`, `Hypothesis`, `Setup`, `Baseline`, `Result`, `Interpretation`, `Limitations`, and `Next` separate.
+6. In `notes.md`, embed the main Git-tracked images with Markdown image references such as `![Rendered output](rendered.png)`.
+7. Keep image paths relative to the result directory so the notes render on GitHub and in local Markdown viewers.
+8. Record commands, seeds, sizes, config, metrics, decode time, date, and dependency versions when practical.
+9. Keep `Question`, `Hypothesis`, `Setup`, `Baseline`, `Result`, `Interpretation`, `Limitations`, and `Next` separate.
 
 ## Required Artifacts
 
@@ -44,6 +46,7 @@ Include when applicable:
 - rendered image
 - confidence map when used
 - difference map when useful
+- Markdown image references in `notes.md` for the main Git-tracked PNG artifacts
 
 ## Baselines
 
