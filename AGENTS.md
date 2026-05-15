@@ -114,6 +114,8 @@ Git管理する結果は1実験あたり数MBまでを目安にする。大き�
 - GitHub Projects の列は `Todo / Ready / In Progress / Review / Done / Blocked` とする。
 - Issueは `t:exp`、`t:ref`、`t:impl`、`t:docs`、`t:maint` のいずれかを基本分類にする。
 - 優先度は `p:0`、`p:1`、`p:2` を使う。
+- Issue対応を行うAIエージェントは、作業開始前に `.agents/skills/sidf-issue-runner/SKILL.md` を確認し、Issueの `t:*` ラベルに応じて `.agents/skills/sidf-lab-*-issue/SKILL.md` も確認する。
+- Issue対応時は、GitHub Project のステータスを作業開始時に `In Progress`、PR作成後に `Review` へ更新し、Issueにも開始コメントと完了コメントを残す。PR作成までを標準フローとし、マージは明示依頼がない限り行わない。
 - 変更は原則として小さいPR単位に分ける。
 - 実験結果を追加するPRでは、`results/<date>-<short-name>/notes.md` と主要画像を含める。
 - 研究解釈が変わる実験を追加した場合は、`docs/research-state.md` も更新する。

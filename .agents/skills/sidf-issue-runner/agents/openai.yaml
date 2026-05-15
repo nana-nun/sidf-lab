@@ -1,0 +1,4 @@
+interface:
+  display_name: "SIDF Issue Runner"
+  short_description: "Orchestrate SIDF Lab GitHub issue work."
+  default_prompt: "Use this skill to handle a sidf-lab GitHub Issue from issue review through tag-specific skill selection, Project status updates, Issue comments, verification, PR creation, and review handoff."

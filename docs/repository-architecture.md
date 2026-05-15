@@ -30,7 +30,7 @@ sidf-lab/
   .agents/
     issue-workflow-ai.md
     skills/
-      sidf-lab-research/
+      sidf-issue-runner/
         SKILL.md
       sidf-lab-exp-issue/
         SKILL.md
@@ -117,13 +117,17 @@ AIエージェント用の一次参照。
 
 AIエージェントのIssue運用や作業種別ごとの手順を書く。
 
-`hash-lab` と同じ思想で、以下のラベルを使う想定:
+Issue対応では、まず `sidf-issue-runner` を入口にする。runner はIssue本文、ラベル、Project状態、コメント、ブランチ、PR作成までの共通フローを担当し、Issueの `t:*` ラベルに応じてタグ別Skillへ処理を分岐する。
+
+タグ別Skillは、以下のラベルごとに成果物、検証、Done criteriaを定義する:
 
 - `t:exp`: 実験
 - `t:ref`: 文献・参考資料
 - `t:impl`: 実装
 - `t:docs`: ドキュメント
 - `t:maint`: 環境・整理
+
+Issue対応時は、作業開始時にGitHub Projectのステータスを `In Progress` に更新し、Issueに開始コメントを残す。作業完了後はPRを作成し、Projectのステータスを `Review` に更新し、IssueにPR URL、検証結果、制限事項をコメントする。マージは明示依頼がない限り行わない。
 
 ### `docs/`
 

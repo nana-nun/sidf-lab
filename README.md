@@ -16,11 +16,14 @@ SIDF Lab は、SIDF (Stochastic Image Description Format) の研究用ワーク�
 - [研究計画](docs/research-plan.md)
 - [研究の現在地](docs/research-state.md)
 - [AIエージェント向けガイド](AGENTS.md)
+- [AIエージェント向けIssue処理Skill](.agents/skills/sidf-issue-runner/SKILL.md)
 
 リポジトリ運用:
 
 - 実験やテストで生成した画像は `results/<date>-<short-name>/` に保存する。
 - 研究タスクは GitHub Issues で管理し、`t:*` と `p:*` ラベルを使う。
+- AIエージェントがIssue対応を行う場合は、`.agents/skills/sidf-issue-runner/SKILL.md` を入口にし、Issueの `t:*` ラベルに応じた `.agents/skills/sidf-lab-*-issue/SKILL.md` も参照する。
+- Issue対応時は、GitHub Project のステータス更新、Issueコメント、PR作成までを標準フローに含める。マージは明示依頼がない限り行わない。
 - 作業状態は GitHub Projects で管理する。
 - 仕様、実験、参考文献、実装は分けて管理する。
 - GitHub repository: `nana-nun/sidf-lab`

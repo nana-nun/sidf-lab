@@ -1,0 +1,4 @@
+interface:
+  display_name: "SIDF Lab Reference Issue"
+  short_description: "Handle SIDF literature and reference issues."
+  default_prompt: "Use this skill for sidf-lab Issues labeled t:ref to add references, citations, links, and reading notes with careful SIDF relevance and limitations."
