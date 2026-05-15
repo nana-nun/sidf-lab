@@ -1,0 +1,24 @@
+{
+  "anneal_config": {
+    "proposal_sigma": 0.12,
+    "sweeps": 80,
+    "temp_end": 0.01,
+    "temp_start": 0.5
+  },
+  "date": "2026-05-16",
+  "decoder_seed": 4200,
+  "experiment_seed": 20260516,
+  "input_size": 32,
+  "model": "Model C",
+  "model_c_params": {
+    "gamma": 40.0,
+    "j_base": 2.0,
+    "lambda_data": 5.0
+  },
+  "numpy_version": "2.3.5",
+  "output_size": 32,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "shape": "cross",
+  "static_noise_sigma": 0.03
+}
