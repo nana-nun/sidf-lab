@@ -12,6 +12,7 @@ SIDF Lab は、SIDF (Stochastic Image Description Format) の研究用ワーク�
 最初に読むもの:
 
 - [研究ノート](docs/sidf-research-notes.md)
+- [リポジトリ基盤確認](docs/repository-foundation.md)
 - [リポジトリ構成](docs/repository-architecture.md)
 - [研究計画](docs/research-plan.md)
 - [研究の現在地](docs/research-state.md)

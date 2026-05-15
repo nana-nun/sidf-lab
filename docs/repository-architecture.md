@@ -135,6 +135,7 @@ Issue対応時は、作業開始時にGitHub Projectのステータスを `In Pr
 
 重要ファイル:
 
+- `repository-foundation.md`: 研究リポジトリ基盤の入口と運用ルールの所在
 - `research-plan.md`: 今後の仮説と実験計画
 - `research-state.md`: 現在何が分かっているか
 - `sidf-research-notes.md`: これまでの会話とModel A/C/Dの総括
