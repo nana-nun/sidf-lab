@@ -1,0 +1,4 @@
+interface:
+  display_name: "SIDF Lab Experiment Issue"
+  short_description: "Handle reproducible SIDF experiment issues."
+  default_prompt: "Use this skill for sidf-lab Issues labeled t:exp to run reproducible experiments with baselines, metrics, saved artifacts, notes, and limitations."

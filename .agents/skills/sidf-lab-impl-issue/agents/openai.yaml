@@ -1,0 +1,4 @@
+interface:
+  display_name: "SIDF Lab Implementation Issue"
+  short_description: "Handle scoped SIDF implementation issues."
+  default_prompt: "Use this skill for sidf-lab Issues labeled t:impl to make scoped Python, CLI, test, or tooling changes with relevant verification."

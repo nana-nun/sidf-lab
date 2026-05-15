@@ -44,139 +44,29 @@
 - Web記事やリンク集は `references/links.md` に追加する。
 - 読書メモは `references/notes/` に Markdown で作成する。
 
-## Experiment Principle
+## Experiment and Results
 
-高度な再構成モデルを評価する前に、必ず単純なベースラインを用意する。
+高度な再構成モデルを評価する前に、必ず単純なベースラインを用意し、SIDFモデルの出力はベースラインとの差分で評価してください。
 
-例:
+実験やテストで画像を生成した場合は、コンソール表示だけで終わらせず、PNGなどの成果物として保存します。実験結果を残す場合は `results/<date>-<short-name>/` に `config.json`、`metrics.json`、`notes.md`、主要画像を保存し、実行コマンド、seed、設定、metrics、decode time、限界を記録します。
 
-- nearest upscaling
-- bilinear upscaling
-- bicubic upscaling
-- static guide direct display
-- deterministic smoothing filter
-
-SIDFモデルの出力は、ベースラインとの差分で評価する。
-
-テストや実験で画像を生成した場合、出力画像は必ず保存する。コンソール表示や `plt.show()` だけで終わらせない。
-
-保存する代表画像:
-
-- input / STATIC guide
-- upscaled guide
-- confidence map
-- rendered output
-- baseline output
-- difference map when useful
-
-## Reproducibility
-
-実験結果を保存する場合は、可能な範囲で以下を残す。
-
-- 実行コマンド
-- experiment_seed
-- decoder_seed
-- input guide size
-- output size
-- model name
-- model config
-- metrics
-- decode time
-- 実行日時
-- Python / dependency version
-
-結果を保存する場合は、`results/` 配下に実験ごとのディレクトリを作る。
-
-```text
-results/
-  2026-05-13-model-d-cross/
-    config.json
-    metrics.json
-    notes.md
-    static.png
-    guide.png
-    confidence.png
-    rendered.png
-```
-
-小さいPNG、JSON、CSV、Markdownの結果はGit管理する。大量画像、大きい比較出力、長時間runの中間生成物はGit外に置き、`notes.md` に保存場所または未保存理由を残す。
-
-実験PRでは、結果ドキュメントを毎回出す。最低限 `results/<date>-<short-name>/notes.md` を含める。
-
-Git管理する結果は1実験あたり数MBまでを目安にする。大きい結果は `artifacts/` に保存し、Git管理しない。
+詳細な実験Issueの手順は `.agents/skills/sidf-lab-exp-issue/SKILL.md` を参照してください。
 
 ## Git and GitHub Workflow
 
 - GitHubリポジトリは `nana-nun/sidf-lab` とする。
 - default branch は `main` とする。
-- GitHub Issuesを研究タスク台帳として使う。
-- GitHub Projectsを進行管理に使う。
-- GitHub Projects の列は `Todo / Ready / In Progress / Review / Done / Blocked` とする。
-- Issueは `t:exp`、`t:ref`、`t:impl`、`t:docs`、`t:maint` のいずれかを基本分類にする。
-- 優先度は `p:0`、`p:1`、`p:2` を使う。
-- 変更は原則として小さいPR単位に分ける。
-- 実験結果を追加するPRでは、`results/<date>-<short-name>/notes.md` と主要画像を含める。
-- 研究解釈が変わる実験を追加した場合は、`docs/research-state.md` も更新する。
-- 仕様を変える場合は、実験結果ではなく `specs/` にドラフトとして残す。
-
-推奨ブランチ名:
-
-```text
-docs/issue-1-research-foundation
-impl/issue-3-python-package-skeleton
-exp/issue-4-model-c-cross-baseline
-exp/issue-6-model-d-multires-cross
-ref/issue-7-image-reconstruction-survey
-maint/issue-2-project-workflow
-```
-
-Issue対応用のブランチ名には、必ずIssue番号を含める。
-
-形式:
-
-```text
-<type>/issue-<number>-<branch-name>
-```
-
-例:
-
-```text
-impl/issue-3-python-package-skeleton
-exp/issue-4-model-c-cross-baseline
-docs/issue-8-sidf-v0.3-draft
-```
-
-PR本文には最低限これを書く。
-
-```markdown
-## Summary
-
-## Verification
-
-## Results
-
-## Limitations
-
-## Related Issue
-```
+- GitHub Issuesを研究タスク台帳として使い、GitHub Projectsで進行管理する。
+- Issue分類は `t:exp`、`t:ref`、`t:impl`、`t:docs`、`t:maint`、優先度は `p:0`、`p:1`、`p:2` を使う。
+- Issue対応時は `.agents/skills/sidf-issue-runner/SKILL.md` を入口にし、Issueの `t:*` ラベルに応じた `.agents/skills/sidf-lab-*-issue/SKILL.md` も確認する。
+- ブランチ名、Projectステータス更新、Issueコメント、PR本文、PR作成、マージしない方針は `sidf-issue-runner` に従う。
+- 変更は原則として小さいPR単位に分ける。仕様案は `specs/`、実験結果は `results/` に分ける。
 
 ## Python
 
-- Pythonを動かす場合は、プロジェクト直下の `.venv` を使う。
-- `.venv` がない場合は作成してから使う。
-- 依存管理は当面 `.venv + requirements.txt` とする。必要になったら後で `pyproject.toml` に移行する。
-- repository module を import する場合は、PowerShellで `$env:PYTHONPATH="src"` を設定してから実行する。
-- 実験コードは、まず小さい画像と少ない sweep で動かす。
-- 結果を解釈するときは、画像の印象だけでなく metrics も保存する。
-
-PowerShell例:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-$env:PYTHONPATH = "src"
-python -m unittest discover -s tests
-```
+- Pythonはプロジェクト直下の `.venv + requirements.txt` を使う。
+- repository module を import する場合は、PowerShellで `$env:PYTHONPATH = "src"` を設定する。
+- 実装Issueの詳細な検証手順は `.agents/skills/sidf-lab-impl-issue/SKILL.md` を参照する。
 
 ## Rust
 
@@ -188,14 +78,9 @@ python -m unittest discover -s tests
 
 ## Model C Freeze Criteria
 
-Model CはRust移植前の基準実装として扱う。freeze前に以下を満たす。
+Model CはRust移植前の基準実装として扱う。freeze前に、再現性、保存形式、複数形状ベンチ、metrics、主要PNG、限界の記録をそろえる。
 
-- 同じ `experiment_seed` と `decoder_seed` で同一環境のNumPy実装が再現できる。
-- `config.json`、`metrics.json`、`notes.md`、主要PNGが保存される。
-- cross、diagonal line、circle、thin line、soft gradient の最小ベンチで破綻しない。
-- `MAD`、foreground/background mean、foreground/background variance、edge leakage、decode time を保存する。
-- cross baseline では暫定的に `Background Mean <= 0.02`、`Edge Leakage <= 0.02`、`MAD <= 0.03` を目安にする。
-- freeze後に `specs/sidf-v0.2.1.md` をdraftとして作り、未確定事項をIssueに残す。
+詳細な freeze criteria は `docs/repository-architecture.md` を参照してください。
 
 ## Research State
 
@@ -209,10 +94,8 @@ Model CはRust移植前の基準実装として扱う。freeze前に以下を満
 
 ## Change Policy
 
-- 既存構成を尊重し、小さく検証可能な実験として追加する。
-- 実験結果を保存する場合は `config.json` と `notes.md` を必ず含める。
-- 実験結果を保存する場合は、生成画像も必ず保存する。
+- 既存構成を尊重し、小さく検証可能な変更として追加する。
 - 仕様変更と実験結果を混ぜない。仕様案は `specs/`、実験結果は `results/` に分ける。
 - 仕様はまず draft として `specs/` に置く。検討事項はIssueにも残す。
-- 実装後は、該当するテストまたはCLIサンプルを実行する。
+- 実装後は、該当するテスト、CLIサンプル、またはSkillで指定された検証を実行する。
 - 実験結果を解釈するときは、限界と未確認事項を明記する。

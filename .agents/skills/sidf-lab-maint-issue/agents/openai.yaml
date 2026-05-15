@@ -1,0 +1,4 @@
+interface:
+  display_name: "SIDF Lab Maintenance Issue"
+  short_description: "Handle SIDF maintenance issues."
+  default_prompt: "Use this skill for sidf-lab Issues labeled t:maint to update repository workflow, environment, templates, or housekeeping with direct verification."

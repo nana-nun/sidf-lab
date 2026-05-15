@@ -1,0 +1,4 @@
+interface:
+  display_name: "SIDF Lab Documentation Issue"
+  short_description: "Handle SIDF documentation issues."
+  default_prompt: "Use this skill for sidf-lab Issues labeled t:docs to update Japanese human-facing docs or English AI-facing docs while separating claims, hypotheses, results, and limitations."
