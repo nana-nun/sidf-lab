@@ -16,6 +16,8 @@ SIDF Lab は、SIDF (Stochastic Image Description Format) の研究用ワーク�
 - [リポジトリ構成](docs/repository-architecture.md)
 - [研究計画](docs/research-plan.md)
 - [研究の現在地](docs/research-state.md)
+- [SIDF v0.2.1 draft仕様案](specs/sidf-v0.2.1.md)
+- [SIDF v0.3.0 draft仕様案](specs/sidf-v0.3.0-draft.md)
 - [参考文献リスト](references/reading-list.md)
 - [AIエージェント向けガイド](AGENTS.md)
 - [AIエージェント向けIssue処理Skill](.agents/skills/sidf-issue-runner/SKILL.md)
