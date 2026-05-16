@@ -1,0 +1,55 @@
+{
+  "outputs": {
+    "bicubic": {
+      "background_mean": 0.03092889364782378,
+      "background_variance": 0.006691399489356174,
+      "edge_leakage": 0.21189385673256492,
+      "edge_width_pixels": 1.9649122807017543,
+      "foreground_mean": 0.4961461948118427,
+      "foreground_variance": 0.004221257386268206,
+      "mad_vs_reference": 0.03511914759598131,
+      "psnr_vs_reference": 21.584865041672874,
+      "ssim_global_vs_reference": 0.9043748443555926
+    },
+    "bilinear": {
+      "background_mean": 0.03285853173730765,
+      "background_variance": 0.0067778661864535674,
+      "edge_leakage": 0.2197278911564626,
+      "edge_width_pixels": 2.8771929824561404,
+      "foreground_mean": 0.4657655269900167,
+      "foreground_variance": 0.002958825375891868,
+      "mad_vs_reference": 0.033143058655753996,
+      "psnr_vs_reference": 21.49543042651308,
+      "ssim_global_vs_reference": 0.9016677036787233
+    },
+    "model_d": {
+      "background_mean": 0.046412938316724106,
+      "background_variance": 0.0065001142004450976,
+      "edge_leakage": 0.22061652525750844,
+      "edge_width_pixels": 2.745614035087719,
+      "foreground_mean": 0.46022543064702964,
+      "foreground_variance": 0.003365599696518452,
+      "mad_vs_reference": 0.04710639349589572,
+      "psnr_vs_reference": 21.03044894445687,
+      "ssim_global_vs_reference": 0.8805055505205887
+    },
+    "nearest": {
+      "background_mean": 0.017389966143428748,
+      "background_variance": 0.008392572149244777,
+      "edge_leakage": 0.12840909090909092,
+      "edge_width_pixels": 0.0,
+      "foreground_mean": 0.5,
+      "foreground_variance": 0.0,
+      "mad_vs_reference": 0.0137939453125,
+      "psnr_vs_reference": 21.613414958123172,
+      "ssim_global_vs_reference": 0.9155456470206351
+    }
+  },
+  "timings": {
+    "bicubic": 0.09615660000008575,
+    "bilinear": 0.0001667999999881431,
+    "confidence": 0.00015869999992901285,
+    "model_d": 1.740974000000051,
+    "nearest": 0.00015030000008664501
+  }
+}
