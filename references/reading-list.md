@@ -17,11 +17,17 @@ SIDF研究で読む候補の文献・資料を、調査テーマごとに管理�
 
 | Topic | Title / Resource | Reason | Status |
 | --- | --- | --- | --- |
-| MRF | Stuart Geman and Donald Geman, "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images" | Model C/D のエネルギーモデルとの関係を整理する | To read |
+| MRF | Stuart Geman and Donald Geman, "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images" | Model C/D のエネルギーモデルとの関係を整理する | Added to BibTeX; detailed note planned in #12 |
 | Edge-preserving smoothing | Pietro Perona and Jitendra Malik, "Scale-Space and Edge Detection Using Anisotropic Diffusion" | Model C の edge-aware interaction と異方性拡散の関係を整理する | Note added: `references/notes/perona-malik-anisotropic-diffusion.md` |
-| Guided reconstruction | Kaiming He, Jian Sun, Xiaoou Tang, "Guided Image Filtering" | Model D を guided upsampling と比較する | To read |
-| Texture | Perlin noise / fractal noise / procedural texture synthesis | structured noise prior の候補を探す | To read |
-| Determinism | Random123 / Philox / Threefry | Rust移植時のbit-perfect再現性の前提を調べる | To read |
+| Guided reconstruction | Kaiming He, Jian Sun, Xiaoou Tang, "Guided Image Filtering" | Model D を guided upsampling と比較する | Added to BibTeX; detailed note planned in #14 |
+| Interpolation baseline | Robert G. Keys, "Cubic Convolution Interpolation for Digital Image Processing" | bicubic baseline の古典的背景として確認する | Added to BibTeX |
+| Super-resolution baseline | Chao Dong et al., "Learning a Deep Convolutional Network for Image Super-Resolution" | SIDFを超解像と混同しないため、SR代表例を背景として置く | Added to BibTeX |
+| Texture | Ken Perlin, "An Image Synthesizer" | deterministic / procedural texture prior の背景候補 | Added to BibTeX; detailed note planned in #15 |
+| Determinism | John K. Salmon et al., "Parallel Random Numbers: As Easy as 1, 2, 3" | Rust移植時のcounter-based PRNG候補を整理する | Added to BibTeX; detailed note planned in #16 |
+
+## 横断メモ
+
+- `references/notes/sidf-reference-map.md`: SIDF研究テーマと代表文献の対応表
 
 ## 読書メモの保存方針
 
