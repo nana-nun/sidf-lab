@@ -3,10 +3,8 @@
 from __future__ import annotations
 
 import platform
-import struct
 import sys
 import time
-import zlib
 from pathlib import Path
 
 import numpy as np
@@ -14,32 +12,11 @@ import numpy as np
 from sidf_lab.anneal import AnnealConfig, model_c_decode
 from sidf_lab.energy import ModelCParams
 from sidf_lab.guides import add_noise, cross
-from sidf_lab.io import ensure_dir, save_json
+from sidf_lab.io import ensure_dir, save_grayscale_png, save_json
 from sidf_lab.metrics import edge_leakage, mad, region_summary
 
 
 RESULT_DIR = Path("results/2026-05-16-model-c-cross-baseline")
-
-
-def save_grayscale_png(path: str | Path, image: np.ndarray) -> None:
-    """Save a [0, 1] grayscale image as an 8-bit PNG without optional deps."""
-    target = Path(path)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    pixels = (np.clip(image, 0.0, 1.0) * 255.0).round().astype(np.uint8)
-    height, width = pixels.shape
-    raw = b"".join(b"\x00" + pixels[row].tobytes() for row in range(height))
-
-    def chunk(kind: bytes, data: bytes) -> bytes:
-        crc = zlib.crc32(kind + data) & 0xFFFFFFFF
-        return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", crc)
-
-    png = (
-        b"\x89PNG\r\n\x1a\n"
-        + chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 0, 0, 0, 0))
-        + chunk(b"IDAT", zlib.compress(raw, level=9))
-        + chunk(b"IEND", b"")
-    )
-    target.write_bytes(png)
 
 
 def save_comparison_png(path: str | Path, images: list[np.ndarray], gap: int = 2) -> None:

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import struct
+import zlib
 from pathlib import Path
 from typing import Any
 
@@ -24,10 +26,22 @@ def save_json(path: str | Path, data: dict[str, Any]) -> None:
 
 
 def save_grayscale_png(path: str | Path, image: np.ndarray) -> None:
-    """Save a [0, 1] grayscale image as PNG using matplotlib."""
-    import matplotlib.pyplot as plt
-
+    """Save a [0, 1] grayscale image as an 8-bit PNG without optional deps."""
     target = Path(path)
     target.parent.mkdir(parents=True, exist_ok=True)
-    plt.imsave(target, np.clip(image, 0.0, 1.0), cmap="gray", vmin=0.0, vmax=1.0)
+    pixels = (np.clip(image, 0.0, 1.0) * 255.0).round().astype(np.uint8)
+    height, width = pixels.shape
+    raw = b"".join(b"\x00" + pixels[row].tobytes() for row in range(height))
+
+    def chunk(kind: bytes, data: bytes) -> bytes:
+        crc = zlib.crc32(kind + data) & 0xFFFFFFFF
+        return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", crc)
+
+    png = (
+        b"\x89PNG\r\n\x1a\n"
+        + chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 0, 0, 0, 0))
+        + chunk(b"IDAT", zlib.compress(raw, level=9))
+        + chunk(b"IEND", b"")
+    )
+    target.write_bytes(png)
 
