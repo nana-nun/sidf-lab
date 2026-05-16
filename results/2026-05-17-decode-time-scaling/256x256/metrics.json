@@ -1,0 +1,70 @@
+{
+  "low_size": 64,
+  "metrics": {
+    "bicubic": {
+      "background_mean": 0.00473912384603749,
+      "background_variance": 0.0007839934920752936,
+      "edge_leakage": 0.13389092235291505,
+      "edge_width_pixels": 2.955357142857143,
+      "foreground_mean": 0.49501127048579235,
+      "foreground_variance": 0.0013915326415108828,
+      "mad_vs_reference": 0.007135857756641714,
+      "psnr_vs_reference": 30.225444291480184,
+      "ssim_global_vs_reference": 0.9892844938804117
+    },
+    "bilinear": {
+      "background_mean": 0.005342793367346936,
+      "background_variance": 0.0009164349393652862,
+      "edge_leakage": 0.15094594594594588,
+      "edge_width_pixels": 2.982142857142857,
+      "foreground_mean": 0.48803245746828144,
+      "foreground_variance": 0.001524161546587377,
+      "mad_vs_reference": 0.00689546895274654,
+      "psnr_vs_reference": 29.530003483443956,
+      "ssim_global_vs_reference": 0.9873873916216042
+    },
+    "model_c": {
+      "background_mean": 0.31056868628467393,
+      "background_variance": 0.02749514245689288,
+      "edge_leakage": 0.31291496902901056,
+      "edge_width_pixels": 4.224330357142857,
+      "foreground_mean": 0.502237763847288,
+      "foreground_variance": 0.009717771487135034,
+      "mad_vs_reference": 0.2538166236376639,
+      "psnr_vs_reference": 10.124387327992427,
+      "ssim_global_vs_reference": 0.2774591200565935
+    },
+    "model_d": {
+      "background_mean": 0.04115890750195929,
+      "background_variance": 0.0021294342158784964,
+      "edge_leakage": 0.15365666448342644,
+      "edge_width_pixels": 4.238839285714286,
+      "foreground_mean": 0.4865344649158749,
+      "foreground_variance": 0.0038550803609592892,
+      "mad_vs_reference": 0.04234367816411079,
+      "psnr_vs_reference": 24.119086693102144,
+      "ssim_global_vs_reference": 0.9412891339112942
+    },
+    "nearest": {
+      "background_mean": 0.0,
+      "background_variance": 0.0,
+      "edge_leakage": 0.0,
+      "edge_width_pixels": 0.0,
+      "foreground_mean": 0.5,
+      "foreground_variance": 0.0,
+      "mad_vs_reference": 0.0,
+      "psnr_vs_reference": null,
+      "ssim_global_vs_reference": 1.0
+    }
+  },
+  "size": 256,
+  "sweeps": 12,
+  "timings": {
+    "bicubic_seconds": 1.5065510999999674,
+    "bilinear_seconds": 0.0017198000000462343,
+    "confidence_seconds": 0.0018092000000251574,
+    "model_c_decode_seconds": 5.6813232000000085,
+    "model_d_decode_seconds": 9.440851400000042,
+    "nearest_seconds": 0.0003553999999894586
+  }
+}
