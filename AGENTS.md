@@ -95,6 +95,8 @@ $env:PYTHONPATH = "src"
 
 Model CはRust移植前の基準実装として扱う。freeze前に、再現性、保存形式、複数形状ベンチ、metrics、主要PNG、限界の記録をそろえる。
 
+soft gradient のように明確な foreground/background 境界を持たない guide では、edge leakage を無理に主要指標にしない。`edge_leakage=null` または `Not applicable` とした理由を `notes.md` に書き、代替として gradient monotonicity、slope error、smoothness、region summary などを検討する。詳細は `docs/repository-architecture.md` の freeze criteria を参照してください。
+
 詳細な freeze criteria は `docs/repository-architecture.md` を参照してください。
 
 ## Research State

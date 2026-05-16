@@ -498,6 +498,16 @@ Model C freeze 前に、以下の synthetic guides で破綻しないことを�
 - edge leakage
 - decode time
 
+soft gradient のように明確な二領域境界を持たない guide では、foreground/background mask を作って edge leakage を計算しても、漏れ量ではなく便宜的な左右差や勾配そのものを測ってしまう。そのため、edge leakage は `null` または `Not applicable` としてよい。ただし、その理由を `notes.md` に明記し、代替指標をあわせて検討する。
+
+soft gradient の代替指標候補:
+
+- gradient monotonicity: 列平均や行平均が大きく逆行していないか。
+- slope error: clean guide の傾きと再構成結果の平均傾きの差。
+- smoothness: 隣接差分の急なジャンプや二階差分の大きさ。
+- region summary: 便宜的に左半分/右半分などを分けた平均と分散。ただし、これは漏れ指標ではなく分布確認として扱う。
+- MAD / PSNR / SSIM: Ground Truth がある synthetic guide や自然画像patchでは、全体差分の基礎指標として併記する。
+
 可能なら追加する。
 
 - edge width
@@ -516,6 +526,8 @@ MAD             <= 0.03
 ```
 
 ただし、この数値はcross専用の暫定基準であり、circle、diagonal、gradientでは別途解釈する。特にsoft gradientではedge leakageより階調の自然さを重視する。
+
+soft gradient の評価では、`results/2026-05-16-model-c-freeze-benchmark/soft_gradient/notes.md` のように、`edge_leakage` を不適用にした理由、使った代替確認、結果、解釈、限界を分けて記録する。現時点の記録は「今回のrunでは列平均に大きな逆行や急な段差が目立たなかった」という結果であり、一般的な滑らかさや高品質復元を保証するものではない。
 
 ### Freeze後にやること
 
