@@ -18,7 +18,7 @@ SIDF研究で読む候補の文献・資料を、調査テーマごとに管理�
 | Topic | Title / Resource | Reason | Status |
 | --- | --- | --- | --- |
 | MRF | Stuart Geman and Donald Geman, "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images" | Model C/D のエネルギーモデルとの関係を整理する | To read |
-| Edge-preserving smoothing | Pietro Perona and Jitendra Malik, "Scale-Space and Edge Detection Using Anisotropic Diffusion" | Model C の edge-aware interaction と異方性拡散の関係を整理する | To read |
+| Edge-preserving smoothing | Pietro Perona and Jitendra Malik, "Scale-Space and Edge Detection Using Anisotropic Diffusion" | Model C の edge-aware interaction と異方性拡散の関係を整理する | Note added: `references/notes/perona-malik-anisotropic-diffusion.md` |
 | Guided reconstruction | Kaiming He, Jian Sun, Xiaoou Tang, "Guided Image Filtering" | Model D を guided upsampling と比較する | To read |
 | Texture | Perlin noise / fractal noise / procedural texture synthesis | structured noise prior の候補を探す | To read |
 | Determinism | Random123 / Philox / Threefry | Rust移植時のbit-perfect再現性の前提を調べる | To read |
