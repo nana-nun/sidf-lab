@@ -70,6 +70,17 @@ Saved images:
 - SIDF rendered output
 - difference map
 
+注意:
+
+Model D は guided filter / joint bilateral upsampling と比較できるが、現行Model Dは高解像度guidance imageを持たず、low-resolution guideをupscaleしてconfidence mapを作る。そのため、今後のbaselineでは「高解像度guidanceを使うguided filter系」と「低解像度guideだけを使うSIDF条件」を分けて評価する。
+
+追加baseline候補:
+
+- guided filter baseline
+- joint bilateral upsampling baseline
+- bilateral smoothing baseline
+- texture term ablation
+
 ### 3. Shape Benchmark
 
 対象:
