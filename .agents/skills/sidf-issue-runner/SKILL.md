@@ -55,13 +55,44 @@ During work:
 At work completion:
 
 1. Run the verification required by the tag skill.
-2. Commit and push the branch when the user asked for a complete Issue workflow or PR.
-3. Create a PR with the standard template.
-4. Move the Issue's GitHub Project status to `Review`.
-5. Add an Issue comment with the PR URL, verification summary, saved results if any, limitations, and remaining follow-ups.
-6. Do not merge the PR unless the user explicitly asks.
+2. Review limitations, skipped checks, TODOs, new research questions, and out-of-scope discoveries from the work.
+3. Create or propose follow-up Issues when the remaining work is concrete and not already covered by an open Issue.
+4. Commit and push the branch when the user asked for a complete Issue workflow or PR.
+5. Create a PR with the standard template.
+6. Move the Issue's GitHub Project status to `Review`.
+7. Add an Issue comment with the PR URL, verification summary, saved results if any, limitations, follow-up Issue URLs, and any remaining follow-ups that were not created.
+8. Do not merge the PR unless the user explicitly asks.
 
 Prefer available GitHub tooling for these actions. With GitHub CLI, use `gh issue comment`, `gh pr create`, and `gh project` commands after discovering the relevant project item and Status field options. If project automation cannot be completed because credentials, permissions, or field IDs are unavailable, leave an Issue comment with the status change that should happen and state the limitation in the final response.
+
+## Follow-up Issue Creation
+
+At completion, decide whether new Issues are needed before opening or finalizing the PR. The goal is to preserve useful next work without expanding the current PR beyond its scope.
+
+Create or propose a follow-up Issue when:
+
+- A limitation or skipped verification is concrete enough to be worked independently.
+- An experiment result creates a clear next experiment, baseline, metric, or saved artifact requirement.
+- A documentation change identifies an unresolved specification decision or missing reference.
+- An implementation change exposes a test gap, refactor, performance concern, or reproducibility requirement.
+- A literature review identifies a specific paper, method, or comparison needed for SIDF positioning.
+
+Do not create a follow-up Issue when:
+
+- The item is vague, speculative, or not actionable yet.
+- An open Issue already covers the same work; link the existing Issue instead.
+- The item is an acceptance criterion that should be completed in the current Issue.
+- The follow-up would mix unrelated work types; split it by `t:exp`, `t:ref`, `t:impl`, `t:docs`, or `t:maint`.
+
+Before creating a follow-up Issue:
+
+1. Search open Issues for duplicates.
+2. Choose the correct `t:*` label and priority label.
+3. Keep the Issue body small but actionable, with `Goal`, `Context`, `Tasks`, `Acceptance Criteria`, and `References` when useful.
+4. Add it to the GitHub Project when practical.
+5. Mention the new Issue URL in the parent Issue comment and PR `Limitations` or `Results` section as appropriate.
+
+If GitHub access is unavailable, list the proposed follow-up Issue title, labels, and body in the parent Issue comment when possible, or in the final response if commenting is also unavailable.
 
 ## Branching
 

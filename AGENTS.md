@@ -62,6 +62,7 @@ Git管理に含める主要画像は、`notes.md` から Markdown の画像参�
 - Issue分類は `t:exp`、`t:ref`、`t:impl`、`t:docs`、`t:maint`、優先度は `p:0`、`p:1`、`p:2` を使う。
 - Issue対応時は `.agents/skills/sidf-issue-runner/SKILL.md` を入口にし、Issueの `t:*` ラベルに応じた `.agents/skills/sidf-lab-*-issue/SKILL.md` も確認する。
 - ブランチ名、Projectステータス更新、Issueコメント、PR本文、PR作成、マージしない方針は `sidf-issue-runner` に従う。
+- Issue対応の完了時に、未検証事項、残った制限、次に必要な実験・文献調査・実装・文書化が明確になった場合は、既存Issueと重複しない範囲で follow-up Issue を作成または提案する。
 - 変更は原則として小さいPR単位に分ける。仕様案は `specs/`、実験結果は `results/` に分ける。
 
 ## Python
