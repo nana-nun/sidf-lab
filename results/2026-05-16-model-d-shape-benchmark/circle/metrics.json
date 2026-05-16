@@ -1,0 +1,50 @@
+{
+  "gradient_check": null,
+  "mask_note": "foreground is the non-zero region in the clean high-resolution synthetic reference.",
+  "outputs": {
+    "bicubic": {
+      "background_mean": 0.018817915440847325,
+      "background_variance": 0.004669977079324077,
+      "edge_leakage": 0.26519428564910136,
+      "edge_width_pixels": 3.3636363636363638,
+      "foreground_mean": 0.5006801046009479,
+      "foreground_variance": 0.0013638921766737009,
+      "mad_vs_reference": 0.018965202199830868,
+      "psnr_vs_reference": 23.66675300423517,
+      "ssim_global_vs_reference": 0.9405610920237354
+    },
+    "bilinear": {
+      "background_mean": 0.019554715918035932,
+      "background_variance": 0.004324102547580231,
+      "edge_leakage": 0.2578279538765863,
+      "edge_width_pixels": 4.2727272727272725,
+      "foreground_mean": 0.48613764060632464,
+      "foreground_variance": 0.0014156129549770713,
+      "mad_vs_reference": 0.018426250708616792,
+      "psnr_vs_reference": 23.88043773400593,
+      "ssim_global_vs_reference": 0.9432393664418719
+    },
+    "model_d": {
+      "background_mean": 0.03446170814142268,
+      "background_variance": 0.004374834861559452,
+      "edge_leakage": 0.25789850594156205,
+      "edge_width_pixels": 4.215909090909091,
+      "foreground_mean": 0.4842433513392723,
+      "foreground_variance": 0.002570388485397273,
+      "mad_vs_reference": 0.035057224857274596,
+      "psnr_vs_reference": 22.994251627304028,
+      "ssim_global_vs_reference": 0.9200268773488824
+    },
+    "nearest": {
+      "background_mean": 0.0194884287454324,
+      "background_variance": 0.009364415517750408,
+      "edge_leakage": 0.30851063829787234,
+      "edge_width_pixels": 0.0,
+      "foreground_mean": 0.49507389162561577,
+      "foreground_variance": 0.0024387876434759396,
+      "mad_vs_reference": 0.0166015625,
+      "psnr_vs_reference": 20.808810309255193,
+      "ssim_global_vs_reference": 0.8959062089645006
+    }
+  }
+}

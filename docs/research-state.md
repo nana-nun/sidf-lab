@@ -81,6 +81,19 @@ Model C は、SIDF v0.2.1 の基礎モデルとして有望。ただし創発性
 
 Model D は confidence-aware multi-resolution reconstruction と呼ぶのが正確。Ground Truth比較なしに「超解像性能」とは主張しない。
 
+shape benchmark:
+
+- `results/2026-05-16-model-d-shape-benchmark/`
+- diagonal、circle、thin line、soft gradientで nearest / bilinear / bicubic / Model D candidate を保存。
+- hard edge shapeでは、今回の設定のModel DはMADでbilinearを上回らなかった。
+- Model D MAD: diagonal `0.0448`、circle `0.0351`、thin line `0.0436`。
+- Model D edge leakage: diagonal `0.0738`、circle `0.2579`、thin line `0.2756`。
+- soft gradientでは、列平均の大きな逆行や急な段差は検出されなかった。ただしbilinearがsynthetic referenceにほぼ一致するため、Model Dの追加ノイズはMADを悪化させた。
+
+解釈:
+
+Model D の confidence map は保存形式つきで確認できるようになったが、現時点のwhite-noise texture termはhard edgeの数値指標を改善していない。特にthin lineやcircle境界では、baselineとの差分とedge leakageを見ながら、texture termとconfidence/data fidelityの重みを再検討する必要がある。
+
 ## Open Questions
 
 - Model D は斜線や曲線でも境界を守れるか。
