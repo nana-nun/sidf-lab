@@ -137,6 +137,16 @@ J_ij = J_base * exp(-gamma * (s_i - s_j)^2)
 
 この式は draft の候補であり、係数、符号、texture term の扱い、temperature schedule は今後の実験で変更される可能性がある。
 
+### 確率モデルとしての扱い
+
+Model C / D の energy は、MRF / Gibbs 型の画像復元と概念的に対応する `data fidelity term` と `edge-aware pairwise interaction term` を持つ。ただし、この draft では観測モデル、prior、posterior distribution を formal には定義していない。
+
+そのため、この energy は現時点では確率モデルそのものではなく、seed つき緩和 decoder が低減しようとする decoder objective として扱う。`lambda_data * (v_i - s_i)^2` は通常 `data fidelity` と呼び、Gaussian observation model を別途仮定する場合に限って data likelihood と対応づける。`J_ij * (v_i - v_j)^2` は pairwise prior に近い役割を持つが、`J_ij` が guide `s` に依存するため、厳密な MRF prior と断定しない。
+
+Model C を posterior energy や MAP 推定として記述するには、guide の観測モデル、latent image の prior、`J_ij` の確率モデル上の位置づけ、continuous value の扱い、annealing decoder の推定上の意味を別途定義する必要がある。
+
+詳細な整理は `docs/model-c-energy-position.md` を参照する。
+
 ## 6. Current Results
 
 ### Model C
@@ -244,7 +254,7 @@ Rust core decoder に移す前に、bit-perfect 再現性要件を Issue #16 で
 | Model D が bilinear / bicubic に対して何を改善するか | 未検証 | [#6](https://github.com/nana-nun/sidf-lab/issues/6) |
 | Model D と guided filter / guided upsampling の関係 | 未整理 | [#14](https://github.com/nana-nun/sidf-lab/issues/14) |
 | white noise 以外の structured texture prior | 未調査 | [#15](https://github.com/nana-nun/sidf-lab/issues/15) |
-| MRF / Gibbs / stochastic relaxation との理論的整理 | 未整理 | [#12](https://github.com/nana-nun/sidf-lab/issues/12) |
+| Model C energy の確率モデル上の位置づけ | 整理中 | [#26](https://github.com/nana-nun/sidf-lab/issues/26) |
 | Rust 移植前の bit-perfect 再現性 | 未整理 | [#16](https://github.com/nana-nun/sidf-lab/issues/16) |
 
 ## 10. Draft-to-Spec Criteria
@@ -264,5 +274,6 @@ Rust core decoder に移す前に、bit-perfect 再現性要件を Issue #16 で
 - `docs/research-state.md`
 - `docs/research-plan.md`
 - `docs/repository-architecture.md`
+- `docs/model-c-energy-position.md`
 - `results/2026-05-16-model-c-cross-baseline/notes.md`
 - `results/2026-05-16-model-c-freeze-benchmark/notes.md`
