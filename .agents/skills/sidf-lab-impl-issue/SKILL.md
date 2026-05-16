@@ -32,7 +32,18 @@ Read:
 
 ## Python Verification
 
-Use the project `.venv` when available. If it is missing and Python work is required, create it and install requirements:
+Use the project `.venv` when available. On Windows Codex sessions, plain `python` may resolve to the Microsoft Store stub, so prefer `.\.venv\Scripts\python.exe` once the environment exists.
+
+If `.venv` is missing in Codex, create it from the bundled runtime and expose bundled scientific packages:
+
+```powershell
+$runtimePython = Get-ChildItem -LiteralPath "$env:USERPROFILE\.cache\codex-runtimes" -Recurse -Filter python.exe |
+  Where-Object { $_.FullName -notmatch "WindowsApps" } |
+  Select-Object -First 1
+& $runtimePython.FullName -m venv --system-site-packages --without-pip .venv
+```
+
+If running outside Codex with a normal Python installation, this standard setup is also acceptable:
 
 ```powershell
 python -m venv .venv
@@ -44,14 +55,14 @@ Set the module path before running repository imports:
 
 ```powershell
 $env:PYTHONPATH = "src"
-python -m unittest discover -s tests
+.\.venv\Scripts\python.exe -m unittest discover -s tests
 ```
 
 For CLI checks:
 
 ```powershell
 $env:PYTHONPATH = "src"
-python -m sidf_lab.cli
+.\.venv\Scripts\python.exe -m sidf_lab.cli
 ```
 
 ## Done Criteria

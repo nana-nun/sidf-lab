@@ -154,18 +154,19 @@ Implement Python or tooling changes in the smallest useful scope. Prefer existin
 For Python verification, use the project `.venv` when available or create it if needed:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
+$runtimePython = Get-ChildItem -LiteralPath "$env:USERPROFILE\.cache\codex-runtimes" -Recurse -Filter python.exe |
+  Where-Object { $_.FullName -notmatch "WindowsApps" } |
+  Select-Object -First 1
+& $runtimePython.FullName -m venv --system-site-packages --without-pip .venv
 $env:PYTHONPATH = "src"
-python -m unittest discover -s tests
+.\.venv\Scripts\python.exe -m unittest discover -s tests
 ```
 
 For CLI-level checks:
 
 ```powershell
 $env:PYTHONPATH = "src"
-python -m sidf_lab.cli
+.\.venv\Scripts\python.exe -m sidf_lab.cli
 ```
 
 If implementation generates images, save the images rather than relying on `plt.show()`.

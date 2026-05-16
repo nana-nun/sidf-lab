@@ -68,8 +68,20 @@ Git管理に含める主要画像は、`notes.md` から Markdown の画像参�
 ## Python
 
 - Pythonはプロジェクト直下の `.venv + requirements.txt` を使う。
+- Codex on Windows では `python` が Microsoft Store stub を指すことがある。`.venv` がない場合は、まず Codex runtime の Python を探して `--system-site-packages --without-pip` で作成する。
 - repository module を import する場合は、PowerShellで `$env:PYTHONPATH = "src"` を設定する。
 - 実装Issueの詳細な検証手順は `.agents/skills/sidf-lab-impl-issue/SKILL.md` を参照する。
+
+Codex向け `.venv` 作成例:
+
+```powershell
+$runtimePython = Get-ChildItem -LiteralPath "$env:USERPROFILE\.cache\codex-runtimes" -Recurse -Filter python.exe |
+  Where-Object { $_.FullName -notmatch "WindowsApps" } |
+  Select-Object -First 1
+& $runtimePython.FullName -m venv --system-site-packages --without-pip .venv
+$env:PYTHONPATH = "src"
+.\.venv\Scripts\python.exe -m unittest discover -s tests
+```
 
 ## Rust
 
