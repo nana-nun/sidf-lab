@@ -94,6 +94,18 @@ shape benchmark:
 
 Model D の confidence map は保存形式つきで確認できるようになったが、現時点のwhite-noise texture termはhard edgeの数値指標を改善していない。特にthin lineやcircle境界では、baselineとの差分とedge leakageを見ながら、texture termとconfidence/data fidelityの重みを再検討する必要がある。
 
+cross baseline comparison:
+
+- `results/2026-05-17-model-d-cross-comparison/`
+- nearest、bilinear、bicubic、Model D candidate を64x64 synthetic crossで比較。
+- Model D MAD `0.0471` は nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` より悪かった。
+- Model D edge leakage `0.2206` は bilinear `0.2197` とほぼ同程度で、nearest `0.1284`、bicubic `0.2119` より悪かった。
+- Model D edge width `2.7456` は bilinear `2.8772` よりわずかに小さいが、MADと背景漏れの悪化を伴う。
+
+解釈:
+
+このcross比較では、現行Model D candidateは単純補間に対する総合的な改善を示していない。confidence mapが境界拘束として働く可能性は残るが、white-noise texture termと現在の重みでは背景漏れやreference差分を悪化させるため、texture ablationや重み再調整が必要である。
+
 ## Open Questions
 
 - Model D は斜線や曲線でも境界を守れるか。
