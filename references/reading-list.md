@@ -17,7 +17,7 @@ SIDF研究で読む候補の文献・資料を、調査テーマごとに管理�
 
 | Topic | Title / Resource | Reason | Status |
 | --- | --- | --- | --- |
-| MRF | Stuart Geman and Donald Geman, "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images" | Model C/D のエネルギーモデルとの関係を整理する | Added to BibTeX; detailed note planned in #12 |
+| MRF | Stuart Geman and Donald Geman, "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images" | Model C/D のエネルギーモデルとの関係を整理する | Note added: `references/notes/geman-geman-stochastic-relaxation.md` |
 | Edge-preserving smoothing | Pietro Perona and Jitendra Malik, "Scale-Space and Edge Detection Using Anisotropic Diffusion" | Model C の edge-aware interaction と異方性拡散の関係を整理する | Note added: `references/notes/perona-malik-anisotropic-diffusion.md` |
 | Guided reconstruction | Kaiming He, Jian Sun, Xiaoou Tang, "Guided Image Filtering" | Model D を guided upsampling と比較する | Added to BibTeX; detailed note planned in #14 |
 | Interpolation baseline | Robert G. Keys, "Cubic Convolution Interpolation for Digital Image Processing" | bicubic baseline の古典的背景として確認する | Added to BibTeX |
