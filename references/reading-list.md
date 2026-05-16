@@ -19,7 +19,9 @@ SIDF研究で読む候補の文献・資料を、調査テーマごとに管理�
 | --- | --- | --- | --- |
 | MRF | Stuart Geman and Donald Geman, "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images" | Model C/D のエネルギーモデルとの関係を整理する | Note added: `references/notes/geman-geman-stochastic-relaxation.md` |
 | Edge-preserving smoothing | Pietro Perona and Jitendra Malik, "Scale-Space and Edge Detection Using Anisotropic Diffusion" | Model C の edge-aware interaction と異方性拡散の関係を整理する | Note added: `references/notes/perona-malik-anisotropic-diffusion.md` |
-| Guided reconstruction | Kaiming He, Jian Sun, Xiaoou Tang, "Guided Image Filtering" | Model D を guided upsampling と比較する | Added to BibTeX; detailed note planned in #14 |
+| Guided reconstruction | Kaiming He, Jian Sun, Xiaoou Tang, "Guided Image Filtering" | Model D を guided upsampling と比較する | Note added: `references/notes/model-d-guided-upsampling.md` |
+| Guided reconstruction | Johannes Kopf et al., "Joint Bilateral Upsampling" | 低解像度solutionを高解像度guidanceで戻すbaseline候補 | Note added: `references/notes/model-d-guided-upsampling.md` |
+| Edge-preserving smoothing | Frédo Durand and Julie Dorsey, "Fast Bilateral Filtering for the Display of High-Dynamic-Range Images" | bilateral / guided 系比較の基礎 | Note added: `references/notes/model-d-guided-upsampling.md` |
 | Interpolation baseline | Robert G. Keys, "Cubic Convolution Interpolation for Digital Image Processing" | bicubic baseline の古典的背景として確認する | Added to BibTeX |
 | Super-resolution baseline | Chao Dong et al., "Learning a Deep Convolutional Network for Image Super-Resolution" | SIDFを超解像と混同しないため、SR代表例を背景として置く | Added to BibTeX |
 | Texture | Ken Perlin, "An Image Synthesizer" | deterministic / procedural texture prior の背景候補 | Added to BibTeX; detailed note planned in #15 |

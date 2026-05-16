@@ -12,6 +12,9 @@ SIDF研究に関係するWeb資料、実装例、ドキュメントへのリン�
 | Edge-preserving smoothing | Scale-Space and Edge Detection Using Anisotropic Diffusion | https://www.sci.utah.edu/~gerig/CS7960-S2010/materials/Perona-Malik/PeronaMalik-PAMI-1990.pdf | Issue #13 の調査候補 |
 | Edge-preserving smoothing | CaltechAUTHORS record: Scale-space and edge detection using anisotropic diffusion | https://authors.library.caltech.edu/records/1p8h5-5x870 | DOIと書誌情報の確認元 |
 | Guided reconstruction | Guided Image Filtering | https://people.csail.mit.edu/kaiming/publications/eccv10guidedfilter.pdf | Issue #14 の調査候補 |
+| Guided reconstruction | Guided Image Filtering mirror | https://mmlab.ie.cuhk.edu.hk/2010/eccv10_Guided.pdf | Issue #14 で参照した論文PDF |
+| Guided reconstruction | Joint Bilateral Upsampling | https://johanneskopf.de/publications/jbu/paper/FinalPaper_0185.pdf | Issue #14 で参照した joint upsampling 論文PDF |
+| Edge-preserving smoothing | Fast Bilateral Filtering for the Display of High-Dynamic-Range Images | https://people.csail.mit.edu/fredo/PUBLI/Siggraph2002/DurandBilateral.pdf | bilateral filter の基礎文献 |
 | Interpolation baseline | Cubic Convolution Interpolation for Digital Image Processing | https://doi.org/10.1109/TASSP.1981.1163711 | bicubic baseline の古典的文献 |
 | Super-resolution baseline | Learning a Deep Convolutional Network for Image Super-Resolution | https://doi.org/10.1007/978-3-319-10593-2_13 | 超解像代表例。SIDFの主張と混同しないための背景 |
 | Texture | An Image Synthesizer | https://doi.org/10.1145/325334.325247 | Perlin noise / procedural texture の背景候補 |
