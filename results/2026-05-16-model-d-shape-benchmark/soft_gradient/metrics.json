@@ -1,0 +1,54 @@
+{
+  "gradient_check": {
+    "backward_steps": 0,
+    "large_jumps": 0,
+    "note": "列平均では大きな逆行や急な段差は見られない。"
+  },
+  "mask_note": "soft_gradient uses a right-half/left-half split only for mean summaries.",
+  "outputs": {
+    "bicubic": {
+      "background_mean": 0.24568868552712092,
+      "background_variance": 0.021629743981015845,
+      "edge_leakage": null,
+      "edge_width_pixels": null,
+      "foreground_mean": 0.754311314472879,
+      "foreground_variance": 0.021629743981015838,
+      "mad_vs_reference": 0.00034306050462550817,
+      "psnr_vs_reference": 58.61932443152361,
+      "ssim_global_vs_reference": 0.999992064711185
+    },
+    "bilinear": {
+      "background_mean": 0.24603174603174602,
+      "background_variance": 0.021478961955152427,
+      "edge_leakage": null,
+      "edge_width_pixels": null,
+      "foreground_mean": 0.753968253968254,
+      "foreground_variance": 0.021478961955152434,
+      "mad_vs_reference": 1.9168355596364817e-17,
+      "psnr_vs_reference": 326.5289734558053,
+      "ssim_global_vs_reference": 1.0
+    },
+    "model_d": {
+      "background_mean": 0.2465517486714695,
+      "background_variance": 0.02205024123768519,
+      "edge_leakage": null,
+      "edge_width_pixels": null,
+      "foreground_mean": 0.7564465975143926,
+      "foreground_variance": 0.022428072137560172,
+      "mad_vs_reference": 0.019142846067351456,
+      "psnr_vs_reference": 32.2860180928086,
+      "ssim_global_vs_reference": 0.9966156363982512
+    },
+    "nearest": {
+      "background_mean": 0.24375000000000002,
+      "background_variance": 0.021835937500000006,
+      "edge_leakage": null,
+      "edge_width_pixels": null,
+      "foreground_mean": 0.75625,
+      "foreground_variance": 0.021835937500000006,
+      "mad_vs_reference": 0.01636904761904763,
+      "psnr_vs_reference": 34.39189101670944,
+      "ssim_global_vs_reference": 0.9979139864553246
+    }
+  }
+}
