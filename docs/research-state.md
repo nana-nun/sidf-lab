@@ -106,6 +106,19 @@ cross baseline comparison:
 
 このcross比較では、現行Model D candidateは単純補間に対する総合的な改善を示していない。confidence mapが境界拘束として働く可能性は残るが、white-noise texture termと現在の重みでは背景漏れやreference差分を悪化させるため、texture ablationや重み再調整が必要である。
 
+natural patch GT evaluation:
+
+- `results/2026-05-17-model-d-natural-patch/`
+- Public Domain 画像cropを128x128 Ground Truthとし、32x32 block-average guideから128x128 outputを比較。
+- baselineはnearest、bilinear、bicubic upscaling。
+- Model D MAD `0.0556` は nearest `0.0454`、bilinear `0.0444`、bicubic `0.0424` より悪かった。
+- Model D global SSIM `0.9487` は nearest `0.9534`、bilinear `0.9595`、bicubic `0.9628` より低かった。
+- 自然画像では明確なforeground/background境界がないため、edge leakageは使わず、gradient MADとstrong-edge MADを代替指標として保存した。
+
+解釈:
+
+この1枚の自然画像cropでは、現行Model D candidateは単純補間に対する改善を示していない。これはsuper-resolutionやcompressionの否定ではなく、現在のwhite-noise texture termと重み設定では、Ground Truth差分と勾配差分を悪化させる条件があることを示す初期測定である。
+
 ## Open Questions
 
 - Model D は斜線や曲線でも境界を守れるか。
