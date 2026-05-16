@@ -103,6 +103,20 @@ Model D の confidence map は保存形式つきで確認できるようにな�
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 
+### Decode Time
+
+scaling benchmark:
+
+- `results/2026-05-17-decode-time-scaling/`
+- synthetic crossで 32x32、64x64、128x128、256x256 を12 sweeps固定で計測。
+- Model C decode seconds: 32x32 `0.083`、64x64 `0.349`、128x128 `1.370`、256x256 `5.681`。
+- Model D decode seconds: 32x32 `0.152`、64x64 `0.567`、128x128 `2.347`、256x256 `9.441`。
+- bilinear baselineは256x256でも `0.002` 秒程度で、現行Pythonの確率的緩和decodeとは桁が違う。
+
+解釈:
+
+現行のMetropolis型Python実装は、少なくともこの設定では画素数に近いスケールで時間が増える。256x256でも短時間runは可能だが、12 sweeps固定であり収束品質は確認していないため、実用性や高品質再構成を示す結果ではない。
+
 ## Analysis Checklist for AI Agents
 
 新しい実験や分析を始める前に、AIエージェントは次を確認する。
