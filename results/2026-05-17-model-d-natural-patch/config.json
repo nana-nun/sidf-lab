@@ -1,0 +1,28 @@
+{
+  "date": "2026-05-17",
+  "decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 18,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "decoder_seed": 6300,
+  "experiment_seed": 20260517,
+  "high_size": 128,
+  "license_note": "Wikimedia Commons marks the faithful reproduction of this public-domain artwork as Public Domain / PD-Art.",
+  "low_guide_method": "4x4 block average from the 128x128 Ground Truth crop",
+  "low_size": 32,
+  "model": "Model D candidate",
+  "model_d_params": {
+    "gamma": 35.0,
+    "j_base": 1.8,
+    "lambda_data": 6.0,
+    "texture_weight": 0.35
+  },
+  "numpy_version": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "source_asset": "experiments/assets/landscape_pd_128.npy",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Landscape.jpg",
+  "source_title": "Meindert Hobbema: Landscape"
+}
