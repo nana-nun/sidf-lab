@@ -35,16 +35,20 @@ SIDF Lab は、SIDF (Stochastic Image Description Format) の研究用ワーク�
 Python セットアップ:
 
 ```powershell
-python -m venv .venv
+$runtimePython = Get-ChildItem -LiteralPath "$env:USERPROFILE\.cache\codex-runtimes" -Recurse -Filter python.exe |
+  Where-Object { $_.FullName -notmatch "WindowsApps" } |
+  Select-Object -First 1
+& $runtimePython.FullName -m venv --system-site-packages --without-pip .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
 $env:PYTHONPATH = "src"
-python -m unittest discover -s tests
+.\.venv\Scripts\python.exe -m unittest discover -s tests
 ```
+
+通常のローカルPythonが使える環境では、従来どおり `python -m venv .venv` と `python -m pip install -r requirements.txt` でもよい。Codex on Windows では `python` が Microsoft Store stub を指す場合があるため、Codex runtime の Python から `.venv` を作る。
 
 最小CLI確認:
 
 ```powershell
 $env:PYTHONPATH = "src"
-python -m sidf_lab.cli
+.\.venv\Scripts\python.exe -m sidf_lab.cli
 ```
