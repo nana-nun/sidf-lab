@@ -29,7 +29,10 @@ SIDF研究で読む候補の文献・資料を、調査テーマごとに管理�
 | Texture | Ares Lagae et al., "A Survey of Procedural Noise Functions" | procedural noise候補の分類と比較の入口 | Note added: `references/notes/structured-texture-prior.md` |
 | Texture | Ares Lagae et al., "Procedural Noise Using Sparse Gabor Convolution" | spectral / directional controlを持つnoise候補 | Note added: `references/notes/structured-texture-prior.md` |
 | Texture | Bruno Galerne et al., "Gabor Noise by Example" | exemplarからnoise parameterを推定する方向性の参考 | Note added: `references/notes/structured-texture-prior.md` |
-| Determinism | John K. Salmon et al., "Parallel Random Numbers: As Easy as 1, 2, 3" | Rust移植時のcounter-based PRNG候補を整理する | Added to BibTeX; detailed note planned in #16 |
+| Determinism | John K. Salmon et al., "Parallel Random Numbers: As Easy as 1, 2, 3" | Rust移植時のcounter-based PRNG候補を整理する | Note added: `references/notes/deterministic-prng-bit-perfect.md` |
+| Determinism | Random123 documentation | Philox / Threefry の実装候補とcounter-based RNGの入口 | Note added: `references/notes/deterministic-prng-bit-perfect.md` |
+| Determinism | NumPy random Generator documentation | 現行Python実装の `default_rng` とRust移植時の境界を確認する | Note added: `references/notes/deterministic-prng-bit-perfect.md` |
+| Determinism | Rust `rand_pcg` / `fixed` crate documentation | Rust core候補のportable RNGとfixed-point実装の調査入口 | Note added: `references/notes/deterministic-prng-bit-perfect.md` |
 
 ## 横断メモ
 
