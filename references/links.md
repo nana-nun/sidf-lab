@@ -24,6 +24,9 @@ SIDF研究に関係するWeb資料、実装例、ドキュメントへのリン�
 | Texture | Gabor Noise by Example | https://doi.org/10.1145/2185520.2185569 | exemplarからspectral parametersを推定する方向性の参考 |
 | Determinism | Random123 | https://random123.com/ | Issue #16 の調査候補 |
 | Determinism | Parallel Random Numbers: As Easy as 1, 2, 3 | https://doi.org/10.1145/2063384.2063405 | counter-based PRNG の代表文献 |
+| Determinism | NumPy random Generator documentation | https://numpy.org/doc/stable/reference/random/generator.html | 現行Python実装の `default_rng` と移植時の非互換点確認 |
+| Determinism | rand_pcg crate documentation | https://docs.rs/rand_pcg/ | Rustでportable RNGを使う場合の候補確認 |
+| Determinism | fixed crate documentation | https://docs.rs/fixed/ | Rust fixed-point 実装候補の調査入口 |
 
 ## 記録する情報
 
