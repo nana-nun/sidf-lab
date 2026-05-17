@@ -7,24 +7,39 @@ description: Orchestrate GitHub Issue work in the nana-nun/sidf-lab SIDF researc
 
 ## Overview
 
-Use this skill as the standard procedure for handling SIDF research repository Issues. It coordinates the GitHub lifecycle and delegates type-specific work to a tag skill. Process one sidf-lab GitHub Issue as one small, reviewable unit of work; treat the Issue as the required source of scope, keep claims conservative, and preserve the distinction between hypotheses, measured results, interpretations, and limitations.
+Use this skill as the standard procedure for handling SIDF research repository Issues. It coordinates Issue selection, the GitHub lifecycle, and delegation to a tag skill. Process one sidf-lab GitHub Issue as one small, reviewable unit of work; treat the Issue as the required source of scope, keep claims conservative, and preserve the distinction between hypotheses, measured results, interpretations, and limitations.
+
+## Issue Selection
+
+When the user names a specific Issue number or URL, use that Issue even if other open Issues have higher priority. Mention the explicit selection in the start comment.
+
+When the user asks to work on "one remaining Issue", "the next Issue", or otherwise does not specify an Issue, select from open Issues by priority before convenience:
+
+1. List open Issues with labels and Project status.
+2. Exclude Issues whose Project status is `In Progress`, `Review`, `Done`, or `Blocked`, unless the user explicitly asks to resume one of them.
+3. Select the highest priority label in this order: `p:0`, then `p:1`, then `p:2`.
+4. Within the same priority, prefer `Ready` over `Todo`.
+5. If several Issues are still tied, choose the smallest safe, reviewable Issue and state why.
+
+Do not choose a lower-priority Issue merely because it looks easier. If a lower-priority Issue is selected despite a higher-priority open Issue, record the reason in the start comment and final response. Acceptable reasons include an explicit user request, a higher-priority Issue being blocked, or missing permissions or context that make the higher-priority Issue impossible to start.
 
 ## Start Checklist
 
 Before editing files:
 
-1. Read the target Issue, including labels, tasks, acceptance criteria, and references.
-2. Check the working tree with `git status --short --branch`; do not overwrite unrelated user changes.
-3. Read these repository files when present:
+1. Select the target Issue according to the Issue Selection rules above, unless the user already specified the Issue.
+2. Read the target Issue, including labels, priority, Project status, tasks, acceptance criteria, and references.
+3. Check the working tree with `git status --short --branch`; do not overwrite unrelated user changes.
+4. Read these repository files when present:
    - `AGENTS.md`
    - `README.md`
    - `docs/research-state.md`
    - `docs/research-plan.md`
    - `docs/repository-architecture.md`
    - Issue-specific references listed in the Issue body
-4. Identify exactly one primary Issue type label: `t:exp`, `t:ref`, `t:impl`, `t:docs`, or `t:maint`.
-5. If the Issue type is missing or contradictory, infer only when the title and tasks are unambiguous; otherwise ask for clarification.
-6. Select and use the matching tag-specific skill before making type-specific decisions.
+5. Identify exactly one primary Issue type label: `t:exp`, `t:ref`, `t:impl`, `t:docs`, or `t:maint`.
+6. If the Issue type is missing or contradictory, infer only when the title and tasks are unambiguous; otherwise ask for clarification.
+7. Select and use the matching tag-specific skill before making type-specific decisions.
 
 ## Tag Skill Dispatch
 
@@ -42,9 +57,12 @@ If a matching tag skill is missing, keep working from this runner and note the m
 
 At work start:
 
-1. Move the Issue's GitHub Project status to `In Progress`.
-2. Add an Issue comment stating that work has started, the branch name, and the intended scope.
-3. Create or switch to the Issue branch.
+1. Create or switch to the Issue branch.
+2. Move the Issue's GitHub Project status to `In Progress`.
+3. Re-read or inspect the Issue/Project item enough to confirm that status is now `In Progress`.
+4. Add an Issue comment stating that work has started, the branch name, priority, selected scope, and, when the Issue was selected from a list, why it was selected under the priority rules.
+
+Do not edit repository files before the Project status has been updated to `In Progress`, unless GitHub tooling is unavailable. If the status update cannot be completed because credentials, permissions, Project fields, network, or GitHub tooling are unavailable, stop before file edits when practical and either ask for help or leave a start comment saying that the status update is blocked. If the user explicitly asks to continue despite the blocked status update, record the limitation in the final response and PR.
 
 During work:
 
