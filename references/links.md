@@ -18,6 +18,10 @@ SIDF研究に関係するWeb資料、実装例、ドキュメントへのリン�
 | Interpolation baseline | Cubic Convolution Interpolation for Digital Image Processing | https://doi.org/10.1109/TASSP.1981.1163711 | bicubic baseline の古典的文献 |
 | Super-resolution baseline | Learning a Deep Convolutional Network for Image Super-Resolution | https://doi.org/10.1007/978-3-319-10593-2_13 | 超解像代表例。SIDFの主張と混同しないための背景 |
 | Texture | An Image Synthesizer | https://doi.org/10.1145/325334.325247 | Perlin noise / procedural texture の背景候補 |
+| Texture | Wavelet Noise | https://doi.org/10.1145/1186822.1073264 | aliasingやdetail lossを避けるprocedural noise候補 |
+| Texture | Procedural Noise Using Sparse Gabor Convolution | https://doi.org/10.1145/1576246.1531360 | spectral / directional controlを持つstructured noise候補 |
+| Texture | A Survey of Procedural Noise Functions | https://doi.org/10.1111/j.1467-8659.2010.01827.x | procedural noise候補の分類と比較の入口 |
+| Texture | Gabor Noise by Example | https://doi.org/10.1145/2185520.2185569 | exemplarからspectral parametersを推定する方向性の参考 |
 | Determinism | Random123 | https://random123.com/ | Issue #16 の調査候補 |
 | Determinism | Parallel Random Numbers: As Easy as 1, 2, 3 | https://doi.org/10.1145/2063384.2063405 | counter-based PRNG の代表文献 |
 

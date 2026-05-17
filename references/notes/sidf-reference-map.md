@@ -36,7 +36,7 @@ SIDFは、現時点では実用圧縮形式ではなく、低解像度guide、se
 | Guided reconstruction | He, Sun, and Tang 2010, "Guided Image Filtering" | Model Dのconfidence-aware reconstructionを既存のguided filtering系と比較する入口 | BibTeX追加。詳細メモは #14 |
 | Interpolation baseline | Keys 1981, "Cubic Convolution Interpolation for Digital Image Processing" | bicubic baselineの古典的背景。Model D評価では単純補間との差分が重要 | BibTeX追加 |
 | Super-resolution baseline | Dong et al. 2014, "Learning a Deep Convolutional Network for Image Super-Resolution" | SIDFを超解像モデルと混同しないための代表的背景 | BibTeX追加。SIDFの性能主張には使わない |
-| Procedural texture | Perlin 1985, "An Image Synthesizer" | white noiseではないdeterministic texture priorの候補整理に関係 | BibTeX追加。詳細メモは #15 |
+| Procedural texture | Perlin 1985, "An Image Synthesizer"; Lagae et al. 2010, "A Survey of Procedural Noise Functions" | white noiseではないdeterministic texture priorの候補整理に関係 | BibTeX追加。詳細メモは `structured-texture-prior.md` |
 | Deterministic PRNG | Salmon et al. 2011, "Parallel Random Numbers: As Easy as 1, 2, 3" | Rust移植時のcounter-based PRNG候補、更新順序非依存性の検討に関係 | BibTeX追加。詳細メモは #16 |
 
 ## Relevance to SIDF
