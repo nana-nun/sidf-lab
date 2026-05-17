@@ -24,7 +24,11 @@ SIDF研究で読む候補の文献・資料を、調査テーマごとに管理�
 | Edge-preserving smoothing | Frédo Durand and Julie Dorsey, "Fast Bilateral Filtering for the Display of High-Dynamic-Range Images" | bilateral / guided 系比較の基礎 | Note added: `references/notes/model-d-guided-upsampling.md` |
 | Interpolation baseline | Robert G. Keys, "Cubic Convolution Interpolation for Digital Image Processing" | bicubic baseline の古典的背景として確認する | Added to BibTeX |
 | Super-resolution baseline | Chao Dong et al., "Learning a Deep Convolutional Network for Image Super-Resolution" | SIDFを超解像と混同しないため、SR代表例を背景として置く | Added to BibTeX |
-| Texture | Ken Perlin, "An Image Synthesizer" | deterministic / procedural texture prior の背景候補 | Added to BibTeX; detailed note planned in #15 |
+| Texture | Ken Perlin, "An Image Synthesizer" | deterministic / procedural texture prior の背景候補 | Note added: `references/notes/structured-texture-prior.md` |
+| Texture | Robert L. Cook and Tony DeRose, "Wavelet Noise" | Perlin系noiseのaliasing/detail loss回避の参考 | Note added: `references/notes/structured-texture-prior.md` |
+| Texture | Ares Lagae et al., "A Survey of Procedural Noise Functions" | procedural noise候補の分類と比較の入口 | Note added: `references/notes/structured-texture-prior.md` |
+| Texture | Ares Lagae et al., "Procedural Noise Using Sparse Gabor Convolution" | spectral / directional controlを持つnoise候補 | Note added: `references/notes/structured-texture-prior.md` |
+| Texture | Bruno Galerne et al., "Gabor Noise by Example" | exemplarからnoise parameterを推定する方向性の参考 | Note added: `references/notes/structured-texture-prior.md` |
 | Determinism | John K. Salmon et al., "Parallel Random Numbers: As Easy as 1, 2, 3" | Rust移植時のcounter-based PRNG候補を整理する | Added to BibTeX; detailed note planned in #16 |
 
 ## 横断メモ
