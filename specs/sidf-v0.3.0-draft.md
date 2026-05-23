@@ -175,8 +175,8 @@ Model D は、16x16 guide から 64x64 output を生成する confidence-aware m
 観察:
 
 - bilinear upscaled guide を初期的な構造拘束として使う。
-- gradient-based confidence map がエッジ拘束として働く候補になっている。
-- seeded texture term は再現可能な揺らぎを加えるが、現状では意味的ディテールではなく粒状ノイズに近い。
+- gradient-based confidence map はエッジ拘束として働く候補だが、保存済みの切り分け実験では uniform confidence より有利とは確認できていない。
+- seeded texture term は再現可能な揺らぎを加える候補だが、現状の white-noise texture は意味的ディテールではなく粒状ノイズに近く、baseline 改善要因としては確認できていない。
 
 保存済み結果:
 
@@ -185,22 +185,30 @@ Model D は、16x16 guide から 64x64 output を生成する confidence-aware m
 - cross comparison では、Model D の edge leakage `0.220617` が bilinear `0.219728` とほぼ同程度で、nearest `0.128409` より悪かった。
 - natural patch GT evaluation では、Model D の `MAD = 0.055577` と global SSIM `0.948710` が nearest / bilinear / bicubic baseline を上回らなかった。
 - natural patch では、明確な foreground/background 境界がないため edge leakage は使わず、gradient MAD と strong-edge MAD を代替指標として保存した。
+- texture ablation では、`texture_strength=0.00, 0.10, 0.35, 0.70` を比較したが、非ゼロ white-noise texture_strength は synthetic cross の baseline 指標を改善しなかった。
+- weight grid では、cross と natural patch の両方で `flat_conf_tex0` が Model D grid 内の最小MADだったが、nearest / bilinear / bicubic baseline は上回らなかった。
+- term isolation では、cross と natural patch の両方で `data_pairwise_uniform` が term conditions 内の最小MADだったが、nearest / bilinear / bicubic baseline は上回らなかった。`pairwise_only` は data fidelity なしの復元条件として不十分だった。
 
 解釈:
 
-現行 Model D candidate は、confidence map の候補としての観察価値はあるが、保存済みの synthetic shape、cross、1枚の自然画像 patch では、nearest / bilinear / bicubic baseline に対する総合的な改善を示していない。特に white-noise texture term と現在の重み設定は、Ground Truth 差分や背景漏れを悪化させる可能性がある。
+現行 Model D candidate は、confidence-aware multi-resolution reconstruction の候補としての観察価値はあるが、保存済みの synthetic shape、cross、1枚の自然画像 patch、および #37 / #56 / #61 の切り分けでは、nearest / bilinear / bicubic baseline に対する総合的な改善を示していない。特に現行の white-noise texture、gradient-based confidence map、data fidelity / pairwise interaction の組み合わせは、現在の設定では Ground Truth 差分や背景漏れを改善していない。
+
+この結果は、confidence map や stochastic relaxation という研究方向全体を否定するものではない。一方で、現行 Model D の式をそのまま重み探索するだけでは baseline 改善に届きにくいため、confidence map の作り方や pairwise term の形を別候補として再設計する必要がある。
 
 制限:
 
 - 結果は少数の grayscale synthetic shape と1枚の自然画像 crop に限られる。
 - 現行の white-noise texture term は意味的ディテールではない。
-- confidence map の効果、texture term の効果、data fidelity / interaction 重みの効果はまだ十分に分離されていない。
+- confidence map、texture prior、data fidelity、pairwise interaction は、候補要素としては分離して記録されたが、現行設計で baseline 改善を示した要素はまだない。
+- 現行実装の texture path は、この draft に書かれた線形 texture term そのものではなく、texture target 二乗項と初期状態混入を含むため、仕様候補として再整理が必要である。
 - この結果は super-resolution や compression の成立を示さず、またそれらを否定する一般結果でもない。
 
 関連 Issue:
 
 - [#37 texture termの寄与をablationで検証する](https://github.com/nana-nun/sidf-lab/issues/37)
 - [#56 Model Dのconfidence/data/texture重みを小規模gridで再評価する](https://github.com/nana-nun/sidf-lab/issues/56)
+- [#61 Model Dのdata fidelity / pairwise / confidence項を分離比較する](https://github.com/nana-nun/sidf-lab/issues/61)
+- [#67 Model Dのconfidence mapとpairwise termの再設計候補を比較する](https://github.com/nana-nun/sidf-lab/issues/67)
 
 ## 7. Baseline and Metrics Requirements
 
@@ -267,9 +275,11 @@ Rust core decoder に移す前に、bit-perfect 再現性要件、test vector、
 | Topic | Status | Issue |
 | --- | --- | --- |
 | Model D が bilinear / bicubic に対して何を改善するか | 保存済み比較では総合改善なし | [#6](https://github.com/nana-nun/sidf-lab/issues/6), [#30](https://github.com/nana-nun/sidf-lab/issues/30), [#36](https://github.com/nana-nun/sidf-lab/issues/36) |
-| white-noise texture term の寄与 | 要ablation | [#37](https://github.com/nana-nun/sidf-lab/issues/37) |
-| confidence / data / texture 重みの切り分け | #37 の後に小規模gridで確認 | [#56](https://github.com/nana-nun/sidf-lab/issues/56) |
-| structured texture prior の実験利用 | helper追加済み、実験評価は未実施 | [#48](https://github.com/nana-nun/sidf-lab/issues/48), [#37](https://github.com/nana-nun/sidf-lab/issues/37) |
+| white-noise texture term の寄与 | #37 では baseline 改善なし | [#37](https://github.com/nana-nun/sidf-lab/issues/37) |
+| confidence / data / texture 重みの切り分け | #56 の小規模gridでは baseline 改善なし | [#56](https://github.com/nana-nun/sidf-lab/issues/56) |
+| data fidelity / pairwise / confidence の項分離 | #61 の term isolation では baseline 改善なし | [#61](https://github.com/nana-nun/sidf-lab/issues/61) |
+| confidence map / pairwise term の再設計候補 | 次に比較する | [#67](https://github.com/nana-nun/sidf-lab/issues/67) |
+| structured texture prior の実験利用 | helper追加済み、white noise と texture_strength=0 を対照に評価する | [#48](https://github.com/nana-nun/sidf-lab/issues/48), [#63](https://github.com/nana-nun/sidf-lab/issues/63) |
 | Rust core の PRNG 実装 | test vector保存済み、Rust実装は未実施 | [#50](https://github.com/nana-nun/sidf-lab/issues/50), [#55](https://github.com/nana-nun/sidf-lab/issues/55) |
 | Model C と Perona-Malik 型 diffusion の違い | 直接比較または比較不能な理由を整理する | [#40](https://github.com/nana-nun/sidf-lab/issues/40) |
 
@@ -277,13 +287,12 @@ Rust core decoder に移す前に、bit-perfect 再現性要件、test vector、
 
 この draft を正式な仕様候補に近づけるには、少なくとも次を満たす必要がある。
 
-1. 現行 Model D が baseline を上回っていない結果を前提に、texture term と重み設定を切り分ける。
-2. texture ablation で、white-noise texture term が改善、悪化、無影響のどれに見えるかを保存形式つきで確認する。
-3. confidence / data / texture 重みの小規模gridで、nearest / bilinear / bicubic との差分を metrics と画像で再確認する。
-4. soft gradient や実画像 patch で confidence map が不自然な硬化を起こさないか、Ground Truth または代替指標とともに確認する。
-5. structured texture prior を使う場合は、white noise baseline との差分で評価し、意味的ディテール生成とは断定しない。
-6. decoder seed、PRNG、丸め、更新順序を実装非依存に定義する。
-7. binary layout と quantization を draft として別途定義する。
+1. 現行 Model D が baseline を上回っていない結果を前提に、confidence map と pairwise term の再設計候補を比較する。
+2. 現行 Model D の energy 式を正式化する前に、data fidelity、pairwise interaction、confidence weighting、texture prior の役割と符号を再定義する。
+3. soft gradient や実画像 patch で confidence map が不自然な硬化を起こさないか、Ground Truth または代替指標とともに確認する。
+4. structured texture prior を使う場合は、texture_strength=0 と white noise baseline との差分で評価し、意味的ディテール生成とは断定しない。
+5. decoder seed、PRNG、丸め、更新順序を実装非依存に定義する。
+6. binary layout と quantization を draft として別途定義する。
 
 ## 11. References
 
@@ -297,3 +306,6 @@ Rust core decoder に移す前に、bit-perfect 再現性要件、test vector、
 - `results/2026-05-16-model-d-shape-benchmark/notes.md`
 - `results/2026-05-17-model-d-cross-comparison/notes.md`
 - `results/2026-05-17-model-d-natural-patch/notes.md`
+- `results/2026-05-24-texture-ablation/notes.md`
+- `results/2026-05-24-model-d-weight-grid/notes.md`
+- `results/2026-05-24-model-d-term-isolation/notes.md`
