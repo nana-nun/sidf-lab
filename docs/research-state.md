@@ -138,10 +138,22 @@ texture ablation:
 
 このrunでは、white-noise texture term は synthetic cross に対する意味のある質感生成としては扱えない。むしろ `texture_strength=0` でも背景平均と差分がbaselineより悪いため、現行Model Dのrelaxation経路、confidence/data/interaction重み、texture経路を分けて再評価する必要がある。これは structured texture prior 全体を否定する結果ではなく、現行white-noise texture設定の小規模な切り分け結果である。
 
+weight grid:
+
+- `results/2026-05-24-model-d-weight-grid/`
+- cross と natural patch で、`texture_strength=0` を中心に `lambda_data`、confidence floor、uniform confidence、現行textureありを小規模grid比較した。
+- cross の Model D grid内では `flat_conf_tex0` が最小MAD `0.0403` だったが、nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` より悪かった。
+- natural patch の Model D grid内でも `flat_conf_tex0` が最小MAD `0.0529` だったが、nearest `0.0454`、bilinear `0.0444`、bicubic `0.0424` より悪かった。
+- `low_data_tex0` は cross / natural patch の両方でgrid内最悪寄りになり、data fidelityを弱めるだけでは改善しなかった。
+
+解釈:
+
+この小規模gridでは、現行Model D candidateの主要重みを少し振っても単純補間に対する総合改善は確認できなかった。`flat_conf_tex0` がgrid内で相対的に良かったため、現行のgradient-based confidence mapが常に改善方向に働いているとは限らない。ただし、これはconfidence map一般の否定ではなく、現在のconfidence設計、data fidelity、pairwise interaction、relaxation設定の組み合わせに対する負の結果である。次の切り分けは Issue #61 で扱う。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
-- confidence map、data fidelity、texture term の重みを分けると、単純補間との差分はどう変わるか。
+- confidence map、data fidelity、texture term の小規模gridでは単純補間を上回らなかった。次は Issue #61 で式や対照実験をどう分離するか。
 - white noise ではなく structured noise prior を使うと、baseline差分や粒状感は改善するか。
 - 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
