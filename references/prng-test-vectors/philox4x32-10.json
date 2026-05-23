@@ -1,0 +1,140 @@
+{
+  "name": "sidf-philox4x32-10-tiny-vectors",
+  "related_issue": "https://github.com/nana-nun/sidf-lab/issues/50",
+  "source_note": "references/notes/rust-core-prng-test-vector.md",
+  "algorithm": "Philox",
+  "variant": "Philox4x32",
+  "rounds": 10,
+  "word_width_bits": 32,
+  "arithmetic": "unsigned wrapping modulo 2^32",
+  "constants_hex": {
+    "M0": "0xD2511F53",
+    "M1": "0xCD9E8D57",
+    "W0": "0x9E3779B9",
+    "W1": "0xBB67AE85"
+  },
+  "counter_layout": [
+    "stage",
+    "sweep",
+    "pixel_index",
+    "purpose"
+  ],
+  "purpose_values": {
+    "0": "proposal",
+    "1": "accept_threshold",
+    "2": "texture_prior",
+    "3": "reserved"
+  },
+  "key_layout": [
+    "decoder_seed_high_u32",
+    "decoder_seed_low_u32"
+  ],
+  "output_word_order": [
+    "word0",
+    "word1",
+    "word2",
+    "word3"
+  ],
+  "cases": [
+    {
+      "name": "zero",
+      "decoder_seed_hex": "0x0000000000000000",
+      "key_words_hex": [
+        "0x00000000",
+        "0x00000000"
+      ],
+      "counter_words_hex": [
+        "0x00000000",
+        "0x00000000",
+        "0x00000000",
+        "0x00000000"
+      ],
+      "output_words_hex": [
+        "0x6627E8D5",
+        "0xE169C58D",
+        "0xBC57AC4C",
+        "0x9B00DBD8"
+      ]
+    },
+    {
+      "name": "sidf_seed_1_stage0_sweep0_pixel0_proposal",
+      "decoder_seed_hex": "0x0000000000000001",
+      "key_words_hex": [
+        "0x00000000",
+        "0x00000001"
+      ],
+      "counter_words_hex": [
+        "0x00000000",
+        "0x00000000",
+        "0x00000000",
+        "0x00000000"
+      ],
+      "output_words_hex": [
+        "0xFDDE3E0B",
+        "0xFA7E58B6",
+        "0x3380EC46",
+        "0xD8D55C4F"
+      ]
+    },
+    {
+      "name": "sidf_seed_1_stage0_sweep3_pixel17_accept",
+      "decoder_seed_hex": "0x0000000000000001",
+      "key_words_hex": [
+        "0x00000000",
+        "0x00000001"
+      ],
+      "counter_words_hex": [
+        "0x00000000",
+        "0x00000003",
+        "0x00000011",
+        "0x00000001"
+      ],
+      "output_words_hex": [
+        "0x8079032B",
+        "0x27887360",
+        "0xA0CC833F",
+        "0xA668CBB4"
+      ]
+    },
+    {
+      "name": "sidf_seed_deadbeef_cafebabe_stage2_sweep7_pixel255_texture",
+      "decoder_seed_hex": "0xDEADBEEFCAFEBABE",
+      "key_words_hex": [
+        "0xDEADBEEF",
+        "0xCAFEBABE"
+      ],
+      "counter_words_hex": [
+        "0x00000002",
+        "0x00000007",
+        "0x000000FF",
+        "0x00000002"
+      ],
+      "output_words_hex": [
+        "0x890645AD",
+        "0x537DF807",
+        "0x938CAD9D",
+        "0x0E66A283"
+      ]
+    },
+    {
+      "name": "sidf_seed_123456789abcdef0_stage1_sweep42_pixel4095_proposal",
+      "decoder_seed_hex": "0x123456789ABCDEF0",
+      "key_words_hex": [
+        "0x12345678",
+        "0x9ABCDEF0"
+      ],
+      "counter_words_hex": [
+        "0x00000001",
+        "0x0000002A",
+        "0x00000FFF",
+        "0x00000000"
+      ],
+      "output_words_hex": [
+        "0xB8C50FD1",
+        "0x471635D6",
+        "0x1A6B560F",
+        "0x0D650605"
+      ]
+    }
+  ]
+}
