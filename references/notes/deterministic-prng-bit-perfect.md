@@ -117,6 +117,6 @@ SIDFの研究目的では、seedと物理パラメータから再構成過程を
 
 ## Follow-up
 
-- Issue #50 で、PRNG候補を1つに絞り、tiny counter test vectorを保存する。
+- Issue #50 で、PRNG候補を1つに絞り、tiny counter test vectorを保存する。初期spikeとして `Philox4x32-10` の設計メモとtest vectorを `references/notes/rust-core-prng-test-vector.md` と `references/prng-test-vectors/philox4x32-10.json` に追加した。
 - Model C fixed-point spikeでは、16x16または32x32の小さいguideで、Python referenceと比較可能なenergy / update traceを保存する。
 - `specs/sidf-v0.2.1.md` または次のdraft仕様では、Prototype reproducibility と Decoder reproducibility を別項目にする。
