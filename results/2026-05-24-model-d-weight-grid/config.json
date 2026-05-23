@@ -1,0 +1,88 @@
+{
+  "common_model_params": {
+    "gamma": 35.0,
+    "j_base": 1.8
+  },
+  "cross_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 35,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "cross_decoder_seed": 6500,
+  "cross_high_size": 64,
+  "cross_high_width": 7,
+  "cross_low_size": 16,
+  "cross_low_width": 2,
+  "date": "2026-05-24",
+  "experiment_seed": 20260524,
+  "grid_configs": [
+    {
+      "confidence_max": 1.0,
+      "confidence_min": 0.2,
+      "confidence_scale": 4.0,
+      "id": "current_tex0",
+      "label": "current weights, texture off",
+      "lambda_data": 6.0,
+      "texture_strength": 0.0
+    },
+    {
+      "confidence_max": 1.0,
+      "confidence_min": 0.2,
+      "confidence_scale": 4.0,
+      "id": "low_data_tex0",
+      "label": "lower data fidelity, texture off",
+      "lambda_data": 3.0,
+      "texture_strength": 0.0
+    },
+    {
+      "confidence_max": 1.0,
+      "confidence_min": 0.2,
+      "confidence_scale": 4.0,
+      "id": "high_data_tex0",
+      "label": "higher data fidelity, texture off",
+      "lambda_data": 12.0,
+      "texture_strength": 0.0
+    },
+    {
+      "confidence_max": 1.0,
+      "confidence_min": 0.5,
+      "confidence_scale": 4.0,
+      "id": "high_floor_tex0",
+      "label": "higher confidence floor, texture off",
+      "lambda_data": 6.0,
+      "texture_strength": 0.0
+    },
+    {
+      "confidence_max": 1.0,
+      "confidence_min": 1.0,
+      "confidence_scale": 4.0,
+      "id": "flat_conf_tex0",
+      "label": "uniform confidence, texture off",
+      "lambda_data": 6.0,
+      "texture_strength": 0.0
+    },
+    {
+      "confidence_max": 1.0,
+      "confidence_min": 0.2,
+      "confidence_scale": 4.0,
+      "id": "current_tex035",
+      "label": "current weights, texture 0.35",
+      "lambda_data": 6.0,
+      "texture_strength": 0.35
+    }
+  ],
+  "natural_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 18,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "natural_decoder_seed": 6501,
+  "natural_high_size": 128,
+  "natural_low_size": 32,
+  "numpy_version": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "source_asset": "experiments/assets/landscape_pd_128.npy"
+}

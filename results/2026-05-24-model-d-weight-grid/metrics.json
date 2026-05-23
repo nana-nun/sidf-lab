@@ -1,0 +1,239 @@
+{
+  "cross": {
+    "metrics": {
+      "bicubic": {
+        "background_mean": 0.03092889364782378,
+        "background_variance": 0.006691399489356174,
+        "edge_leakage": 0.21189385673256492,
+        "edge_width_pixels": 1.9649122807017543,
+        "foreground_mean": 0.4961461948118427,
+        "foreground_variance": 0.004221257386268206,
+        "gradient_mad_vs_reference": 0.12968767680310078,
+        "mad_vs_reference": 0.03511914759598131,
+        "mean_error_vs_reference": 0.02373627989927007,
+        "psnr_vs_reference": 21.584865041672874,
+        "ssim_global_vs_reference": 0.9043748443555926
+      },
+      "bilinear": {
+        "background_mean": 0.03285853173730765,
+        "background_variance": 0.0067778661864535674,
+        "edge_leakage": 0.2197278911564626,
+        "edge_width_pixels": 2.8771929824561404,
+        "foreground_mean": 0.4657655269900167,
+        "foreground_variance": 0.002958825375891868,
+        "gradient_mad_vs_reference": 0.14255892958424923,
+        "mad_vs_reference": 0.033143058655753996,
+        "mean_error_vs_reference": 0.018984563226332206,
+        "psnr_vs_reference": 21.49543042651308,
+        "ssim_global_vs_reference": 0.9016677036787233
+      },
+      "current_tex0": {
+        "background_mean": 0.04955433822837663,
+        "background_variance": 0.006560877829169771,
+        "edge_leakage": 0.22264611078927213,
+        "edge_width_pixels": 2.767543859649123,
+        "foreground_mean": 0.4580390732810689,
+        "foreground_variance": 0.0035393989765708446,
+        "gradient_mad_vs_reference": 0.197553200329807,
+        "mad_vs_reference": 0.05010672489920595,
+        "mean_error_vs_reference": 0.030630161126235605,
+        "psnr_vs_reference": 20.836509094158295,
+        "ssim_global_vs_reference": 0.8733516757286608
+      },
+      "current_tex035": {
+        "background_mean": 0.047040136888025365,
+        "background_variance": 0.006444058463380614,
+        "edge_leakage": 0.22008295793684343,
+        "edge_width_pixels": 2.736842105263158,
+        "foreground_mean": 0.45744016117130293,
+        "foreground_variance": 0.0033438579323174073,
+        "gradient_mad_vs_reference": 0.18869769156360316,
+        "mad_vs_reference": 0.04799745352245279,
+        "mean_error_vs_reference": 0.028512016909494127,
+        "psnr_vs_reference": 21.00576783254604,
+        "ssim_global_vs_reference": 0.8793798799369084
+      },
+      "flat_conf_tex0": {
+        "background_mean": 0.03793552279257405,
+        "background_variance": 0.006792417872621125,
+        "edge_leakage": 0.2221611557841129,
+        "edge_width_pixels": 2.776315789473684,
+        "foreground_mean": 0.45766068859306586,
+        "foreground_variance": 0.0034874961452966203,
+        "gradient_mad_vs_reference": 0.15196433650928265,
+        "mad_vs_reference": 0.04030143800474574,
+        "mean_error_vs_reference": 0.021335721872900355,
+        "psnr_vs_reference": 21.17976153093653,
+        "ssim_global_vs_reference": 0.8911610883600013
+      },
+      "high_data_tex0": {
+        "background_mean": 0.040218805921057976,
+        "background_variance": 0.00648722797826938,
+        "edge_leakage": 0.21759892505973827,
+        "edge_width_pixels": 2.7149122807017543,
+        "foreground_mean": 0.4628468387610476,
+        "foreground_variance": 0.0032788933655138516,
+        "gradient_mad_vs_reference": 0.15513610638719694,
+        "mad_vs_reference": 0.041562270833670055,
+        "mean_error_vs_reference": 0.024219280485382,
+        "psnr_vs_reference": 21.31221049441788,
+        "ssim_global_vs_reference": 0.8918955605046684
+      },
+      "high_floor_tex0": {
+        "background_mean": 0.04021305280122681,
+        "background_variance": 0.006707165005342327,
+        "edge_leakage": 0.2212844391379214,
+        "edge_width_pixels": 2.8289473684210527,
+        "foreground_mean": 0.4599581873223327,
+        "foreground_variance": 0.0034847049153195683,
+        "gradient_mad_vs_reference": 0.12655656866889262,
+        "mad_vs_reference": 0.04230840147893775,
+        "mean_error_vs_reference": 0.023617381155566813,
+        "psnr_vs_reference": 21.16051992756006,
+        "ssim_global_vs_reference": 0.8888386102966345
+      },
+      "low_data_tex0": {
+        "background_mean": 0.06788820303552767,
+        "background_variance": 0.006287520464361642,
+        "edge_leakage": 0.2199024665307061,
+        "edge_width_pixels": 2.8640350877192984,
+        "foreground_mean": 0.45007308393330947,
+        "foreground_variance": 0.003535019374576918,
+        "gradient_mad_vs_reference": 0.21638223805404377,
+        "mad_vs_reference": 0.065849720152197,
+        "mean_error_vs_reference": 0.04352555511570862,
+        "psnr_vs_reference": 20.048229283904174,
+        "ssim_global_vs_reference": 0.8363307142315948
+      },
+      "nearest": {
+        "background_mean": 0.017389966143428748,
+        "background_variance": 0.008392572149244777,
+        "edge_leakage": 0.12840909090909092,
+        "edge_width_pixels": 0.0,
+        "foreground_mean": 0.5,
+        "foreground_variance": 0.0,
+        "gradient_mad_vs_reference": 0.03944421188013683,
+        "mad_vs_reference": 0.0137939453125,
+        "mean_error_vs_reference": 0.0137939453125,
+        "psnr_vs_reference": 21.613414958123172,
+        "ssim_global_vs_reference": 0.9155456470206351
+      }
+    },
+    "timings": {
+      "bicubic": 0.09208300001046155,
+      "bilinear": 0.0001554000045871362,
+      "current_tex0": 1.6810378000081982,
+      "current_tex035": 1.6624001000018325,
+      "flat_conf_tex0": 1.6611717000050703,
+      "high_data_tex0": 1.6561107000015909,
+      "high_floor_tex0": 1.6553490000078455,
+      "low_data_tex0": 1.6563074000005145,
+      "nearest": 0.00014960000407882035
+    }
+  },
+  "natural_patch": {
+    "metrics": {
+      "bicubic": {
+        "absolute_mean_error": 0.0031307055358363034,
+        "flat_region_mad_vs_gt": 0.02373018519751091,
+        "gradient_mad_vs_gt": 0.09041917262141969,
+        "mad_vs_gt": 0.042397076611570106,
+        "mean_error": -0.0031307055358363034,
+        "psnr_vs_gt": 23.578064577373357,
+        "ssim_global_vs_gt": 0.9628200345864278,
+        "strong_edge_mad_vs_gt": 0.08115221813571545
+      },
+      "bilinear": {
+        "absolute_mean_error": 0.003177488713094625,
+        "flat_region_mad_vs_gt": 0.02598590229002826,
+        "gradient_mad_vs_gt": 0.09431894370062494,
+        "mad_vs_gt": 0.04436869258550216,
+        "mean_error": -0.003177488713094625,
+        "psnr_vs_gt": 23.27577348967339,
+        "ssim_global_vs_gt": 0.9594795379002731,
+        "strong_edge_mad_vs_gt": 0.08282967714302555
+      },
+      "current_tex0": {
+        "absolute_mean_error": 0.003134846687514123,
+        "flat_region_mad_vs_gt": 0.04222274534505418,
+        "gradient_mad_vs_gt": 0.14325654461510556,
+        "mad_vs_gt": 0.056345263719232666,
+        "mean_error": -0.003134846687514123,
+        "psnr_vs_gt": 22.141605990442535,
+        "ssim_global_vs_gt": 0.9477792857183516,
+        "strong_edge_mad_vs_gt": 0.087382231209391
+      },
+      "current_tex035": {
+        "absolute_mean_error": 0.003571051684070109,
+        "flat_region_mad_vs_gt": 0.04171735933969881,
+        "gradient_mad_vs_gt": 0.14814460609433758,
+        "mad_vs_gt": 0.05613553099363301,
+        "mean_error": -0.003571051684070109,
+        "psnr_vs_gt": 22.204378463715628,
+        "ssim_global_vs_gt": 0.9482347416287081,
+        "strong_edge_mad_vs_gt": 0.08734751546468854
+      },
+      "flat_conf_tex0": {
+        "absolute_mean_error": 0.003653050094614526,
+        "flat_region_mad_vs_gt": 0.03671802480633488,
+        "gradient_mad_vs_gt": 0.11720643778830184,
+        "mad_vs_gt": 0.052882175220586636,
+        "mean_error": -0.003653050094614526,
+        "psnr_vs_gt": 22.410018946832114,
+        "ssim_global_vs_gt": 0.9507471768987219,
+        "strong_edge_mad_vs_gt": 0.08734366516122252
+      },
+      "high_data_tex0": {
+        "absolute_mean_error": 0.0034337795100640002,
+        "flat_region_mad_vs_gt": 0.03846366855145843,
+        "gradient_mad_vs_gt": 0.15972504223098732,
+        "mad_vs_gt": 0.0534701746856161,
+        "mean_error": -0.0034337795100640002,
+        "psnr_vs_gt": 22.463850767217313,
+        "ssim_global_vs_gt": 0.9513589491589683,
+        "strong_edge_mad_vs_gt": 0.08642015471110871
+      },
+      "high_floor_tex0": {
+        "absolute_mean_error": 0.0027868163637851007,
+        "flat_region_mad_vs_gt": 0.03911425041216736,
+        "gradient_mad_vs_gt": 0.13614751479954662,
+        "mad_vs_gt": 0.054376899697986966,
+        "mean_error": -0.0027868163637851007,
+        "psnr_vs_gt": 22.3398606184079,
+        "ssim_global_vs_gt": 0.9500104001898423,
+        "strong_edge_mad_vs_gt": 0.08775324244887639
+      },
+      "low_data_tex0": {
+        "absolute_mean_error": 0.0019065827794963995,
+        "flat_region_mad_vs_gt": 0.04615709319671643,
+        "gradient_mad_vs_gt": 0.15754249674870383,
+        "mad_vs_gt": 0.059990800955283294,
+        "mean_error": -0.0019065827794963995,
+        "psnr_vs_gt": 21.73922516963065,
+        "ssim_global_vs_gt": 0.94293622606227,
+        "strong_edge_mad_vs_gt": 0.09072386249157026
+      },
+      "nearest": {
+        "absolute_mean_error": 0.0040173848470052105,
+        "flat_region_mad_vs_gt": 0.024514619148452547,
+        "gradient_mad_vs_gt": 0.09245520261767926,
+        "mad_vs_gt": 0.04538408167221967,
+        "mean_error": -0.0040173848470052105,
+        "psnr_vs_gt": 22.577881005788953,
+        "ssim_global_vs_gt": 0.953421361906625,
+        "strong_edge_mad_vs_gt": 0.08996628780812155
+      }
+    },
+    "timings": {
+      "bicubic": 0.3755830000009155,
+      "bilinear": 0.0003757999947993085,
+      "current_tex0": 3.4950015999929747,
+      "current_tex035": 3.5476521999953547,
+      "flat_conf_tex0": 3.5471996999986004,
+      "high_data_tex0": 3.5387191000045277,
+      "high_floor_tex0": 3.5733589000010397,
+      "low_data_tex0": 3.475462600006722,
+      "nearest": 0.00018600000475998968
+    }
+  }
+}
