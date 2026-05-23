@@ -150,10 +150,23 @@ weight grid:
 
 この小規模gridでは、現行Model D candidateの主要重みを少し振っても単純補間に対する総合改善は確認できなかった。`flat_conf_tex0` がgrid内で相対的に良かったため、現行のgradient-based confidence mapが常に改善方向に働いているとは限らない。ただし、これはconfidence map一般の否定ではなく、現在のconfidence設計、data fidelity、pairwise interaction、relaxation設定の組み合わせに対する負の結果である。次の切り分けは Issue #61 で扱う。
 
+term isolation:
+
+- `results/2026-05-24-model-d-term-isolation/`
+- `texture_strength=0` に固定し、data fidelity only、pairwise only、data+pairwise、gradient confidenceあり/なしを cross と natural patch で比較した。
+- cross の term conditions 内では `data_pairwise_uniform` が最小MAD `0.0404` だったが、nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` より悪かった。
+- natural patch の term conditions 内でも `data_pairwise_uniform` が最小MAD `0.0529` だったが、nearest `0.0454`、bilinear `0.0444`、bicubic `0.0424` より悪かった。
+- `pairwise_only` は cross MAD `0.1296`、natural patch MAD `0.0713` で、data fidelityなしの復元条件としては不十分だった。
+- `data_only_conf` と `data_pairwise_conf` は、対応する uniform confidence 条件より悪く、この設定では現行gradient confidenceの空間重み付けが有利に働かなかった。
+
+解釈:
+
+この結果は、現行Model D式の単純な重み探索や white-noise texture 調整ではbaseline改善に届きにくいことを示す。次は大きなgridではなく、confidence map の設計、pairwise term の形、またはrelaxation objectiveそのものを別候補として再設計する必要がある。再設計候補の比較は Issue #67 で扱う。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
-- confidence map、data fidelity、texture term の小規模gridでは単純補間を上回らなかった。次は Issue #61 で式や対照実験をどう分離するか。
+- term isolationでも単純補間を上回らなかったため、Issue #67 で confidence map や pairwise term の再設計候補をどう作るか。
 - white noise ではなく structured noise prior を使うと、baseline差分や粒状感は改善するか。
 - 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
