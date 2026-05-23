@@ -178,16 +178,29 @@ Model D は、16x16 guide から 64x64 output を生成する confidence-aware m
 - gradient-based confidence map がエッジ拘束として働く候補になっている。
 - seeded texture term は再現可能な揺らぎを加えるが、現状では意味的ディテールではなく粒状ノイズに近い。
 
+保存済み結果:
+
+- shape benchmark では、diagonal、circle、thin line、soft gradient で nearest / bilinear / bicubic / Model D candidate を保存した。
+- cross comparison では、Model D の `MAD = 0.047106` が nearest `0.013794`、bilinear `0.033143`、bicubic `0.035119` より悪かった。
+- cross comparison では、Model D の edge leakage `0.220617` が bilinear `0.219728` とほぼ同程度で、nearest `0.128409` より悪かった。
+- natural patch GT evaluation では、Model D の `MAD = 0.055577` と global SSIM `0.948710` が nearest / bilinear / bicubic baseline を上回らなかった。
+- natural patch では、明確な foreground/background 境界がないため edge leakage は使わず、gradient MAD と strong-edge MAD を代替指標として保存した。
+
+解釈:
+
+現行 Model D candidate は、confidence map の候補としての観察価値はあるが、保存済みの synthetic shape、cross、1枚の自然画像 patch では、nearest / bilinear / bicubic baseline に対する総合的な改善を示していない。特に white-noise texture term と現在の重み設定は、Ground Truth 差分や背景漏れを悪化させる可能性がある。
+
 制限:
 
-- Model D と nearest / bilinear / bicubic の保存形式つき metrics 比較は未完了である。
-- Ground Truth 比較は未実施である。
-- 斜線、曲線、soft gradient、実画像 patch での挙動は未確認である。
+- 結果は少数の grayscale synthetic shape と1枚の自然画像 crop に限られる。
+- 現行の white-noise texture term は意味的ディテールではない。
+- confidence map の効果、texture term の効果、data fidelity / interaction 重みの効果はまだ十分に分離されていない。
+- この結果は super-resolution や compression の成立を示さず、またそれらを否定する一般結果でもない。
 
 関連 Issue:
 
-- [#6 Model D と bilinear/bicubic の比較指標を追加する](https://github.com/nana-nun/sidf-lab/issues/6)
-- [#14 Model D を Guided Filter / guided upsampling と比較する](https://github.com/nana-nun/sidf-lab/issues/14)
+- [#37 texture termの寄与をablationで検証する](https://github.com/nana-nun/sidf-lab/issues/37)
+- [#56 Model Dのconfidence/data/texture重みを小規模gridで再評価する](https://github.com/nana-nun/sidf-lab/issues/56)
 
 ## 7. Baseline and Metrics Requirements
 
@@ -239,34 +252,38 @@ Rust 移植前に固定すべき項目:
 - image normalization and quantization
 - texture prior generation
 
-Rust core decoder に移す前に、bit-perfect 再現性要件を Issue #16 で整理する。
+Rust core decoder に移す前に、bit-perfect 再現性要件、test vector、Rust実装の照合手順を段階的に固定する。
 
 関連 Issue:
 
 - [#16 Rust移植に向けた deterministic PRNG と bit-perfect 再現性を調査する](https://github.com/nana-nun/sidf-lab/issues/16)
+- [#50 Rust core向けcounter-based PRNG test vectorを追加する](https://github.com/nana-nun/sidf-lab/issues/50)
+- [#55 Rust coreにPhilox4x32-10の最小実装を追加する](https://github.com/nana-nun/sidf-lab/issues/55)
 
 ## 9. Open Questions
 
-未確定事項は、既存の open Issue として分離している。
+未確定事項は、既存の Issue として分離している。完了済みの比較Issueから得た結果は、次の切り分けIssueへ接続する。
 
 | Topic | Status | Issue |
 | --- | --- | --- |
-| Model D が bilinear / bicubic に対して何を改善するか | 未検証 | [#6](https://github.com/nana-nun/sidf-lab/issues/6) |
-| Model D と guided filter / guided upsampling の関係 | 未整理 | [#14](https://github.com/nana-nun/sidf-lab/issues/14) |
-| white noise 以外の structured texture prior | 未調査 | [#15](https://github.com/nana-nun/sidf-lab/issues/15) |
-| Model C energy の確率モデル上の位置づけ | 整理中 | [#26](https://github.com/nana-nun/sidf-lab/issues/26) |
-| Rust 移植前の bit-perfect 再現性 | 未整理 | [#16](https://github.com/nana-nun/sidf-lab/issues/16) |
+| Model D が bilinear / bicubic に対して何を改善するか | 保存済み比較では総合改善なし | [#6](https://github.com/nana-nun/sidf-lab/issues/6), [#30](https://github.com/nana-nun/sidf-lab/issues/30), [#36](https://github.com/nana-nun/sidf-lab/issues/36) |
+| white-noise texture term の寄与 | 要ablation | [#37](https://github.com/nana-nun/sidf-lab/issues/37) |
+| confidence / data / texture 重みの切り分け | #37 の後に小規模gridで確認 | [#56](https://github.com/nana-nun/sidf-lab/issues/56) |
+| structured texture prior の実験利用 | helper追加済み、実験評価は未実施 | [#48](https://github.com/nana-nun/sidf-lab/issues/48), [#37](https://github.com/nana-nun/sidf-lab/issues/37) |
+| Rust core の PRNG 実装 | test vector保存済み、Rust実装は未実施 | [#50](https://github.com/nana-nun/sidf-lab/issues/50), [#55](https://github.com/nana-nun/sidf-lab/issues/55) |
+| Model C と Perona-Malik 型 diffusion の違い | 直接比較または比較不能な理由を整理する | [#40](https://github.com/nana-nun/sidf-lab/issues/40) |
 
 ## 10. Draft-to-Spec Criteria
 
 この draft を正式な仕様候補に近づけるには、少なくとも次を満たす必要がある。
 
-1. Model D の baseline 比較実験を `results/` に保存する。
-2. nearest / bilinear / bicubic との差分を metrics と画像で確認する。
-3. soft gradient や実画像 patch で confidence map が不自然な硬化を起こさないか確認する。
-4. texture prior を white noise baseline と structured noise 候補で比較する。
-5. decoder seed、PRNG、丸め、更新順序を実装非依存に定義する。
-6. binary layout と quantization を draft として別途定義する。
+1. 現行 Model D が baseline を上回っていない結果を前提に、texture term と重み設定を切り分ける。
+2. texture ablation で、white-noise texture term が改善、悪化、無影響のどれに見えるかを保存形式つきで確認する。
+3. confidence / data / texture 重みの小規模gridで、nearest / bilinear / bicubic との差分を metrics と画像で再確認する。
+4. soft gradient や実画像 patch で confidence map が不自然な硬化を起こさないか、Ground Truth または代替指標とともに確認する。
+5. structured texture prior を使う場合は、white noise baseline との差分で評価し、意味的ディテール生成とは断定しない。
+6. decoder seed、PRNG、丸め、更新順序を実装非依存に定義する。
+7. binary layout と quantization を draft として別途定義する。
 
 ## 11. References
 
@@ -277,3 +294,6 @@ Rust core decoder に移す前に、bit-perfect 再現性要件を Issue #16 で
 - `docs/model-c-energy-position.md`
 - `results/2026-05-16-model-c-cross-baseline/notes.md`
 - `results/2026-05-16-model-c-freeze-benchmark/notes.md`
+- `results/2026-05-16-model-d-shape-benchmark/notes.md`
+- `results/2026-05-17-model-d-cross-comparison/notes.md`
+- `results/2026-05-17-model-d-natural-patch/notes.md`
