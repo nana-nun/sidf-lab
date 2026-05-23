@@ -67,17 +67,28 @@ SIDFで重要なのは、低解像度または簡約されたguideから、seed�
 - SIDFではseed、保存可能な設定、decoder再現性が研究対象になる。
 - Model CがPerona-Malikより優れているとは、現時点では言えない。
 
+## Direct comparison note
+
+Issue #40 で、synthetic vertical edge に対する最小比較を保存した。
+
+参照:
+
+- `results/2026-05-23-model-c-perona-malik/notes.md`
+- `docs/model-c-energy-position.md`
+
+この比較では、Model C の近傍重みは guide 差から固定的に計算し、Perona-Malik 型 diffusion の conductance は現在の画像状態から各stepで計算した。したがって、両者は「エッジをまたぐ混合を弱める」点で似ているが、係数決定元と更新過程が異なるため、同等の方法とは扱わない。
+
 ## Limitations
 
 - このメモはPerona-Malikの詳細な数値解析や安定性条件を網羅していない。
-- Model Cと異方性拡散の比較は概念対応であり、同じ入力での直接比較実験はまだ行っていない。
+- Issue #40 の直接比較は synthetic vertical edge 1条件の最小実験であり、一般的な優劣や自然画像での性能を示すものではない。
 - `J_ij` と `c(|∇I|)` の関数形やパラメータ対応は未検証。
 - Model Cの優位性、圧縮性能、超解像性能を示すものではない。
 - `docs/research-state.md` は実験結果の現在地を優先するため、この文献メモだけでは更新しない。
 
 ## Follow-up
 
-- Model CとPerona-Malik diffusionを同じsynthetic guideで比較する実験Issueを作る。
+- 斜線、曲線、soft gradientへ比較を広げる場合は、別Issueで保存形式つき実験にする。
 - `J_ij` と拡散係数 `c` の対応を、数式上どこまで厳密に言えるか整理する。
 - edge widthやedge leakageを使い、Model C、単純平滑化、異方性拡散を比較する。
 - MRF / Gibbs分布の文脈では Issue #12 と接続して、Model Cのenergy表現を整理する。

@@ -60,6 +60,13 @@ freeze候補benchmark:
 
 Model C は、SIDF v0.2.1 の基礎モデルとして有望。ただし創発性は弱く、安定化フィルタに近い。
 
+Perona-Malik 型 diffusion との最小比較:
+
+- `results/2026-05-23-model-c-perona-malik/`
+- synthetic vertical edge で Model C と Perona-Malik 型 diffusion を比較した。
+- Model C の近傍重みは guide 差から固定的に決まり、Perona-Malik 型 conductance は現在の画像状態からstepごとに決まることを、weight map と metrics で保存した。
+- 今回の条件では、両者は「大きな局所差のある近傍で混合を弱める」という点で類似するが、係数決定元、更新過程、data fidelity の有無が異なるため、同等の方法とは扱わない。
+
 ### Model D
 
 16x16 guide から 64x64 output を生成する multi-resolution pipeline を導入した。
@@ -125,7 +132,6 @@ natural patch GT evaluation:
 - confidence map、data fidelity、texture term の重みを分けると、単純補間との差分はどう変わるか。
 - white noise ではなく structured noise prior を使うと、baseline差分や粒状感は改善するか。
 - 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。
-- Model C の guide 差分ベース edge-aware weighting と Perona-Malik 型 diffusion の違いを、直接比較または比較不能な理由としてどう記録するか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 

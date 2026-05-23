@@ -1,0 +1,56 @@
+{
+  "outputs": [
+    {
+      "edge_leakage": 0.08962050723218284,
+      "left_mean": 0.08181213576368057,
+      "left_variance": 0.0018353567107820055,
+      "mad_vs_clean": 0.03627281869316403,
+      "name": "initial_noisy",
+      "psnr_vs_clean": 26.954266831931655,
+      "right_mean": 0.618483021685276,
+      "right_variance": 0.0021918269185470006,
+      "ssim_global_vs_clean": 0.9863590204738261
+    },
+    {
+      "decode_time_seconds": 1.3514211000001524,
+      "edge_leakage": 0.08468428000426353,
+      "left_mean": 0.07659236605275495,
+      "left_variance": 0.0013530112305625997,
+      "mad_vs_clean": 0.029030659823310347,
+      "name": "model_c",
+      "psnr_vs_clean": 28.70580057801603,
+      "right_mean": 0.619030983824253,
+      "right_variance": 0.0013287625413245369,
+      "ssim_global_vs_clean": 0.9909531708163479
+    },
+    {
+      "decode_time_seconds": 0.006538499999805936,
+      "edge_leakage": 0.08328069023339793,
+      "left_mean": 0.08181213604642706,
+      "left_variance": 6.998464583529961e-06,
+      "mad_vs_clean": 0.003068016904642112,
+      "name": "perona_malik",
+      "psnr_vs_clean": 47.64768845944215,
+      "right_mean": 0.6184830214025294,
+      "right_variance": 2.179293411071874e-05,
+      "ssim_global_vs_clean": 0.9998821862540967
+    }
+  ],
+  "pair_weights": [
+    {
+      "boundary_pair_mean": 0.0003094837028061991,
+      "flat_pair_mean": 1.7392351482906447,
+      "name": "model_c_guide_weight"
+    },
+    {
+      "boundary_pair_mean": 5.836397265115844e-08,
+      "flat_pair_mean": 0.7734358671328744,
+      "name": "pm_initial_conductance"
+    },
+    {
+      "boundary_pair_mean": 8.033584350866927e-11,
+      "flat_pair_mean": 0.9999761230402576,
+      "name": "pm_final_conductance"
+    }
+  ]
+}
