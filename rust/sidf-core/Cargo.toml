@@ -1,0 +1,11 @@
+[package]
+name = "sidf-core"
+version = "0.1.0"
+edition = "2021"
+description = "Minimal experimental Rust core spike for SIDF reproducibility checks"
+license = "UNLICENSED"
+publish = false
+
+[lib]
+name = "sidf_core"
+path = "src/lib.rs"
