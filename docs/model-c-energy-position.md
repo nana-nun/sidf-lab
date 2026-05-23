@@ -84,12 +84,30 @@ Model C energy は、MRF / Gibbs 型の画像復元と概念的に対応する d
 - MRF / Gibbs / stochastic relaxation の文脈は、Model C の energy を説明する背景として有用である。
 - Model C が厳密な Bayesian restoration、実用圧縮形式、または自然画像の一般復元モデルであるとは言えない。
 
+## Perona-Malik 型 diffusion との直接比較
+
+Issue #40 では、synthetic vertical edge で Model C と Perona-Malik 型 diffusion の最小比較を保存した。
+
+参照:
+
+- `results/2026-05-23-model-c-perona-malik/notes.md`
+- `references/notes/perona-malik-anisotropic-diffusion.md`
+
+この比較で確認した主な違い:
+
+- Model C の近傍重み `J_ij` は guide `s` の差から決まり、今回の実験では noisy guide に対して固定された重みとして扱った。
+- Perona-Malik 型 diffusion の conductance は、現在の画像状態の局所差から各stepで決まるため、初期画像と拡散後の画像で係数分布が変わる。
+- Model C には guide への data fidelity が明示的にあり、Perona-Malik 型 diffusion は今回の最小実装では data fidelity を持たない。
+
+したがって、両者は「局所差が大きい近傍で混合を弱める」という意味では類似するが、係数の決定元、更新過程、目的関数が異なる。現時点では「同等の効果」とは書かず、「guideで制御された edge-aware interaction と、画像勾配で制御される anisotropic diffusion には対応する直観がある」と表現する。
+
 ## Limitations
 
 - この文書は確率モデルの完全な定式化ではない。
 - `J_ij` を conditional prior として扱うか、decoder objective の重みとして扱うかは未確定である。
 - 現在の Python 実装は同一環境での再現性を対象としており、Rust 固定小数点実装での bit-perfect 再現性は未整理である。
 - Model C と古典的な MRF restoration を同一入力・同一 metrics で比較する実験はまだ行っていない。
+- Issue #40 の比較は synthetic vertical edge 1条件だけであり、Perona-Malik 型 diffusion の一般的な評価やModel Cの優位性を示すものではない。
 
 ## Next
 
