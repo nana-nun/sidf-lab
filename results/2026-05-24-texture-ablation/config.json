@@ -1,0 +1,32 @@
+{
+  "base_model_d_params": {
+    "gamma": 35.0,
+    "j_base": 1.8,
+    "lambda_data": 6.0
+  },
+  "date": "2026-05-24",
+  "decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 35,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "decoder_seed": 6400,
+  "experiment_seed": 20260524,
+  "high_size": 64,
+  "high_width": 7,
+  "low_size": 16,
+  "low_width": 2,
+  "model": "Model D candidate texture ablation",
+  "numpy_version": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "shape": "synthetic cross",
+  "texture_mapping": "strength 0.0 uses a zero texture field and texture_weight=0.0; non-zero strengths scale the same deterministic zero-mean texture field by strength / 0.35 and use strength as texture_weight.",
+  "texture_strengths": [
+    0.0,
+    0.1,
+    0.35,
+    0.7
+  ]
+}

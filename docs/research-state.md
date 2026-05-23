@@ -126,9 +126,21 @@ natural patch GT evaluation:
 
 この1枚の自然画像cropでは、現行Model D candidateは単純補間に対する改善を示していない。これはsuper-resolutionやcompressionの否定ではなく、現在のwhite-noise texture termと重み設定では、Ground Truth差分と勾配差分を悪化させる条件があることを示す初期測定である。
 
+texture ablation:
+
+- `results/2026-05-24-texture-ablation/`
+- synthetic crossで `texture_strength=0.00, 0.10, 0.35, 0.70` を同一low guide / decoder seedで比較。
+- `texture_strength=0.00` でも Model D の MAD `0.0483` は nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` より悪かった。
+- 非ゼロtexture_strengthの差は小さく非単調で、MADは `0.0472` から `0.0476`、global SSIMは `0.8789` から `0.8812` の範囲だった。
+- mean error は `0.0276` から `0.0287`、background mean は `0.0460` から `0.0471` の範囲で、texture_strengthに比例した単純な一方向biasは確認できなかった。
+
+解釈:
+
+このrunでは、white-noise texture term は synthetic cross に対する意味のある質感生成としては扱えない。むしろ `texture_strength=0` でも背景平均と差分がbaselineより悪いため、現行Model Dのrelaxation経路、confidence/data/interaction重み、texture経路を分けて再評価する必要がある。これは structured texture prior 全体を否定する結果ではなく、現行white-noise texture設定の小規模な切り分け結果である。
+
 ## Open Questions
 
-- Model D の white-noise texture term は、改善、悪化、無影響のどれに見えるか。
+- Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
 - confidence map、data fidelity、texture term の重みを分けると、単純補間との差分はどう変わるか。
 - white noise ではなく structured noise prior を使うと、baseline差分や粒状感は改善するか。
 - 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。

@@ -85,7 +85,8 @@ Model D は guided filter / joint bilateral upsampling と比較できるが、�
 
 - shape benchmark、cross comparison、natural patch GT evaluation では、現行 Model D candidate は nearest / bilinear / bicubic baseline に対する総合的な改善を示していない。
 - confidence map には境界拘束の候補として観察価値が残るが、white-noise texture term と現在の重み設定が MAD、SSIM、edge leakage、gradient MAD を悪化させる条件がある。
-- 次は texture term の寄与を ablation で分離し、その後に confidence / data / texture 重みの小規模gridを行う。
+- texture ablation では、synthetic cross において非ゼロ white-noise texture_strength が baseline 指標を改善する傾向は見えなかった。
+- 次は confidence / data / texture 重みの小規模gridを行い、texture_strength=0 の条件も含めて切り分ける。
 
 ### 3. Shape Benchmark
 
@@ -133,7 +134,6 @@ confidence map が柔らかい陰影を硬く分断しないか確認する。
 
 短期の優先順:
 
-1. Issue #37 で、現行 Model D の white-noise texture term の寄与を ablation する。
-2. Issue #54 で、負の評価結果を v0.3 draft と研究計画へ反映する。
-3. Issue #56 で、#37 の結果を受けて confidence / data / texture 重みの小規模gridを行う。
-4. Issue #55 で、Philox4x32-10 test vector を Rust core の最小実装で検証する。
+1. Issue #56 で、#37 の結果を受けて confidence / data / texture 重みの小規模gridを行う。
+2. structured texture prior を評価するときは、white noise baseline と texture_strength=0 を必ず含める。
+3. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
