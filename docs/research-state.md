@@ -121,10 +121,11 @@ natural patch GT evaluation:
 
 ## Open Questions
 
-- Model D は斜線や曲線でも境界を守れるか。
-- confidence map は柔らかいグラデーションを硬く分断しないか。
-- white noise ではなく structured noise prior を使うと質感は改善するか。
-- bilinear / bicubic に対する優位性は metrics で確認できるか。
+- Model D の white-noise texture term は、改善、悪化、無影響のどれに見えるか。
+- confidence map、data fidelity、texture term の重みを分けると、単純補間との差分はどう変わるか。
+- white noise ではなく structured noise prior を使うと、baseline差分や粒状感は改善するか。
+- 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。
+- Model C の guide 差分ベース edge-aware weighting と Perona-Malik 型 diffusion の違いを、直接比較または比較不能な理由としてどう記録するか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 
