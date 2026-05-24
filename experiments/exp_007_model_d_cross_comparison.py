@@ -27,7 +27,7 @@ from sidf_lab.io import ensure_dir, save_json
 from sidf_lab.metrics import comparison_summary
 
 
-RESULT_DIR = Path("results/2026-05-17-model-d-cross-comparison")
+RESULT_DIR = Path("results/2026-05-17-issue-6-model-d-cross-comparison")
 DATE = "2026-05-17"
 EXPERIMENT_SEED = 20260517
 DECODER_SEED = 6200

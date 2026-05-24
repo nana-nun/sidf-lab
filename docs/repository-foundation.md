@@ -31,7 +31,9 @@ sidf-lab は、SIDFを完成済みの実用圧縮形式として扱うのでは�
 
 実験やテストで画像を生成した場合は、コンソール表示だけで終わらせず、PNGなどの成果物として保存します。
 
-実験結果を残す場合は、原則として `results/<date>-<short-name>/` に次を保存します。
+実験結果を残す場合は、原則として `results/YYYY-MM-DD-issue-<number>-<short-title>/` に次を保存します。例: `results/2026-05-24-issue-65-decode-sweep-quality/`。
+
+Issue番号がまだない探索実験は、先にIssueを作るか、PR前に正式なIssue番号つきディレクトリへ改名します。
 
 - `config.json`
 - `metrics.json`

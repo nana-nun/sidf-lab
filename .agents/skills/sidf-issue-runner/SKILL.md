@@ -146,7 +146,7 @@ The tag-specific skills are authoritative for detailed work rules. These shared 
 
 Run reproducible experiments. Start with small inputs and simple sweeps. Always compare against a simple baseline before interpreting SIDF model output.
 
-Save results under `results/<date>-<short-name>/` and include, when applicable:
+Save results under `results/YYYY-MM-DD-issue-<number>-<short-title>/` and include, when applicable. Use the GitHub Issue number in `<number>` and a short ASCII slug in `<short-title>`. If an experiment starts without an Issue number, create or identify the Issue before finalizing the PR, then rename the result directory to the issue-numbered form:
 
 - `config.json`
 - `metrics.json`

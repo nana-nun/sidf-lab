@@ -45,13 +45,13 @@ Background Variance : 0.0004
 
 保存形式つき再実行:
 
-- `results/2026-05-16-model-c-cross-baseline/`
+- `results/2026-05-16-issue-4-model-c-cross-baseline/`
 - `config.json`、`metrics.json`、`notes.md`、主要PNGを保存。
 - 今回のrunでは `MAD = 0.0117`、`Background Mean = 0.0074`、`Edge Leakage = 0.0089`。
 
 freeze候補benchmark:
 
-- `results/2026-05-16-model-c-freeze-benchmark/`
+- `results/2026-05-16-issue-5-model-c-freeze-benchmark/`
 - cross、diagonal、circle、thin line、soft gradientで `config.json`、`metrics.json`、`notes.md`、主要PNGを保存。
 - hard edge shapeでは `Model C MAD <= 0.0108`、`Background Mean <= 0.0063`、`Edge Leakage <= 0.0072`。
 - soft gradientでは edge leakage を不適用とし、列平均では大きな逆行や急な段差は見られなかった。
@@ -62,7 +62,7 @@ Model C は、SIDF v0.2.1 の基礎モデルとして有望。ただし創発性
 
 Perona-Malik 型 diffusion との最小比較:
 
-- `results/2026-05-23-model-c-perona-malik/`
+- `results/2026-05-23-issue-40-model-c-perona-malik/`
 - synthetic vertical edge で Model C と Perona-Malik 型 diffusion を比較した。
 - Model C の近傍重みは guide 差から固定的に決まり、Perona-Malik 型 conductance は現在の画像状態からstepごとに決まることを、weight map と metrics で保存した。
 - 今回の条件では、両者は「大きな局所差のある近傍で混合を弱める」という点で類似するが、係数決定元、更新過程、data fidelity の有無が異なるため、同等の方法とは扱わない。
@@ -90,7 +90,7 @@ Model D は confidence-aware multi-resolution reconstruction と呼ぶのが正�
 
 shape benchmark:
 
-- `results/2026-05-16-model-d-shape-benchmark/`
+- `results/2026-05-16-issue-30-model-d-shape-benchmark/`
 - diagonal、circle、thin line、soft gradientで nearest / bilinear / bicubic / Model D candidate を保存。
 - hard edge shapeでは、今回の設定のModel DはMADでbilinearを上回らなかった。
 - Model D MAD: diagonal `0.0448`、circle `0.0351`、thin line `0.0436`。
@@ -103,7 +103,7 @@ Model D の confidence map は保存形式つきで確認できるようにな�
 
 cross baseline comparison:
 
-- `results/2026-05-17-model-d-cross-comparison/`
+- `results/2026-05-17-issue-6-model-d-cross-comparison/`
 - nearest、bilinear、bicubic、Model D candidate を64x64 synthetic crossで比較。
 - Model D MAD `0.0471` は nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` より悪かった。
 - Model D edge leakage `0.2206` は bilinear `0.2197` とほぼ同程度で、nearest `0.1284`、bicubic `0.2119` より悪かった。
@@ -115,7 +115,7 @@ cross baseline comparison:
 
 natural patch GT evaluation:
 
-- `results/2026-05-17-model-d-natural-patch/`
+- `results/2026-05-17-issue-36-model-d-natural-patch/`
 - Public Domain 画像cropを128x128 Ground Truthとし、32x32 block-average guideから128x128 outputを比較。
 - baselineはnearest、bilinear、bicubic upscaling。
 - Model D MAD `0.0556` は nearest `0.0454`、bilinear `0.0444`、bicubic `0.0424` より悪かった。
@@ -128,7 +128,7 @@ natural patch GT evaluation:
 
 texture ablation:
 
-- `results/2026-05-24-texture-ablation/`
+- `results/2026-05-24-issue-37-texture-ablation/`
 - synthetic crossで `texture_strength=0.00, 0.10, 0.35, 0.70` を同一low guide / decoder seedで比較。
 - `texture_strength=0.00` でも Model D の MAD `0.0483` は nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` より悪かった。
 - 非ゼロtexture_strengthの差は小さく非単調で、MADは `0.0472` から `0.0476`、global SSIMは `0.8789` から `0.8812` の範囲だった。
@@ -140,7 +140,7 @@ texture ablation:
 
 weight grid:
 
-- `results/2026-05-24-model-d-weight-grid/`
+- `results/2026-05-24-issue-56-model-d-weight-grid/`
 - cross と natural patch で、`texture_strength=0` を中心に `lambda_data`、confidence floor、uniform confidence、現行textureありを小規模grid比較した。
 - cross の Model D grid内では `flat_conf_tex0` が最小MAD `0.0403` だったが、nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` より悪かった。
 - natural patch の Model D grid内でも `flat_conf_tex0` が最小MAD `0.0529` だったが、nearest `0.0454`、bilinear `0.0444`、bicubic `0.0424` より悪かった。
@@ -152,7 +152,7 @@ weight grid:
 
 term isolation:
 
-- `results/2026-05-24-model-d-term-isolation/`
+- `results/2026-05-24-issue-61-model-d-term-isolation/`
 - `texture_strength=0` に固定し、data fidelity only、pairwise only、data+pairwise、gradient confidenceあり/なしを cross と natural patch で比較した。
 - cross の term conditions 内では `data_pairwise_uniform` が最小MAD `0.0404` だったが、nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` より悪かった。
 - natural patch の term conditions 内でも `data_pairwise_uniform` が最小MAD `0.0529` だったが、nearest `0.0454`、bilinear `0.0444`、bicubic `0.0424` より悪かった。
@@ -176,7 +176,7 @@ term isolation:
 
 scaling benchmark:
 
-- `results/2026-05-17-decode-time-scaling/`
+- `results/2026-05-17-issue-35-decode-time-scaling/`
 - synthetic crossで 32x32、64x64、128x128、256x256 を12 sweeps固定で計測。
 - Model C decode seconds: 32x32 `0.083`、64x64 `0.349`、128x128 `1.370`、256x256 `5.681`。
 - Model D decode seconds: 32x32 `0.152`、64x64 `0.567`、128x128 `2.347`、256x256 `9.441`。
@@ -188,7 +188,7 @@ scaling benchmark:
 
 sweep quality benchmark:
 
-- `results/2026-05-24-decode-sweep-quality/`
+- `results/2026-05-24-issue-65-decode-sweep-quality/`
 - synthetic crossで 64x64 と 128x128 を対象に、sweeps `1, 4, 12, 24` の decode time と metrics を保存した。
 - 64x64 Model D decode seconds は `0.089, 0.334, 0.997, 2.812`、MAD は `0.0525, 0.0564, 0.0562, 0.0484`。
 - 128x128 Model D decode seconds は `0.480, 2.113, 5.582, 11.329`、MAD は `0.0428, 0.0456, 0.0484, 0.0374`。

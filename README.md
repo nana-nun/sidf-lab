@@ -24,7 +24,7 @@ SIDF Lab は、SIDF (Stochastic Image Description Format) の研究用ワーク�
 
 リポジトリ運用:
 
-- 実験やテストで生成した画像は `results/<date>-<short-name>/` に保存する。
+- 実験やテストで生成した画像は `results/YYYY-MM-DD-issue-<number>-<short-title>/` に保存する。
 - 研究タスクは GitHub Issues で管理し、`t:*` と `p:*` ラベルを使う。
 - AIエージェントがIssue対応を行う場合は、`.agents/skills/sidf-issue-runner/SKILL.md` を入口にし、Issueの `t:*` ラベルに応じた `.agents/skills/sidf-lab-*-issue/SKILL.md` も参照する。
 - Issue対応時は、GitHub Project のステータス更新、Issueコメント、PR作成までを標準フローに含める。マージは明示依頼がない限り行わない。

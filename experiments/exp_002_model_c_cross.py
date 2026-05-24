@@ -16,7 +16,7 @@ from sidf_lab.io import ensure_dir, save_grayscale_png, save_json
 from sidf_lab.metrics import edge_leakage, mad, region_summary
 
 
-RESULT_DIR = Path("results/2026-05-16-model-c-cross-baseline")
+RESULT_DIR = Path("results/2026-05-16-issue-4-model-c-cross-baseline")
 
 
 def save_comparison_png(path: str | Path, images: list[np.ndarray], gap: int = 2) -> None:

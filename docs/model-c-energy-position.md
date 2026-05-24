@@ -76,7 +76,7 @@ Model C energy は、MRF / Gibbs 型の画像復元と概念的に対応する d
 
 ## 研究結果との関係
 
-この整理は、新しい実験結果ではない。Model C の既存結果は `docs/research-state.md` と `results/2026-05-16-model-c-*` に残っている。
+この整理は、新しい実験結果ではない。Model C の既存結果は `docs/research-state.md` と `results/2026-05-16-issue-*-model-c-*` に残っている。
 
 現時点で言えること:
 
@@ -90,7 +90,7 @@ Issue #40 では、synthetic vertical edge で Model C と Perona-Malik 型 diff
 
 参照:
 
-- `results/2026-05-23-model-c-perona-malik/notes.md`
+- `results/2026-05-23-issue-40-model-c-perona-malik/notes.md`
 - `references/notes/perona-malik-anisotropic-diffusion.md`
 
 この比較で確認した主な違い:

@@ -26,7 +26,7 @@ from sidf_lab.io import ensure_dir, save_grayscale_png, save_json
 from sidf_lab.metrics import comparison_summary
 
 
-RESULT_DIR = Path("results/2026-05-24-texture-ablation")
+RESULT_DIR = Path("results/2026-05-24-issue-37-texture-ablation")
 DATE = "2026-05-24"
 EXPERIMENT_SEED = 20260524
 DECODER_SEED = 6400

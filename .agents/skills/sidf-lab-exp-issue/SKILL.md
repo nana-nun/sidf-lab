@@ -27,7 +27,7 @@ Read:
 1. Restate the experiment question and hypothesis before implementation.
 2. Identify the baseline before building the SIDF model path.
 3. Start with small images and minimal sweeps.
-4. Save results under `results/<date>-<short-name>/`.
+4. Save results under `results/YYYY-MM-DD-issue-<number>-<short-title>/`, using the active GitHub Issue number and a short ASCII slug.
 5. Save generated images; never rely on console output or `plt.show()` alone.
 6. In `notes.md`, embed the main Git-tracked images with Markdown image references such as `![Rendered output](rendered.png)`.
 7. Keep image paths relative to the result directory so the notes render on GitHub and in local Markdown viewers.

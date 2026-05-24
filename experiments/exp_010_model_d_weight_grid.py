@@ -31,7 +31,7 @@ from sidf_lab.io import ensure_dir, save_grayscale_png, save_json
 from sidf_lab.metrics import comparison_summary, mad
 
 
-RESULT_DIR = Path("results/2026-05-24-model-d-weight-grid")
+RESULT_DIR = Path("results/2026-05-24-issue-56-model-d-weight-grid")
 SOURCE_ASSET = Path("experiments/assets/landscape_pd_128.npy")
 DATE = "2026-05-24"
 EXPERIMENT_SEED = 20260524

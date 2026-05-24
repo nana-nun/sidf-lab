@@ -29,7 +29,7 @@ from sidf_lab.io import ensure_dir, save_json
 from sidf_lab.metrics import comparison_summary
 
 
-RESULT_DIR = Path("results/2026-05-24-decode-sweep-quality")
+RESULT_DIR = Path("results/2026-05-24-issue-65-decode-sweep-quality")
 DATE = "2026-05-24"
 EXPERIMENT_SEED = 20260524
 DECODER_SEED_BASE = 6500
@@ -318,7 +318,7 @@ baseline は nearest、bilinear、bicubic upscaling とした。baseline はサ�
 
 - synthetic cross のみで、自然画像patchやsoft gradientでは未確認。
 - metrics の reference は synthetic high-resolution cross であり、実画像の Ground Truth ではない。
-- 画素数 scaling は `results/2026-05-17-decode-time-scaling/` の結果を参照し、本実験では同一サイズ内の sweep scaling を中心に読む。
+- 画素数 scaling は `results/2026-05-17-issue-35-decode-time-scaling/` の結果を参照し、本実験では同一サイズ内の sweep scaling を中心に読む。
 - 現行 Python 実装の実行時間であり、Rust core、固定小数点、並列化、近似更新では未評価。
 - Model D はこの条件でも単純補間 baseline を上回っておらず、実用圧縮形式や super-resolution 性能を示す結果ではない。
 

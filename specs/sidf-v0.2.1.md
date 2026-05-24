@@ -156,8 +156,8 @@ static_noise_sigma: 0.03
 
 参照:
 
-- `results/2026-05-16-model-c-freeze-benchmark/notes.md`
-- `results/2026-05-16-model-c-freeze-benchmark/summary_metrics.json`
+- `results/2026-05-16-issue-5-model-c-freeze-benchmark/notes.md`
+- `results/2026-05-16-issue-5-model-c-freeze-benchmark/summary_metrics.json`
 
 ## 7. Verified Results
 
@@ -265,6 +265,6 @@ Model C の位置づけ:
 - `docs/research-state.md`
 - `docs/repository-architecture.md`
 - `docs/model-c-energy-position.md`
-- `results/2026-05-16-model-c-cross-baseline/notes.md`
-- `results/2026-05-16-model-c-freeze-benchmark/notes.md`
-- `results/2026-05-16-model-c-freeze-benchmark/summary_metrics.json`
+- `results/2026-05-16-issue-4-model-c-cross-baseline/notes.md`
+- `results/2026-05-16-issue-5-model-c-freeze-benchmark/notes.md`
+- `results/2026-05-16-issue-5-model-c-freeze-benchmark/summary_metrics.json`

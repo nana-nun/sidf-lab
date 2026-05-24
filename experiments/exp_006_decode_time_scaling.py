@@ -29,7 +29,7 @@ from sidf_lab.io import ensure_dir, save_json
 from sidf_lab.metrics import comparison_summary
 
 
-RESULT_DIR = Path("results/2026-05-17-decode-time-scaling")
+RESULT_DIR = Path("results/2026-05-17-issue-35-decode-time-scaling")
 DATE = "2026-05-17"
 EXPERIMENT_SEED = 20260517
 DECODER_SEED_BASE = 6100
