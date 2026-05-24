@@ -186,6 +186,18 @@ scaling benchmark:
 
 現行のMetropolis型Python実装は、少なくともこの設定では画素数に近いスケールで時間が増える。256x256でも短時間runは可能だが、12 sweeps固定であり収束品質は確認していないため、実用性や高品質再構成を示す結果ではない。
 
+sweep quality benchmark:
+
+- `results/2026-05-24-decode-sweep-quality/`
+- synthetic crossで 64x64 と 128x128 を対象に、sweeps `1, 4, 12, 24` の decode time と metrics を保存した。
+- 64x64 Model D decode seconds は `0.089, 0.334, 0.997, 2.812`、MAD は `0.0525, 0.0564, 0.0562, 0.0484`。
+- 128x128 Model D decode seconds は `0.480, 2.113, 5.582, 11.329`、MAD は `0.0428, 0.0456, 0.0484, 0.0374`。
+- 24 sweepsでは Model D のMADが短いsweepより改善したが、64x64 / 128x128 とも bilinear / bicubic baseline のMADよりは悪かった。
+
+解釈:
+
+同一サイズ内ではsweep数の増加に伴ってdecode timeが増える。今回のrunは画素数scalingではなくsweep scalingを切り出した制限整理であり、現行Python実装の速度制限と、sweep数を増やすだけでは単純補間baselineを上回らない条件があることを示す。
+
 ## Analysis Checklist for AI Agents
 
 新しい実験や分析を始める前に、AIエージェントは次を確認する。

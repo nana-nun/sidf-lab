@@ -1,0 +1,35 @@
+{
+  "date": "2026-05-24",
+  "decode_config": {
+    "proposal_sigma": 0.08,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "decoder_seed_base": 6500,
+  "experiment_seed": 20260524,
+  "model_c_params": {
+    "gamma": 40.0,
+    "j_base": 2.0,
+    "lambda_data": 5.0
+  },
+  "model_d_params": {
+    "gamma": 35.0,
+    "j_base": 1.8,
+    "lambda_data": 6.0,
+    "texture_weight": 0.35
+  },
+  "numpy_version": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "shape": "synthetic cross",
+  "sizes": [
+    64,
+    128
+  ],
+  "sweeps": [
+    1,
+    4,
+    12,
+    24
+  ]
+}

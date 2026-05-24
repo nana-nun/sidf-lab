@@ -1,0 +1,358 @@
+{
+  "sizes": [
+    {
+      "baseline_metrics": {
+        "bicubic": {
+          "background_mean": 0.01926028378640778,
+          "background_variance": 0.003008976413719357,
+          "edge_leakage": 0.13981539341244165,
+          "edge_width_pixels": 2.7857142857142856,
+          "foreground_mean": 0.4795037005346202,
+          "foreground_variance": 0.005828986962324112,
+          "mad_vs_reference": 0.029339008187971232,
+          "psnr_vs_reference": 23.922885454360483,
+          "ssim_global_vs_reference": 0.9516397060735533
+        },
+        "bilinear": {
+          "background_mean": 0.02186444305613402,
+          "background_variance": 0.0035358589704992498,
+          "edge_leakage": 0.15871966070378768,
+          "edge_width_pixels": 2.9285714285714284,
+          "foreground_mean": 0.45072278911564634,
+          "foreground_variance": 0.004342463951598521,
+          "mad_vs_reference": 0.02828931051587301,
+          "psnr_vs_reference": 23.31610674155167,
+          "ssim_global_vs_reference": 0.9429510363189226
+        },
+        "nearest": {
+          "background_mean": 0.0,
+          "background_variance": 0.0,
+          "edge_leakage": 0.0,
+          "edge_width_pixels": 0.0,
+          "foreground_mean": 0.5,
+          "foreground_variance": 0.0,
+          "mad_vs_reference": 0.0,
+          "psnr_vs_reference": null,
+          "ssim_global_vs_reference": 1.0
+        }
+      },
+      "baseline_timings": {
+        "bicubic_seconds": 0.20868170000903774,
+        "bilinear_seconds": 0.00034149999555666,
+        "confidence_seconds": 0.0002052999916486442,
+        "nearest_seconds": 0.00029830000130459666
+      },
+      "low_size": 16,
+      "runs": [
+        {
+          "metrics": {
+            "model_c": {
+              "background_mean": 0.4906052131155318,
+              "background_variance": 0.07636406190455886,
+              "edge_leakage": 0.48114836395840765,
+              "edge_width_pixels": 0.0625,
+              "foreground_mean": 0.5007002901168675,
+              "foreground_variance": 0.06938338893230407,
+              "mad_vs_reference": 0.42838254914635876,
+              "psnr_vs_reference": 5.86685105435082,
+              "ssim_global_vs_reference": 0.010130225753309397
+            },
+            "model_d": {
+              "background_mean": 0.044378709370820314,
+              "background_variance": 0.0045058234871776645,
+              "edge_leakage": 0.15830977089657874,
+              "edge_width_pixels": 3.330357142857143,
+              "foreground_mean": 0.4483399565808901,
+              "foreground_variance": 0.008313302298695032,
+              "mad_vs_reference": 0.05249111002259832,
+              "psnr_vs_reference": 21.23114637133751,
+              "ssim_global_vs_reference": 0.899162901537712
+            }
+          },
+          "sweeps": 1,
+          "timings": {
+            "model_c_decode_seconds": 0.05783550000342075,
+            "model_d_decode_seconds": 0.08870079999906011
+          }
+        },
+        {
+          "metrics": {
+            "model_c": {
+              "background_mean": 0.4500316539173556,
+              "background_variance": 0.05389354749569059,
+              "edge_leakage": 0.4627543359540882,
+              "edge_width_pixels": 0.6607142857142857,
+              "foreground_mean": 0.5043968416349837,
+              "foreground_variance": 0.04516852842932213,
+              "mad_vs_reference": 0.3843361539238175,
+              "psnr_vs_reference": 6.842100670245335,
+              "ssim_global_vs_reference": 0.051699625855557055
+            },
+            "model_d": {
+              "background_mean": 0.050315035967051926,
+              "background_variance": 0.003975454983525315,
+              "edge_leakage": 0.15496228472318754,
+              "edge_width_pixels": 3.1830357142857144,
+              "foreground_mean": 0.4497161006375786,
+              "foreground_variance": 0.007209618927787098,
+              "mad_vs_reference": 0.0563533892341192,
+              "psnr_vs_reference": 21.388043832936955,
+              "ssim_global_vs_reference": 0.8982407538208438
+            }
+          },
+          "sweeps": 4,
+          "timings": {
+            "model_c_decode_seconds": 0.22407739999471232,
+            "model_d_decode_seconds": 0.33385439999983646
+          }
+        },
+        {
+          "metrics": {
+            "model_c": {
+              "background_mean": 0.30352246459429794,
+              "background_variance": 0.028260571524931284,
+              "edge_leakage": 0.2770386624320497,
+              "edge_width_pixels": 2.705357142857143,
+              "foreground_mean": 0.49844986276601955,
+              "foreground_variance": 0.009306294715587738,
+              "mad_vs_reference": 0.24806090586685536,
+              "psnr_vs_reference": 10.252460912535653,
+              "ssim_global_vs_reference": 0.2834312883053808
+            },
+            "model_d": {
+              "background_mean": 0.052384180366663834,
+              "background_variance": 0.003828068208343988,
+              "edge_leakage": 0.16010773252977464,
+              "edge_width_pixels": 3.049107142857143,
+              "foreground_mean": 0.44648459022581927,
+              "foreground_variance": 0.005334383714308037,
+              "mad_vs_reference": 0.0562023600337809,
+              "psnr_vs_reference": 21.57809618666253,
+              "ssim_global_vs_reference": 0.9003013917350888
+            }
+          },
+          "sweeps": 12,
+          "timings": {
+            "model_c_decode_seconds": 0.5577210000046762,
+            "model_d_decode_seconds": 0.9972625000082189
+          }
+        },
+        {
+          "metrics": {
+            "model_c": {
+              "background_mean": 0.12245802945322228,
+              "background_variance": 0.010964775988688794,
+              "edge_leakage": 0.11287668430613768,
+              "edge_width_pixels": 1.6919642857142858,
+              "foreground_mean": 0.500081633962823,
+              "foreground_variance": 0.0009818453833613816,
+              "mad_vs_reference": 0.0992294141591168,
+              "psnr_vs_reference": 16.96667475888351,
+              "ssim_global_vs_reference": 0.7291323341214573
+            },
+            "model_d": {
+              "background_mean": 0.04216891759219944,
+              "background_variance": 0.003674956161754352,
+              "edge_leakage": 0.16041030705336481,
+              "edge_width_pixels": 2.9776785714285716,
+              "foreground_mean": 0.4375653159346371,
+              "foreground_variance": 0.004484928126562208,
+              "mad_vs_reference": 0.04840816430622273,
+              "psnr_vs_reference": 22.118418150787228,
+              "ssim_global_vs_reference": 0.9159675773208142
+            }
+          },
+          "sweeps": 24,
+          "timings": {
+            "model_c_decode_seconds": 1.6104496000043582,
+            "model_d_decode_seconds": 2.811895500009996
+          }
+        }
+      ],
+      "size": 64,
+      "sweeps": [
+        1,
+        4,
+        12,
+        24
+      ]
+    },
+    {
+      "baseline_metrics": {
+        "bicubic": {
+          "background_mean": 0.009528392669125833,
+          "background_variance": 0.0015470344496900572,
+          "edge_leakage": 0.13582290641081188,
+          "edge_width_pixels": 2.9107142857142856,
+          "foreground_mean": 0.4899349392504747,
+          "foreground_variance": 0.0027568136136228104,
+          "mad_vs_reference": 0.014403057970364947,
+          "psnr_vs_reference": 27.15833035489353,
+          "ssim_global_vs_reference": 0.9778294421627681
+        },
+        "bilinear": {
+          "background_mean": 0.010768162161324321,
+          "background_variance": 0.0018120558796145437,
+          "edge_leakage": 0.15349525699051395,
+          "edge_width_pixels": 2.9642857142857144,
+          "foreground_mean": 0.4758290256163846,
+          "foreground_variance": 0.002767226558282395,
+          "mad_vs_reference": 0.013909446275923802,
+          "psnr_vs_reference": 26.45578236588633,
+          "ssim_global_vs_reference": 0.9737331531146053
+        },
+        "nearest": {
+          "background_mean": 0.0,
+          "background_variance": 0.0,
+          "edge_leakage": 0.0,
+          "edge_width_pixels": 0.0,
+          "foreground_mean": 0.5,
+          "foreground_variance": 0.0,
+          "mad_vs_reference": 0.0,
+          "psnr_vs_reference": null,
+          "ssim_global_vs_reference": 1.0
+        }
+      },
+      "baseline_timings": {
+        "bicubic_seconds": 0.9786070999980439,
+        "bilinear_seconds": 0.0006199000054039061,
+        "confidence_seconds": 0.00034840000444091856,
+        "nearest_seconds": 0.0002928000030806288
+      },
+      "low_size": 32,
+      "runs": [
+        {
+          "metrics": {
+            "model_c": {
+              "background_mean": 0.4849258691703624,
+              "background_variance": 0.07609442420386094,
+              "edge_leakage": 0.48189506808806165,
+              "edge_width_pixels": 0.22544642857142858,
+              "foreground_mean": 0.5013087746500029,
+              "foreground_variance": 0.07550207472801111,
+              "mad_vs_reference": 0.42633595646613687,
+              "psnr_vs_reference": 5.917683731157832,
+              "ssim_global_vs_reference": 0.014306424728739076
+            },
+            "model_d": {
+              "background_mean": 0.03594206031359859,
+              "background_variance": 0.003171154637150374,
+              "edge_leakage": 0.15334102350560253,
+              "edge_width_pixels": 4.345982142857143,
+              "foreground_mean": 0.4764893298898541,
+              "foreground_variance": 0.007056406231955548,
+              "mad_vs_reference": 0.042791904320038404,
+              "psnr_vs_reference": 22.83965732104101,
+              "ssim_global_vs_reference": 0.9305279596657373
+            }
+          },
+          "sweeps": 1,
+          "timings": {
+            "model_c_decode_seconds": 0.3036398999975063,
+            "model_d_decode_seconds": 0.4798010999948019
+          }
+        },
+        {
+          "metrics": {
+            "model_c": {
+              "background_mean": 0.44955203485253364,
+              "background_variance": 0.05360789704824164,
+              "edge_leakage": 0.453017623130253,
+              "edge_width_pixels": 1.046875,
+              "foreground_mean": 0.5063206523752496,
+              "foreground_variance": 0.04532831026128211,
+              "mad_vs_reference": 0.3847199162816549,
+              "psnr_vs_reference": 6.852750049915245,
+              "ssim_global_vs_reference": 0.05385677423880812
+            },
+            "model_d": {
+              "background_mean": 0.04130768408335849,
+              "background_variance": 0.00288478629879726,
+              "edge_leakage": 0.15665465522367858,
+              "edge_width_pixels": 4.040178571428571,
+              "foreground_mean": 0.474814174305083,
+              "foreground_variance": 0.005911593479950262,
+              "mad_vs_reference": 0.04563470936565386,
+              "psnr_vs_reference": 22.967714707597068,
+              "ssim_global_vs_reference": 0.9288912526659839
+            }
+          },
+          "sweeps": 4,
+          "timings": {
+            "model_c_decode_seconds": 1.103218400006881,
+            "model_d_decode_seconds": 2.112701799997012
+          }
+        },
+        {
+          "metrics": {
+            "model_c": {
+              "background_mean": 0.316392197610696,
+              "background_variance": 0.027663119522103364,
+              "edge_leakage": 0.31223077907600727,
+              "edge_width_pixels": 3.8973214285714284,
+              "foreground_mean": 0.5015009198771664,
+              "foreground_variance": 0.010046992031861829,
+              "mad_vs_reference": 0.25850868974261726,
+              "psnr_vs_reference": 9.9923193483156,
+              "ssim_global_vs_reference": 0.2664635766803962
+            },
+            "model_d": {
+              "background_mean": 0.0467641058481003,
+              "background_variance": 0.0027785183902272323,
+              "edge_leakage": 0.1586833521116496,
+              "edge_width_pixels": 3.8125,
+              "foreground_mean": 0.4702276369606653,
+              "foreground_variance": 0.004699133169138444,
+              "mad_vs_reference": 0.04840646316561216,
+              "psnr_vs_reference": 22.915160254228578,
+              "ssim_global_vs_reference": 0.9248805731446995
+            }
+          },
+          "sweeps": 12,
+          "timings": {
+            "model_c_decode_seconds": 3.3683128000120632,
+            "model_d_decode_seconds": 5.581959799994365
+          }
+        },
+        {
+          "metrics": {
+            "model_c": {
+              "background_mean": 0.132082034661827,
+              "background_variance": 0.01110607985004049,
+              "edge_leakage": 0.1347875026505183,
+              "edge_width_pixels": 2.59375,
+              "foreground_mean": 0.49972166115903044,
+              "foreground_variance": 0.0013338451743847009,
+              "mad_vs_reference": 0.10722819412258167,
+              "psnr_vs_reference": 16.54184025782702,
+              "ssim_global_vs_reference": 0.7073348634224786
+            },
+            "model_d": {
+              "background_mean": 0.03406563804432677,
+              "background_variance": 0.0023666294036140735,
+              "edge_leakage": 0.15701518431309305,
+              "edge_width_pixels": 3.486607142857143,
+              "foreground_mean": 0.47074872420414143,
+              "foreground_variance": 0.003922746366150417,
+              "mad_vs_reference": 0.03737503470146562,
+              "psnr_vs_reference": 24.178948752412914,
+              "ssim_global_vs_reference": 0.9473610178261554
+            }
+          },
+          "sweeps": 24,
+          "timings": {
+            "model_c_decode_seconds": 6.770186299996567,
+            "model_d_decode_seconds": 11.32910579998861
+          }
+        }
+      ],
+      "size": 128,
+      "sweeps": [
+        1,
+        4,
+        12,
+        24
+      ]
+    }
+  ]
+}
