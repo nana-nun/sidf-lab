@@ -1,0 +1,31 @@
+{
+  "shapes": [
+    {
+      "model_c_decode_time_seconds": 1.0575004999991506,
+      "model_c_edge_leakage": 0.07101874481591937,
+      "model_c_mad_vs_clean": 0.028039306050365174,
+      "perona_malik_decode_time_seconds": 0.005050199994002469,
+      "perona_malik_edge_leakage": 0.07927533000013977,
+      "perona_malik_mad_vs_clean": 0.0021257309727064494,
+      "shape": "diagonal"
+    },
+    {
+      "model_c_decode_time_seconds": 1.0336838999937754,
+      "model_c_edge_leakage": 0.07159158138087132,
+      "model_c_mad_vs_clean": 0.02870035581586043,
+      "perona_malik_decode_time_seconds": 0.005067999998573214,
+      "perona_malik_edge_leakage": 0.08008129626445538,
+      "perona_malik_mad_vs_clean": 0.0025687273191808127,
+      "shape": "circle"
+    },
+    {
+      "model_c_decode_time_seconds": 1.0335811999975704,
+      "model_c_edge_leakage": null,
+      "model_c_mad_vs_clean": 0.027864044036137143,
+      "perona_malik_decode_time_seconds": 0.0050645000010263175,
+      "perona_malik_edge_leakage": null,
+      "perona_malik_mad_vs_clean": 0.005825997586335967,
+      "shape": "soft_gradient"
+    }
+  ]
+}

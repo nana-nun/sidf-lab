@@ -67,6 +67,14 @@ Perona-Malik 型 diffusion との最小比較:
 - Model C の近傍重みは guide 差から固定的に決まり、Perona-Malik 型 conductance は現在の画像状態からstepごとに決まることを、weight map と metrics で保存した。
 - 今回の条件では、両者は「大きな局所差のある近傍で混合を弱める」という点で類似するが、係数決定元、更新過程、data fidelity の有無が異なるため、同等の方法とは扱わない。
 
+Perona-Malik 型 diffusion との複数shape比較:
+
+- `results/2026-05-24-issue-64-model-c-perona-malik-shapes/`
+- diagonal、circle、soft gradient で Model C と Perona-Malik 型 diffusion を比較した。
+- Model C の pair weight は noisy guide から固定的に計算し、Perona-Malik 型 conductance は初期状態と diffusion 後の状態で保存した。
+- diagonal / circle では edge leakage を保存し、soft gradient では明確な foreground/background 境界がないため edge leakage を不適用として、列平均の逆行数、slope error、二階差分を代替指標にした。
+- 今回の条件では Perona-Malik 型 diffusion の MAD は Model C より小さかったが、これは synthetic noisy guide に対する最小diffusion比較であり、Model C の一般的劣位や Perona-Malik の一般的優位を示すものではない。
+
 ### Model D
 
 16x16 guide から 64x64 output を生成する multi-resolution pipeline を導入した。

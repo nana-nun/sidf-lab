@@ -1,0 +1,29 @@
+{
+  "anneal_config": {
+    "proposal_sigma": 0.09,
+    "sweeps": 60,
+    "temp_end": 0.01,
+    "temp_start": 0.45
+  },
+  "date": "2026-05-24",
+  "decoder_seed": 6466,
+  "experiment_seed": 20260526,
+  "high_value": 0.62,
+  "low_value": 0.08,
+  "model_c_params": {
+    "gamma": 40.0,
+    "j_base": 2.0,
+    "lambda_data": 5.0
+  },
+  "noise_sigma": 0.045,
+  "numpy_version": "2.3.5",
+  "perona_malik_config": {
+    "dt": 0.18,
+    "kappa": 0.11,
+    "steps": 60
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "shape": "soft_gradient",
+  "size": 48
+}

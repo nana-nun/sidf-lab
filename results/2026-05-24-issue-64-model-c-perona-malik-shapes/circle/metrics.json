@@ -1,0 +1,62 @@
+{
+  "outputs": [
+    {
+      "background_mean": 0.08036201905170297,
+      "background_variance": 0.001884138597109765,
+      "edge_leakage": 0.07911466035382084,
+      "foreground_mean": 0.6172454036815369,
+      "foreground_variance": 0.002165766471114124,
+      "gradient_mad_vs_clean": 0.07509979538023992,
+      "mad_vs_clean": 0.03532928282280891,
+      "name": "initial_noisy",
+      "psnr_vs_clean": 27.120907053641186,
+      "ssim_global_vs_clean": 0.9792821416051829
+    },
+    {
+      "background_mean": 0.07660576146448367,
+      "background_variance": 0.0013313417766104198,
+      "decode_time_seconds": 1.0336838999937754,
+      "edge_leakage": 0.07159158138087132,
+      "foreground_mean": 0.6157408534857695,
+      "foreground_variance": 0.0011912067453343663,
+      "gradient_mad_vs_clean": 0.05340227478921458,
+      "mad_vs_clean": 0.02870035581586043,
+      "name": "model_c",
+      "psnr_vs_clean": 28.80446782368753,
+      "ssim_global_vs_clean": 0.9858513800952614
+    },
+    {
+      "background_mean": 0.08036201926118904,
+      "background_variance": 1.06892154525105e-05,
+      "decode_time_seconds": 0.005067999998573214,
+      "edge_leakage": 0.08008129626445538,
+      "foreground_mean": 0.6172454028136661,
+      "foreground_variance": 5.427213520870831e-06,
+      "gradient_mad_vs_clean": 0.0007084461546438416,
+      "mad_vs_clean": 0.0025687273191808127,
+      "name": "perona_malik",
+      "psnr_vs_clean": 49.48962164881465,
+      "ssim_global_vs_clean": 0.9998771746206601
+    }
+  ],
+  "pair_weights": [
+    {
+      "boundary_pair_mean": 0.00015480569201430805,
+      "boundary_to_flat_ratio": 8.877062138464764e-05,
+      "flat_pair_mean": 1.7438842896404552,
+      "name": "model_c_guide_weight"
+    },
+    {
+      "boundary_pair_mean": 3.3627662420122135e-08,
+      "boundary_to_flat_ratio": 4.32285412332558e-08,
+      "flat_pair_mean": 0.7779041684213094,
+      "name": "pm_initial_conductance"
+    },
+    {
+      "boundary_pair_mean": 5.1590194001087195e-11,
+      "boundary_to_flat_ratio": 5.1591119607589266e-11,
+      "flat_pair_mean": 0.9999820588018032,
+      "name": "pm_final_conductance"
+    }
+  ]
+}
