@@ -1,0 +1,62 @@
+{
+  "outputs": [
+    {
+      "backward_steps_lt_minus_0_005": 2,
+      "edge_leakage": null,
+      "gradient_mad_vs_clean": 0.0669213966940513,
+      "mad_vs_clean": 0.0357907191448399,
+      "max_abs_second_diff": 0.051512795016086466,
+      "mean_abs_second_diff": 0.011712560666095478,
+      "name": "initial_noisy",
+      "psnr_vs_clean": 26.929272197316443,
+      "slope_mae_vs_clean": 0.006708319177898338,
+      "ssim_global_vs_clean": 0.9624284460473548
+    },
+    {
+      "backward_steps_lt_minus_0_005": 0,
+      "decode_time_seconds": 1.0335811999975704,
+      "edge_leakage": null,
+      "gradient_mad_vs_clean": 0.043009064953700014,
+      "mad_vs_clean": 0.027864044036137143,
+      "max_abs_second_diff": 0.027860115855801115,
+      "mean_abs_second_diff": 0.008241459142858244,
+      "name": "model_c",
+      "psnr_vs_clean": 29.066974246948433,
+      "slope_mae_vs_clean": 0.00518237500036252,
+      "ssim_global_vs_clean": 0.9765578734800198
+    },
+    {
+      "backward_steps_lt_minus_0_005": 0,
+      "decode_time_seconds": 0.0050645000010263175,
+      "edge_leakage": null,
+      "gradient_mad_vs_clean": 0.0017229100982739448,
+      "mad_vs_clean": 0.005825997586335967,
+      "max_abs_second_diff": 0.0019407565401002858,
+      "mean_abs_second_diff": 0.00043971141927459054,
+      "name": "perona_malik",
+      "psnr_vs_clean": 39.651076155261464,
+      "slope_mae_vs_clean": 0.0016052900232632068,
+      "ssim_global_vs_clean": 0.9978182666825364
+    }
+  ],
+  "pair_weights": [
+    {
+      "boundary_pair_mean": null,
+      "boundary_to_flat_ratio": null,
+      "flat_pair_mean": 1.7337348401684232,
+      "name": "model_c_guide_weight"
+    },
+    {
+      "boundary_pair_mean": null,
+      "boundary_to_flat_ratio": null,
+      "flat_pair_mean": 0.7709159680253835,
+      "name": "pm_initial_conductance"
+    },
+    {
+      "boundary_pair_mean": null,
+      "boundary_to_flat_ratio": null,
+      "flat_pair_mean": 0.9955771741073343,
+      "name": "pm_final_conductance"
+    }
+  ]
+}
