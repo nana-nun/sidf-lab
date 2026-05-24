@@ -1,0 +1,61 @@
+{
+  "cross_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 35,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "cross_decoder_seed": 6630,
+  "cross_high_size": 64,
+  "cross_high_width": 7,
+  "cross_low_size": 16,
+  "cross_low_width": 2,
+  "date": "2026-05-24",
+  "experiment_seed": 20260524,
+  "model_d_params": {
+    "gamma": 35.0,
+    "j_base": 1.8,
+    "lambda_data": 6.0
+  },
+  "natural_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 18,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "natural_decoder_seed": 6631,
+  "natural_high_size": 128,
+  "natural_low_size": 32,
+  "numpy_version": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "source_asset": "experiments/assets/landscape_pd_128.npy",
+  "texture_configs": [
+    {
+      "id": "texture_0",
+      "kind": "none",
+      "label": "texture strength 0",
+      "strength": 0.0
+    },
+    {
+      "id": "white_noise",
+      "kind": "white",
+      "label": "white noise",
+      "strength": 0.35
+    },
+    {
+      "id": "smoothed_noise",
+      "kind": "smoothed",
+      "label": "smoothed noise",
+      "strength": 0.35
+    },
+    {
+      "id": "fractal_value_noise",
+      "kind": "fractal",
+      "label": "fractal value noise",
+      "strength": 0.35
+    }
+  ],
+  "texture_sigma": 0.035,
+  "texture_strength": 0.35
+}

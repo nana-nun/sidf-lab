@@ -158,6 +158,18 @@ weight grid:
 
 この小規模gridでは、現行Model D candidateの主要重みを少し振っても単純補間に対する総合改善は確認できなかった。`flat_conf_tex0` がgrid内で相対的に良かったため、現行のgradient-based confidence mapが常に改善方向に働いているとは限らない。ただし、これはconfidence map一般の否定ではなく、現在のconfidence設計、data fidelity、pairwise interaction、relaxation設定の組み合わせに対する負の結果である。次の切り分けは Issue #61 で扱う。
 
+structured texture prior comparison:
+
+- `results/2026-05-24-issue-63-structured-texture-prior/`
+- cross と natural patch で、`texture_strength=0`、white noise、smoothed noise、fractal value noise を nearest / bilinear / bicubic baseline と比較した。
+- cross の Model D texture 条件内では white noise が最小MAD `0.0468` だったが、nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` より悪かった。
+- natural patch の Model D texture 条件内では `texture_strength=0` が最小MAD `0.0560` だったが、nearest `0.0454`、bilinear `0.0444`、bicubic `0.0424` より悪かった。
+- smoothed noise / fractal value noise は white noise と異なるtexture fieldとして保存できたが、このrunでは structured texture prior を改善要因とは解釈しない。
+
+解釈:
+
+この結果は structured texture prior 全体の否定ではなく、現行 Model D の texture target 二乗項と初期状態混入の経路に smoothed / fractal field を入れた小規模比較である。意味的ディテール生成、super-resolution、compression の成立は示していない。
+
 term isolation:
 
 - `results/2026-05-24-issue-61-model-d-term-isolation/`
