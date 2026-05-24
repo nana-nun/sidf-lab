@@ -79,7 +79,8 @@ Model D は guided filter / joint bilateral upsampling と比較できるが、�
 - guided filter baseline
 - joint bilateral upsampling baseline
 - bilateral smoothing baseline
-- texture term ablation
+- texture_strength=0 / white noise / structured texture prior の対照
+- confidence map / pairwise term の再設計候補
 
 現在の結果:
 
@@ -88,6 +89,7 @@ Model D は guided filter / joint bilateral upsampling と比較できるが、�
 - texture ablation では、synthetic cross において非ゼロ white-noise texture_strength が baseline 指標を改善する傾向は見えなかった。
 - confidence / data / texture の小規模gridでは、cross と natural patch の両方で `flat_conf_tex0` がModel D grid内の最小MADだったが、nearest / bilinear / bicubic baseline は上回らなかった。
 - term isolation でも、`data_pairwise_uniform` がterm条件内の最小MADだった一方、nearest / bilinear / bicubic baseline は上回らなかった。
+- 現行 Model D 式の単純な重み探索や white-noise texture 調整では、baseline 改善に届きにくい。
 - 次は同じ式のままgridを広げるより、confidence map や pairwise term の設計を別候補として再設計する。
 
 ### 3. Shape Benchmark
@@ -109,7 +111,7 @@ Model D は guided filter / joint bilateral upsampling と比較できるが、�
 
 目的:
 
-white noise texture の寄与を ablation で確認したうえで、structured noise に置き換える候補が粒状感やbaseline差分を改善するか確認する。
+white noise texture の寄与を ablation で確認したうえで、structured noise に置き換える候補が粒状感やbaseline差分を改善するか確認する。評価では `texture_strength=0` と white noise baseline を必ず含め、structured texture が意味的ディテールを生成できるとは断定しない。
 
 候補:
 
@@ -136,6 +138,7 @@ confidence map が柔らかい陰影を硬く分断しないか確認する。
 
 短期の優先順:
 
-1. Issue #67 で、現行 Model D の式を固定した大きなgrid探索はいったん止め、confidence map や pairwise term の再設計候補を小さく定義する。
-2. structured texture prior を評価するときは、white noise baseline と texture_strength=0 を必ず含める。
-3. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
+1. Issue #67 で、現行 Model D の式を固定した大きなgrid探索はいったん止め、confidence map や pairwise term の再設計候補を小さく比較する。
+2. Issue #63 で structured texture prior を評価するときは、white noise baseline と texture_strength=0 を必ず含める。
+3. Issue #65 で sweep 数と品質の関係を見る場合は、画素数 scaling と sweep scaling を混ぜず、Python実装の速度制限として扱う。
+4. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
