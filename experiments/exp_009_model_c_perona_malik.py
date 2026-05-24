@@ -16,7 +16,7 @@ from sidf_lab.io import ensure_dir, save_grayscale_png, save_json
 from sidf_lab.metrics import edge_leakage, mad, psnr, region_summary, ssim_global
 
 
-RESULT_DIR = Path("results/2026-05-23-model-c-perona-malik")
+RESULT_DIR = Path("results/2026-05-23-issue-40-model-c-perona-malik")
 DATE = "2026-05-23"
 EXPERIMENT_SEED = 20260523
 DECODER_SEED = 6400

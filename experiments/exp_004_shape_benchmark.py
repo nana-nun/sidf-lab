@@ -17,7 +17,7 @@ from sidf_lab.io import ensure_dir, save_grayscale_png, save_json
 from sidf_lab.metrics import edge_leakage, mad, region_summary
 
 
-RESULT_DIR = Path("results/2026-05-16-model-c-freeze-benchmark")
+RESULT_DIR = Path("results/2026-05-16-issue-5-model-c-freeze-benchmark")
 DATE = "2026-05-16"
 EXPERIMENT_SEED = 20260516
 DECODER_SEED_BASE = 4200

@@ -155,8 +155,8 @@ Model C は同解像度 guide に対して、data fidelity と edge-aware intera
 
 参照:
 
-- `results/2026-05-16-model-c-cross-baseline/notes.md`
-- `results/2026-05-16-model-c-freeze-benchmark/notes.md`
+- `results/2026-05-16-issue-4-model-c-cross-baseline/notes.md`
+- `results/2026-05-16-issue-5-model-c-freeze-benchmark/notes.md`
 
 現在の結果:
 
@@ -301,11 +301,11 @@ Rust core decoder に移す前に、bit-perfect 再現性要件、test vector、
 - `docs/research-plan.md`
 - `docs/repository-architecture.md`
 - `docs/model-c-energy-position.md`
-- `results/2026-05-16-model-c-cross-baseline/notes.md`
-- `results/2026-05-16-model-c-freeze-benchmark/notes.md`
-- `results/2026-05-16-model-d-shape-benchmark/notes.md`
-- `results/2026-05-17-model-d-cross-comparison/notes.md`
-- `results/2026-05-17-model-d-natural-patch/notes.md`
-- `results/2026-05-24-texture-ablation/notes.md`
-- `results/2026-05-24-model-d-weight-grid/notes.md`
-- `results/2026-05-24-model-d-term-isolation/notes.md`
+- `results/2026-05-16-issue-4-model-c-cross-baseline/notes.md`
+- `results/2026-05-16-issue-5-model-c-freeze-benchmark/notes.md`
+- `results/2026-05-16-issue-30-model-d-shape-benchmark/notes.md`
+- `results/2026-05-17-issue-6-model-d-cross-comparison/notes.md`
+- `results/2026-05-17-issue-36-model-d-natural-patch/notes.md`
+- `results/2026-05-24-issue-37-texture-ablation/notes.md`
+- `results/2026-05-24-issue-56-model-d-weight-grid/notes.md`
+- `results/2026-05-24-issue-61-model-d-term-isolation/notes.md`

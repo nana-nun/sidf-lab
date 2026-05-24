@@ -20,7 +20,7 @@ from sidf_lab.io import ensure_dir, save_json
 from sidf_lab.metrics import comparison_summary
 
 
-RESULT_DIR = Path("results/2026-05-16-model-d-shape-benchmark")
+RESULT_DIR = Path("results/2026-05-16-issue-30-model-d-shape-benchmark")
 DATE = "2026-05-16"
 EXPERIMENT_SEED = 20260516
 DECODER_SEED_BASE = 5300

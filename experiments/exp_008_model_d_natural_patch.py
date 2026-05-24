@@ -26,7 +26,7 @@ from sidf_lab.io import ensure_dir, save_json
 from sidf_lab.metrics import mad, psnr, ssim_global
 
 
-RESULT_DIR = Path("results/2026-05-17-model-d-natural-patch")
+RESULT_DIR = Path("results/2026-05-17-issue-36-model-d-natural-patch")
 SOURCE_ASSET = Path("experiments/assets/landscape_pd_128.npy")
 DATE = "2026-05-17"
 EXPERIMENT_SEED = 20260517

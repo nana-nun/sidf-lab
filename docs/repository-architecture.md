@@ -270,7 +270,7 @@ GitHub Issues / PR のテンプレートを置く。
 
 ```text
 results/
-  2026-05-13-model-d-cross/
+  2026-05-13-issue-6-model-d-cross/
     config.json
     metrics.json
     notes.md
@@ -280,6 +280,8 @@ results/
     rendered.png
     diff_bilinear.png
 ```
+
+結果ディレクトリ名は `YYYY-MM-DD-issue-<number>-<short-title>` とする。`<number>` は対応するGitHub Issue番号、`<short-title>` は英数字とハイフン中心の短いslugにする。Issue番号が未確定の実験結果は、Issueを作成してから保存するか、PR前に正式名へ改名する。
 
 画像生成を伴う実験では、最低限以下を保存する。
 
@@ -527,7 +529,7 @@ MAD             <= 0.03
 
 ただし、この数値はcross専用の暫定基準であり、circle、diagonal、gradientでは別途解釈する。特にsoft gradientではedge leakageより階調の自然さを重視する。
 
-soft gradient の評価では、`results/2026-05-16-model-c-freeze-benchmark/soft_gradient/notes.md` のように、`edge_leakage` を不適用にした理由、使った代替確認、結果、解釈、限界を分けて記録する。現時点の記録は「今回のrunでは列平均に大きな逆行や急な段差が目立たなかった」という結果であり、一般的な滑らかさや高品質復元を保証するものではない。
+soft gradient の評価では、`results/2026-05-16-issue-5-model-c-freeze-benchmark/soft_gradient/notes.md` のように、`edge_leakage` を不適用にした理由、使った代替確認、結果、解釈、限界を分けて記録する。現時点の記録は「今回のrunでは列平均に大きな逆行や急な段差が目立たなかった」という結果であり、一般的な滑らかさや高品質復元を保証するものではない。
 
 ### Freeze後にやること
 
