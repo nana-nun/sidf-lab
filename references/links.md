@@ -27,6 +27,8 @@ SIDF研究に関係するWeb資料、実装例、ドキュメントへのリン�
 | Determinism | NumPy random Generator documentation | https://numpy.org/doc/stable/reference/random/generator.html | 現行Python実装の `default_rng` と移植時の非互換点確認 |
 | Determinism | rand_pcg crate documentation | https://docs.rs/rand_pcg/ | Rustでportable RNGを使う場合の候補確認 |
 | Determinism | fixed crate documentation | https://docs.rs/fixed/ | Rust fixed-point 実装候補の調査入口 |
+| Determinism | The Rust Reference: Operator expressions / Overflow | https://doc.rust-lang.org/reference/expressions/operator-expr.html#overflow | Rust整数演算のoverflow確認。debug/release差を避けるため、SIDF仕様では演算規則を明示する必要がある |
+| Determinism | Rust `u32` primitive integer methods | https://doc.rust-lang.org/std/primitive.u32.html | `wrapping_*`、`saturating_*`、`overflowing_*` など、固定小数点候補で使う整数演算の確認元 |
 
 ## 記録する情報
 
