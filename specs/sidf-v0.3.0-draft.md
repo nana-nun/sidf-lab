@@ -143,7 +143,7 @@ Model C / D の energy は、MRF / Gibbs 型の画像復元と概念的に対応
 
 そのため、この energy は現時点では確率モデルそのものではなく、seed つき緩和 decoder が低減しようとする decoder objective として扱う。`lambda_data * (v_i - s_i)^2` は通常 `data fidelity` と呼び、Gaussian observation model を別途仮定する場合に限って data likelihood と対応づける。`J_ij * (v_i - v_j)^2` は pairwise prior に近い役割を持つが、`J_ij` が guide `s` に依存するため、厳密な MRF prior と断定しない。
 
-Model C を posterior energy や MAP 推定として記述するには、guide の観測モデル、latent image の prior、`J_ij` の確率モデル上の位置づけ、continuous value の扱い、annealing decoder の推定上の意味を別途定義する必要がある。
+Model C / D を posterior energy や MAP 推定として記述するには、guide の観測モデル、latent image の prior、`J_ij` の確率モデル上の位置づけ、confidence map や texture field の意味、continuous value の扱い、annealing decoder の推定上の意味を別途定義する必要がある。
 
 詳細な整理は `docs/model-c-energy-position.md` を参照する。
 
