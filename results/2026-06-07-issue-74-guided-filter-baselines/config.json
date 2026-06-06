@@ -1,0 +1,62 @@
+{
+  "confidence_config": {
+    "max_confidence": 1.0,
+    "min_confidence": 0.2,
+    "scale": 4.0
+  },
+  "cross_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 35,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "cross_decoder_seed": 6740,
+  "cross_high_size": 64,
+  "cross_high_width": 7,
+  "cross_low_size": 16,
+  "cross_low_width": 2,
+  "date": "2026-06-07",
+  "edge_aware_configs": {
+    "bilateral_smoothing": {
+      "description": "bilateral smoothing of the bilinear-upscaled low guide",
+      "high_resolution_guidance": false,
+      "radius": 3,
+      "sigma_range": 0.08,
+      "sigma_spatial": 2.0
+    },
+    "guided_filter": {
+      "description": "self-guided filter on the bilinear-upscaled low guide",
+      "epsilon": 0.0001,
+      "high_resolution_guidance": false,
+      "radius": 3
+    },
+    "joint_bilateral": {
+      "description": "nearest-upscaled values refined with the bilinear-upscaled low guide",
+      "high_resolution_guidance": false,
+      "radius": 3,
+      "sigma_range": 0.08,
+      "sigma_spatial": 2.0
+    }
+  },
+  "experiment_seed": 20260607,
+  "guidance_policy": "No independent high-resolution guidance; all guidance derives from the low guide.",
+  "model_d_params": {
+    "gamma": 35.0,
+    "j_base": 1.8,
+    "lambda_data": 6.0,
+    "texture_weight": 0.35
+  },
+  "natural_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 18,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "natural_decoder_seed": 6741,
+  "natural_high_size": 128,
+  "natural_low_size": 32,
+  "numpy_version": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "source_asset": "experiments/assets/landscape_pd_128.npy"
+}
