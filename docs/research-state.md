@@ -183,6 +183,19 @@ term isolation:
 
 この結果は、現行Model D式の単純な重み探索や white-noise texture 調整ではbaseline改善に届きにくいことを示す。次は大きなgridではなく、confidence map の設計、pairwise term の形、またはrelaxation objectiveそのものを別候補として再設計する必要がある。再設計候補の比較は Issue #67 で扱う。
 
+guided filter系baseline比較:
+
+- `results/2026-06-07-issue-74-guided-filter-baselines/`
+- cross と natural patch で nearest / bilinear / bicubic、self-guided filter、joint bilateral refinement、bilateral smoothing、現行 Model D candidate を比較した。
+- すべてのedge-aware baselineは低解像度guideをupscaleした画像からguidanceを作り、独立した高解像度guidance imageは使っていない。
+- crossでは joint bilateral のMAD `0.0194` がedge-aware条件内で最小だったが、nearestの `0.0138` より悪かった。
+- natural patchでは joint bilateral のMAD `0.0435` とgradient MAD `0.0732` がbilinearの `0.0444` と `0.0943` より小さかったが、MADではbicubicの `0.0424` が最小だった。
+- 現行Model DのMADはcross `0.0472`、natural patch `0.0572` で、このrunの補間およびedge-aware baselineを上回らなかった。
+
+解釈:
+
+low-guide-only条件でもjoint bilateral refinementは比較対象として有用だが、今回の2ケースで単純補間を一貫して上回ったとは解釈しない。高解像度guidanceを使うguided upsampling手法とは条件が異なるため、SIDFとの比較ではguidanceの情報量を分けて記録する。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
