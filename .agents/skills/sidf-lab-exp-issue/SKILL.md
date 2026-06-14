@@ -33,7 +33,7 @@ Read:
 7. Keep image paths relative to the result directory so the notes render on GitHub and in local Markdown viewers.
 8. Record commands, seeds, sizes, config, metrics, decode time, date, and dependency versions when practical.
 9. Keep `Question`, `Hypothesis`, `Setup`, `Baseline`, `Result`, `Interpretation`, `Limitations`, and `Next` separate.
-10. After interpreting the measured result, create at least one actionable Next Issue, add it to the GitHub Project, and link it from the parent Issue and PR. The Next Issue must follow from a concrete result or limitation rather than a generic continuation.
+10. After interpreting the measured result, create one or more actionable Next Issues, add them to the GitHub Project, and link them from the parent Issue and PR. One Issue is the minimum, not the maximum. Split multiple independent next steps by research question, `t:*` label, acceptance criteria, or verification method; keep tightly coupled steps together. Every Next Issue must follow from a concrete result or limitation rather than a generic continuation.
 
 ## Required Artifacts
 
