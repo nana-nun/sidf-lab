@@ -1,0 +1,64 @@
+{
+  "conditions": [
+    {
+      "confidence_mode": "current_gradient",
+      "id": "current_gradient_quadratic",
+      "label": "current gradient confidence + quadratic pairwise",
+      "pairwise_mode": "quadratic"
+    },
+    {
+      "confidence_mode": "uniform",
+      "id": "uniform_quadratic",
+      "label": "uniform confidence + quadratic pairwise",
+      "pairwise_mode": "quadratic"
+    },
+    {
+      "confidence_mode": "flatter",
+      "id": "flatter_quadratic",
+      "label": "flatter gradient confidence + quadratic pairwise",
+      "pairwise_mode": "quadratic"
+    },
+    {
+      "confidence_mode": "edge_band",
+      "id": "edge_band_quadratic",
+      "label": "edge-band confidence + quadratic pairwise",
+      "pairwise_mode": "quadratic"
+    },
+    {
+      "confidence_mode": "uniform",
+      "id": "uniform_clamped_pairwise",
+      "label": "uniform confidence + clamped pairwise",
+      "pairwise_mode": "clamped"
+    }
+  ],
+  "cross_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 35,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "cross_decoder_seed": 6700,
+  "cross_high_size": 64,
+  "cross_low_size": 16,
+  "date": "2026-06-14",
+  "experiment_seed": 20260614,
+  "model_params": {
+    "gamma": 35.0,
+    "j_base": 1.8,
+    "lambda_data": 6.0,
+    "pairwise_cap": 0.08
+  },
+  "natural_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 18,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "natural_decoder_seed": 6701,
+  "natural_high_size": 128,
+  "natural_low_size": 32,
+  "numpy_version": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "source_asset": "experiments/assets/landscape_pd_128.npy"
+}

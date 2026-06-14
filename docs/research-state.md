@@ -193,7 +193,19 @@ term isolation:
 
 解釈:
 
-この結果は、現行Model D式の単純な重み探索や white-noise texture 調整ではbaseline改善に届きにくいことを示す。次は大きなgridではなく、confidence map の設計、pairwise term の形、またはrelaxation objectiveそのものを別候補として再設計する必要がある。再設計候補の比較は Issue #67 で扱う。
+この結果は、現行Model D式の単純な重み探索や white-noise texture 調整ではbaseline改善に届きにくいことを示した。confidence map とpairwise termの小規模な再設計候補は Issue #67 で比較した。
+
+confidence / pairwise redesign:
+
+- `results/2026-06-14-issue-67-model-d-redesign-candidates/`
+- 現行gradient confidence、uniform対照、flatter confidence、edge-band confidence、uniform confidence + clamped pairwiseをcrossとnatural patchで比較した。
+- crossでは `uniform_clamped_pairwise` がModel D候補内の最小MAD `0.0390` で、`uniform_quadratic` の `0.0406` より良かったが、nearest `0.0138`、bilinear `0.0331`、bicubic `0.0351` は上回らなかった。
+- natural patchでは `uniform_quadratic` がModel D候補内の最小MAD `0.0525` で、clamped pairwiseは `0.0545` に悪化した。bicubicのMAD `0.0424`、SSIM `0.9628`、gradient magnitude MAD `0.0293` が全Model D候補より良かった。
+- flatter / edge-band confidenceは現行gradient confidenceより良かったが、両caseでuniform confidenceを一貫して改善しなかった。
+
+解釈:
+
+clamped pairwiseの改善はcrossに限られ、natural patchでは再現しなかった。今回のconfidence 2案とpairwise 1案をModel D draftへ採用する根拠はなく、negative evidenceとして残す。次にModel Dを進める場合は、小さなconfidence floorやcap調整より、annealingによる確率的driftを含むrelaxation objectiveまたは更新手順を切り分ける必要がある。
 
 guided filter系baseline比較:
 
@@ -223,7 +235,7 @@ low-guide-only条件でもjoint bilateral refinementは比較対象として有�
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
-- term isolationでも単純補間を上回らなかったため、Issue #67 で confidence map や pairwise term の再設計候補をどう作るか。
+- confidence / pairwise再設計でもbaselineを一貫して上回らなかったため、relaxation objectiveまたは更新手順をどう切り分けるか。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
 - 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
