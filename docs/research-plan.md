@@ -89,8 +89,9 @@ Model D は guided filter / joint bilateral upsampling と比較できるが、�
 - texture ablation では、synthetic cross において非ゼロ white-noise texture_strength が baseline 指標を改善する傾向は見えなかった。
 - confidence / data / texture の小規模gridでは、cross と natural patch の両方で `flat_conf_tex0` がModel D grid内の最小MADだったが、nearest / bilinear / bicubic baseline は上回らなかった。
 - term isolation でも、`data_pairwise_uniform` がterm条件内の最小MADだった一方、nearest / bilinear / bicubic baseline は上回らなかった。
+- confidence / pairwise再設計では、clamped pairwiseがcrossだけでuniform quadraticを改善したが、natural patchでは悪化した。flatter / edge-band confidenceもuniform confidenceを一貫して上回らなかった。
 - 現行 Model D 式の単純な重み探索や white-noise texture 調整では、baseline 改善に届きにくい。
-- 次は同じ式のままgridを広げるより、confidence map や pairwise term の設計を別候補として再設計する。
+- 今回のconfidence / pairwise候補はdraftへ採用せず、次に進める場合はrelaxation objectiveまたは更新手順を切り分ける。
 
 ### 3. Shape Benchmark
 
@@ -138,7 +139,6 @@ confidence map が柔らかい陰影を硬く分断しないか確認する。
 
 短期の優先順:
 
-1. Issue #67 で、現行 Model D の式を固定した大きなgrid探索はいったん止め、confidence map や pairwise term の再設計候補を小さく比較する。
-2. Issue #63 で structured texture prior を評価するときは、white noise baseline と texture_strength=0 を必ず含める。
-3. Issue #65 で sweep 数と品質の関係を見る場合は、画素数 scaling と sweep scaling を混ぜず、Python実装の速度制限として扱う。
-4. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
+1. Issue #67 の結果から、今回のconfidence 2案とclamped pairwiseはModel D draftへ採用しない。
+2. Model Dを継続する場合は、confidence floorやpairwise capの小調整ではなく、annealingによる確率的driftを含むrelaxation objectiveまたは更新手順を別Issueで切り分ける。
+3. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
