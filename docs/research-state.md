@@ -220,6 +220,18 @@ acceptance / update order isolation:
 
 有限温度Metropolisのuphill acceptanceは、今回の条件でobjectiveとreference差分を増やす主要因だった。一方、greedyによりobjectiveを下げても単純補間を改善しなかったため、objective低下とreference品質改善は同一ではない。次はIssue #88でGaussian proposal依存を外したdeterministic ICMを比較し、proposal samplingの非効率とquadratic objective自体の限界を分ける。
 
+deterministic ICM evaluation:
+
+- `results/2026-06-14-issue-88-model-d-deterministic-icm/`
+- uniform confidence、textureなし、quadratic pairwise条件で、Gaussian proposal greedy fixedと解析的な局所最小値を使うfixed row-major ICMを比較した。
+- ICMはcrossでobjectiveを `13.6373` から `12.9414`、natural patchで `22.7789` から `21.2437` へ低下させ、greedy fixedの最終objective `13.0968` / `22.0790` より低い値へ到達した。
+- 一方、ICMのMADはcross `0.0354`、natural patch `0.0451` で、bilinearの `0.0331` / `0.0444` より悪かった。natural patchではbicubic `0.0424` も上回らなかった。
+- crossは26 sweepsで最大画素変化が閾値以下になった。natural patchは18 sweeps終了時の最大画素変化が約 `1.39e-10` で、設定した `1e-12` の収束閾値には未到達だった。
+
+解釈:
+
+Gaussian proposal greedyにはquadratic objectiveを十分に下げきらない探索不足があった。ただし、解析的ICMでobjectiveをさらに下げるほどMAD、PSNR、SSIM、gradient magnitude MADは悪化し、現行quadratic objectiveの最小化をreference品質の改善と同一視できないことが明確になった。これはModel D全体や別objective候補の否定ではないが、現行objectiveを標準decoderへ採用する根拠にはならない。draft仕様への反映はIssue #92で扱う。
+
 guided filter系baseline比較:
 
 - `results/2026-06-07-issue-74-guided-filter-baselines/`
@@ -248,7 +260,7 @@ low-guide-only条件でもjoint bilateral refinementは比較対象として有�
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
-- greedy acceptanceでstochastic driftは大幅に減ったがbaselineは上回らなかったため、deterministic ICMでproposal依存とobjective自体の限界をどう分けるか。Follow-up: Issue #88。
+- deterministic ICMはGaussian proposal greedyよりobjectiveを下げたがreference指標を悪化させたため、現行quadratic objectiveとdecoder procedureの採否をv0.3 draftへどう反映するか。Follow-up: Issue #92。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
 - 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。

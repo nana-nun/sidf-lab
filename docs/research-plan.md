@@ -91,8 +91,9 @@ Model D は guided filter / joint bilateral upsampling と比較できるが、�
 - term isolation でも、`data_pairwise_uniform` がterm条件内の最小MADだった一方、nearest / bilinear / bicubic baseline は上回らなかった。
 - confidence / pairwise再設計では、clamped pairwiseがcrossだけでuniform quadraticを改善したが、natural patchでは悪化した。flatter / edge-band confidenceもuniform confidenceを一貫して上回らなかった。
 - acceptance / update order分離では、greedy化がstochastic条件よりMADとobjectiveを大幅に改善し、random / fixed order差は小さかった。ただしgreedy条件もbilinear / bicubic baselineは上回らなかった。
+- deterministic ICMでは、Gaussian proposal greedyよりobjectiveを強く低下させた一方、cross / natural patchのMAD、PSNR、SSIM、gradient magnitude MADは改善せず、bilinear / bicubic baselineを上回らなかった。
 - 現行 Model D 式の単純な重み探索や white-noise texture 調整では、baseline 改善に届きにくい。
-- 今回のconfidence / pairwise候補はdraftへ採用せず、有限温度Metropolisも現設定の標準decoderとして採用しない。次はdeterministic ICMでproposal依存とquadratic objective自体の限界を分ける。
+- 今回のconfidence / pairwise候補はdraftへ採用せず、有限温度Metropolisも現設定の標準decoderとして採用しない。deterministic ICMでproposal依存を外してもreference品質は改善しなかったため、現行quadratic objectiveも標準decoder objectiveとして採用する根拠がない。
 
 ### 3. Shape Benchmark
 
@@ -141,5 +142,6 @@ confidence map が柔らかい陰影を硬く分断しないか確認する。
 短期の優先順:
 
 1. Issue #87 の結果から、有限温度Metropolisのuphill acceptanceは現設定の標準decoderへ採用しない。
-2. Issue #88 で、Gaussian proposal greedyと解析的なdeterministic ICMを比較し、proposal依存とquadratic objective自体の限界を分ける。
-3. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
+2. Issue #88 の結果から、現行quadratic objectiveは解析的ICMでより低い値へ到達しても単純補間baselineを改善しなかったため、標準decoder objectiveとして採用しない。
+3. Issue #92 で、Issue #87 / #88のnegative evidenceとdecoder procedure / objective designの未確定範囲をSIDF v0.3 draftへ反映する。
+4. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
