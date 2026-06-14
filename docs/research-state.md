@@ -230,7 +230,7 @@ deterministic ICM evaluation:
 
 解釈:
 
-Gaussian proposal greedyにはquadratic objectiveを十分に下げきらない探索不足があった。ただし、解析的ICMでobjectiveをさらに下げるほどMAD、PSNR、SSIM、gradient magnitude MADは悪化し、現行quadratic objectiveの最小化をreference品質の改善と同一視できないことが明確になった。これはModel D全体や別objective候補の否定ではないが、現行objectiveを標準decoderへ採用する根拠にはならない。draft仕様への反映はIssue #92で扱う。
+Gaussian proposal greedyにはquadratic objectiveを十分に下げきらない探索不足があった。ただし、解析的ICMでobjectiveをさらに下げるほどMAD、PSNR、SSIM、gradient magnitude MADは悪化し、現行quadratic objectiveの最小化をreference品質の改善と同一視できないことが明確になった。これはModel D全体や別objective候補の否定ではないが、現行objectiveを標準decoderへ採用する根拠にはならない。この採否と未確定範囲は `specs/sidf-v0.3.0-draft.md` に反映した。
 
 guided filter系baseline比較:
 
@@ -260,9 +260,8 @@ low-guide-only条件でもjoint bilateral refinementは比較対象として有�
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
-- deterministic ICMはGaussian proposal greedyよりobjectiveを下げたがreference指標を悪化させたため、現行quadratic objectiveとdecoder procedureの採否をv0.3 draftへどう反映するか。Follow-up: Issue #92。
+- 現行quadratic objectiveと有限温度Metropolisを不採用とした後、次のModel D objective / decoder procedureでどの仮定を変更するか。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
-- 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 

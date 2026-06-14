@@ -1,9 +1,9 @@
 # SIDF v0.3.0 Draft Specification
 
 Status: Draft
-Date: 2026-05-16
+Date: 2026-06-14
 
-この文書は、SIDF v0.3.0 の確定仕様ではなく、Model D までの研究状態をもとにした draft 仕様案である。現段階の SIDF は実用圧縮形式ではなく、低解像度 STATIC guide、seed、物理パラメータ、決定論的な確率的緩和過程による画像再構成を検証する研究対象として扱う。
+この文書は、SIDF v0.3.0 の確定仕様ではなく、Model D までの研究状態をもとにした draft 仕様案である。現段階の SIDF は実用圧縮形式ではなく、低解像度 STATIC guide、seed、物理パラメータ、候補 decoder objective と更新手順による画像再構成を検証する研究対象として扱う。標準 decoder objective と更新手順は未確定である。
 
 この draft は、特に次の主張をしない。
 
@@ -25,7 +25,7 @@ SIDF v0.3.0 draft の対象は、grayscale の confidence-aware multi-resolution
 - gradient-based confidence map
 - edge-aware interaction
 - seeded texture term
-- deterministic stochastic relaxation pipeline
+- decoder objective と更新手順の比較
 - baseline との差分評価
 
 対象外、または未確定のもの:
@@ -34,6 +34,8 @@ SIDF v0.3.0 draft の対象は、grayscale の confidence-aware multi-resolution
 - 実用ファイルフォーマットとしての互換性保証
 - entropy coding や bitstream 最適化
 - neural decoder
+- Model D の標準 decoder objective
+- Model D の標準更新手順
 - Rust 固定小数点 decoder の正式仕様
 - 環境非依存の bit-perfect guarantee
 
@@ -81,6 +83,7 @@ confidence:
   max_confidence: float
 energy:
   model: "model_d"
+  status: "candidate"
   lambda_data: float
   j_base: float
   gamma: float
@@ -89,6 +92,7 @@ texture:
   method: "white_noise"
   seed: integer
 anneal:
+  status: "not_adopted"
   decoder_seed: integer
   sweeps: integer
   temp_start: float
@@ -96,11 +100,11 @@ anneal:
   proposal_sigma: float
 ```
 
-この構造は保存形式の候補であり、binary layout、endianness、quantization、checksum、version negotiation は未定義である。
+この構造は保存形式と実験設定の候補であり、binary layout、endianness、quantization、checksum、version negotiation は未定義である。`energy` と `anneal` の各フィールドは過去実験を再現するための記録項目であり、現時点の標準 decoder を定義するものではない。
 
 ## 4. Reconstruction Pipeline
 
-v0.3.0 draft の Model D pipeline は、次の順序で表現する。
+v0.3.0 draft の Model D 研究 pipeline は、次の順序で表現する。
 
 ```text
 low-resolution STATIC guide
@@ -108,15 +112,15 @@ low-resolution STATIC guide
 -> bilinear upscale to target output shape
 -> compute gradient-based confidence map
 -> generate deterministic texture prior from seed
--> run edge-aware stochastic relaxation
+-> run a candidate decoder objective and update procedure
 -> output grayscale reconstruction
 ```
 
-この pipeline は、低解像度 guide から高解像度 output を生成する候補である。ただし、現段階では「超解像」と呼ぶより、confidence-aware multi-resolution reconstruction と呼ぶのが正確である。
+この pipeline は、低解像度 guide から高解像度 output を生成する実験構成である。ただし、confidence map、texture prior、decoder objective、更新手順は採用済み仕様ではなく、比較対象となる候補要素である。現段階では「超解像」と呼ぶより、confidence-aware multi-resolution reconstruction の研究 pipeline と呼ぶのが正確である。
 
 ## 5. Energy Model
 
-Model D の候補 energy は次の形で記述する。
+Model D で比較してきた候補 energy は次の形で記述する。
 
 ```text
 E =
@@ -135,13 +139,43 @@ J_ij = J_base * exp(-gamma * (s_i - s_j)^2)
 - `t_i`: deterministic texture prior value
 - `J_ij`: guide difference に応じた edge-aware interaction
 
-この式は draft の候補であり、係数、符号、texture term の扱い、temperature schedule は今後の実験で変更される可能性がある。
+この式は保存済み実験を説明する候補であり、v0.3.0 draft の採用済み objective ではない。係数、符号、texture term の扱い、temperature schedule は未確定である。
+
+### 採否の整理
+
+| 区分 | 要素 | 現時点の扱い |
+| --- | --- | --- |
+| 研究 pipeline の骨格 | low-resolution STATIC guide、target output shape、bilinear upscale、baseline比較 | 実験構成として継続する |
+| 再設計候補 | confidence weighting、edge-aware pairwise interaction、deterministic texture field | 候補として分離評価する。現行設計を採用済み仕様とはしない |
+| 採用しない現行候補 | 有限温度 Metropolis acceptance を使う現行更新手順 | Issue #87 の条件では objective と reference 差分を増加させたため、標準 decoder として採用しない |
+| 採用しない現行候補 | uniform confidence、textureなしの quadratic data / pairwise objective | Issue #88 の解析的 ICM でより低い objective に到達しても単純補間 baseline を改善しなかったため、標準 objective として採用しない |
+| 未確定 | 次の decoder objective、更新手順、停止条件、固定小数点での数値規則 | 新しい候補ごとに baseline と保存済み指標で再評価する |
+
+「採用しない」は、Issue #87 / #88 で評価した現行パラメータ、入力、objective、更新手順の組み合わせに対する判断である。Model D 全体、edge-aware objective 一般、stochastic decoder 一般を否定する結果ではない。
+
+### Decoder procedure の negative evidence
+
+Issue #87 では、現行相当の有限温度 Metropolis 条件が proposal の約26〜28%を uphill move として受理し、最終 objective を cross で約 `13.64` から `27.8`、natural patch で約 `22.78` から `182〜186` へ増加させた。greedy acceptance は objective と reference 差分を大きく抑えたが、bilinear / bicubic baseline は上回らなかった。
+
+Issue #88 では、Gaussian proposal に依存しない fixed row-major deterministic ICM を使い、quadratic objective の解析的な1画素局所最小値へ更新した。ICM は final objective を cross `12.9414`、natural patch `21.2437` まで低下させ、greedy fixed の `13.0968` / `22.0790` より低い値へ到達した。一方、ICM の MAD は cross `0.0354`、natural patch `0.0451` で、bilinear の `0.0331` / `0.0444` より悪く、natural patch では bicubic `0.0424` も上回らなかった。
+
+解釈:
+
+- Gaussian proposal greedy には objective を下げきらない探索不足があった。
+- objective をさらに下げても reference metrics は改善しなかった。
+- 現行 quadratic objective の最小化と Ground Truth 差分の改善は同一ではない。
+- 次の候補では、solverの変更だけでなく objective の仮定を明示して再設計する必要がある。
+
+参照:
+
+- `results/2026-06-14-issue-87-model-d-update-procedure/notes.md`
+- `results/2026-06-14-issue-88-model-d-deterministic-icm/notes.md`
 
 ### 確率モデルとしての扱い
 
 Model C / D の energy は、MRF / Gibbs 型の画像復元と概念的に対応する `data fidelity term` と `edge-aware pairwise interaction term` を持つ。ただし、この draft では観測モデル、prior、posterior distribution を formal には定義していない。
 
-そのため、この energy は現時点では確率モデルそのものではなく、seed つき緩和 decoder が低減しようとする decoder objective として扱う。`lambda_data * (v_i - s_i)^2` は通常 `data fidelity` と呼び、Gaussian observation model を別途仮定する場合に限って data likelihood と対応づける。`J_ij * (v_i - v_j)^2` は pairwise prior に近い役割を持つが、`J_ij` が guide `s` に依存するため、厳密な MRF prior と断定しない。
+そのため、この energy は現時点では確率モデルそのものではなく、候補 decoder が低減しようとする objective として扱う。Issue #87 / #88 の結果により、現行の有限温度 Metropolis 手順と quadratic objective は標準 decoder として採用しないが、確率モデル上の用語制限は別 objective 候補にも適用する。`lambda_data * (v_i - s_i)^2` は通常 `data fidelity` と呼び、Gaussian observation model を別途仮定する場合に限って data likelihood と対応づける。`J_ij * (v_i - v_j)^2` は pairwise prior に近い役割を持つが、`J_ij` が guide `s` に依存するため、厳密な MRF prior と断定しない。
 
 Model C / D を posterior energy や MAP 推定として記述するには、guide の観測モデル、latent image の prior、`J_ij` の確率モデル上の位置づけ、confidence map や texture field の意味、continuous value の扱い、annealing decoder の推定上の意味を別途定義する必要がある。
 
@@ -188,12 +222,15 @@ Model D は、16x16 guide から 64x64 output を生成する confidence-aware m
 - texture ablation では、`texture_strength=0.00, 0.10, 0.35, 0.70` を比較したが、非ゼロ white-noise texture_strength は synthetic cross の baseline 指標を改善しなかった。
 - weight grid では、cross と natural patch の両方で `flat_conf_tex0` が Model D grid 内の最小MADだったが、nearest / bilinear / bicubic baseline は上回らなかった。
 - term isolation では、cross と natural patch の両方で `data_pairwise_uniform` が term conditions 内の最小MADだったが、nearest / bilinear / bicubic baseline は上回らなかった。`pairwise_only` は data fidelity なしの復元条件として不十分だった。
+- confidence / pairwise 再設計では、clamped pairwise の改善は cross に限られ、natural patch では悪化した。flatter / edge-band confidence も uniform confidence を一貫して上回らなかった。
+- acceptance / update order 分離では、有限温度 Metropolis の uphill acceptance が objective と reference 差分を増加させた。
+- deterministic ICM は Gaussian proposal greedy より objective を低下させたが、cross / natural patch の reference metrics を改善せず、bilinear / bicubic baseline を上回らなかった。
 
 解釈:
 
 現行 Model D candidate は、confidence-aware multi-resolution reconstruction の候補としての観察価値はあるが、保存済みの synthetic shape、cross、1枚の自然画像 patch、および #37 / #56 / #61 の切り分けでは、nearest / bilinear / bicubic baseline に対する総合的な改善を示していない。特に現行の white-noise texture、gradient-based confidence map、data fidelity / pairwise interaction の組み合わせは、現在の設定では Ground Truth 差分や背景漏れを改善していない。
 
-この結果は、confidence map や stochastic relaxation という研究方向全体を否定するものではない。一方で、現行 Model D の式をそのまま重み探索するだけでは baseline 改善に届きにくいため、confidence map の作り方や pairwise term の形を別候補として再設計する必要がある。
+この結果は、confidence map、edge-aware objective、stochastic relaxation という研究方向全体を否定するものではない。一方で、現行 Model D の式をそのまま重み探索したり、solverだけを変更したりしても baseline 改善に届かなかった。次の候補では、confidence map、pairwise term、data fidelity、texture term、decoder procedure のどの仮定を変えるかを明示して再設計する必要がある。
 
 制限:
 
@@ -201,6 +238,7 @@ Model D は、16x16 guide から 64x64 output を生成する confidence-aware m
 - 現行の white-noise texture term は意味的ディテールではない。
 - confidence map、texture prior、data fidelity、pairwise interaction は、候補要素としては分離して記録されたが、現行設計で baseline 改善を示した要素はまだない。
 - 現行実装の texture path は、この draft に書かれた線形 texture term そのものではなく、texture target 二乗項と初期状態混入を含むため、仕様候補として再整理が必要である。
+- Issue #87 / #88 は cross と1枚の自然画像 patch に限られ、別 objective や別 stochastic procedure の一般的な劣位を示すものではない。
 - この結果は super-resolution や compression の成立を示さず、またそれらを否定する一般結果でもない。
 
 関連 Issue:
@@ -209,6 +247,8 @@ Model D は、16x16 guide から 64x64 output を生成する confidence-aware m
 - [#56 Model Dのconfidence/data/texture重みを小規模gridで再評価する](https://github.com/nana-nun/sidf-lab/issues/56)
 - [#61 Model Dのdata fidelity / pairwise / confidence項を分離比較する](https://github.com/nana-nun/sidf-lab/issues/61)
 - [#67 Model Dのconfidence mapとpairwise termの再設計候補を比較する](https://github.com/nana-nun/sidf-lab/issues/67)
+- [#87 Model Dのrelaxation objectiveと更新手順を切り分ける](https://github.com/nana-nun/sidf-lab/issues/87)
+- [#88 Model D quadratic objectiveをdeterministic ICMで評価する](https://github.com/nana-nun/sidf-lab/issues/88)
 
 ## 7. Baseline and Metrics Requirements
 
@@ -278,17 +318,20 @@ Rust core decoder に移す前に、bit-perfect 再現性要件、test vector、
 | white-noise texture term の寄与 | #37 では baseline 改善なし | [#37](https://github.com/nana-nun/sidf-lab/issues/37) |
 | confidence / data / texture 重みの切り分け | #56 の小規模gridでは baseline 改善なし | [#56](https://github.com/nana-nun/sidf-lab/issues/56) |
 | data fidelity / pairwise / confidence の項分離 | #61 の term isolation では baseline 改善なし | [#61](https://github.com/nana-nun/sidf-lab/issues/61) |
-| confidence map / pairwise term の再設計候補 | 次に比較する | [#67](https://github.com/nana-nun/sidf-lab/issues/67) |
-| structured texture prior の実験利用 | helper追加済み、white noise と texture_strength=0 を対照に評価する | [#48](https://github.com/nana-nun/sidf-lab/issues/48), [#63](https://github.com/nana-nun/sidf-lab/issues/63) |
-| Rust core の PRNG 実装 | test vector保存済み、Rust実装は未実施 | [#50](https://github.com/nana-nun/sidf-lab/issues/50), [#55](https://github.com/nana-nun/sidf-lab/issues/55) |
-| Model C と Perona-Malik 型 diffusion の違い | 直接比較または比較不能な理由を整理する | [#40](https://github.com/nana-nun/sidf-lab/issues/40) |
+| confidence map / pairwise term の再設計候補 | #67 では一貫した baseline 改善なし | [#67](https://github.com/nana-nun/sidf-lab/issues/67) |
+| structured texture prior の実験利用 | #63 / #75 では baseline 改善なし | [#63](https://github.com/nana-nun/sidf-lab/issues/63), [#75](https://github.com/nana-nun/sidf-lab/issues/75) |
+| decoder acceptance / update order | #87 では有限温度 Metropolis を標準手順として不採用 | [#87](https://github.com/nana-nun/sidf-lab/issues/87) |
+| quadratic objective の solver 依存 | #88 では ICM で objective を下げても reference metrics 改善なし | [#88](https://github.com/nana-nun/sidf-lab/issues/88) |
+| 次の Model D objective / decoder procedure | 未確定。現行候補の小調整ではなく仮定を明示して再設計する | 仮説と評価条件を定義した後にIssue化する |
+| Rust core の PRNG 実装 | test vectorとRust実装を保存済み。Model C固定小数点kernelとの統合範囲は別途判断する | [#50](https://github.com/nana-nun/sidf-lab/issues/50), [#55](https://github.com/nana-nun/sidf-lab/issues/55) |
+| Model C と Perona-Malik 型 diffusion の違い | 最小比較と複数shape比較を保存済み | [#40](https://github.com/nana-nun/sidf-lab/issues/40), [#64](https://github.com/nana-nun/sidf-lab/issues/64) |
 
 ## 10. Draft-to-Spec Criteria
 
 この draft を正式な仕様候補に近づけるには、少なくとも次を満たす必要がある。
 
-1. 現行 Model D が baseline を上回っていない結果を前提に、confidence map と pairwise term の再設計候補を比較する。
-2. 現行 Model D の energy 式を正式化する前に、data fidelity、pairwise interaction、confidence weighting、texture prior の役割と符号を再定義する。
+1. 有限温度 Metropolis と現行 quadratic objective を標準 decoder 候補から外し、次の objective と更新手順を明示的な候補として定義する。
+2. Model D の energy 式を正式化する前に、data fidelity、pairwise interaction、confidence weighting、texture prior の役割と符号を再定義する。
 3. soft gradient や実画像 patch で confidence map が不自然な硬化を起こさないか、Ground Truth または代替指標とともに確認する。
 4. structured texture prior を使う場合は、texture_strength=0 と white noise baseline との差分で評価し、意味的ディテール生成とは断定しない。
 5. decoder seed、PRNG、丸め、更新順序を実装非依存に定義する。
@@ -309,3 +352,6 @@ Rust core decoder に移す前に、bit-perfect 再現性要件、test vector、
 - `results/2026-05-24-issue-37-texture-ablation/notes.md`
 - `results/2026-05-24-issue-56-model-d-weight-grid/notes.md`
 - `results/2026-05-24-issue-61-model-d-term-isolation/notes.md`
+- `results/2026-06-14-issue-67-model-d-redesign-candidates/notes.md`
+- `results/2026-06-14-issue-87-model-d-update-procedure/notes.md`
+- `results/2026-06-14-issue-88-model-d-deterministic-icm/notes.md`
