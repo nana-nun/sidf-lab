@@ -196,6 +196,18 @@ guided filter系baseline比較:
 
 low-guide-only条件でもjoint bilateral refinementは比較対象として有用だが、今回の2ケースで単純補間を一貫して上回ったとは解釈しない。高解像度guidanceを使うguided upsampling手法とは条件が異なるため、SIDFとの比較ではguidanceの情報量を分けて記録する。
 
+知覚・勾配系メトリクス比較:
+
+- `results/2026-06-14-issue-78-perceptual-gradient-metrics/`
+- dependency追加なしで raw gradient magnitude MAD、gradient magnitude correlation、strong-edge orientation error、Laplacian MAD を追加した。
+- crossではnearestのgradient magnitude MAD `0.0139` とgradient correlation `0.7161` が最良だった。Model Dはgradient magnitude MAD `0.0446`、gradient correlation `0.6058`、Laplacian MAD `0.1176` で、今回のbaselineより勾配強度差と局所高周波差が大きかった。
+- natural patchではbicubicがgradient magnitude MAD `0.0293`、gradient correlation `0.6125`、orientation error `33.76` 度、Laplacian MAD `0.0875` で各指標の最良値だった。Model Dはgradient correlation `0.3048`、Laplacian MAD `0.1367` だった。
+- crossのnearestはorientation errorではModel Dより悪い一方、MADとgradient magnitude MADでは良く、単一指標だけで品質順位を決められない例になった。
+
+解釈:
+
+追加指標はModel Dの優位性を示すものではなく、画素差、勾配強度、勾配位置、方向、局所高周波差を分けて観察するための補助値である。今回の2ケースではModel Dが単純補間を総合的に上回る結果はなく、LPIPSのような学習済み知覚指標との関係も未確認である。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。

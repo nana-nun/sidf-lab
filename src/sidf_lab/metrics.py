@@ -87,6 +87,91 @@ def ssim_global(reference: np.ndarray, candidate: np.ndarray, data_range: float 
     return float(numerator / denominator)
 
 
+def gradient_magnitude(image: np.ndarray) -> np.ndarray:
+    """Return the unnormalized central-difference gradient magnitude."""
+    values = np.asarray(image, dtype=np.float64)
+    if values.ndim != 2:
+        raise ValueError("image must be a 2D array")
+    gy, gx = np.gradient(values)
+    return np.hypot(gx, gy)
+
+
+def gradient_magnitude_mad(reference: np.ndarray, candidate: np.ndarray) -> float:
+    """Mean absolute error between unnormalized gradient magnitudes."""
+    ref, cand = _same_shape_images(reference, candidate)
+    return mad(gradient_magnitude(ref), gradient_magnitude(cand))
+
+
+def gradient_magnitude_correlation(reference: np.ndarray, candidate: np.ndarray) -> float:
+    """Pearson correlation between gradient-magnitude maps.
+
+    A value near one means that strong and weak gradients occur in similar
+    locations. It does not require their absolute magnitudes to match.
+    """
+    ref, cand = _same_shape_images(reference, candidate)
+    ref_gradient = gradient_magnitude(ref).ravel()
+    cand_gradient = gradient_magnitude(cand).ravel()
+    ref_centered = ref_gradient - float(ref_gradient.mean())
+    cand_centered = cand_gradient - float(cand_gradient.mean())
+    denominator = float(np.linalg.norm(ref_centered) * np.linalg.norm(cand_centered))
+    if denominator == 0.0:
+        return 1.0 if np.array_equal(ref_gradient, cand_gradient) else 0.0
+    return float(np.dot(ref_centered, cand_centered) / denominator)
+
+
+def strong_edge_orientation_error(
+    reference: np.ndarray,
+    candidate: np.ndarray,
+    quantile: float = 0.75,
+) -> float | None:
+    """Mean orientation error in degrees over strong reference edges.
+
+    Gradient orientation is treated as unsigned, so opposite gradient
+    directions along the same edge have zero orientation error.
+    """
+    if not 0.0 <= quantile < 1.0:
+        raise ValueError("quantile must satisfy 0 <= quantile < 1")
+    ref, cand = _same_shape_images(reference, candidate)
+    ref_gy, ref_gx = np.gradient(ref)
+    cand_gy, cand_gx = np.gradient(cand)
+    ref_magnitude = np.hypot(ref_gx, ref_gy)
+    positive = ref_magnitude[ref_magnitude > 0.0]
+    if positive.size == 0:
+        return None
+    threshold = float(np.quantile(positive, quantile))
+    mask = ref_magnitude >= threshold
+    ref_angle = np.arctan2(ref_gy[mask], ref_gx[mask])
+    cand_angle = np.arctan2(cand_gy[mask], cand_gx[mask])
+    difference = np.mod(np.abs(ref_angle - cand_angle), np.pi)
+    unsigned_difference = np.minimum(difference, np.pi - difference)
+    return float(np.degrees(unsigned_difference).mean())
+
+
+def laplacian_mad(reference: np.ndarray, candidate: np.ndarray) -> float:
+    """Mean absolute error between discrete Laplacian response maps."""
+    ref, cand = _same_shape_images(reference, candidate)
+    return mad(_laplacian(ref), _laplacian(cand))
+
+
+def perceptual_gradient_summary(
+    reference: np.ndarray,
+    candidate: np.ndarray,
+    strong_edge_quantile: float = 0.75,
+) -> dict[str, float | None]:
+    """Return lightweight dependency-free gradient and detail metrics."""
+    ref, cand = _same_shape_images(reference, candidate)
+    return {
+        "gradient_magnitude_mad": gradient_magnitude_mad(ref, cand),
+        "gradient_magnitude_correlation": gradient_magnitude_correlation(ref, cand),
+        "strong_edge_orientation_error_degrees": strong_edge_orientation_error(
+            ref,
+            cand,
+            quantile=strong_edge_quantile,
+        ),
+        "laplacian_mad": laplacian_mad(ref, cand),
+    }
+
+
 def edge_width(
     image: np.ndarray,
     foreground_mask: np.ndarray,
@@ -189,4 +274,26 @@ def _boundary_count(mask: np.ndarray) -> int:
     boundary[:, 1:] |= mask[:, 1:] & ~mask[:, :-1]
     boundary[:, :-1] |= mask[:, :-1] & ~mask[:, 1:]
     return int(np.count_nonzero(boundary))
+
+
+def _same_shape_images(reference: np.ndarray, candidate: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    ref = np.asarray(reference, dtype=np.float64)
+    cand = np.asarray(candidate, dtype=np.float64)
+    if ref.ndim != 2 or cand.ndim != 2:
+        raise ValueError("reference and candidate must be 2D arrays")
+    if ref.shape != cand.shape:
+        raise ValueError("reference and candidate must have the same shape")
+    return ref, cand
+
+
+def _laplacian(image: np.ndarray) -> np.ndarray:
+    padded = np.pad(np.asarray(image, dtype=np.float64), 1, mode="edge")
+    center = padded[1:-1, 1:-1]
+    return (
+        padded[:-2, 1:-1]
+        + padded[2:, 1:-1]
+        + padded[1:-1, :-2]
+        + padded[1:-1, 2:]
+        - 4.0 * center
+    )
 

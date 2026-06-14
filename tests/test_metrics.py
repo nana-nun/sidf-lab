@@ -2,7 +2,20 @@ import unittest
 
 import numpy as np
 
-from sidf_lab.metrics import comparison_summary, edge_leakage, edge_width, mad, psnr, region_summary, ssim_global
+from sidf_lab.metrics import (
+    comparison_summary,
+    edge_leakage,
+    edge_width,
+    gradient_magnitude_correlation,
+    gradient_magnitude_mad,
+    laplacian_mad,
+    mad,
+    perceptual_gradient_summary,
+    psnr,
+    region_summary,
+    ssim_global,
+    strong_edge_orientation_error,
+)
 
 
 class MetricsTests(unittest.TestCase):
@@ -60,6 +73,29 @@ class MetricsTests(unittest.TestCase):
         self.assertIn("edge_width_pixels", summary)
         self.assertAlmostEqual(summary["foreground_mean"], 0.875)
         self.assertAlmostEqual(summary["background_mean"], 0.125)
+
+    def test_gradient_metrics_identical(self) -> None:
+        image = np.tile(np.linspace(0.0, 1.0, 5), (5, 1))
+        self.assertAlmostEqual(gradient_magnitude_mad(image, image), 0.0)
+        self.assertAlmostEqual(gradient_magnitude_correlation(image, image), 1.0)
+        self.assertAlmostEqual(laplacian_mad(image, image), 0.0)
+        self.assertAlmostEqual(strong_edge_orientation_error(image, image), 0.0)
+
+    def test_gradient_metrics_detect_rotated_edge(self) -> None:
+        vertical = np.zeros((5, 5))
+        vertical[:, 3:] = 1.0
+        horizontal = vertical.T
+        self.assertLess(gradient_magnitude_correlation(vertical, horizontal), 0.5)
+
+        vertical_ramp = np.tile(np.linspace(0.0, 1.0, 5), (5, 1))
+        horizontal_ramp = vertical_ramp.T
+        self.assertAlmostEqual(strong_edge_orientation_error(vertical_ramp, horizontal_ramp), 90.0)
+
+    def test_flat_reference_has_no_strong_edge_orientation(self) -> None:
+        flat = np.zeros((4, 4))
+        self.assertIsNone(strong_edge_orientation_error(flat, flat))
+        summary = perceptual_gradient_summary(flat, flat)
+        self.assertIsNone(summary["strong_edge_orientation_error_degrees"])
 
 
 if __name__ == "__main__":
