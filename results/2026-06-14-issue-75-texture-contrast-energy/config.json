@@ -1,0 +1,56 @@
+{
+  "cross_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 35,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "cross_decoder_seed": 7500,
+  "date": "2026-06-14",
+  "experiment_seed": 20260614,
+  "license_note": "Wikimedia Commons marks the faithful reproduction as Public Domain / PD-Art.",
+  "model_params": {
+    "gamma": 35.0,
+    "j_base": 1.8,
+    "lambda_data": 6.0
+  },
+  "natural_decode_config": {
+    "proposal_sigma": 0.08,
+    "sweeps": 18,
+    "temp_end": 0.01,
+    "temp_start": 0.35
+  },
+  "natural_decoder_seed": 7501,
+  "numpy_version": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "prior_configs": [
+    {
+      "id": "texture_0",
+      "kind": "none",
+      "label": "texture contrast weight 0",
+      "weight": 0.0
+    },
+    {
+      "id": "white_contrast",
+      "kind": "white",
+      "label": "white-noise contrast energy",
+      "weight": 0.8
+    },
+    {
+      "id": "smoothed_contrast",
+      "kind": "smoothed",
+      "label": "smoothed-noise contrast energy",
+      "weight": 0.8
+    },
+    {
+      "id": "fractal_contrast",
+      "kind": "fractal",
+      "label": "fractal-value contrast energy",
+      "weight": 0.8
+    }
+  ],
+  "python_version": "3.12.13",
+  "source_asset": "experiments/assets/landscape_pd_128.npy",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Landscape.jpg",
+  "target_mean_contrast": 0.02
+}

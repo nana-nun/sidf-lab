@@ -170,6 +170,18 @@ structured texture prior comparison:
 
 この結果は structured texture prior 全体の否定ではなく、現行 Model D の texture target 二乗項と初期状態混入の経路に smoothed / fractal field を入れた小規模比較である。意味的ディテール生成、super-resolution、compression の成立は示していない。
 
+structured texture pair-contrast energy:
+
+- `results/2026-06-14-issue-75-texture-contrast-energy/`
+- texture fieldを初期状態やpixel targetへ混ぜず、隣接絶対コントラスト `|t_i - t_j|` を目標統計とする独立energy項を比較した。
+- white / smoothed / fractal fieldは平均目標コントラストを `0.02` に揃え、`texture_0` と nearest / bilinear / bicubicをbaselineに含めた。
+- crossのdecoder条件内ではsmoothed contrastが最小MAD `0.0488`、natural patchではwhite contrastが最小MAD `0.0557` だったが、どちらも単純補間baselineを上回らなかった。
+- natural patchのwhite contrastはtextureなし条件よりMAD、SSIM、gradient magnitude MAD、flat residual stdが改善したが、bicubicのMAD `0.0424` とflat residual std `0.0088` には届かなかった。
+
+解釈:
+
+pair-contrast priorが独立energy項として一部指標を変えることは確認できたが、今回の1統計量・1重みでは改善要因とは解釈しない。自然画像出力には粒状差分が残り、意味的ディテール生成、super-resolution、compressionの成立は示していない。
+
 term isolation:
 
 - `results/2026-05-24-issue-61-model-d-term-isolation/`
@@ -212,7 +224,7 @@ low-guide-only条件でもjoint bilateral refinementは比較対象として有�
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
 - term isolationでも単純補間を上回らなかったため、Issue #67 で confidence map や pairwise term の再設計候補をどう作るか。
-- white noise ではなく structured noise prior を使うと、baseline差分や粒状感は改善するか。
+- structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
 - 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
