@@ -12,6 +12,7 @@ SIDF研究で読む候補の文献・資料を、調査テーマごとに管理�
 - guided filter / guided upsampling
 - procedural texture synthesis
 - deterministic PRNG / fixed-point reproducibility
+- quantum-inspired implicit image representation
 
 ## 読む予定
 
@@ -33,10 +34,19 @@ SIDF研究で読む候補の文献・資料を、調査テーマごとに管理�
 | Determinism | Random123 documentation | Philox / Threefry の実装候補とcounter-based RNGの入口 | Note added: `references/notes/deterministic-prng-bit-perfect.md` |
 | Determinism | NumPy random Generator documentation | 現行Python実装の `default_rng` とRust移植時の境界を確認する | Note added: `references/notes/deterministic-prng-bit-perfect.md` |
 | Determinism | Rust `rand_pcg` / `fixed` crate documentation | Rust core候補のportable RNGとfixed-point実装の調査入口 | Note added: `references/notes/deterministic-prng-bit-perfect.md` |
+| Quantum-inspired INR | Pérez-Salinas et al., "Data re-uploading for a universal quantum classifier" | data re-uploadingの基本構成を確認する | Note added: `references/notes/quantum-inspired-implicit-image-representation.md` |
+| Quantum-inspired INR | Schuld et al., "The effect of data encoding on the expressive power of variational quantum-machine-learning models" | encodingと利用可能なFourier周波数の関係を確認する | Note added: `references/notes/quantum-inspired-implicit-image-representation.md` |
+| Quantum-inspired INR | Yu et al., "Power and limitations of single-qubit native quantum neural networks" | single-qubitの1変数表現能力と多変数制限を確認する | Note added: `references/notes/quantum-inspired-implicit-image-representation.md` |
+| Quantum-inspired INR | Zhao et al., "Quantum Implicit Neural Representations" | QIRENの画像表現・super-resolution実験と構造を確認する | Note added: `references/notes/quantum-inspired-implicit-image-representation.md` |
+| Quantum-inspired INR | Eren, "Implementation of Quantum Implicit Neural Representation in Deterministic and Probabilistic Autoencoders" | 2026年のQINR decoder応用と制限を確認する | Note added: `references/notes/quantum-inspired-implicit-image-representation.md` |
+| Classical INR baseline | Sitzmann et al., "Implicit Neural Representations with Periodic Activation Functions" | SIRENをModel Eの周期関数baselineとして使う | Note added: `references/notes/quantum-inspired-implicit-image-representation.md` |
+| Classical INR baseline | Tancik et al., "Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains" | Fourier feature baselineとspectral bias対策を確認する | Note added: `references/notes/quantum-inspired-implicit-image-representation.md` |
+| INR compression | Dupont et al., "COIN: COmpression with Implicit Neural representations" | parameter quantizationと画像ごとのINR符号化を比較する | Note added: `references/notes/quantum-inspired-implicit-image-representation.md` |
 
 ## 横断メモ
 
 - `references/notes/sidf-reference-map.md`: SIDF研究テーマと代表文献の対応表
+- `references/notes/quantum-inspired-implicit-image-representation.md`: 量子回路由来の関数表現とModel E候補
 
 ## 読書メモの保存方針
 
