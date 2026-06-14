@@ -74,7 +74,7 @@ At work completion:
 
 1. Run the verification required by the tag skill.
 2. Review limitations, skipped checks, TODOs, new research questions, and out-of-scope discoveries from the work.
-3. For completed experiment Issues, create at least one actionable Next Issue based on the measured result. For other Issue types, create or propose follow-up Issues when the remaining work is concrete and not already covered by an open Issue.
+3. Create or propose follow-up Issues when the remaining work is concrete and not already covered by an open Issue.
 4. Commit and push the branch when the user asked for a complete Issue workflow or PR.
 5. Create a PR with the standard template.
 6. Move the Issue's GitHub Project status to `Review`.
@@ -86,8 +86,6 @@ Prefer available GitHub tooling for these actions. With GitHub CLI, use `gh issu
 ## Follow-up Issue Creation
 
 At completion, decide whether new Issues are needed before opening or finalizing the PR. The goal is to preserve useful next work without expanding the current PR beyond its scope.
-
-For `t:exp`, a completed experiment must create at least one Next Issue after results are available. Base it on a measured limitation, comparison gap, implementation requirement, or specification decision. Do not preselect the Next Issue before seeing the result, and do not create a vague continuation merely to satisfy the rule.
 
 Create or propose a follow-up Issue when:
 

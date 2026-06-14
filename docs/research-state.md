@@ -207,19 +207,6 @@ confidence / pairwise redesign:
 
 clamped pairwiseの改善はcrossに限られ、natural patchでは再現しなかった。今回のconfidence 2案とpairwise 1案をModel D draftへ採用する根拠はなく、negative evidenceとして残す。次にModel Dを進める場合は、小さなconfidence floorやcap調整より、annealingによる確率的driftを含むrelaxation objectiveまたは更新手順を切り分ける必要がある。
 
-acceptance / update order isolation:
-
-- `results/2026-06-14-issue-87-model-d-update-procedure/`
-- 現行相当のstochastic + random order、stochastic + fixed order、greedy + random order、greedy + fixed orderをcrossとnatural patchで比較した。
-- stochastic条件はproposalの約26〜28%をuphill moveとして受理し、最終objectiveはcrossで初期 `13.64` から約 `27.8`、natural patchで初期 `22.78` から約 `182〜186` へ増加した。crossでは別に約16%がenergy差ゼロのneutral moveだった。
-- greedy条件はuphill moveを受理せず、最終objectiveをcross約 `13.11`、natural patch約 `22.05〜22.10` へ低下させた。MADもcross約 `0.0346`、natural patch約 `0.0446` まで改善した。
-- random / fixed order間のMAD差は小さく、今回の設定では更新順序よりacceptance modeの影響が大きかった。
-- greedy条件もcrossのbilinear MAD `0.0331`、natural patchのbilinear MAD `0.0444` とbicubic MAD `0.0424` は上回らなかった。
-
-解釈:
-
-有限温度Metropolisのuphill acceptanceは、今回の条件でobjectiveとreference差分を増やす主要因だった。一方、greedyによりobjectiveを下げても単純補間を改善しなかったため、objective低下とreference品質改善は同一ではない。次はIssue #88でGaussian proposal依存を外したdeterministic ICMを比較し、proposal samplingの非効率とquadratic objective自体の限界を分ける。
-
 guided filter系baseline比較:
 
 - `results/2026-06-07-issue-74-guided-filter-baselines/`
@@ -248,7 +235,7 @@ low-guide-only条件でもjoint bilateral refinementは比較対象として有�
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
-- greedy acceptanceでstochastic driftは大幅に減ったがbaselineは上回らなかったため、deterministic ICMでproposal依存とobjective自体の限界をどう分けるか。Follow-up: Issue #88。
+- confidence / pairwise再設計でもbaselineを一貫して上回らなかったため、relaxation objectiveまたは更新手順をどう切り分けるか。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
 - 現行 Model D が baseline を上回っていない結果を、v0.3 draft仕様へどの範囲で反映するか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。

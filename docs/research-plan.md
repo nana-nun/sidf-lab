@@ -90,9 +90,8 @@ Model D は guided filter / joint bilateral upsampling と比較できるが、�
 - confidence / data / texture の小規模gridでは、cross と natural patch の両方で `flat_conf_tex0` がModel D grid内の最小MADだったが、nearest / bilinear / bicubic baseline は上回らなかった。
 - term isolation でも、`data_pairwise_uniform` がterm条件内の最小MADだった一方、nearest / bilinear / bicubic baseline は上回らなかった。
 - confidence / pairwise再設計では、clamped pairwiseがcrossだけでuniform quadraticを改善したが、natural patchでは悪化した。flatter / edge-band confidenceもuniform confidenceを一貫して上回らなかった。
-- acceptance / update order分離では、greedy化がstochastic条件よりMADとobjectiveを大幅に改善し、random / fixed order差は小さかった。ただしgreedy条件もbilinear / bicubic baselineは上回らなかった。
 - 現行 Model D 式の単純な重み探索や white-noise texture 調整では、baseline 改善に届きにくい。
-- 今回のconfidence / pairwise候補はdraftへ採用せず、有限温度Metropolisも現設定の標準decoderとして採用しない。次はdeterministic ICMでproposal依存とquadratic objective自体の限界を分ける。
+- 今回のconfidence / pairwise候補はdraftへ採用せず、次に進める場合はrelaxation objectiveまたは更新手順を切り分ける。
 
 ### 3. Shape Benchmark
 
@@ -140,6 +139,6 @@ confidence map が柔らかい陰影を硬く分断しないか確認する。
 
 短期の優先順:
 
-1. Issue #87 の結果から、有限温度Metropolisのuphill acceptanceは現設定の標準decoderへ採用しない。
-2. Issue #88 で、Gaussian proposal greedyと解析的なdeterministic ICMを比較し、proposal依存とquadratic objective自体の限界を分ける。
+1. Issue #67 の結果から、今回のconfidence 2案とclamped pairwiseはModel D draftへ採用しない。
+2. Model Dを継続する場合は、confidence floorやpairwise capの小調整ではなく、annealingによる確率的driftを含むrelaxation objectiveまたは更新手順を別Issueで切り分ける。
 3. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
