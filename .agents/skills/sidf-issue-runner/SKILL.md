@@ -74,7 +74,7 @@ At work completion:
 
 1. Run the verification required by the tag skill.
 2. Review limitations, skipped checks, TODOs, new research questions, and out-of-scope discoveries from the work.
-3. For completed experiment Issues, create at least one actionable Next Issue based on the measured result. For other Issue types, create or propose follow-up Issues when the remaining work is concrete and not already covered by an open Issue.
+3. For completed experiment Issues, create one or more actionable Next Issues based on the measured result. One Issue is the minimum, not the default maximum. For other Issue types, create or propose follow-up Issues when the remaining work is concrete and not already covered by an open Issue.
 4. Commit and push the branch when the user asked for a complete Issue workflow or PR.
 5. Create a PR with the standard template.
 6. Move the Issue's GitHub Project status to `Review`.
@@ -87,7 +87,16 @@ Prefer available GitHub tooling for these actions. With GitHub CLI, use `gh issu
 
 At completion, decide whether new Issues are needed before opening or finalizing the PR. The goal is to preserve useful next work without expanding the current PR beyond its scope.
 
-For `t:exp`, a completed experiment must create at least one Next Issue after results are available. Base it on a measured limitation, comparison gap, implementation requirement, or specification decision. Do not preselect the Next Issue before seeing the result, and do not create a vague continuation merely to satisfy the rule.
+For `t:exp`, a completed experiment must create one or more Next Issues after results are available. Base them on measured limitations, comparison gaps, implementation requirements, or specification decisions. One Next Issue is sufficient only when the remaining work is a single coherent unit.
+
+Create multiple Next Issues when the result produces two or more independently actionable work units, especially when they:
+
+- require different `t:*` labels, such as an experiment plus an implementation or documentation update;
+- have different acceptance criteria, artifacts, or verification methods;
+- can be prioritized, reviewed, or completed independently;
+- would make one Issue mix separate research questions or become too large for one PR.
+
+Do not force unrelated work into one Next Issue merely to minimize Issue count. Conversely, do not split tightly coupled steps that require one another to produce a meaningful result. Do not preselect Next Issues before seeing the result, and do not create vague continuations merely to satisfy the rule.
 
 Create or propose a follow-up Issue when:
 
