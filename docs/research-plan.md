@@ -137,11 +137,15 @@ white noise texture の寄与を ablation で確認したうえで、structured 
 
 confidence map が柔らかい陰影を硬く分断しないか確認する。
 
-## Next Implementation Step
+## Current Decisions and Next Steps
 
-短期の優先順:
+決定済み:
 
 1. Issue #87 の結果から、有限温度Metropolisのuphill acceptanceは現設定の標準decoderへ採用しない。
 2. Issue #88 の結果から、現行quadratic objectiveは解析的ICMでより低い値へ到達しても単純補間baselineを改善しなかったため、標準decoder objectiveとして採用しない。
-3. Issue #92 で、Issue #87 / #88のnegative evidenceとdecoder procedure / objective designの未確定範囲をSIDF v0.3 draftへ反映する。
-4. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
+3. Issue #87 / #88のnegative evidenceとdecoder procedure / objective designの未確定範囲は、SIDF v0.3 draftへ反映済み。
+
+次の進め方:
+
+1. 次のModel D候補を進める場合は、現行objectiveの小調整ではなく、変更する仮定とbaselineを先に定義する。
+2. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
