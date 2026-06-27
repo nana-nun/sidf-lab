@@ -257,11 +257,29 @@ low-guide-only条件でもjoint bilateral refinementは比較対象として有�
 
 追加指標はModel Dの優位性を示すものではなく、画素差、勾配強度、勾配位置、方向、局所高周波差を分けて観察するための補助値である。今回の2ケースではModel Dが単純補間を総合的に上回る結果はなく、LPIPSのような学習済み知覚指標との関係も未確認である。
 
+### Model E
+
+Model E は、量子回路由来の data re-uploading / coupled state 構造を、量子SDKに依存しない古典的なimplicit residual representationとして評価する研究系列である。Issue #95で文献整理、Issue #96で研究設計、Issue #97で最小実装を追加した。Issue #98まではSIDF draft仕様へ採用しない方針とした。
+
+同一bit budget INR比較:
+
+- `results/2026-06-27-issue-98-model-e-bit-budget/`
+- development / evaluation を分け、diagonal、circle、Public Domain自然画像patch 2枚で、nearest / bilinear / bicubic、Fourier、RFF、small SIREN、Model E single-state、Model E coupled-stateを比較した。
+- 全parameterized候補は fixed feature dictionary + ridge least-squares readout でfitし、12-bit量子化後のparameter side bitsとmetricsを保存した。
+- evaluation splitでは `rff_mid` がparameterized候補内の最小MAD `0.034915`、mean serialized side bits `1312` だった。
+- Model E候補のevaluation mean MADは `model_e_single_low=0.039588`、`model_e_single_mid=0.039439`、`model_e_coupled_low=0.040270`、`model_e_coupled_mid=0.039951` で、今回のfixed-feature条件では RFF baseline や bicubic baseline `0.036953` を上回らなかった。
+- `eval_natural_br` では同じ保存parameterを128x128座標へ外挿評価し、主要PNGとgradient / Laplacian系の簡易artifact統計を保存した。
+
+解釈:
+
+このrunは、Model Eの最小候補を採用する根拠ではない。現時点では「量子回路由来の構造」そのものではなく、同じserialized side bitsでclassical INRを上回る測定結果が必要である。今回の負の結果は fixed feature dictionary + linear readout 条件に限定され、Model E全体や非線形最適化済み候補の否定ではない。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
 - 現行quadratic objectiveと有限温度Metropolisを不採用とした後、次のModel D objective / decoder procedureでどの仮定を変更するか。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
+- Model E は fixed feature dictionary + linear readout では classical RFF baseline を上回らなかった。全parameter optimizationや角度parameterizationを導入しても同じ傾向か。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 
