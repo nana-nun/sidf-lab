@@ -1,8 +1,15 @@
 # SIDF Research Plan
 
-## Research Question
+## Research Goal
 
-低解像度のSTATICガイド、seed、物理パラメータ、決定論的な確率的緩和過程により、どこまで知覚的に妥当な高解像度画像を再構成できるか。
+低情報量のguideと保存可能なdecoder条件から、どのような再構成手続きまたは
+連続関数表現が、単純補間に対して測定可能な改善を与えるか検証する。
+
+研究系列:
+
+- Model C: 同解像度guideのedge-aware stabilization
+- Model D: confidence-aware multi-resolution relaxation
+- Model E: quantum-inspired implicit residual representation
 
 ## MVP Hypotheses
 
@@ -10,6 +17,8 @@
 2. Model D の confidence map は、bilinear upscaling より境界を視覚的に締められる可能性がある。ただし保存済みの Model D 比較では、現行設定が nearest / bilinear / bicubic を総合的に上回ったとは解釈しない。
 3. white noise texture は粒状感に留まり、自然な質感には structured noise prior が必要になる。
 4. 十字では成立しても、斜線、曲線、グラデーション、実画像パッチでは別の破綻が出る。
+5. Model Eのdata re-uploading由来の関数構造は、同程度のserialized bit数を持つ
+   classical INRより画像補間残差を効率よく表現できる可能性がある。
 
 ## Experiments
 
@@ -137,6 +146,49 @@ white noise texture の寄与を ablation で確認したうえで、structured 
 
 confidence map が柔らかい陰影を硬く分断しないか確認する。
 
+### 6. Model E Quantum-Inspired Implicit Representation
+
+目的:
+
+低解像度guideのbilinear補間を基準に、data re-uploading量子回路由来の
+決定論的な座標関数が、画像固有の補間残差を少ない保存情報で表現できるか確認する。
+
+Primary objective:
+
+- Ground Truthに対する忠実な残差表現
+- float parameterと量子化parameterの分離評価
+- parameter countではなくserialized bit数での比較
+
+Baseline:
+
+- nearest / bilinear / bicubic
+- separable Fourier series
+- random Fourier features + linear readout
+- small SIREN
+- bit budgetを揃えたsmall MLP
+
+Model E candidates:
+
+- single-state / single-qubit相当
+- coupled multi-state相当
+
+評価:
+
+- development setでarchitectureとfit protocolを決める
+- evaluation setではprotocolを固定し、各画像を独立にfitする
+- MAD、PSNR、SSIM、gradient metrics、serialized bits、fit time、decode time
+- 複数bit budgetでrate-distortionを比較する
+
+研究設計:
+
+- `docs/model-e-research-design.md`
+- `references/notes/quantum-inspired-implicit-image-representation.md`
+
+注意:
+
+Model Eは量子実機や量子優位を前提にしない。Issue #98の比較結果が出るまで、
+compression、super-resolution、またはSIDF仕様への採用を主張しない。
+
 ## Current Decisions and Next Steps
 
 決定済み:
@@ -144,8 +196,14 @@ confidence map が柔らかい陰影を硬く分断しないか確認する。
 1. Issue #87 の結果から、有限温度Metropolisのuphill acceptanceは現設定の標準decoderへ採用しない。
 2. Issue #88 の結果から、現行quadratic objectiveは解析的ICMでより低い値へ到達しても単純補間baselineを改善しなかったため、標準decoder objectiveとして採用しない。
 3. Issue #87 / #88のnegative evidenceとdecoder procedure / objective designの未確定範囲は、SIDF v0.3 draftへ反映済み。
+4. 次の独立研究系列としてModel Eを定義し、量子回路由来の関数構造を
+   classical computation上のimplicit residual representationとして評価する。
+5. Model Eの採否は、同じserialized bit budgetのFourier / RFF / SIREN等との
+   held-out evaluation比較で判断する。
 
 次の進め方:
 
-1. 次のModel D候補を進める場合は、現行objectiveの小調整ではなく、変更する仮定とbaselineを先に定義する。
-2. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
+1. Issue #97でModel Eのsingle-state / coupled multi-state候補を最小実装する。
+2. Issue #98でclassical INRとserialized bit budgetを揃えて比較する。
+3. 次のModel D候補を進める場合は、現行objectiveの小調整ではなく、変更する仮定とbaselineを先に定義する。
+4. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。

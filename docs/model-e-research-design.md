@@ -1,0 +1,289 @@
+# SIDF Model E Research Design
+
+Status: Draft research plan
+Date: 2026-06-14
+Related Issue: [#96](https://github.com/nana-nun/sidf-lab/issues/96)
+
+## 1. Positioning
+
+Model E は、量子回路由来の関数構造を古典計算上で評価する
+quantum-inspired implicit image representation の候補である。
+
+量子実機、量子状態としての画像保存、または量子優位を前提にしない。
+data re-uploading、回転、state間結合、expectation valueに由来する周期的な
+座標関数が、少ない保存情報で画像の補間残差を表現できるかを検証する。
+
+Model E は Model C / D を置き換える確定仕様ではなく、独立した研究系列として扱う。
+
+| Model | Main input | Main procedure | Current role |
+| --- | --- | --- | --- |
+| Model C | 同解像度guide | edge-aware stochastic relaxation | synthetic guideの安定化baseline |
+| Model D | 低解像度guide | confidence / pairwise / textureを含むrelaxation | 現行objectiveと有限温度Metropolisは不採用 |
+| Model E | 低解像度guideと保存parameter | deterministic coordinate function | quantum-inspired residual representation候補 |
+
+## 2. Primary Research Question
+
+低解像度guideを単純補間した画像に対して、data re-uploading量子回路由来の
+決定論的な座標関数は、同程度のserialized bit数を持つclassical implicit
+representationより、Ground Truthに近い補間残差を表現できるか。
+
+候補出力:
+
+```text
+base(x, y) = bilinear(low_guide, x, y)
+residual(x, y) = alpha * q_theta(features(x, y))
+output(x, y) = clamp(base(x, y) + residual(x, y), 0, 1)
+```
+
+## 3. Hypotheses
+
+### H1: Frequency efficiency
+
+data re-uploadingとcoupled state構造は、同程度の保存bit数のseparable Fourier、
+random Fourier features、small SIRENより、画像残差に必要な2次元周波数成分を
+効率よく表現できる可能性がある。
+
+### H2: Coupling requirement
+
+single-state / single-qubit相当モデルは最小baselineとしては有用だが、
+2次元座標の交差構造を表現するには制限がある。coupled multi-state候補は、
+diagonal、curve、textureを含む残差でsingle-state候補を改善する可能性がある。
+
+### H3: Quantization tolerance
+
+回転角、周波数、位相に相当するparameterを量子化したときの品質低下が、
+classical INRの量子化低下より小さい条件が存在する可能性がある。
+
+これらは検証前の仮説であり、量子回路由来の構造が有利であることを前提にしない。
+
+## 4. Primary Objective and Non-Goals
+
+最初のModel E研究では、Ground Truthに対する忠実復元を主目的とする。
+
+最適化対象:
+
+- low-resolution guideから失われた残差を、画像ごとの保存parameterへ符号化する。
+- 同じguide、Ground Truth、bit budgetでclassical baselineと比較する。
+- float parameterだけでなく、量子化・serialization後の品質を評価する。
+
+最初の段階では扱わないもの:
+
+- seedだけからGround Truthにないdetailを生成すること。
+- 人間評価だけを使った知覚的生成品質。
+- 量子実機、shot sampling、device noise。
+- dataset全体で学習したlarge encoder / decoder。
+- RGB、動画、3D scene。
+- 実用圧縮形式としての互換性、entropy coding、既存codecへの優位性。
+
+知覚的生成を将来扱う場合は、忠実復元とは別Issueにし、同一guideからの多様性、
+自然さ、Ground Truth非一致を分けて評価する。
+
+## 5. Input, Output, and Stored Information
+
+### Input
+
+- grayscale low-resolution guide
+- target output width / height
+- normalized coordinate `(x, y)`
+- optional guide-derived features:
+  - bilinear guide value
+  - horizontal / vertical gradient
+
+最初の比較では、全モデルへ同じguide-derived featuresを与える。
+
+### Output
+
+- `[0, 1]` のgrayscale residualまたはreconstructed value
+- 初期候補はbilinear guideにbounded residualを加える
+
+### Stored information
+
+- model identifier and structure
+- output shape
+- quantized trainable parameters
+- quantization scale / zero point or equivalent rule
+- residual amplitude and required normalization metadata
+- low-resolution guide
+
+### Seed
+
+decoder outputの必須情報にはしない。seedはparameter初期化やoptimization runの
+再現にのみ使用し、最終parameterを保存したdecoderはseedなしで同じ出力を返す。
+
+## 6. Comparison Baselines
+
+画像baseline:
+
+- nearest
+- bilinear
+- bicubic
+
+parameterized residual baseline:
+
+- explicit separable Fourier series
+- random Fourier features + linear readout
+- small SIREN
+- parameter / bit budgetを揃えたsmall MLP
+- single-state / single-qubit相当Model E
+- coupled multi-state相当Model E
+
+COIN型per-image INRは、parameter量子化とbitstream評価方法の参考にする。
+初回実験で大規模なmeta-learned modelは導入しない。
+
+## 7. Bit Budget
+
+parameter countだけをcompression proxyとして使わない。
+
+最低限、次の2種類を報告する。
+
+```text
+incremental_side_bits =
+  model_header_bits
+  + structure_bits
+  + quantized_parameter_bits
+  + quantization_metadata_bits
+
+total_description_bits =
+  guide_bits
+  + output_shape_bits
+  + incremental_side_bits
+  + container_overhead_bits
+```
+
+同じguideを使うresidual model間では `incremental_side_bits` を主要比較にできる。
+compressionについて述べる場合は `total_description_bits` を使い、少なくとも
+PNGなどの実ファイルサイズとの比較条件を別途定義する。
+
+初回比較では複数の固定budgetを事前に決め、各モデルを最も近いbudgetへ量子化する。
+float条件は表現能力の診断として残すが、採否判断はquantized条件を優先する。
+
+## 8. Dataset and Split Policy
+
+最初のdatasetはgrayscaleに限定する。
+
+- synthetic: cross、diagonal、circle、thin line、soft gradient、checker edge
+- natural patches: 複数画像・複数領域から切り出した固定patch集合
+
+分割:
+
+- development set: architecture、frequency range、optimizer、量子化規則の選択に使う
+- evaluation set: protocol固定後の最終比較だけに使う
+
+Model Eは画像ごとにparameterをfitするため、evaluation imageでも個別最適化は行う。
+ここでのheld-outはparameterのゼロショット汎化ではなく、architectureとfit protocolを
+評価画像に合わせて再調整していないことを意味する。
+
+同じsource imageの近接cropがdevelopmentとevaluationへ跨がないように分ける。
+
+## 9. Optimization and Reproducibility
+
+各runで次を保存する。
+
+- initialization seed
+- optimizer and learning rate
+- optimization steps
+- loss definition
+- fit time
+- final float parameters
+- quantization rule and quantized parameters
+- decode time
+- software and dependency versions
+
+公平性のため、次を分けて報告する。
+
+- fixed-step comparison: 同じoptimization step budget
+- fixed-time comparison: 可能なら同程度のfit time
+- converged diagnostic: 各モデルの到達可能品質を見る補助条件
+
+optimization costはdecoder bit数に含めないが、実用性の独立指標として必ず記録する。
+
+## 10. Metrics
+
+忠実復元:
+
+- MAD
+- PSNR
+- SSIM
+- gradient magnitude MAD
+- gradient correlation
+- Laplacian MAD
+- hard-edge shapeではedge leakage / edge width
+
+表現と実行:
+
+- serialized bits
+- bits per output pixel
+- float-to-quantized metric delta
+- fit time
+- decode time
+- parameter count
+
+診断:
+
+- output residual image
+- Fourier spectrum or radial power summary when practical
+- higher output resolutionでのperiodic artifact / aliasing
+
+単一metricだけで順位を決めず、主要判定は事前に指定したaggregate MADまたはPSNRと
+serialized bitsのrate-distortion比較に置く。
+
+## 11. Decision Criteria
+
+### Success
+
+Model Eを有望候補とする条件:
+
+- evaluation setの複数bit budgetで、少なくとも1つのModel E候補が主要classical INRを
+  aggregate rate-distortionで一貫して改善する。
+- 改善が単一shapeまたは単一patchだけに限定されない。
+- quantization後にも改善が残る。
+- decode timeとartifactが研究継続可能な範囲にある。
+
+この条件を満たしても、量子優位、実用圧縮、一般的super-resolutionは主張しない。
+
+### Continue With Redesign
+
+次の場合は採用せず、1回の再設計候補として扱う。
+
+- classical baselineと概ね同等だが、特定の周波数構造で再現可能な利点がある。
+- float条件では良いが量子化で崩れ、parameterization改善の仮説が明確である。
+- coupled候補だけがsingle-state制限を改善するが、bit overheadが大きい。
+
+### Do Not Adopt Current Candidate
+
+次の場合は現行候補を不採用とする。
+
+- evaluation setの全主要budgetでclassical INRに支配される。
+- 改善がdevelopment setまたは単一caseに限られる。
+- 同等品質に必要なserialized bitsまたはdecode timeが大きい。
+- periodic artifactや量子化不安定性が主要caseで残る。
+
+不採用はquantum-inspired representation一般ではなく、評価した構造とprotocolに対する判断とする。
+
+## 12. Research Sequence
+
+1. Issue #95: 一次文献とclassical baselineの整理。
+2. Issue #96: 本研究設計の固定。
+3. Issue #97: single-state / coupled multi-stateの最小実装。
+4. Issue #98: serialized bit budgetを揃えた比較実験。
+
+Issue #98の結果が出るまで、Model EをSIDF draft specificationへ採用しない。
+
+## 13. Limitations
+
+- この文書は研究計画であり、Model Eの画像品質を示す結果ではない。
+- bitstream layoutとcontainer overheadの具体値は未定義である。
+- natural patch集合、budget、optimizerの具体値はIssue #98開始前に固定する必要がある。
+- classical simulation上の利点は量子hardware上の計算優位を意味しない。
+- per-image fittingはencoder costを必要とし、decode品質だけでは実用圧縮性を判断できない。
+
+## 14. References
+
+- `references/notes/quantum-inspired-implicit-image-representation.md`
+- `docs/research-state.md`
+- `specs/sidf-v0.3.0-draft.md`
+- `results/2026-06-14-issue-87-model-d-update-procedure/notes.md`
+- `results/2026-06-14-issue-88-model-d-deterministic-icm/notes.md`
+- [Issue #95](https://github.com/nana-nun/sidf-lab/issues/95)
+- [Issue #97](https://github.com/nana-nun/sidf-lab/issues/97)
+- [Issue #98](https://github.com/nana-nun/sidf-lab/issues/98)
