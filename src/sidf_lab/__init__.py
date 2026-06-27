@@ -8,6 +8,7 @@ __all__ = [
     "io",
     "metrics",
     "model_e",
+    "patch_fixtures",
     "texture",
     "visualize",
 ]

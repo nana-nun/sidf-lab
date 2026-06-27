@@ -1,0 +1,78 @@
+{
+  "default_low_guide_method": "block average from 128x128 grayscale reference",
+  "description": "Small grayscale patch fixtures for Model E / INR source-split experiments. Development and evaluation records are split by source image, not by crops from the same source.",
+  "issue": 108,
+  "patch_size": [
+    128,
+    128
+  ],
+  "patches": [
+    {
+      "crop": {
+        "description": "Existing 128x128 grayscale crop used by earlier Model D/E experiments.",
+        "height": 128,
+        "source_space": "derived fixture",
+        "width": 128,
+        "x": 0,
+        "y": 0
+      },
+      "name": "dev_hobbema_landscape",
+      "npy_path": "hobbema_landscape_128.npy",
+      "png_path": "hobbema_landscape_128.png",
+      "shape": [
+        128,
+        128
+      ],
+      "source_id": "hobbema_landscape",
+      "split": "development"
+    },
+    {
+      "crop": {
+        "description": "Center 645x645 square crop of the downloaded Wikimedia preview, resized to 128x128 and converted to grayscale.",
+        "height": 645,
+        "source_space": "downloaded 960x645 preview before center-square crop",
+        "width": 645,
+        "x": 157,
+        "y": 0
+      },
+      "name": "eval_hokusai_wave",
+      "npy_path": "hokusai_wave_128.npy",
+      "png_path": "hokusai_wave_128.png",
+      "shape": [
+        128,
+        128
+      ],
+      "source_id": "hokusai_wave",
+      "split": "evaluation"
+    }
+  ],
+  "processing": {
+    "color_to_grayscale": "Pillow L conversion for hokusai_wave; existing normalized grayscale NPY for hobbema_landscape",
+    "normalization": "float64 values in [0, 1]",
+    "resize": "Pillow bicubic resize to 128x128 for hokusai_wave"
+  },
+  "sources": [
+    {
+      "artist": "Meindert Hobbema",
+      "license": "Public Domain Mark 1.0 / PD-Art",
+      "license_note": "Wikimedia Commons identifies the faithful reproduction of the two-dimensional public-domain artwork as public domain; the author died in 1709.",
+      "source_id": "hobbema_landscape",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Landscape.jpg",
+      "split": "development",
+      "title": "Landscape",
+      "year": "17th century"
+    },
+    {
+      "artist": "Katsushika Hokusai",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tsunami%20by%20hokusai%2019th%20century.jpg?width=512",
+      "license": "Public Domain Mark 1.0 / PD-Art",
+      "license_note": "Wikimedia Commons identifies the faithful reproduction of the two-dimensional public-domain artwork as public domain; the author died in 1849 and the work was published before 1931.",
+      "source_id": "hokusai_wave",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Tsunami_by_hokusai_19th_century.jpg",
+      "split": "evaluation",
+      "title": "The Great Wave off Kanagawa",
+      "year": "circa 1830-1832"
+    }
+  ],
+  "version": 1
+}
