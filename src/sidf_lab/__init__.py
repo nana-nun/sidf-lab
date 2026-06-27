@@ -7,6 +7,7 @@ __all__ = [
     "guides",
     "io",
     "metrics",
+    "model_e",
     "texture",
     "visualize",
 ]
