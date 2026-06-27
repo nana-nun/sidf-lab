@@ -4,6 +4,14 @@ Status: Draft research plan
 Date: 2026-06-14
 Related Issue: [#96](https://github.com/nana-nun/sidf-lab/issues/96)
 
+Update 2026-06-27:
+
+Issue #98 の fixed feature dictionary + linear readout 比較では、最小Model E候補は
+evaluation splitで RFF / bicubic baselineを上回らなかった。この結果はModel E全体の
+否定ではないが、#98で評価した single-state / coupled-state 最小候補をSIDF draft仕様へ
+採用する根拠はない。次は #103 / #104 で全parameter fittingとsource分割datasetを扱う。
+採否判断の短い一覧は `docs/model-decision-map.md` を参照する。
+
 ## 1. Positioning
 
 Model E は、量子回路由来の関数構造を古典計算上で評価する

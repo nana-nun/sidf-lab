@@ -153,6 +153,8 @@ J_ij = J_base * exp(-gamma * (s_i - s_j)^2)
 
 「採用しない」は、Issue #87 / #88 で評価した現行パラメータ、入力、objective、更新手順の組み合わせに対する判断である。Model D 全体、edge-aware objective 一般、stochastic decoder 一般を否定する結果ではない。
 
+Model D / Model E の負の結果、採用しない現行候補、再設計候補、未評価候補の横断整理は `docs/model-decision-map.md` を参照する。
+
 ### Decoder procedure の negative evidence
 
 Issue #87 では、現行相当の有限温度 Metropolis 条件が proposal の約26〜28%を uphill move として受理し、最終 objective を cross で約 `13.64` から `27.8`、natural patch で約 `22.78` から `182〜186` へ増加させた。greedy acceptance は objective と reference 差分を大きく抑えたが、bilinear / bicubic baseline は上回らなかった。
