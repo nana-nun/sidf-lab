@@ -1,8 +1,8 @@
 # Model D/E 採否判断マップ
 
 Status: Draft decision map
-Date: 2026-06-27
-Related Issue: [#106](https://github.com/nana-nun/sidf-lab/issues/106)
+Date: 2026-06-28
+Related Issues: [#106](https://github.com/nana-nun/sidf-lab/issues/106), [#113](https://github.com/nana-nun/sidf-lab/issues/113)
 
 この文書は、Model D / Model E の保存済み実験から「現時点で採用しない候補」「再設計候補」「未評価候補」を追跡するための人間向けメモである。
 
@@ -32,8 +32,8 @@ SIDF は現段階では実用圧縮形式ではない。この文書は、負の
 | Model D | gradient-based confidence map、edge-aware pairwise、deterministic texture field | 再設計候補 | Issues #56, #61, #67, #75 | 現行組み合わせではbaseline改善なし。ただし要素そのものは分離して再設計する余地がある。 |
 | Model D | white-noise texture term | 採用しない現行候補 | Issues #37, #63, #75 | 粒状変化は出るが、意味的ディテールやbaseline改善としては確認できていない。 |
 | Model E | fixed feature dictionary + linear readout の single-state / coupled-state 最小候補 | 採用しない現行候補 | Issue #98 | 同一side-bit比較でRFF / bicubicを上回らなかった。最小候補をSIDF draft仕様へ採用する根拠はない。 |
-| Model E | 全parameter optimized Model E | 未評価 | Issues #103, #104 | #98では未実施。全parameter fitting基盤とsource分割datasetで再比較する。 |
-| Model E | trainable SIREN / MLP baselineとの比較 | 未評価 | Issues #103, #104 | #98のSIRENはfixed sine feature + linear readoutであり、通常のtrainable SIREN比較ではない。 |
+| Model E | trainable / source-split の single-state / coupled-state 候補 | 採用しない現行候補 | Issue #104 | source分割評価で最良classical候補を上回らなかった。#104条件の現行候補を採用する根拠はない。 |
+| Model E | trainable small MLP / RFF / SIREN / Fourier baseline | 比較基準として継続 | Issues #103, #104 | `mlp_small` が#104のevaluation splitで最良parameterized候補だった。Model E再設計時の比較対象として残す。 |
 
 ## Model D
 
@@ -74,19 +74,34 @@ Evaluation splitでは `rff_mid` がparameterized候補内の最小MAD `0.034915
 | model_e_coupled_low | 736 | 0.040270 |
 | model_e_coupled_mid | 1276 | 0.039951 |
 
+Issue #104 では、Issue #103 の最小trainable INR基盤と Issue #108 のsource分割fixtureを使い、trainable Fourier / RFF / SIREN / MLP baseline と trainable Model E single-state / coupled-state を比較した。結果は `results/2026-06-28-issue-104-trainable-inr-source-split/` に保存した。
+
+Evaluation splitでは、best parameterized candidate は `mlp_small` で、mean serialized side bits `708`、mean quantized MAD `0.089009` だった。Best Model E candidate は `model_e_single` で、mean serialized side bits `576`、mean quantized MAD `0.090061` だった。
+
+| Candidate | Family | Mean serialized side bits | Evaluation mean quantized MAD |
+| --- | --- | ---: | ---: |
+| bicubic | image baseline | n/a | 0.086314 |
+| mlp_small | classical INR | 708 | 0.089009 |
+| model_e_single | Model E | 576 | 0.090061 |
+| model_e_coupled | Model E | 780 | 0.090095 |
+
 ### Interpretation
 
 このfixed-feature条件では、Model E候補がclassical INR baselineを一貫して上回るとは解釈しない。量子回路由来の構造そのものを採用理由にせず、同じserialized side bitsでclassical baselineを上回る測定結果が必要である。
 
+#104 のtrainable / source-split条件でも、現行のsingle-state / coupled-state候補を採用する根拠は得られていない。ただし、これは #104 のparameterization、optimizer、source分割fixture、incremental side-bit見積もりに対する負の結果であり、Model E一般や別の量子回路由来座標関数の否定ではない。
+
 ### Current Decision
 
-- #98 の最小Model E候補は、SIDF draft仕様へ採用しない。
-- #98 はModel E全体の否定ではなく、fixed feature dictionary + linear readout 条件の負の結果として扱う。
-- Model Eを継続する場合は、全parameter fitting、angle / frequency parameterization、source image単位のheld-out評価を別Issueで扱う。
+- #98 の fixed feature dictionary + linear readout 最小Model E候補は、SIDF draft仕様へ採用しない。
+- #104 の trainable / source-split Model E single-state / coupled-state候補も、SIDF draft仕様へ採用しない。
+- #98 と #104 はModel E全体の否定ではなく、それぞれ評価した構造とprotocolの負の結果として扱う。
+- Model Eを継続する場合は、現行候補のrandom search調整ではなく、angle / frequency parameterization、coupling設計、bit accountingを再設計した別Issueとして扱う。
 
 ### Limitations
 
 - small SIREN baselineは通常のtrainable multi-layer SIRENではない。
+- #104 のtrainable比較は小規模source-split fixtureと最小optimizerに基づく。
 - serialized bitsはparameter side informationの簡易見積もりであり、guide bits、entropy coding、container overheadを含まない。
 - extrapolated outputはartifact診断であり、外挿解像度のGround Truth品質測定ではない。
 - quantum advantage、compression、super-resolutionは未測定である。
@@ -99,17 +114,18 @@ Evaluation splitでは `rff_mid` がparameterized候補内の最小MAD `0.034915
 - Ground Truth比較なしに超解像性能がある。
 - Model D の texture prior が意味的ディテールを生成する。
 - Model E が量子優位を持つ。
-- #98 のparameter side bitsだけで実用圧縮性能を評価できる。
+- #98 / #104 のparameter side bitsだけで実用圧縮性能を評価できる。
 - Python/NumPy結果が環境非依存のbit-perfect decoder仕様である。
 
-## Next Issues
+## Related Issues
 
-| Issue | Type | Purpose |
-| --- | --- | --- |
-| [#103](https://github.com/nana-nun/sidf-lab/issues/103) | `t:impl` | Model E / INR の全parameter fitting基盤を追加する。 |
-| [#104](https://github.com/nana-nun/sidf-lab/issues/104) | `t:exp` | trainable INR baselineとsource分割datasetでModel Eを再比較する。 |
-| [#107](https://github.com/nana-nun/sidf-lab/issues/107) | `t:ref` | INR圧縮のbit accountingとparameter量子化方針を整理する。 |
-| [#108](https://github.com/nana-nun/sidf-lab/issues/108) | `t:impl` | source分割済みgrayscale patch fixtureを追加する。 |
+| Issue | Type | Status in this map | Purpose |
+| --- | --- | --- | --- |
+| [#103](https://github.com/nana-nun/sidf-lab/issues/103) | `t:impl` | reflected | Model E / INR の全parameter fitting基盤を追加した。 |
+| [#104](https://github.com/nana-nun/sidf-lab/issues/104) | `t:exp` | reflected | trainable INR baselineとsource分割datasetでModel Eを再比較した。 |
+| [#107](https://github.com/nana-nun/sidf-lab/issues/107) | `t:ref` | referenced | INR圧縮のbit accountingとparameter量子化方針を整理した。 |
+| [#108](https://github.com/nana-nun/sidf-lab/issues/108) | `t:impl` | reflected | source分割済みgrayscale patch fixtureを追加した。 |
+| [#113](https://github.com/nana-nun/sidf-lab/issues/113) | `t:docs` | current update | #104 の負の結果を採否判断へ反映する。 |
 
 ## References
 
@@ -120,3 +136,4 @@ Evaluation splitでは `rff_mid` がparameterized候補内の最小MAD `0.034915
 - `results/2026-06-14-issue-87-model-d-update-procedure/notes.md`
 - `results/2026-06-14-issue-88-model-d-deterministic-icm/notes.md`
 - `results/2026-06-27-issue-98-model-e-bit-budget/notes.md`
+- `results/2026-06-28-issue-104-trainable-inr-source-split/notes.md`
