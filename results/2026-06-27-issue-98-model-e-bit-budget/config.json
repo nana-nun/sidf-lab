@@ -1,0 +1,88 @@
+{
+  "candidate_specs": [
+    {
+      "family": "fourier",
+      "name": "fourier_low",
+      "order": 1,
+      "tier": "low"
+    },
+    {
+      "family": "fourier",
+      "name": "fourier_mid",
+      "order": 2,
+      "tier": "mid"
+    },
+    {
+      "family": "rff",
+      "features": 6,
+      "name": "rff_low",
+      "seed": 1101,
+      "tier": "low"
+    },
+    {
+      "family": "rff",
+      "features": 12,
+      "name": "rff_mid",
+      "seed": 1102,
+      "tier": "mid"
+    },
+    {
+      "family": "siren",
+      "features": 6,
+      "name": "siren_low",
+      "seed": 1201,
+      "tier": "low"
+    },
+    {
+      "family": "siren",
+      "features": 12,
+      "name": "siren_mid",
+      "seed": 1202,
+      "tier": "mid"
+    },
+    {
+      "depth": 6,
+      "family": "model_e_single",
+      "name": "model_e_single_low",
+      "seed": 1301,
+      "states": 1,
+      "tier": "low"
+    },
+    {
+      "depth": 12,
+      "family": "model_e_single",
+      "name": "model_e_single_mid",
+      "seed": 1302,
+      "states": 1,
+      "tier": "mid"
+    },
+    {
+      "depth": 3,
+      "family": "model_e_coupled",
+      "name": "model_e_coupled_low",
+      "seed": 1401,
+      "states": 3,
+      "tier": "low"
+    },
+    {
+      "depth": 6,
+      "family": "model_e_coupled",
+      "name": "model_e_coupled_mid",
+      "seed": 1402,
+      "states": 3,
+      "tier": "mid"
+    }
+  ],
+  "date": "2026-06-27",
+  "experiment_seed": 20260627,
+  "header_bits": 160,
+  "high_size": 64,
+  "low_size": 16,
+  "numpy_version": "2.3.5",
+  "parameter_bits": 12,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "residual_limit": 0.35,
+  "ridge_lambda": 0.0001,
+  "source_asset": "experiments/assets/landscape_pd_128.npy"
+}
