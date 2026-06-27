@@ -200,10 +200,17 @@ compression、super-resolution、またはSIDF仕様への採用を主張しな�
    classical computation上のimplicit residual representationとして評価する。
 5. Model Eの採否は、同じserialized bit budgetのFourier / RFF / SIREN等との
    held-out evaluation比較で判断する。
+6. Issue #98 の fixed feature + linear readout 比較では、最小Model E候補は
+   RFF / bicubic baselineを上回らなかったため、現行候補は採用せず、全parameter
+   fittingとsource分割datasetでの再評価を次Issueへ分ける。
+
+採否判断の短い一覧は `docs/model-decision-map.md` にまとめる。
 
 次の進め方:
 
-1. Issue #97でModel Eのsingle-state / coupled multi-state候補を最小実装する。
-2. Issue #98でclassical INRとserialized bit budgetを揃えて比較する。
-3. 次のModel D候補を進める場合は、現行objectiveの小調整ではなく、変更する仮定とbaselineを先に定義する。
-4. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
+1. Issue #103でModel E / INRの全parameter fitting基盤を追加する。
+2. Issue #108でsource image単位に分割できるgrayscale patch fixtureを追加する。
+3. Issue #104でtrainable INR baselineとsource分割datasetを使ってModel Eを再比較する。
+4. Issue #107でINR圧縮のbit accountingとparameter量子化方針を整理する。
+5. 次のModel D候補を進める場合は、現行objectiveの小調整ではなく、変更する仮定とbaselineを先に定義する。
+6. Rust core 関連の残タスクがある場合は、PRNG、固定小数点、更新順序の切り分けを保ったまま進める。
