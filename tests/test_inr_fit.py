@@ -24,6 +24,7 @@ class INRFitTests(unittest.TestCase):
             INRSpec("fourier", order=2),
             INRSpec("rff", feature_count=4),
             INRSpec("siren", feature_count=4),
+            INRSpec("mlp", feature_count=4),
             INRSpec("model_e_single", depth=2, states=1),
             INRSpec("model_e_coupled", depth=2, states=3),
         ]

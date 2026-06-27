@@ -17,7 +17,7 @@ from sidf_lab.model_e import (
 )
 
 
-INRFamily = Literal["fourier", "rff", "siren", "model_e_single", "model_e_coupled"]
+INRFamily = Literal["fourier", "rff", "siren", "mlp", "model_e_single", "model_e_coupled"]
 
 
 @dataclass(frozen=True)
@@ -32,7 +32,7 @@ class INRSpec:
     residual_limit: float = 0.35
 
     def __post_init__(self) -> None:
-        if self.family not in {"fourier", "rff", "siren", "model_e_single", "model_e_coupled"}:
+        if self.family not in {"fourier", "rff", "siren", "mlp", "model_e_single", "model_e_coupled"}:
             raise ValueError(f"unknown INR family: {self.family}")
         if self.order <= 0:
             raise ValueError("order must be positive")
@@ -93,6 +93,11 @@ def make_parameter_layout(spec: INRSpec) -> ParameterLayout:
             ("weights", "bias", "readout"),
             ((5, spec.feature_count), (spec.feature_count,), (spec.feature_count,)),
         )
+    if spec.family == "mlp":
+        return ParameterLayout(
+            ("weights", "bias", "readout", "output_bias"),
+            ((5, spec.feature_count), (spec.feature_count,), (spec.feature_count,), (1,)),
+        )
     return ParameterLayout(
         ("layers", "readout", "residual_scale"),
         ((spec.depth, spec.states, 5), (spec.states,), (1,)),
@@ -144,6 +149,14 @@ def initialize_parameters(spec: INRSpec, seed: int = 0) -> np.ndarray:
             "weights": rng.normal(0.0, 1.5, size=(5, spec.feature_count)),
             "bias": rng.uniform(-1.0, 1.0, size=spec.feature_count),
             "readout": np.zeros(spec.feature_count, dtype=np.float64),
+        }
+        return flatten_parameters(params, layout)
+    if spec.family == "mlp":
+        params = {
+            "weights": rng.normal(0.0, 0.75, size=(5, spec.feature_count)),
+            "bias": np.zeros(spec.feature_count, dtype=np.float64),
+            "readout": np.zeros(spec.feature_count, dtype=np.float64),
+            "output_bias": np.zeros(1, dtype=np.float64),
         }
         return flatten_parameters(params, layout)
     params = {
@@ -270,6 +283,9 @@ def _residual_from_features(spec: INRSpec, features: np.ndarray, parameters: np.
     if spec.family == "siren":
         matrix = _siren_matrix(features, params["weights"], params["bias"])
         return spec.residual_limit * np.tanh(matrix @ params["readout"])
+    if spec.family == "mlp":
+        hidden = np.tanh(features.reshape(-1, features.shape[-1]) @ params["weights"] + params["bias"])
+        return spec.residual_limit * np.tanh(hidden @ params["readout"] + params["output_bias"][0])
 
     residual_scale = float(np.clip(params["residual_scale"][0], 0.0, spec.residual_limit))
     kind = "single_state" if spec.family == "model_e_single" else "coupled_state"
@@ -288,7 +304,7 @@ def _fit_linear_readout_if_available(
     reference: np.ndarray,
     parameters: np.ndarray,
 ) -> np.ndarray:
-    if spec.family not in {"fourier", "rff", "siren"}:
+    if spec.family not in {"fourier", "rff", "siren", "mlp"}:
         return parameters
     layout = make_parameter_layout(spec)
     params = unflatten_parameters(parameters, layout)
@@ -299,9 +315,12 @@ def _fit_linear_readout_if_available(
         matrix = _fourier_matrix(features, spec.order)
     elif spec.family == "rff":
         matrix = _rff_matrix(features, params["weights"], params["bias"])
-    else:
+    elif spec.family == "siren":
         matrix = _siren_matrix(features, params["weights"], params["bias"])
-    params["readout"] = np.linalg.lstsq(matrix, target, rcond=None)[0]
+    else:
+        matrix = np.tanh(features.reshape(-1, features.shape[-1]) @ params["weights"] + params["bias"])
+    solution = np.linalg.lstsq(matrix, target, rcond=None)[0]
+    params["readout"] = solution
     return flatten_parameters(params, layout)
 
 
