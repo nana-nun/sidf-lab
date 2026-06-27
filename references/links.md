@@ -37,6 +37,10 @@ SIDF研究に関係するWeb資料、実装例、ドキュメントへのリン�
 | Classical INR | Implicit Neural Representations with Periodic Activation Functions | https://arxiv.org/abs/2006.09661 | SIREN baseline |
 | Classical INR | Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains | https://arxiv.org/abs/2006.10739 | Fourier feature baseline |
 | INR compression | COIN: COmpression with Implicit Neural representations | https://arxiv.org/abs/2103.03123 | per-image INRとparameter量子化による画像圧縮 |
+| INR compression implementation | EmilienDupont/coin | https://github.com/EmilienDupont/coin | COIN公式実装。SIREN構成、half precision注意、Kodak実験再現コマンドの確認元 |
+| INR compression | COIN++: Neural Compression Across Modalities | https://arxiv.org/abs/2201.12904 | 共有base networkとinstance modulationを分け、modulationを量子化・entropy codingする方式 |
+| INR compression | Implicit Neural Representations for Image Compression | https://arxiv.org/abs/2112.04267 | INR圧縮での量子化、quantization-aware retraining、entropy codingの整理候補 |
+| INR compression | Compression with Bayesian Implicit Neural Representations | https://arxiv.org/abs/2305.19185 | weight posterior sampleをrelative entropy codingするINR圧縮方式 |
 
 ## 記録する情報
 
