@@ -29,6 +29,14 @@ SIDF研究に関係するWeb資料、実装例、ドキュメントへのリン�
 | Determinism | fixed crate documentation | https://docs.rs/fixed/ | Rust fixed-point 実装候補の調査入口 |
 | Determinism | The Rust Reference: Operator expressions / Overflow | https://doc.rust-lang.org/reference/expressions/operator-expr.html#overflow | Rust整数演算のoverflow確認。debug/release差を避けるため、SIDF仕様では演算規則を明示する必要がある |
 | Determinism | Rust `u32` primitive integer methods | https://doc.rust-lang.org/std/primitive.u32.html | `wrapping_*`、`saturating_*`、`overflowing_*` など、固定小数点候補で使う整数演算の確認元 |
+| Quantum-inspired INR | Data re-uploading for a universal quantum classifier | https://doi.org/10.22331/q-2020-02-06-226 | data re-uploadingの基本文献 |
+| Quantum-inspired INR | The effect of data encoding on the expressive power of variational quantum-machine-learning models | https://doi.org/10.1103/PhysRevA.103.032430 | parameterized quantum circuitとFourier表現の理論 |
+| Quantum-inspired INR | Power and limitations of single-qubit native quantum neural networks | https://arxiv.org/abs/2205.07848 | single-qubit QNNの表現能力と多変数制限 |
+| Quantum-inspired INR | Quantum Implicit Neural Representations | https://arxiv.org/abs/2406.03873 | QIRENによるsignal・image representation |
+| Quantum-inspired INR | QINR Autoencoder / VAE | https://arxiv.org/abs/2603.06755 | 2026年の画像再構成・生成decoder応用 |
+| Classical INR | Implicit Neural Representations with Periodic Activation Functions | https://arxiv.org/abs/2006.09661 | SIREN baseline |
+| Classical INR | Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains | https://arxiv.org/abs/2006.10739 | Fourier feature baseline |
+| INR compression | COIN: COmpression with Implicit Neural representations | https://arxiv.org/abs/2103.03123 | per-image INRとparameter量子化による画像圧縮 |
 
 ## 記録する情報
 
