@@ -5,6 +5,7 @@ __all__ = [
     "confidence",
     "energy",
     "guides",
+    "inr_fit",
     "io",
     "metrics",
     "model_e",
