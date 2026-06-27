@@ -9,8 +9,20 @@ Update 2026-06-27:
 Issue #98 の fixed feature dictionary + linear readout 比較では、最小Model E候補は
 evaluation splitで RFF / bicubic baselineを上回らなかった。この結果はModel E全体の
 否定ではないが、#98で評価した single-state / coupled-state 最小候補をSIDF draft仕様へ
-採用する根拠はない。次は #103 / #104 で全parameter fittingとsource分割datasetを扱う。
+採用する根拠はない。その後の #103 / #104 で全parameter fittingとsource分割datasetを扱った。
 採否判断の短い一覧は `docs/model-decision-map.md` を参照する。
+
+Update 2026-06-28:
+
+Issue #104 の trainable INR / source-split比較でも、現行のModel E single-state /
+coupled-state候補を採用する根拠は得られなかった。evaluation splitでは
+`mlp_small` が best parameterized candidate で mean quantized MAD `0.089009`、
+mean serialized side bits `708` だった。best Model E candidate は `model_e_single`
+で mean quantized MAD `0.090061`、mean serialized side bits `576` だった。
+この結果は #104 のparameterization、optimizer、fixture、incremental side-bit見積もりに
+限定され、Model E一般の否定ではない。次にModel Eを続ける場合は、現行候補の
+random search調整ではなく、angle / frequency parameterization、coupling設計、
+bit accountingを再設計するIssueとして扱う。
 
 ## 1. Positioning
 
@@ -266,6 +278,9 @@ Model Eを有望候補とする条件:
 - 同等品質に必要なserialized bitsまたはdecode timeが大きい。
 - periodic artifactや量子化不安定性が主要caseで残る。
 
+#104 のtrainable / source-split結果は、この区分に入る。現行single-state /
+coupled-state候補は、#104のevaluation splitで最良classical INR候補を上回らなかった。
+
 不採用はquantum-inspired representation一般ではなく、評価した構造とprotocolに対する判断とする。
 
 ## 12. Research Sequence
@@ -274,8 +289,12 @@ Model Eを有望候補とする条件:
 2. Issue #96: 本研究設計の固定。
 3. Issue #97: single-state / coupled multi-stateの最小実装。
 4. Issue #98: serialized bit budgetを揃えた比較実験。
+5. Issue #103: trainable INR / Model E fitting基盤の最小実装。
+6. Issue #108: source分割済みgrayscale patch fixtureの追加。
+7. Issue #104: trainable INR baselineとsource分割datasetによるModel E再比較。
 
-Issue #98の結果が出るまで、Model EをSIDF draft specificationへ採用しない。
+#98 と #104 の結果から、評価済みの現行Model E候補はSIDF draft specificationへ採用しない。
+Model Eを続ける場合は、採用保留のまま別parameterizationやcoupling設計を再検証する。
 
 ## 13. Limitations
 
@@ -295,3 +314,5 @@ Issue #98の結果が出るまで、Model EをSIDF draft specificationへ採用�
 - [Issue #95](https://github.com/nana-nun/sidf-lab/issues/95)
 - [Issue #97](https://github.com/nana-nun/sidf-lab/issues/97)
 - [Issue #98](https://github.com/nana-nun/sidf-lab/issues/98)
+- [Issue #104](https://github.com/nana-nun/sidf-lab/issues/104)
+- `results/2026-06-28-issue-104-trainable-inr-source-split/notes.md`

@@ -259,7 +259,7 @@ low-guide-only条件でもjoint bilateral refinementは比較対象として有�
 
 ### Model E
 
-Model E は、量子回路由来の data re-uploading / coupled state 構造を、量子SDKに依存しない古典的なimplicit residual representationとして評価する研究系列である。Issue #95で文献整理、Issue #96で研究設計、Issue #97で最小実装を追加した。Issue #98まではSIDF draft仕様へ採用しない方針とした。
+Model E は、量子回路由来の data re-uploading / coupled state 構造を、量子SDKに依存しない古典的なimplicit residual representationとして評価する研究系列である。Issue #95で文献整理、Issue #96で研究設計、Issue #97で最小実装を追加した。Issue #98 と Issue #104 の結果を踏まえ、評価済みの現行Model E候補はSIDF draft仕様へ採用しない方針とした。
 
 同一bit budget INR比較:
 
@@ -274,12 +274,25 @@ Model E は、量子回路由来の data re-uploading / coupled state 構造を�
 
 このrunは、Model Eの最小候補を採用する根拠ではない。現時点では「量子回路由来の構造」そのものではなく、同じserialized side bitsでclassical INRを上回る測定結果が必要である。今回の負の結果は fixed feature dictionary + linear readout 条件に限定され、Model E全体や非線形最適化済み候補の否定ではない。
 
+trainable INR / source-split comparison:
+
+- `results/2026-06-28-issue-104-trainable-inr-source-split/`
+- Issue #103 の最小trainable INR基盤と Issue #108 のsource分割grayscale fixtureを使い、source image単位でdevelopment / evaluationを分けた。
+- trainable Fourier / RFF / SIREN / MLP baseline と trainable Model E single-state / coupled-stateを比較し、float出力、12-bit量子化出力、主要PNG、metrics、fit / decode timeを保存した。
+- evaluation splitの best parameterized candidate は `mlp_small` で、mean serialized side bits `708`、mean quantized MAD `0.089009` だった。
+- best Model E candidate は `model_e_single` で、mean serialized side bits `576`、mean quantized MAD `0.090061` だった。`model_e_coupled` は mean serialized side bits `780`、mean quantized MAD `0.090095` だった。
+- bicubic baselineのevaluation mean MADは `0.086314` だった。
+
+解釈:
+
+#104 のrunでも、現行のtrainable Model E single-state / coupled-state候補を採用する根拠は得られなかった。この負の結果は #104 のparameterization、optimizer、source分割fixture、incremental side-bit見積もりに限定される。Model E一般、別のangle / frequency parameterization、別のcoupling設計、量子回路由来座標関数全体の否定ではない。また、量子優位、実用圧縮、一般的super-resolutionはこのrunでは測定していない。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
 - 現行quadratic objectiveと有限温度Metropolisを不採用とした後、次のModel D objective / decoder procedureでどの仮定を変更するか。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
-- Model E は fixed feature dictionary + linear readout では classical RFF baseline を上回らなかった。全parameter optimizationや角度parameterizationを導入しても同じ傾向か。
+- Model E は #98 の fixed feature dictionary + linear readout と #104 の最小trainable / source-split条件のどちらでも、現行single-state / coupled-state候補を採用する根拠がなかった。次に進めるなら、optimizer調整だけでなく angle / frequency parameterization や coupling設計を再設計する価値があるか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 
