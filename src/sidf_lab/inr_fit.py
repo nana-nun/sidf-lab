@@ -17,7 +17,17 @@ from sidf_lab.model_e import (
 )
 
 
-INRFamily = Literal["fourier", "rff", "siren", "mlp", "model_e_single", "model_e_coupled"]
+INRFamily = Literal[
+    "fourier",
+    "rff",
+    "siren",
+    "mlp",
+    "model_e_single",
+    "model_e_coupled",
+    "model_e_ladder",
+    "model_e_frequency_table",
+    "model_e_modulated",
+]
 
 
 @dataclass(frozen=True)
@@ -32,7 +42,17 @@ class INRSpec:
     residual_limit: float = 0.35
 
     def __post_init__(self) -> None:
-        if self.family not in {"fourier", "rff", "siren", "mlp", "model_e_single", "model_e_coupled"}:
+        if self.family not in {
+            "fourier",
+            "rff",
+            "siren",
+            "mlp",
+            "model_e_single",
+            "model_e_coupled",
+            "model_e_ladder",
+            "model_e_frequency_table",
+            "model_e_modulated",
+        }:
             raise ValueError(f"unknown INR family: {self.family}")
         if self.order <= 0:
             raise ValueError("order must be positive")
@@ -76,7 +96,7 @@ class FitResult:
     decode_seconds: float
     float_mse: float
     quantized_mse: float
-    bits: dict[str, int]
+    bits: dict[str, object]
 
 
 def make_parameter_layout(spec: INRSpec) -> ParameterLayout:
@@ -97,6 +117,39 @@ def make_parameter_layout(spec: INRSpec) -> ParameterLayout:
         return ParameterLayout(
             ("weights", "bias", "readout", "output_bias"),
             ((5, spec.feature_count), (spec.feature_count,), (spec.feature_count,), (1,)),
+        )
+    if spec.family == "model_e_ladder":
+        mode_count = _fixed_ladder_mode_count()
+        return ParameterLayout(
+            ("scale", "phase", "readout", "residual_scale"),
+            (
+                (spec.depth, spec.states, mode_count),
+                (spec.depth, spec.states),
+                (spec.states,),
+                (1,),
+            ),
+        )
+    if spec.family == "model_e_frequency_table":
+        return ParameterLayout(
+            ("frequencies", "phase", "mixing", "readout", "residual_scale"),
+            (
+                (5, spec.feature_count),
+                (spec.feature_count,),
+                (spec.depth, spec.states, spec.feature_count),
+                (spec.states,),
+                (1,),
+            ),
+        )
+    if spec.family == "model_e_modulated":
+        return ParameterLayout(
+            ("coord_frequency", "phase", "gate", "readout", "residual_scale"),
+            (
+                (spec.depth, spec.states, 4),
+                (spec.depth, spec.states),
+                (4,),
+                (spec.states,),
+                (1,),
+            ),
         )
     return ParameterLayout(
         ("layers", "readout", "residual_scale"),
@@ -159,6 +212,32 @@ def initialize_parameters(spec: INRSpec, seed: int = 0) -> np.ndarray:
             "output_bias": np.zeros(1, dtype=np.float64),
         }
         return flatten_parameters(params, layout)
+    if spec.family == "model_e_ladder":
+        params = {
+            "scale": rng.normal(0.0, 0.18, size=(spec.depth, spec.states, _fixed_ladder_mode_count())),
+            "phase": rng.uniform(-0.25, 0.25, size=(spec.depth, spec.states)),
+            "readout": np.linspace(0.5, 1.0, spec.states, dtype=np.float64),
+            "residual_scale": np.array([min(0.1, spec.residual_limit)], dtype=np.float64),
+        }
+        return flatten_parameters(params, layout)
+    if spec.family == "model_e_frequency_table":
+        params = {
+            "frequencies": rng.normal(0.0, 1.0, size=(5, spec.feature_count)),
+            "phase": rng.uniform(-np.pi, np.pi, size=spec.feature_count),
+            "mixing": rng.normal(0.0, 0.35, size=(spec.depth, spec.states, spec.feature_count)),
+            "readout": np.linspace(0.5, 1.0, spec.states, dtype=np.float64),
+            "residual_scale": np.array([min(0.1, spec.residual_limit)], dtype=np.float64),
+        }
+        return flatten_parameters(params, layout)
+    if spec.family == "model_e_modulated":
+        params = {
+            "coord_frequency": rng.normal(0.0, 0.8, size=(spec.depth, spec.states, 4)),
+            "phase": rng.uniform(-0.25, 0.25, size=(spec.depth, spec.states)),
+            "gate": np.array([0.0, 0.5, 0.25, 0.25], dtype=np.float64),
+            "readout": np.linspace(0.5, 1.0, spec.states, dtype=np.float64),
+            "residual_scale": np.array([min(0.1, spec.residual_limit)], dtype=np.float64),
+        }
+        return flatten_parameters(params, layout)
     params = {
         "layers": rng.normal(0.0, 0.5, size=(spec.depth, spec.states, 5)),
         "readout": np.linspace(0.5, 1.0, spec.states, dtype=np.float64),
@@ -200,15 +279,21 @@ def estimate_inr_bits(
     quantization: QuantizationSpec,
     *,
     extra_structure_bits: int = 32,
-) -> dict[str, int]:
+) -> dict[str, object]:
     """Return a #98-compatible incremental side-bit estimate."""
-    parameter_count = make_parameter_layout(spec).parameter_count
+    layout = make_parameter_layout(spec)
+    parameter_count = layout.parameter_count
     parameter_bits = parameter_count * quantization.bits_per_value
+    group_bits = {
+        name: int(np.prod(shape, dtype=np.int64) * quantization.bits_per_value)
+        for name, shape in zip(layout.names, layout.shapes)
+    }
     return {
         "model_header_bits": int(quantization.header_bits),
         "structure_bits": int(extra_structure_bits),
         "quantized_parameter_bits": int(parameter_bits),
         "parameter_count": int(parameter_count),
+        "parameter_group_bits": group_bits,
         "incremental_side_bits": int(
             quantization.header_bits + extra_structure_bits + parameter_bits
         ),
@@ -286,6 +371,12 @@ def _residual_from_features(spec: INRSpec, features: np.ndarray, parameters: np.
     if spec.family == "mlp":
         hidden = np.tanh(features.reshape(-1, features.shape[-1]) @ params["weights"] + params["bias"])
         return spec.residual_limit * np.tanh(hidden @ params["readout"] + params["output_bias"][0])
+    if spec.family == "model_e_ladder":
+        return _ladder_model_e_residual(features, params, spec.residual_limit)
+    if spec.family == "model_e_frequency_table":
+        return _frequency_table_model_e_residual(features, params, spec.residual_limit)
+    if spec.family == "model_e_modulated":
+        return _modulated_model_e_residual(features, params, spec.residual_limit)
 
     residual_scale = float(np.clip(params["residual_scale"][0], 0.0, spec.residual_limit))
     kind = "single_state" if spec.family == "model_e_single" else "coupled_state"
@@ -351,6 +442,111 @@ def _rff_matrix(features: np.ndarray, weights: np.ndarray, bias: np.ndarray) -> 
 def _siren_matrix(features: np.ndarray, weights: np.ndarray, bias: np.ndarray) -> np.ndarray:
     inputs = features.reshape(-1, features.shape[-1])
     return np.sin(6.0 * (inputs @ weights + bias))
+
+
+def _fixed_ladder_modes(features: np.ndarray) -> np.ndarray:
+    x = features[..., 0]
+    y = features[..., 1]
+    base_modes = [x, y, x + y, x - y]
+    columns = []
+    for freq in (1.0, 2.0, 4.0, 8.0):
+        for mode in base_modes:
+            columns.append(np.sin(np.pi * freq * mode))
+    return np.stack(columns, axis=-1)
+
+
+def _fixed_ladder_mode_count() -> int:
+    return 16
+
+
+def _initial_states(shape: tuple[int, int], state_count: int) -> np.ndarray:
+    states = np.zeros((*shape, state_count), dtype=np.float64)
+    states[..., 0] = 1.0
+    if state_count > 1:
+        states[..., 1:] = -1.0 / state_count
+    return states
+
+
+def _readout_residual(states: np.ndarray, readout: np.ndarray, residual_scale: float) -> np.ndarray:
+    readout_norm = max(float(np.linalg.norm(readout)), 1.0)
+    expectation = np.tensordot(states, readout / readout_norm, axes=([-1], [0]))
+    return residual_scale * np.tanh(expectation)
+
+
+def _ladder_model_e_residual(
+    features: np.ndarray,
+    params: dict[str, np.ndarray],
+    residual_limit: float,
+) -> np.ndarray:
+    modes = _fixed_ladder_modes(features)
+    states = _initial_states(features.shape[:2], params["readout"].size)
+    for scale, phase in zip(params["scale"], params["phase"]):
+        angles = np.tensordot(modes, scale, axes=([-1], [-1])) + phase
+        rotated = np.sin(angles + states)
+        if states.shape[-1] > 1:
+            rotated = _couple_candidate_states(rotated)
+        states = np.tanh(rotated)
+    residual_scale = float(np.clip(params["residual_scale"][0], 0.0, residual_limit))
+    return _readout_residual(states, params["readout"], residual_scale).reshape(-1)
+
+
+def _frequency_table_model_e_residual(
+    features: np.ndarray,
+    params: dict[str, np.ndarray],
+    residual_limit: float,
+) -> np.ndarray:
+    inputs = features.reshape(-1, features.shape[-1])
+    table_angles = inputs @ params["frequencies"] + params["phase"]
+    table_angles = table_angles.reshape(*features.shape[:2], -1)
+    states = _initial_states(features.shape[:2], params["readout"].size)
+    for mixing in params["mixing"]:
+        angles = np.tensordot(table_angles, mixing, axes=([-1], [-1]))
+        rotated = np.sin(angles + states)
+        if states.shape[-1] > 1:
+            rotated = _couple_candidate_states(rotated)
+        states = np.tanh(rotated)
+    residual_scale = float(np.clip(params["residual_scale"][0], 0.0, residual_limit))
+    return _readout_residual(states, params["readout"], residual_scale).reshape(-1)
+
+
+def _modulated_model_e_residual(
+    features: np.ndarray,
+    params: dict[str, np.ndarray],
+    residual_limit: float,
+) -> np.ndarray:
+    x = features[..., 0]
+    y = features[..., 1]
+    coord_modes = np.stack([x, y, x + y, x - y], axis=-1)
+    gate_inputs = np.stack(
+        [
+            np.ones_like(x),
+            features[..., 2],
+            features[..., 3],
+            features[..., 4],
+        ],
+        axis=-1,
+    )
+    gate = _sigmoid(np.tensordot(gate_inputs, params["gate"], axes=([-1], [0])))
+    states = _initial_states(features.shape[:2], params["readout"].size)
+    for coord_frequency, phase in zip(params["coord_frequency"], params["phase"]):
+        angles = np.tensordot(coord_modes, coord_frequency, axes=([-1], [-1])) + phase
+        rotated = gate[..., None] * np.sin(angles + states)
+        if states.shape[-1] > 1:
+            rotated = _couple_candidate_states(rotated)
+        states = np.tanh(rotated)
+    residual_scale = float(np.clip(params["residual_scale"][0], 0.0, residual_limit))
+    return (gate * _readout_residual(states, params["readout"], residual_scale)).reshape(-1)
+
+
+def _couple_candidate_states(states: np.ndarray) -> np.ndarray:
+    left = np.roll(states, 1, axis=-1)
+    right = np.roll(states, -1, axis=-1)
+    return states + 0.25 * left * right
+
+
+def _sigmoid(values: np.ndarray) -> np.ndarray:
+    clipped = np.clip(values, -40.0, 40.0)
+    return 1.0 / (1.0 + np.exp(-clipped))
 
 
 def _mse(candidate: np.ndarray, reference: np.ndarray) -> float:
