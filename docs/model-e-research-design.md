@@ -316,3 +316,4 @@ Model Eを続ける場合は、採用保留のまま別parameterizationやcoupli
 - [Issue #98](https://github.com/nana-nun/sidf-lab/issues/98)
 - [Issue #104](https://github.com/nana-nun/sidf-lab/issues/104)
 - `results/2026-06-28-issue-104-trainable-inr-source-split/notes.md`
+- `references/notes/model-e-parameterization-redesign.md`
