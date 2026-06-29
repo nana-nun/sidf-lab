@@ -1,0 +1,1712 @@
+{
+  "aggregate": {
+    "development": {
+      "bicubic": {
+        "family": "image",
+        "mean_quantized_mad": 0.046800319945983174
+      },
+      "bilinear": {
+        "family": "image",
+        "mean_quantized_mad": 0.04893472525729042
+      },
+      "mlp_small": {
+        "family": "mlp",
+        "mean_fit_seconds": 0.057573600000068836,
+        "mean_float_mad": 0.049103090320678375,
+        "mean_quantized_mad": 0.04988868475947632,
+        "mean_serialized_bits": 708.0
+      },
+      "model_e_coupled_adam_default": {
+        "family": "model_e_coupled",
+        "initialization": "default",
+        "mean_final_gradient_norm": 0.0,
+        "mean_final_loss": 0.005503233040100284,
+        "mean_fit_seconds": 3.0505450999999084,
+        "mean_float_mad": 0.04893472525729042,
+        "mean_initial_loss": 0.0074336760761037155,
+        "mean_quantized_mad": 0.04893472525729042,
+        "mean_serialized_bits": 780.0,
+        "mean_update_norm": 0.16549073966195485,
+        "method": "adam_default"
+      },
+      "model_e_coupled_adam_small_init": {
+        "family": "model_e_coupled",
+        "initialization": "small_layers",
+        "mean_final_gradient_norm": 0.0,
+        "mean_final_loss": 0.005503233040100284,
+        "mean_fit_seconds": 3.189209099999971,
+        "mean_float_mad": 0.04893472525729042,
+        "mean_initial_loss": 0.006465611099290353,
+        "mean_quantized_mad": 0.04893472525729042,
+        "mean_serialized_bits": 780.0,
+        "mean_update_norm": 0.15081666273445152,
+        "method": "adam_small_init"
+      },
+      "model_e_coupled_lbfgs_like_default": {
+        "family": "model_e_coupled",
+        "initialization": "default",
+        "mean_final_gradient_norm": 9.81872349126036e-06,
+        "mean_final_loss": 0.005500936063288841,
+        "mean_fit_seconds": 1.8044832499990662,
+        "mean_float_mad": 0.04889384378266204,
+        "mean_initial_loss": 0.0074336760761037155,
+        "mean_quantized_mad": 0.048890279367855546,
+        "mean_serialized_bits": 780.0,
+        "mean_update_norm": 0.01130433483433426,
+        "method": "lbfgs_like_default"
+      },
+      "model_e_coupled_random_default": {
+        "family": "model_e_coupled",
+        "initialization": "default",
+        "mean_final_gradient_norm": null,
+        "mean_final_loss": 0.005503233040100284,
+        "mean_fit_seconds": 0.078342949999751,
+        "mean_float_mad": 0.04893472525729042,
+        "mean_initial_loss": 0.0074336760761037155,
+        "mean_quantized_mad": 0.04893472525729042,
+        "mean_serialized_bits": 780.0,
+        "mean_update_norm": 0.09491191925764665,
+        "method": "random_default"
+      },
+      "model_e_single_adam_default": {
+        "family": "model_e_single",
+        "initialization": "default",
+        "mean_final_gradient_norm": 0.0,
+        "mean_final_loss": 0.005503233040100284,
+        "mean_fit_seconds": 0.949239900000066,
+        "mean_float_mad": 0.04893472525729042,
+        "mean_initial_loss": 0.006211248751847267,
+        "mean_quantized_mad": 0.04893472525729042,
+        "mean_serialized_bits": 576.0,
+        "mean_update_norm": 0.13064679580044095,
+        "method": "adam_default"
+      },
+      "model_e_single_adam_small_init": {
+        "family": "model_e_single",
+        "initialization": "small_layers",
+        "mean_final_gradient_norm": 0.0,
+        "mean_final_loss": 0.005503233040100284,
+        "mean_fit_seconds": 0.8647947500012378,
+        "mean_float_mad": 0.04893472525729042,
+        "mean_initial_loss": 0.0057579830061683795,
+        "mean_quantized_mad": 0.04893472525729042,
+        "mean_serialized_bits": 576.0,
+        "mean_update_norm": 0.12216814626445205,
+        "method": "adam_small_init"
+      },
+      "model_e_single_lbfgs_like_default": {
+        "family": "model_e_single",
+        "initialization": "default",
+        "mean_final_gradient_norm": 0.00011227833200981264,
+        "mean_final_loss": 0.005499492134325745,
+        "mean_fit_seconds": 0.5794946999994863,
+        "mean_float_mad": 0.04895909511166505,
+        "mean_initial_loss": 0.006211248751847267,
+        "mean_quantized_mad": 0.04895849161668719,
+        "mean_serialized_bits": 576.0,
+        "mean_update_norm": 0.009939609588822614,
+        "method": "lbfgs_like_default"
+      },
+      "model_e_single_random_default": {
+        "family": "model_e_single",
+        "initialization": "default",
+        "mean_final_gradient_norm": null,
+        "mean_final_loss": 0.005499648173929143,
+        "mean_fit_seconds": 0.03602504999980738,
+        "mean_float_mad": 0.0489757298158322,
+        "mean_initial_loss": 0.006211248751847267,
+        "mean_quantized_mad": 0.048976570588082136,
+        "mean_serialized_bits": 576.0,
+        "mean_update_norm": 0.04342796890149286,
+        "method": "random_default"
+      },
+      "nearest": {
+        "family": "image",
+        "mean_quantized_mad": 0.05018621706495098
+      },
+      "rff_small": {
+        "family": "rff",
+        "mean_fit_seconds": 0.08203825000055076,
+        "mean_float_mad": 0.04785389611499125,
+        "mean_quantized_mad": 0.05603209981193451,
+        "mean_serialized_bits": 576.0
+      },
+      "siren_small": {
+        "family": "siren",
+        "mean_fit_seconds": 0.05688019999979588,
+        "mean_float_mad": 0.048821973428315124,
+        "mean_quantized_mad": 0.04922036442488667,
+        "mean_serialized_bits": 696.0
+      }
+    },
+    "evaluation": {
+      "bicubic": {
+        "family": "image",
+        "mean_quantized_mad": 0.08631355769511168
+      },
+      "bilinear": {
+        "family": "image",
+        "mean_quantized_mad": 0.0900951447066457
+      },
+      "mlp_small": {
+        "family": "mlp",
+        "mean_fit_seconds": 0.07114600000113569,
+        "mean_float_mad": 0.08854180951082222,
+        "mean_quantized_mad": 0.0889202789180856,
+        "mean_serialized_bits": 708.0
+      },
+      "model_e_coupled_adam_default": {
+        "family": "model_e_coupled",
+        "initialization": "default",
+        "mean_final_gradient_norm": 0.0,
+        "mean_final_loss": 0.01770837889614541,
+        "mean_fit_seconds": 3.0313282499992056,
+        "mean_float_mad": 0.0900951447066457,
+        "mean_initial_loss": 0.01977517497537423,
+        "mean_quantized_mad": 0.0900951447066457,
+        "mean_serialized_bits": 780.0,
+        "mean_update_norm": 0.16404074279900654,
+        "method": "adam_default"
+      },
+      "model_e_coupled_adam_small_init": {
+        "family": "model_e_coupled",
+        "initialization": "small_layers",
+        "mean_final_gradient_norm": 0.0,
+        "mean_final_loss": 0.01770837889614541,
+        "mean_fit_seconds": 3.110156050000114,
+        "mean_float_mad": 0.0900951447066457,
+        "mean_initial_loss": 0.018502955226966416,
+        "mean_quantized_mad": 0.0900951447066457,
+        "mean_serialized_bits": 780.0,
+        "mean_update_norm": 0.15099918402950804,
+        "method": "adam_small_init"
+      },
+      "model_e_coupled_lbfgs_like_default": {
+        "family": "model_e_coupled",
+        "initialization": "default",
+        "mean_final_gradient_norm": 6.383895293139649e-05,
+        "mean_final_loss": 0.017678476812138185,
+        "mean_fit_seconds": 1.893258500000229,
+        "mean_float_mad": 0.08934664280730188,
+        "mean_initial_loss": 0.01977517497537423,
+        "mean_quantized_mad": 0.08933588601521678,
+        "mean_serialized_bits": 780.0,
+        "mean_update_norm": 0.008873810043528607,
+        "method": "lbfgs_like_default"
+      },
+      "model_e_coupled_random_default": {
+        "family": "model_e_coupled",
+        "initialization": "default",
+        "mean_final_gradient_norm": null,
+        "mean_final_loss": 0.018271449011299214,
+        "mean_fit_seconds": 0.07235624999975698,
+        "mean_float_mad": 0.09371690841192121,
+        "mean_initial_loss": 0.01977517497537423,
+        "mean_quantized_mad": 0.09373317256581463,
+        "mean_serialized_bits": 780.0,
+        "mean_update_norm": 0.0631133851317636,
+        "method": "random_default"
+      },
+      "model_e_single_adam_default": {
+        "family": "model_e_single",
+        "initialization": "default",
+        "mean_final_gradient_norm": 0.0,
+        "mean_final_loss": 0.01770837889614541,
+        "mean_fit_seconds": 1.1754907499998808,
+        "mean_float_mad": 0.0900951447066457,
+        "mean_initial_loss": 0.01845531082088618,
+        "mean_quantized_mad": 0.0900951447066457,
+        "mean_serialized_bits": 576.0,
+        "mean_update_norm": 0.13385043497900584,
+        "method": "adam_default"
+      },
+      "model_e_single_adam_small_init": {
+        "family": "model_e_single",
+        "initialization": "small_layers",
+        "mean_final_gradient_norm": 0.001487431445870957,
+        "mean_final_loss": 0.01719575634496191,
+        "mean_fit_seconds": 1.0889905000003637,
+        "mean_float_mad": 0.09058355186527364,
+        "mean_initial_loss": 0.0179336810446424,
+        "mean_quantized_mad": 0.09038968956197353,
+        "mean_serialized_bits": 576.0,
+        "mean_update_norm": 0.19336801446625623,
+        "method": "adam_small_init"
+      },
+      "model_e_single_lbfgs_like_default": {
+        "family": "model_e_single",
+        "initialization": "default",
+        "mean_final_gradient_norm": 0.0,
+        "mean_final_loss": 0.01770837889614541,
+        "mean_fit_seconds": 0.6295976999999766,
+        "mean_float_mad": 0.0900951447066457,
+        "mean_initial_loss": 0.01845531082088618,
+        "mean_quantized_mad": 0.0900951447066457,
+        "mean_serialized_bits": 576.0,
+        "mean_update_norm": 0.00986803883050164,
+        "method": "lbfgs_like_default"
+      },
+      "model_e_single_random_default": {
+        "family": "model_e_single",
+        "initialization": "default",
+        "mean_final_gradient_norm": null,
+        "mean_final_loss": 0.01770837889614541,
+        "mean_fit_seconds": 0.045830049999494804,
+        "mean_float_mad": 0.0900951447066457,
+        "mean_initial_loss": 0.01845531082088618,
+        "mean_quantized_mad": 0.0900951447066457,
+        "mean_serialized_bits": 576.0,
+        "mean_update_norm": 0.08000615816732348,
+        "method": "random_default"
+      },
+      "nearest": {
+        "family": "image",
+        "mean_quantized_mad": 0.0894044464709712
+      },
+      "rff_small": {
+        "family": "rff",
+        "mean_fit_seconds": 0.062196249999942665,
+        "mean_float_mad": 0.08831291285090659,
+        "mean_quantized_mad": 0.09106791835628486,
+        "mean_serialized_bits": 576.0
+      },
+      "siren_small": {
+        "family": "siren",
+        "mean_fit_seconds": 0.06580404999931488,
+        "mean_float_mad": 0.09009329195667046,
+        "mean_quantized_mad": 0.09102728375012341,
+        "mean_serialized_bits": 696.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "baselines": {
+        "bicubic": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5428952235982283,
+            "gradient_magnitude_mad": 0.030252098929159532,
+            "laplacian_mad": 0.09290009461711275,
+            "mad_vs_gt": 0.0409439915609273,
+            "psnr_vs_gt": 23.63595598252261,
+            "ssim_global_vs_gt": 0.9625012402093998
+          }
+        },
+        "bilinear": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.540954719955849,
+            "gradient_magnitude_mad": 0.03109482795169656,
+            "laplacian_mad": 0.0932591838276109,
+            "mad_vs_gt": 0.042436889170815895,
+            "psnr_vs_gt": 23.40809812112066,
+            "ssim_global_vs_gt": 0.959883034428115
+          }
+        },
+        "nearest": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.379472430965159,
+            "gradient_magnitude_mad": 0.03357515664369773,
+            "laplacian_mad": 0.10992802638633578,
+            "mad_vs_gt": 0.04338624243642769,
+            "psnr_vs_gt": 22.69452669786756,
+            "ssim_global_vs_gt": 0.9535332475745674
+          }
+        }
+      },
+      "best_model_e": {
+        "method": "random_default",
+        "model": "model_e_single"
+      },
+      "crop": {
+        "col": 0,
+        "height": 64,
+        "row": 0,
+        "width": 64
+      },
+      "model_e_diagnostics": {
+        "model_e_coupled": {
+          "adam_default": {
+            "accepted_steps": 19,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.00456236669103612,
+            "fit_seconds": 2.9561501999996835,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.0063813711199884665,
+            "initialization": "default",
+            "mean_update_norm": 0.16545248471902885,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "serialized_bits": 780
+          },
+          "adam_small_init": {
+            "accepted_steps": 19,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.00456236669103612,
+            "fit_seconds": 3.1535383999998885,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.005725156532655916,
+            "initialization": "small_layers",
+            "mean_update_norm": 0.15163415206817818,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "serialized_bits": 780
+          },
+          "lbfgs_like_default": {
+            "accepted_steps": 11,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.00456236669103612,
+            "fit_seconds": 1.864279899999019,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.0063813711199884665,
+            "initialization": "default",
+            "mean_update_norm": 0.013913972982697885,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "serialized_bits": 780
+          },
+          "random_default": {
+            "accepted_steps": 22,
+            "family": "model_e_coupled",
+            "final_gradient_norm": null,
+            "final_loss": 0.00456236669103612,
+            "fit_seconds": 0.0568358000000444,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.0063813711199884665,
+            "initialization": "default",
+            "mean_update_norm": 0.10131853600998729,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "serialized_bits": 780
+          }
+        },
+        "model_e_single": {
+          "adam_default": {
+            "accepted_steps": 19,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.00456236669103612,
+            "fit_seconds": 0.6165899000006902,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.005723655034146963,
+            "initialization": "default",
+            "mean_update_norm": 0.13485872523619463,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "serialized_bits": 576
+          },
+          "adam_small_init": {
+            "accepted_steps": 19,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.00456236669103612,
+            "fit_seconds": 0.6766916000015044,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.004933331699089024,
+            "initialization": "small_layers",
+            "mean_update_norm": 0.12263826865404176,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "serialized_bits": 576
+          },
+          "lbfgs_like_default": {
+            "accepted_steps": 11,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.00456236669103612,
+            "fit_seconds": 0.39700099999936356,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.005723655034146963,
+            "initialization": "default",
+            "mean_update_norm": 0.01041334172976259,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "serialized_bits": 576
+          },
+          "random_default": {
+            "accepted_steps": 14,
+            "family": "model_e_single",
+            "final_gradient_norm": null,
+            "final_loss": 0.00456236669103612,
+            "fit_seconds": 0.02561769999920216,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.005723655034146963,
+            "initialization": "default",
+            "mean_update_norm": 0.049473599442331234,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.540954719955849,
+              "gradient_magnitude_mad": 0.03109482795169656,
+              "laplacian_mad": 0.0932591838276109,
+              "mad_vs_gt": 0.042436889170815895,
+              "psnr_vs_gt": 23.40809812112066,
+              "ssim_global_vs_gt": 0.959883034428115
+            },
+            "serialized_bits": 576
+          }
+        }
+      },
+      "name": "development_hobbema_landscape_tl",
+      "parameterized_baselines": {
+        "mlp_small": {
+          "decode_seconds": 0.001652299999477691,
+          "family": "mlp",
+          "fit_seconds": 0.045705200000156765,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5399429092858103,
+            "gradient_magnitude_mad": 0.03097587556444658,
+            "laplacian_mad": 0.093262646152561,
+            "mad_vs_gt": 0.04363674257676957,
+            "psnr_vs_gt": 23.504709456709143,
+            "ssim_global_vs_gt": 0.9612519812715631
+          },
+          "parameter_count": 43,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.540455208374542,
+            "gradient_magnitude_mad": 0.031013266072580255,
+            "laplacian_mad": 0.09326031908857739,
+            "mad_vs_gt": 0.043988685369456576,
+            "psnr_vs_gt": 23.479231626162488,
+            "ssim_global_vs_gt": 0.9604772416070662
+          },
+          "serialized_bits": 708
+        },
+        "rff_small": {
+          "decode_seconds": 0.0022584999987884657,
+          "family": "rff",
+          "fit_seconds": 0.09866520000105083,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5443957799481854,
+            "gradient_magnitude_mad": 0.030579893241683243,
+            "laplacian_mad": 0.09328161395328881,
+            "mad_vs_gt": 0.04162732521898905,
+            "psnr_vs_gt": 23.674041800588657,
+            "ssim_global_vs_gt": 0.9627539406648793
+          },
+          "parameter_count": 32,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.5366208936666792,
+            "gradient_magnitude_mad": 0.030895496666502625,
+            "laplacian_mad": 0.09325331526381261,
+            "mad_vs_gt": 0.0569861739966193,
+            "psnr_vs_gt": 22.141238383137885,
+            "ssim_global_vs_gt": 0.9490912379870536
+          },
+          "serialized_bits": 576
+        },
+        "siren_small": {
+          "decode_seconds": 0.002462500000547152,
+          "family": "siren",
+          "fit_seconds": 0.05114590000084718,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.541826591674606,
+            "gradient_magnitude_mad": 0.031108986937035822,
+            "laplacian_mad": 0.09325176347851394,
+            "mad_vs_gt": 0.04238389637893507,
+            "psnr_vs_gt": 23.416946394977217,
+            "ssim_global_vs_gt": 0.9600176077256408
+          },
+          "parameter_count": 42,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.5413584633348456,
+            "gradient_magnitude_mad": 0.031108483189740792,
+            "laplacian_mad": 0.09325235981212696,
+            "mad_vs_gt": 0.04250469434707867,
+            "psnr_vs_gt": 23.397463177256586,
+            "ssim_global_vs_gt": 0.9597588505094006
+          },
+          "serialized_bits": 696
+        }
+      },
+      "patch_name": "dev_hobbema_landscape",
+      "source_id": "hobbema_landscape",
+      "split": "development"
+    },
+    {
+      "baselines": {
+        "bicubic": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5544643750710218,
+            "gradient_magnitude_mad": 0.0359203524339173,
+            "laplacian_mad": 0.09756566305825537,
+            "mad_vs_gt": 0.05265664833103905,
+            "psnr_vs_gt": 22.229194107334017,
+            "ssim_global_vs_gt": 0.9204852295599737
+          }
+        },
+        "bilinear": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5378870902396916,
+            "gradient_magnitude_mad": 0.03768537167945255,
+            "laplacian_mad": 0.09826005081937289,
+            "mad_vs_gt": 0.055432561343764945,
+            "psnr_vs_gt": 21.90837769954742,
+            "ssim_global_vs_gt": 0.9112662056503459
+          }
+        },
+        "nearest": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.3915760857509653,
+            "gradient_magnitude_mad": 0.041179178672058704,
+            "laplacian_mad": 0.12257475011488969,
+            "mad_vs_gt": 0.05698619169347426,
+            "psnr_vs_gt": 21.187239501662468,
+            "ssim_global_vs_gt": 0.9006879817503726
+          }
+        }
+      },
+      "best_model_e": {
+        "method": "lbfgs_like_default",
+        "model": "model_e_coupled"
+      },
+      "crop": {
+        "col": 64,
+        "height": 64,
+        "row": 64,
+        "width": 64
+      },
+      "model_e_diagnostics": {
+        "model_e_coupled": {
+          "adam_default": {
+            "accepted_steps": 19,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.006444099389164447,
+            "fit_seconds": 3.1449400000001333,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.008485981032218964,
+            "initialization": "default",
+            "mean_update_norm": 0.16552899460488085,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "serialized_bits": 780
+          },
+          "adam_small_init": {
+            "accepted_steps": 19,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.006444099389164447,
+            "fit_seconds": 3.2248798000000534,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.007206065665924791,
+            "initialization": "small_layers",
+            "mean_update_norm": 0.14999917340072486,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "serialized_bits": 780
+          },
+          "lbfgs_like_default": {
+            "accepted_steps": 11,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 1.963744698252072e-05,
+            "final_loss": 0.006439505435541562,
+            "fit_seconds": 1.7446865999991132,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5380138381367426,
+              "gradient_magnitude_mad": 0.03769020374580355,
+              "laplacian_mad": 0.09825937719177005,
+              "mad_vs_gt": 0.05535079839450819,
+              "psnr_vs_gt": 21.911474858797867,
+              "ssim_global_vs_gt": 0.9110106352731898
+            },
+            "float_to_quantized_mad_delta": -7.128829612998433e-06,
+            "initial_loss": 0.008485981032218964,
+            "initialization": "default",
+            "mean_update_norm": 0.008694696685970634,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5380006048769742,
+              "gradient_magnitude_mad": 0.037691284398337195,
+              "laplacian_mad": 0.09825934868516442,
+              "mad_vs_gt": 0.05534366956489519,
+              "psnr_vs_gt": 21.912329855660776,
+              "ssim_global_vs_gt": 0.9110689827619254
+            },
+            "serialized_bits": 780
+          },
+          "random_default": {
+            "accepted_steps": 21,
+            "family": "model_e_coupled",
+            "final_gradient_norm": null,
+            "final_loss": 0.006444099389164447,
+            "fit_seconds": 0.0998500999994576,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.008485981032218964,
+            "initialization": "default",
+            "mean_update_norm": 0.08850530250530601,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "serialized_bits": 780
+          }
+        },
+        "model_e_single": {
+          "adam_default": {
+            "accepted_steps": 19,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.006444099389164447,
+            "fit_seconds": 1.2818898999994417,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.00669884246954757,
+            "initialization": "default",
+            "mean_update_norm": 0.12643486636468726,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "serialized_bits": 576
+          },
+          "adam_small_init": {
+            "accepted_steps": 19,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.006444099389164447,
+            "fit_seconds": 1.0528979000009713,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.006582634313247736,
+            "initialization": "small_layers",
+            "mean_update_norm": 0.12169802387486235,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5378870902396916,
+              "gradient_magnitude_mad": 0.03768537167945255,
+              "laplacian_mad": 0.09826005081937289,
+              "mad_vs_gt": 0.055432561343764945,
+              "psnr_vs_gt": 21.90837769954742,
+              "ssim_global_vs_gt": 0.9112662056503459
+            },
+            "serialized_bits": 576
+          },
+          "lbfgs_like_default": {
+            "accepted_steps": 11,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.00022455666401962528,
+            "final_loss": 0.006436617577615369,
+            "fit_seconds": 0.7619883999996091,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.537736341224301,
+              "gradient_magnitude_mad": 0.03770713878174746,
+              "laplacian_mad": 0.0982592780329274,
+              "mad_vs_gt": 0.05548130105251421,
+              "psnr_vs_gt": 21.913422930871445,
+              "ssim_global_vs_gt": 0.9114040511279438
+            },
+            "float_to_quantized_mad_delta": -1.2069899557320962e-06,
+            "initial_loss": 0.00669884246954757,
+            "initialization": "default",
+            "mean_update_norm": 0.009465877447882638,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5377381142581309,
+              "gradient_magnitude_mad": 0.03770685930643498,
+              "laplacian_mad": 0.09825928860215152,
+              "mad_vs_gt": 0.05548009406255848,
+              "psnr_vs_gt": 21.91339904755163,
+              "ssim_global_vs_gt": 0.9114032697250478
+            },
+            "serialized_bits": 576
+          },
+          "random_default": {
+            "accepted_steps": 9,
+            "family": "model_e_single",
+            "final_gradient_norm": null,
+            "final_loss": 0.006436929656822165,
+            "fit_seconds": 0.0464324000004126,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5376789041790365,
+              "gradient_magnitude_mad": 0.03771572744866698,
+              "laplacian_mad": 0.09825892184860174,
+              "mad_vs_gt": 0.05551457046084851,
+              "psnr_vs_gt": 21.91321236842896,
+              "ssim_global_vs_gt": 0.9113956809824748
+            },
+            "float_to_quantized_mad_delta": 1.6815444998652396e-06,
+            "initial_loss": 0.00669884246954757,
+            "initialization": "default",
+            "mean_update_norm": 0.03738233836065448,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5376765863807816,
+              "gradient_magnitude_mad": 0.03771603395036555,
+              "laplacian_mad": 0.09825891093164375,
+              "mad_vs_gt": 0.05551625200534838,
+              "psnr_vs_gt": 21.91320387113685,
+              "ssim_global_vs_gt": 0.9113961168411346
+            },
+            "serialized_bits": 576
+          }
+        }
+      },
+      "name": "development_hobbema_landscape_br",
+      "parameterized_baselines": {
+        "mlp_small": {
+          "decode_seconds": 0.004757200000312878,
+          "family": "mlp",
+          "fit_seconds": 0.06944199999998091,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5512149161429324,
+            "gradient_magnitude_mad": 0.03735401300948709,
+            "laplacian_mad": 0.09818335772620529,
+            "mad_vs_gt": 0.054569438064587174,
+            "psnr_vs_gt": 22.193323368675436,
+            "ssim_global_vs_gt": 0.9173704688875951
+          },
+          "parameter_count": 43,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.5515655401879437,
+            "gradient_magnitude_mad": 0.03737166036224772,
+            "laplacian_mad": 0.09819237348548317,
+            "mad_vs_gt": 0.055788684149496066,
+            "psnr_vs_gt": 22.092219805341664,
+            "ssim_global_vs_gt": 0.912374255421393
+          },
+          "serialized_bits": 708
+        },
+        "rff_small": {
+          "decode_seconds": 0.0025478999996266793,
+          "family": "rff",
+          "fit_seconds": 0.06541130000005069,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.542419324303534,
+            "gradient_magnitude_mad": 0.03668305380727099,
+            "laplacian_mad": 0.09829808154606864,
+            "mad_vs_gt": 0.054080467010993456,
+            "psnr_vs_gt": 22.158471552475874,
+            "ssim_global_vs_gt": 0.9216249373546739
+          },
+          "parameter_count": 32,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.5397608671151105,
+            "gradient_magnitude_mad": 0.03738183431036209,
+            "laplacian_mad": 0.0982698144648054,
+            "mad_vs_gt": 0.05507802562724971,
+            "psnr_vs_gt": 21.939547094483736,
+            "ssim_global_vs_gt": 0.9144690592077376
+          },
+          "serialized_bits": 576
+        },
+        "siren_small": {
+          "decode_seconds": 0.0028485999991971767,
+          "family": "siren",
+          "fit_seconds": 0.06261449999874458,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5388791590144061,
+            "gradient_magnitude_mad": 0.03730932747153385,
+            "laplacian_mad": 0.09821869524464374,
+            "mad_vs_gt": 0.05526005047769519,
+            "psnr_vs_gt": 22.001251342407304,
+            "ssim_global_vs_gt": 0.9140015756651695
+          },
+          "parameter_count": 42,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.5328993856900661,
+            "gradient_magnitude_mad": 0.03751121171360237,
+            "laplacian_mad": 0.09831484985096083,
+            "mad_vs_gt": 0.05593603450269467,
+            "psnr_vs_gt": 21.798907758206404,
+            "ssim_global_vs_gt": 0.9097148094577493
+          },
+          "serialized_bits": 696
+        }
+      },
+      "patch_name": "dev_hobbema_landscape",
+      "source_id": "hobbema_landscape",
+      "split": "development"
+    },
+    {
+      "baselines": {
+        "bicubic": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5537597380202312,
+            "gradient_magnitude_mad": 0.0555315961417932,
+            "laplacian_mad": 0.18766279696489196,
+            "mad_vs_gt": 0.06970815826862094,
+            "psnr_vs_gt": 19.40880165495114,
+            "ssim_global_vs_gt": 0.8986440334897476
+          }
+        },
+        "bilinear": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5411929956208057,
+            "gradient_magnitude_mad": 0.05736565298308418,
+            "laplacian_mad": 0.18824205843361652,
+            "mad_vs_gt": 0.07249228806648528,
+            "psnr_vs_gt": 19.207097549215987,
+            "ssim_global_vs_gt": 0.8905158441207351
+          }
+        },
+        "nearest": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.3819557479287656,
+            "gradient_magnitude_mad": 0.059168640763399276,
+            "laplacian_mad": 0.20692784926470587,
+            "mad_vs_gt": 0.0731158686619179,
+            "psnr_vs_gt": 18.48405468974251,
+            "ssim_global_vs_gt": 0.8776637460065428
+          }
+        }
+      },
+      "best_model_e": {
+        "method": "random_default",
+        "model": "model_e_single"
+      },
+      "crop": {
+        "col": 0,
+        "height": 64,
+        "row": 0,
+        "width": 64
+      },
+      "model_e_diagnostics": {
+        "model_e_coupled": {
+          "adam_default": {
+            "accepted_steps": 19,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.012003012132497007,
+            "fit_seconds": 3.1893884999990405,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.01330872703734576,
+            "initialization": "default",
+            "mean_update_norm": 0.1658688579091106,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "serialized_bits": 780
+          },
+          "adam_small_init": {
+            "accepted_steps": 19,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.012003012132497007,
+            "fit_seconds": 3.2180795000003855,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.013068938685567853,
+            "initialization": "small_layers",
+            "mean_update_norm": 0.15133102983863703,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "serialized_bits": 780
+          },
+          "lbfgs_like_default": {
+            "accepted_steps": 11,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.012003012132497007,
+            "fit_seconds": 1.9507922000011604,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.01330872703734576,
+            "initialization": "default",
+            "mean_update_norm": 0.009738445062600942,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "serialized_bits": 780
+          },
+          "random_default": {
+            "accepted_steps": 20,
+            "family": "model_e_coupled",
+            "final_gradient_norm": null,
+            "final_loss": 0.012003012132497007,
+            "fit_seconds": 0.08303619999969669,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.01330872703734576,
+            "initialization": "default",
+            "mean_update_norm": 0.08644841853456146,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "serialized_bits": 780
+          }
+        },
+        "model_e_single": {
+          "adam_default": {
+            "accepted_steps": 19,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.012003012132497007,
+            "fit_seconds": 1.1331561999995756,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.01311681531383143,
+            "initialization": "default",
+            "mean_update_norm": 0.13258590374291185,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "serialized_bits": 576
+          },
+          "adam_small_init": {
+            "accepted_steps": 19,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.012003012132497007,
+            "fit_seconds": 1.1029739000005065,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.012426553515005089,
+            "initialization": "small_layers",
+            "mean_update_norm": 0.12231335048021806,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "serialized_bits": 576
+          },
+          "lbfgs_like_default": {
+            "accepted_steps": 11,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.012003012132497007,
+            "fit_seconds": 0.6424090000000433,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.01311681531383143,
+            "initialization": "default",
+            "mean_update_norm": 0.009443824999157002,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "serialized_bits": 576
+          },
+          "random_default": {
+            "accepted_steps": 22,
+            "family": "model_e_single",
+            "final_gradient_norm": null,
+            "final_loss": 0.012003012132497007,
+            "fit_seconds": 0.043912499999350985,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.01311681531383143,
+            "initialization": "default",
+            "mean_update_norm": 0.07883641478610189,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.5411929956208057,
+              "gradient_magnitude_mad": 0.05736565298308418,
+              "laplacian_mad": 0.18824205843361652,
+              "mad_vs_gt": 0.07249228806648528,
+              "psnr_vs_gt": 19.207097549215987,
+              "ssim_global_vs_gt": 0.8905158441207351
+            },
+            "serialized_bits": 576
+          }
+        }
+      },
+      "name": "evaluation_hokusai_wave_tl",
+      "parameterized_baselines": {
+        "mlp_small": {
+          "decode_seconds": 0.0024271000002045184,
+          "family": "mlp",
+          "fit_seconds": 0.07268910000129836,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5417760643709145,
+            "gradient_magnitude_mad": 0.05716682987911194,
+            "laplacian_mad": 0.18821713370390947,
+            "mad_vs_gt": 0.07257011113052408,
+            "psnr_vs_gt": 19.28104235792632,
+            "ssim_global_vs_gt": 0.8919421122454124
+          },
+          "parameter_count": 43,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.5414130756981032,
+            "gradient_magnitude_mad": 0.05718828949311322,
+            "laplacian_mad": 0.1882226116304296,
+            "mad_vs_gt": 0.07260771605325717,
+            "psnr_vs_gt": 19.273473928249018,
+            "ssim_global_vs_gt": 0.8917014473152878
+          },
+          "serialized_bits": 708
+        },
+        "rff_small": {
+          "decode_seconds": 0.0031803999991097953,
+          "family": "rff",
+          "fit_seconds": 0.06020360000002256,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.555371741126285,
+            "gradient_magnitude_mad": 0.056650734274335326,
+            "laplacian_mad": 0.18815491869196896,
+            "mad_vs_gt": 0.07208332247604528,
+            "psnr_vs_gt": 19.32779701614261,
+            "ssim_global_vs_gt": 0.8935126210222613
+          },
+          "parameter_count": 32,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.5379147888070359,
+            "gradient_magnitude_mad": 0.05743531068582655,
+            "laplacian_mad": 0.1882495735425626,
+            "mad_vs_gt": 0.07525420208321872,
+            "psnr_vs_gt": 19.1514196314078,
+            "ssim_global_vs_gt": 0.8902622439976805
+          },
+          "serialized_bits": 576
+        },
+        "siren_small": {
+          "decode_seconds": 0.0025887000010698102,
+          "family": "siren",
+          "fit_seconds": 0.06848379999973986,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5420680064107313,
+            "gradient_magnitude_mad": 0.05734470836932727,
+            "laplacian_mad": 0.1882367140267346,
+            "mad_vs_gt": 0.07252020532644307,
+            "psnr_vs_gt": 19.215669673355997,
+            "ssim_global_vs_gt": 0.8906033433596503
+          },
+          "parameter_count": 42,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.5424328584520234,
+            "gradient_magnitude_mad": 0.057372267866355506,
+            "laplacian_mad": 0.18823056483002698,
+            "mad_vs_gt": 0.07254425274954865,
+            "psnr_vs_gt": 19.208665870270725,
+            "ssim_global_vs_gt": 0.8904952665839716
+          },
+          "serialized_bits": 696
+        }
+      },
+      "patch_name": "eval_hokusai_wave",
+      "source_id": "hokusai_wave",
+      "split": "evaluation"
+    },
+    {
+      "baselines": {
+        "bicubic": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.3930233565249757,
+            "gradient_magnitude_mad": 0.07304959915239212,
+            "laplacian_mad": 0.20127679610325241,
+            "mad_vs_gt": 0.10291895712160241,
+            "psnr_vs_gt": 16.475052912364628,
+            "ssim_global_vs_gt": 0.7264335842129952
+          }
+        },
+        "bilinear": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.3683973032649573,
+            "gradient_magnitude_mad": 0.07540653636712513,
+            "laplacian_mad": 0.20162928452631054,
+            "mad_vs_gt": 0.10769800134680611,
+            "psnr_vs_gt": 16.305291036355502,
+            "ssim_global_vs_gt": 0.6992655761947851
+          }
+        },
+        "nearest": {
+          "metrics": {
+            "gradient_magnitude_correlation": 0.2797648609562647,
+            "gradient_magnitude_mad": 0.08116503800111395,
+            "laplacian_mad": 0.2343618355545343,
+            "mad_vs_gt": 0.1056930242800245,
+            "psnr_vs_gt": 15.923107194205597,
+            "ssim_global_vs_gt": 0.7039806000858941
+          }
+        }
+      },
+      "best_model_e": {
+        "method": "lbfgs_like_default",
+        "model": "model_e_coupled"
+      },
+      "crop": {
+        "col": 64,
+        "height": 64,
+        "row": 64,
+        "width": 64
+      },
+      "model_e_diagnostics": {
+        "model_e_coupled": {
+          "adam_default": {
+            "accepted_steps": 19,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.023413745659793813,
+            "fit_seconds": 2.8732679999993707,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.026241622913402696,
+            "initialization": "default",
+            "mean_update_norm": 0.16221262768890252,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "serialized_bits": 780
+          },
+          "adam_small_init": {
+            "accepted_steps": 19,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.023413745659793813,
+            "fit_seconds": 3.002232599999843,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.023936971768364977,
+            "initialization": "small_layers",
+            "mean_update_norm": 0.15066733822037906,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "serialized_bits": 780
+          },
+          "lbfgs_like_default": {
+            "accepted_steps": 11,
+            "family": "model_e_coupled",
+            "final_gradient_norm": 0.00012767790586279298,
+            "final_loss": 0.023353941491779363,
+            "fit_seconds": 1.8357247999992978,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.3708394170271629,
+              "gradient_magnitude_mad": 0.07524661904731031,
+              "laplacian_mad": 0.20163659036912215,
+              "mad_vs_gt": 0.10620099754811849,
+              "psnr_vs_gt": 16.31639812156848,
+              "ssim_global_vs_gt": 0.7028182945821199
+            },
+            "float_to_quantized_mad_delta": -2.1513584170226863e-05,
+            "initial_loss": 0.026241622913402696,
+            "initialization": "default",
+            "mean_update_norm": 0.00800917502445627,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.3708255406488553,
+              "gradient_magnitude_mad": 0.07524111807525483,
+              "laplacian_mad": 0.20163714269400562,
+              "mad_vs_gt": 0.10617948396394826,
+              "psnr_vs_gt": 16.316438185957132,
+              "ssim_global_vs_gt": 0.7028442081029379
+            },
+            "serialized_bits": 780
+          },
+          "random_default": {
+            "accepted_steps": 11,
+            "family": "model_e_coupled",
+            "final_gradient_norm": null,
+            "final_loss": 0.024539885890101424,
+            "fit_seconds": 0.061676299999817275,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.380111059992834,
+              "gradient_magnitude_mad": 0.07453766747399079,
+              "laplacian_mad": 0.2016707161587536,
+              "mad_vs_gt": 0.11494152875735715,
+              "psnr_vs_gt": 16.101274610635585,
+              "ssim_global_vs_gt": 0.7103282237257604
+            },
+            "float_to_quantized_mad_delta": 3.252830778684157e-05,
+            "initial_loss": 0.026241622913402696,
+            "initialization": "default",
+            "mean_update_norm": 0.03977835172896572,
+            "parameter_count": 49,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.3801094849682538,
+              "gradient_magnitude_mad": 0.07452619486287415,
+              "laplacian_mad": 0.2016713965296122,
+              "mad_vs_gt": 0.11497405706514399,
+              "psnr_vs_gt": 16.100183914026946,
+              "ssim_global_vs_gt": 0.7104631730717229
+            },
+            "serialized_bits": 780
+          }
+        },
+        "model_e_single": {
+          "adam_default": {
+            "accepted_steps": 19,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.023413745659793813,
+            "fit_seconds": 1.217825300000186,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.02379380632794093,
+            "initialization": "default",
+            "mean_update_norm": 0.13511496621509986,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "serialized_bits": 576
+          },
+          "adam_small_init": {
+            "accepted_steps": 19,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.002974862891741914,
+            "final_loss": 0.02238850055742681,
+            "fit_seconds": 1.0750071000002208,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.404328733808301,
+              "gradient_magnitude_mad": 0.07498065610562579,
+              "laplacian_mad": 0.20209386431224058,
+              "mad_vs_gt": 0.108674815664062,
+              "psnr_vs_gt": 16.499749917912972,
+              "ssim_global_vs_gt": 0.7077320606105896
+            },
+            "float_to_quantized_mad_delta": -0.0003877246066002066,
+            "initial_loss": 0.023440808574279715,
+            "initialization": "small_layers",
+            "mean_update_norm": 0.2644226784522944,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.40558223977253616,
+              "gradient_magnitude_mad": 0.07519867360301316,
+              "laplacian_mad": 0.20172034297047448,
+              "mad_vs_gt": 0.10828709105746179,
+              "psnr_vs_gt": 16.47563317911219,
+              "ssim_global_vs_gt": 0.7045791243113938
+            },
+            "serialized_bits": 576
+          },
+          "lbfgs_like_default": {
+            "accepted_steps": 11,
+            "family": "model_e_single",
+            "final_gradient_norm": 0.0,
+            "final_loss": 0.023413745659793813,
+            "fit_seconds": 0.6167863999999099,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.02379380632794093,
+            "initialization": "default",
+            "mean_update_norm": 0.01029225266184628,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "serialized_bits": 576
+          },
+          "random_default": {
+            "accepted_steps": 23,
+            "family": "model_e_single",
+            "final_gradient_norm": null,
+            "final_loss": 0.023413745659793813,
+            "fit_seconds": 0.047747599999638624,
+            "float_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "float_to_quantized_mad_delta": 0.0,
+            "initial_loss": 0.02379380632794093,
+            "initialization": "default",
+            "mean_update_norm": 0.08117590154854508,
+            "parameter_count": 32,
+            "quantized_metrics": {
+              "gradient_magnitude_correlation": 0.3683973032649573,
+              "gradient_magnitude_mad": 0.07540653636712513,
+              "laplacian_mad": 0.20162928452631054,
+              "mad_vs_gt": 0.10769800134680611,
+              "psnr_vs_gt": 16.305291036355502,
+              "ssim_global_vs_gt": 0.6992655761947851
+            },
+            "serialized_bits": 576
+          }
+        }
+      },
+      "name": "evaluation_hokusai_wave_br",
+      "parameterized_baselines": {
+        "mlp_small": {
+          "decode_seconds": 0.002163999999538646,
+          "family": "mlp",
+          "fit_seconds": 0.06960290000097302,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.3808832949490621,
+            "gradient_magnitude_mad": 0.07444771291755972,
+            "laplacian_mad": 0.20163860994165764,
+            "mad_vs_gt": 0.10451350789112035,
+            "psnr_vs_gt": 16.452586174069143,
+            "ssim_global_vs_gt": 0.7172911605650426
+          },
+          "parameter_count": 43,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.3809675828814492,
+            "gradient_magnitude_mad": 0.07451077630990872,
+            "laplacian_mad": 0.2016313479843917,
+            "mad_vs_gt": 0.10523284178291405,
+            "psnr_vs_gt": 16.439338733858996,
+            "ssim_global_vs_gt": 0.715340709348091
+          },
+          "serialized_bits": 708
+        },
+        "rff_small": {
+          "decode_seconds": 0.0016276000005746027,
+          "family": "rff",
+          "fit_seconds": 0.06418889999986277,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.37049066672015724,
+            "gradient_magnitude_mad": 0.07519346258336644,
+            "laplacian_mad": 0.2016407851800016,
+            "mad_vs_gt": 0.1045425032257679,
+            "psnr_vs_gt": 16.344049273716333,
+            "ssim_global_vs_gt": 0.709104771914631
+          },
+          "parameter_count": 32,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.36585711885975525,
+            "gradient_magnitude_mad": 0.07530022276770518,
+            "laplacian_mad": 0.20165274052916052,
+            "mad_vs_gt": 0.10688163462935099,
+            "psnr_vs_gt": 16.29901271552827,
+            "ssim_global_vs_gt": 0.7034207729805545
+          },
+          "serialized_bits": 576
+        },
+        "siren_small": {
+          "decode_seconds": 0.0022163000012369594,
+          "family": "siren",
+          "fit_seconds": 0.06312429999888991,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.37614306052295726,
+            "gradient_magnitude_mad": 0.07496968340516627,
+            "laplacian_mad": 0.2017182885138685,
+            "mad_vs_gt": 0.10766637858689786,
+            "psnr_vs_gt": 16.368872582321835,
+            "ssim_global_vs_gt": 0.7082023210704215
+          },
+          "parameter_count": 42,
+          "quantized_metrics": {
+            "gradient_magnitude_correlation": 0.3565354767320166,
+            "gradient_magnitude_mad": 0.07555242434254901,
+            "laplacian_mad": 0.20150100227949092,
+            "mad_vs_gt": 0.10951031475069817,
+            "psnr_vs_gt": 16.259151773526234,
+            "ssim_global_vs_gt": 0.7002061193588889
+          },
+          "serialized_bits": 696
+        }
+      },
+      "patch_name": "eval_hokusai_wave",
+      "source_id": "hokusai_wave",
+      "split": "evaluation"
+    }
+  ]
+}
