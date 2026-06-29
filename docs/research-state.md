@@ -299,12 +299,25 @@ fitting diagnostics:
 
 #117 のrunでは、L-BFGS相当の探索で一部lossとMADが少し改善したが、現行Model E候補は classical INR baseline や bicubic baseline を上回らなかった。したがって #104 の負の結果をoptimizer不足だけで説明する根拠は弱い。ただし、この診断は依存追加を避けた有限差分optimizerによる小規模runであり、autograd optimizer、別parameterization、別coupling設計、Model E一般の否定ではない。
 
+parameterization redesign source-split comparison:
+
+- `results/2026-06-29-issue-122-model-e-parameterization-redesign/`
+- #104 と同じsource-split grayscale fixtureを使い、current Model E single/coupled と Candidate A fixed ladder、Candidate B compact frequency table、Candidate C coordinate frequency + guide modulationを比較した。
+- evaluation splitの best classical INR は `fourier_mid` で、mean serialized side bits `348`、mean quantized MAD `0.089244` だった。
+- evaluation splitの best current Model E は `model_e_coupled` で、mean serialized side bits `780`、mean quantized MAD `0.090095` だった。
+- evaluation splitの best new candidate は `candidate_a_ladder` で、mean serialized side bits `636`、mean quantized MAD `0.089839` だった。`candidate_c_modulated` は `0.089848` で近かった。
+- bicubic baselineのevaluation mean MADは `0.086314`、nearest baselineは `0.089404` だった。
+
+解釈:
+
+#122 のrunでは、compactな Candidate A/C は現行Model Eより少し改善したが、best classical INR、nearest、bicubic baselineを上回らなかった。したがって、この設定の再設計候補をSIDF draft仕様へ戻す根拠はまだない。一方、現行single/coupledよりは改善があるため、Model E全体の否定ではなく、candidate size、bit-depth耐性、optimizer依存を分ける余地は残る。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
 - 現行quadratic objectiveと有限温度Metropolisを不採用とした後、次のModel D objective / decoder procedureでどの仮定を変更するか。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
-- Model E は #98 の fixed feature dictionary + linear readout、#104 の最小trainable / source-split条件、#117 の有限差分optimizer診断のいずれでも、現行single-state / coupled-state候補を採用する根拠がなかった。次に進めるなら、optimizer調整だけでなく angle / frequency parameterization や coupling設計を再設計する価値があるか。
+- Model E は #98 の fixed feature dictionary + linear readout、#104 の最小trainable / source-split条件、#117 の有限差分optimizer診断、#122 のcompact parameterization redesign比較のいずれでも、評価済み候補を採用する根拠がなかった。次に進めるなら、candidate size、bit-depth耐性、optimizer依存、またはModel E系列を一時保留する判断を分けるべきか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 

@@ -1,0 +1,128 @@
+{
+  "candidate_specs": [
+    {
+      "depth": 3,
+      "family": "fourier",
+      "feature_count": 6,
+      "group": "classical",
+      "name": "fourier_mid",
+      "order": 2,
+      "seed": 6101,
+      "states": 1
+    },
+    {
+      "depth": 3,
+      "family": "rff",
+      "feature_count": 4,
+      "group": "classical",
+      "name": "rff_small",
+      "order": 1,
+      "seed": 6102,
+      "states": 1
+    },
+    {
+      "depth": 3,
+      "family": "siren",
+      "feature_count": 6,
+      "group": "classical",
+      "name": "siren_small",
+      "order": 1,
+      "seed": 6103,
+      "states": 1
+    },
+    {
+      "depth": 3,
+      "family": "mlp",
+      "feature_count": 6,
+      "group": "classical",
+      "name": "mlp_small",
+      "order": 1,
+      "seed": 6104,
+      "states": 1
+    },
+    {
+      "depth": 6,
+      "family": "model_e_single",
+      "feature_count": 6,
+      "group": "current_model_e",
+      "name": "model_e_single",
+      "order": 1,
+      "seed": 6105,
+      "states": 1
+    },
+    {
+      "depth": 3,
+      "family": "model_e_coupled",
+      "feature_count": 6,
+      "group": "current_model_e",
+      "name": "model_e_coupled",
+      "order": 1,
+      "seed": 6106,
+      "states": 3
+    },
+    {
+      "depth": 1,
+      "family": "model_e_ladder",
+      "feature_count": 6,
+      "group": "candidate",
+      "name": "candidate_a_ladder",
+      "order": 1,
+      "seed": 6107,
+      "states": 2
+    },
+    {
+      "depth": 2,
+      "family": "model_e_frequency_table",
+      "feature_count": 4,
+      "group": "candidate",
+      "name": "candidate_b_frequency_table",
+      "order": 1,
+      "seed": 6108,
+      "states": 2
+    },
+    {
+      "depth": 3,
+      "family": "model_e_modulated",
+      "feature_count": 6,
+      "group": "candidate",
+      "name": "candidate_c_modulated",
+      "order": 1,
+      "seed": 6109,
+      "states": 2
+    }
+  ],
+  "date": "2026-06-29",
+  "experiment_seed": 20260629,
+  "fit_step_scale": 0.035,
+  "fit_steps": 48,
+  "fixture_manifest": "experiments/assets/source_split_grayscale/manifest.json",
+  "fixture_sources": [
+    {
+      "artist": "Meindert Hobbema",
+      "license": "Public Domain Mark 1.0 / PD-Art",
+      "license_note": "Wikimedia Commons identifies the faithful reproduction of the two-dimensional public-domain artwork as public domain; the author died in 1709.",
+      "source_id": "hobbema_landscape",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Landscape.jpg",
+      "split": "development",
+      "title": "Landscape",
+      "year": "17th century"
+    },
+    {
+      "artist": "Katsushika Hokusai",
+      "download_url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tsunami%20by%20hokusai%2019th%20century.jpg?width=512",
+      "license": "Public Domain Mark 1.0 / PD-Art",
+      "license_note": "Wikimedia Commons identifies the faithful reproduction of the two-dimensional public-domain artwork as public domain; the author died in 1849 and the work was published before 1931.",
+      "source_id": "hokusai_wave",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Tsunami_by_hokusai_19th_century.jpg",
+      "split": "evaluation",
+      "title": "The Great Wave off Kanagawa",
+      "year": "circa 1830-1832"
+    }
+  ],
+  "high_size": 64,
+  "low_size": 16,
+  "numpy_version": "2.3.5",
+  "parameter_bits": 12,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13"
+}

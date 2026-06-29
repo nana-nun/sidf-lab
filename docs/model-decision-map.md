@@ -33,6 +33,7 @@ SIDF は現段階では実用圧縮形式ではない。この文書は、負の
 | Model D | white-noise texture term | 採用しない現行候補 | Issues #37, #63, #75 | 粒状変化は出るが、意味的ディテールやbaseline改善としては確認できていない。 |
 | Model E | fixed feature dictionary + linear readout の single-state / coupled-state 最小候補 | 採用しない現行候補 | Issue #98 | 同一side-bit比較でRFF / bicubicを上回らなかった。最小候補をSIDF draft仕様へ採用する根拠はない。 |
 | Model E | trainable / source-split の single-state / coupled-state 候補 | 採用しない現行候補 | Issue #104 | source分割評価で最良classical候補を上回らなかった。#104条件の現行候補を採用する根拠はない。 |
+| Model E | compact parameterization redesign Candidate A/B/C | 採用しない現行候補、ただし一部改善あり | Issue #122 | Candidate A/Cは現行Model Eより少し良かったが、best classical INR、nearest、bicubicを上回らなかった。採用根拠には不足。 |
 | Model E | trainable small MLP / RFF / SIREN / Fourier baseline | 比較基準として継続 | Issues #103, #104 | `mlp_small` が#104のevaluation splitで最良parameterized候補だった。Model E再設計時の比較対象として残す。 |
 
 ## Model D
@@ -85,18 +86,34 @@ Evaluation splitでは、best parameterized candidate は `mlp_small` で、mean
 | model_e_single | Model E | 576 | 0.090061 |
 | model_e_coupled | Model E | 780 | 0.090095 |
 
+Issue #122 では、Issue #116 で整理し Issue #121 で実装した Candidate A fixed ladder、Candidate B compact frequency table、Candidate C coordinate frequency + guide modulationを、#104と同じsource-split fixture、12-bit量子化、incremental side-bit accountingで比較した。結果は `results/2026-06-29-issue-122-model-e-parameterization-redesign/` に保存した。
+
+Evaluation splitでは、best classical INR は `fourier_mid` で、mean serialized side bits `348`、mean quantized MAD `0.089244` だった。Best current Model E は `model_e_coupled` で、mean serialized side bits `780`、mean quantized MAD `0.090095` だった。Best new candidate は `candidate_a_ladder` で、mean serialized side bits `636`、mean quantized MAD `0.089839` だった。
+
+| Candidate | Family | Mean serialized side bits | Evaluation mean quantized MAD |
+| --- | --- | ---: | ---: |
+| bicubic | image baseline | n/a | 0.086314 |
+| nearest | image baseline | n/a | 0.089404 |
+| fourier_mid | classical INR | 348 | 0.089244 |
+| model_e_coupled | current Model E | 780 | 0.090095 |
+| candidate_a_ladder | new Model E candidate | 636 | 0.089839 |
+| candidate_c_modulated | new Model E candidate | 636 | 0.089848 |
+
 ### Interpretation
 
 このfixed-feature条件では、Model E候補がclassical INR baselineを一貫して上回るとは解釈しない。量子回路由来の構造そのものを採用理由にせず、同じserialized side bitsでclassical baselineを上回る測定結果が必要である。
 
 #104 のtrainable / source-split条件でも、現行のsingle-state / coupled-state候補を採用する根拠は得られていない。ただし、これは #104 のparameterization、optimizer、source分割fixture、incremental side-bit見積もりに対する負の結果であり、Model E一般や別の量子回路由来座標関数の否定ではない。
 
+#122 のcompact parameterization redesignでは、Candidate A/C が現行Model Eより少し改善した。しかし best classical INR、nearest、bicubic baselineを上回らなかったため、この設定のCandidate A/B/Cを採用候補へ戻す根拠は不足している。これはcandidate size、bit-depth耐性、autograd optimizer、別coupling設計の否定ではない。
+
 ### Current Decision
 
 - #98 の fixed feature dictionary + linear readout 最小Model E候補は、SIDF draft仕様へ採用しない。
 - #104 の trainable / source-split Model E single-state / coupled-state候補も、SIDF draft仕様へ採用しない。
-- #98 と #104 はModel E全体の否定ではなく、それぞれ評価した構造とprotocolの負の結果として扱う。
-- Model Eを継続する場合は、現行候補のrandom search調整ではなく、angle / frequency parameterization、coupling設計、bit accountingを再設計した別Issueとして扱う。
+- #122 のcompact parameterization redesign Candidate A/B/Cも、現時点ではSIDF draft仕様へ採用しない。
+- #98、#104、#122 はModel E全体の否定ではなく、それぞれ評価した構造とprotocolの負の結果として扱う。
+- Model Eを継続する場合は、candidate size、bit-depth耐性、optimizer依存、coupling設計を分ける。継続しない場合は、Model E系列を一時保留する判断を別Issueで明文化する。
 
 ### Limitations
 
@@ -137,3 +154,4 @@ Evaluation splitでは、best parameterized candidate は `mlp_small` で、mean
 - `results/2026-06-14-issue-88-model-d-deterministic-icm/notes.md`
 - `results/2026-06-27-issue-98-model-e-bit-budget/notes.md`
 - `results/2026-06-28-issue-104-trainable-inr-source-split/notes.md`
+- `results/2026-06-29-issue-122-model-e-parameterization-redesign/notes.md`
