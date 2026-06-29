@@ -1,8 +1,8 @@
 # Model D/E 採否判断マップ
 
 Status: Draft decision map
-Date: 2026-06-28
-Related Issues: [#106](https://github.com/nana-nun/sidf-lab/issues/106), [#113](https://github.com/nana-nun/sidf-lab/issues/113)
+Date: 2026-06-29
+Related Issues: [#106](https://github.com/nana-nun/sidf-lab/issues/106), [#113](https://github.com/nana-nun/sidf-lab/issues/113), [#127](https://github.com/nana-nun/sidf-lab/issues/127)
 
 この文書は、Model D / Model E の保存済み実験から「現時点で採用しない候補」「再設計候補」「未評価候補」を追跡するための人間向けメモである。
 
@@ -112,8 +112,19 @@ Evaluation splitでは、best classical INR は `fourier_mid` で、mean seriali
 - #98 の fixed feature dictionary + linear readout 最小Model E候補は、SIDF draft仕様へ採用しない。
 - #104 の trainable / source-split Model E single-state / coupled-state候補も、SIDF draft仕様へ採用しない。
 - #122 のcompact parameterization redesign Candidate A/B/Cも、現時点ではSIDF draft仕様へ採用しない。
-- #98、#104、#122 はModel E全体の否定ではなく、それぞれ評価した構造とprotocolの負の結果として扱う。
-- Model Eを継続する場合は、candidate size、bit-depth耐性、optimizer依存、coupling設計を分ける。継続しない場合は、Model E系列を一時保留する判断を別Issueで明文化する。
+- #98、#104、#117、#122 はModel E全体の否定ではなく、それぞれ評価した構造とprotocolの負の結果として扱う。
+- #117 のoptimizer診断も、現行Model E候補を採用候補へ戻す根拠にはならなかった。
+- Model Eを継続する場合は、candidate size、bit-depth耐性、optimizer依存、coupling設計を分ける。継続しない場合は、Model E系列を一時保留として扱い、残Issueを再優先度付けする。
+
+### Continue / Pause Decision
+
+Model Eを継続する価値があるのは、次の切り分けを小さく検証する場合に限る。
+
+- #119: 同じcandidateを8-bit / 12-bit / 16-bitなどで比較し、量子化後にも相対改善が残るかを見る。
+- #125: autograd optimizerを導入するか判断し、導入する場合はModel Eとclassical INRへ同じoptimizer条件を適用する。
+- #118: coupling variationを同じsource-split fixtureとbit accountingで比較し、current coupled-stateの弱さがcoupling設計に由来するかを分ける。
+
+一時保留の根拠は、#98 / #104 / #117 / #122 の全てで評価済みModel E候補が採用基準に届いていないことである。特に #122 は再設計候補A/Cが現行Model Eを少し改善したが、best classical INR、nearest、bicubic baselineを上回らなかった。このため、Model Eを継続する場合でも「採用へ進む」ではなく「未解決要因を切り分ける」扱いにする。
 
 ### Limitations
 
@@ -143,6 +154,12 @@ Evaluation splitでは、best classical INR は `fourier_mid` で、mean seriali
 | [#107](https://github.com/nana-nun/sidf-lab/issues/107) | `t:ref` | referenced | INR圧縮のbit accountingとparameter量子化方針を整理した。 |
 | [#108](https://github.com/nana-nun/sidf-lab/issues/108) | `t:impl` | reflected | source分割済みgrayscale patch fixtureを追加した。 |
 | [#113](https://github.com/nana-nun/sidf-lab/issues/113) | `t:docs` | current update | #104 の負の結果を採否判断へ反映する。 |
+| [#117](https://github.com/nana-nun/sidf-lab/issues/117) | `t:exp` | reflected | 現行Model E fittingのoptimizer / initializationを診断した。 |
+| [#118](https://github.com/nana-nun/sidf-lab/issues/118) | `t:exp` | open follow-up | coupling variationを続ける場合の切り分けIssue。 |
+| [#119](https://github.com/nana-nun/sidf-lab/issues/119) | `t:exp` | open follow-up | INR parameter量子化bit深度耐性を比較するIssue。 |
+| [#122](https://github.com/nana-nun/sidf-lab/issues/122) | `t:exp` | reflected | Candidate A/B/C parameterization redesignをsource-splitで比較した。 |
+| [#125](https://github.com/nana-nun/sidf-lab/issues/125) | `t:impl` | open follow-up | autograd optimizer基盤の導入可否を検討するIssue。 |
+| [#127](https://github.com/nana-nun/sidf-lab/issues/127) | `t:docs` | current update | Model E系列の継続/保留判断を整理する。 |
 
 ## References
 
