@@ -287,12 +287,24 @@ trainable INR / source-split comparison:
 
 #104 のrunでも、現行のtrainable Model E single-state / coupled-state候補を採用する根拠は得られなかった。この負の結果は #104 のparameterization、optimizer、source分割fixture、incremental side-bit見積もりに限定される。Model E一般、別のangle / frequency parameterization、別のcoupling設計、量子回路由来座標関数全体の否定ではない。また、量子優位、実用圧縮、一般的super-resolutionはこのrunでは測定していない。
 
+fitting diagnostics:
+
+- `results/2026-06-29-issue-117-model-e-fitting-diagnostics/`
+- #104 と同じsource-split grayscale fixtureを使い、現行 Model E single-state / coupled-state を random search、有限差分Adam、有限差分L-BFGS相当、small_layers初期化で診断した。
+- evaluation splitの best classical parameterized baseline は `mlp_small` で、mean serialized side bits `708`、mean quantized MAD `0.088920` だった。
+- best Model E diagnostic condition は `model_e_coupled_lbfgs_like_default` で、mean serialized side bits `780`、mean quantized MAD `0.089336` だった。
+- bicubic baselineのevaluation mean MADは `0.086314` だった。
+
+解釈:
+
+#117 のrunでは、L-BFGS相当の探索で一部lossとMADが少し改善したが、現行Model E候補は classical INR baseline や bicubic baseline を上回らなかった。したがって #104 の負の結果をoptimizer不足だけで説明する根拠は弱い。ただし、この診断は依存追加を避けた有限差分optimizerによる小規模runであり、autograd optimizer、別parameterization、別coupling設計、Model E一般の否定ではない。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
 - 現行quadratic objectiveと有限温度Metropolisを不採用とした後、次のModel D objective / decoder procedureでどの仮定を変更するか。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
-- Model E は #98 の fixed feature dictionary + linear readout と #104 の最小trainable / source-split条件のどちらでも、現行single-state / coupled-state候補を採用する根拠がなかった。次に進めるなら、optimizer調整だけでなく angle / frequency parameterization や coupling設計を再設計する価値があるか。
+- Model E は #98 の fixed feature dictionary + linear readout、#104 の最小trainable / source-split条件、#117 の有限差分optimizer診断のいずれでも、現行single-state / coupled-state候補を採用する根拠がなかった。次に進めるなら、optimizer調整だけでなく angle / frequency parameterization や coupling設計を再設計する価値があるか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 
