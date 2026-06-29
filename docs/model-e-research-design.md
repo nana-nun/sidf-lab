@@ -24,6 +24,20 @@ mean serialized side bits `708` だった。best Model E candidate は `model_e_
 random search調整ではなく、angle / frequency parameterization、coupling設計、
 bit accountingを再設計するIssueとして扱う。
 
+Update 2026-06-29:
+
+Issue #117 の有限差分optimizer診断では、L-BFGS相当の探索で一部改善はあったが、
+現行Model E候補は classical INR baseline や bicubic baselineを上回らなかった。
+Issue #122 のcompact parameterization redesign比較では Candidate A/C が現行Model E
+より少し改善したが、best classical INR、nearest、bicubic baselineを上回らなかった。
+したがって、#98 / #104 / #117 / #122 で評価したModel E候補をSIDF draft仕様へ
+採用する根拠はまだない。
+
+Model Eを継続する場合は、#118 のcoupling variation、#119 のbit-depth耐性、#125 の
+autograd optimizer基盤を、採用済み候補ではなく未解決要因の切り分けとして扱う。
+継続しない場合は、これらのIssueを実施せず一時保留にする理由を、測定済み結果と
+未測定範囲に分けて明文化する。
+
 ## 1. Positioning
 
 Model E は、量子回路由来の関数構造を古典計算上で評価する
@@ -281,7 +295,32 @@ Model Eを有望候補とする条件:
 #104 のtrainable / source-split結果は、この区分に入る。現行single-state /
 coupled-state候補は、#104のevaluation splitで最良classical INR候補を上回らなかった。
 
+#122 のcompact parameterization redesign Candidate A/B/Cも、この区分に入る。Candidate A/Cは
+現行Model Eより少し改善したが、best classical INR、nearest、bicubic baselineを
+上回らなかったため、採用候補へ戻す根拠には不足している。
+
 不採用はquantum-inspired representation一般ではなく、評価した構造とprotocolに対する判断とする。
+
+### Continue Or Pause Gate
+
+Model E系列を継続する場合は、次のいずれかを事前に満たす小さなIssueとして扱う。
+
+- candidate size、frequency count、depth、statesを増やしても、同じsource-split fixtureと
+  `incremental_side_bits` でclassical baselineと比較できる。
+- #119 のbit-depth耐性で、量子化後もModel E候補の相対改善が残るかを確認できる。
+- #125 のautograd optimizer導入により、Model Eだけでなくclassical INR baselineにも
+  同じoptimizer条件を適用できる。
+- #118 のcoupling variationで、single-state / current coupled / new couplingの差を
+  同じbit accountingで分離できる。
+
+Model E系列を一時保留する場合は、次を根拠にできる。
+
+- #98、#104、#117、#122 のいずれでも、評価済みModel E候補は採用基準を満たしていない。
+- #122 では再設計候補が現行候補を少し改善したが、best classical INR、nearest、
+  bicubic baselineを上回らなかった。
+- 現時点で未解決の改善仮説は、candidate size、bit-depth、optimizer、coupling variationに
+  分かれており、どれも採用済み仕様ではなく追加検証の候補である。
+- 実用圧縮、super-resolution、quantum advantageは未測定であり、Model E継続の理由にしない。
 
 ## 12. Research Sequence
 
@@ -292,9 +331,14 @@ coupled-state候補は、#104のevaluation splitで最良classical INR候補を�
 5. Issue #103: trainable INR / Model E fitting基盤の最小実装。
 6. Issue #108: source分割済みgrayscale patch fixtureの追加。
 7. Issue #104: trainable INR baselineとsource分割datasetによるModel E再比較。
+8. Issue #117: 現行Model E fittingのoptimizer / initialization診断。
+9. Issue #121: Candidate A/B/C parameterizationの最小実装。
+10. Issue #122: Candidate A/B/Cをsource-split条件で比較。
+11. Issue #127: Model E系列の継続/保留判断の整理。
 
-#98 と #104 の結果から、評価済みの現行Model E候補はSIDF draft specificationへ採用しない。
-Model Eを続ける場合は、採用保留のまま別parameterizationやcoupling設計を再検証する。
+#98、#104、#117、#122 の結果から、評価済みModel E候補はSIDF draft specificationへ採用しない。
+Model Eを続ける場合は、採用保留のまま candidate size、bit-depth耐性、optimizer、
+coupling設計を分けて再検証する。続けない場合は、Model E系列を一時保留として扱う。
 
 ## 13. Limitations
 
@@ -315,5 +359,10 @@ Model Eを続ける場合は、採用保留のまま別parameterizationやcoupli
 - [Issue #97](https://github.com/nana-nun/sidf-lab/issues/97)
 - [Issue #98](https://github.com/nana-nun/sidf-lab/issues/98)
 - [Issue #104](https://github.com/nana-nun/sidf-lab/issues/104)
+- [Issue #117](https://github.com/nana-nun/sidf-lab/issues/117)
+- [Issue #122](https://github.com/nana-nun/sidf-lab/issues/122)
+- [Issue #127](https://github.com/nana-nun/sidf-lab/issues/127)
 - `results/2026-06-28-issue-104-trainable-inr-source-split/notes.md`
+- `results/2026-06-29-issue-117-model-e-fitting-diagnostics/notes.md`
+- `results/2026-06-29-issue-122-model-e-parameterization-redesign/notes.md`
 - `references/notes/model-e-parameterization-redesign.md`
