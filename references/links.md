@@ -14,6 +14,8 @@ SIDF研究に関係するWeb資料、実装例、ドキュメントへのリン�
 | Guided reconstruction | Guided Image Filtering | https://people.csail.mit.edu/kaiming/publications/eccv10guidedfilter.pdf | Issue #14 の調査候補 |
 | Guided reconstruction | Guided Image Filtering mirror | https://mmlab.ie.cuhk.edu.hk/2010/eccv10_Guided.pdf | Issue #14 で参照した論文PDF |
 | Guided reconstruction | Joint Bilateral Upsampling | https://johanneskopf.de/publications/jbu/paper/FinalPaper_0185.pdf | Issue #14 で参照した joint upsampling 論文PDF |
+| Non-local reconstruction | A Non-Local Algorithm for Image Denoising | https://doi.org/10.1109/CVPR.2005.38 | Issue #120 の非局所自己類似性検討 |
+| Non-local reconstruction | A Review of Image Denoising Algorithms, with a New One | https://doi.org/10.1137/040616024 | Non-local Means の拡張説明と比較背景 |
 | Edge-preserving smoothing | Fast Bilateral Filtering for the Display of High-Dynamic-Range Images | https://people.csail.mit.edu/fredo/PUBLI/Siggraph2002/DurandBilateral.pdf | bilateral filter の基礎文献 |
 | Interpolation baseline | Cubic Convolution Interpolation for Digital Image Processing | https://doi.org/10.1109/TASSP.1981.1163711 | bicubic baseline の古典的文献 |
 | Super-resolution baseline | Learning a Deep Convolutional Network for Image Super-Resolution | https://doi.org/10.1007/978-3-319-10593-2_13 | 超解像代表例。SIDFの主張と混同しないための背景 |
