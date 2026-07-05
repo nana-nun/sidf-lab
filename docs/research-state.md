@@ -312,12 +312,24 @@ parameterization redesign source-split comparison:
 
 #122 のrunでは、compactな Candidate A/C は現行Model Eより少し改善したが、best classical INR、nearest、bicubic baselineを上回らなかった。したがって、この設定の再設計候補をSIDF draft仕様へ戻す根拠はまだない。一方、現行single/coupledよりは改善があるため、Model E全体の否定ではなく、candidate size、bit-depth耐性、optimizer依存を分ける余地は残る。
 
+parameter quantization depth comparison:
+
+- `results/2026-07-05-issue-119-inr-quantization-depth/`
+- #104 と同じsource-split grayscale fixtureを使い、RFF、SIREN、MLP、Model E single-state、Model E coupled-stateを8-bit、12-bit、16-bit parameter量子化で比較した。
+- 各candidateは一度float parameterをfitし、その同じparameterを各bit depthへ再量子化した。`incremental_side_bits` はparameter side informationだけで、guide bits、container overhead、entropy codingを含まない。
+- evaluation splitでは、8-bit / 12-bit / 16-bit のすべてで `mlp_small` が best classical INR だった。mean quantized MAD は 8-bit `0.089057`、12-bit `0.089009`、16-bit `0.089015`。
+- best Model E候補は、8-bitでは `model_e_coupled` の mean quantized MAD `0.090095`、12-bit / 16-bitでは `model_e_single` の `0.090061` / `0.090059` だった。
+
+解釈:
+
+#119 のrunでは、低bit parameter量子化でModel E候補がbest classical INRを上回るとは解釈しない。Model E single はfloat-to-quantized deltaが小さい条件もあったが、float時点のMADがclassical候補より高く、低bit耐性だけでは採用根拠にならなかった。この結果は小規模fixture、random-search fit、再量子化比較に限定され、Model E一般、実用圧縮、super-resolution、量子優位は示していない。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
 - 現行quadratic objectiveと有限温度Metropolisを不採用とした後、次のModel D objective / decoder procedureでどの仮定を変更するか。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
-- Model E は #98 の fixed feature dictionary + linear readout、#104 の最小trainable / source-split条件、#117 の有限差分optimizer診断、#122 のcompact parameterization redesign比較のいずれでも、評価済み候補を採用する根拠がなかった。次に進めるなら、candidate size、bit-depth耐性、optimizer依存、またはModel E系列を一時保留する判断を分けるべきか。
+- Model E は #98 の fixed feature dictionary + linear readout、#104 の最小trainable / source-split条件、#117 の有限差分optimizer診断、#122 のcompact parameterization redesign比較、#119 のparameter bit-depth比較のいずれでも、評価済み候補を採用する根拠がなかった。次に進めるなら、coupling variation、optional autograd optimizer実測、またはModel E系列を一時保留する判断を分けるべきか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 

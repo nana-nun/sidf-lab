@@ -1,0 +1,1760 @@
+{
+  "aggregate": {
+    "development": {
+      "baselines": {
+        "bicubic": {
+          "mean_mad_vs_gt": 0.046800319945983174,
+          "mean_psnr_vs_gt": 22.932575044928313,
+          "mean_ssim_global_vs_gt": 0.9414932348846867
+        },
+        "bilinear": {
+          "mean_mad_vs_gt": 0.04893472525729042,
+          "mean_psnr_vs_gt": 22.658237910334037,
+          "mean_ssim_global_vs_gt": 0.9355746200392304
+        },
+        "nearest": {
+          "mean_mad_vs_gt": 0.05018621706495098,
+          "mean_psnr_vs_gt": 21.940883099765013,
+          "mean_ssim_global_vs_gt": 0.9271106146624699
+        }
+      },
+      "candidates": {
+        "mlp_small": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.1728515625,
+              "mean_decode_seconds": 0.00071264999860432,
+              "mean_float_to_quantized_mad_delta": 5.014032522962508e-05,
+              "mean_quantized_mad_vs_gt": 0.04854476354571298,
+              "mean_quantized_psnr_vs_gt": 22.83459756519222,
+              "mean_quantized_ssim_global_vs_gt": 0.939125444005877,
+              "mean_serialized_bits": 708.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.21484375,
+              "mean_decode_seconds": 0.0007145999989006668,
+              "mean_float_to_quantized_mad_delta": 5.40372007674407e-05,
+              "mean_quantized_mad_vs_gt": 0.0485486604212508,
+              "mean_quantized_psnr_vs_gt": 22.834410591785954,
+              "mean_quantized_ssim_global_vs_gt": 0.9391225555680929,
+              "mean_serialized_bits": 880.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.130859375,
+              "mean_decode_seconds": 0.0008209000006900169,
+              "mean_float_to_quantized_mad_delta": 2.5562028144698185e-05,
+              "mean_quantized_mad_vs_gt": 0.048520185248628056,
+              "mean_quantized_psnr_vs_gt": 22.834557028554002,
+              "mean_quantized_ssim_global_vs_gt": 0.939203180311764,
+              "mean_serialized_bits": 536.0
+            }
+          },
+          "family": "mlp",
+          "mean_fit_seconds": 0.03102365000086138,
+          "mean_float_mad_vs_gt": 0.048494623220483354,
+          "mean_float_psnr_vs_gt": 22.847507743370695,
+          "parameter_count": 43
+        },
+        "model_e_coupled": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.1904296875,
+              "mean_decode_seconds": 0.0013324500032467768,
+              "mean_float_to_quantized_mad_delta": 0.0,
+              "mean_quantized_mad_vs_gt": 0.04893472525729042,
+              "mean_quantized_psnr_vs_gt": 22.658237910334037,
+              "mean_quantized_ssim_global_vs_gt": 0.9355746200392304,
+              "mean_serialized_bits": 780.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.23828125,
+              "mean_decode_seconds": 0.001649999998335261,
+              "mean_float_to_quantized_mad_delta": 0.0,
+              "mean_quantized_mad_vs_gt": 0.04893472525729042,
+              "mean_quantized_psnr_vs_gt": 22.658237910334037,
+              "mean_quantized_ssim_global_vs_gt": 0.9355746200392304,
+              "mean_serialized_bits": 976.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.142578125,
+              "mean_decode_seconds": 0.0016086499963421375,
+              "mean_float_to_quantized_mad_delta": 0.0,
+              "mean_quantized_mad_vs_gt": 0.04893472525729042,
+              "mean_quantized_psnr_vs_gt": 22.658237910334037,
+              "mean_quantized_ssim_global_vs_gt": 0.9355746200392304,
+              "mean_serialized_bits": 584.0
+            }
+          },
+          "family": "model_e_coupled",
+          "mean_fit_seconds": 0.06791074999637203,
+          "mean_float_mad_vs_gt": 0.04893472525729042,
+          "mean_float_psnr_vs_gt": 22.658237910334037,
+          "parameter_count": 49
+        },
+        "model_e_single": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.140625,
+              "mean_decode_seconds": 0.0008722500060684979,
+              "mean_float_to_quantized_mad_delta": 1.0012291050652544e-06,
+              "mean_quantized_mad_vs_gt": 0.04930119667216223,
+              "mean_quantized_psnr_vs_gt": 22.678999181439202,
+              "mean_quantized_ssim_global_vs_gt": 0.9359265621886261,
+              "mean_serialized_bits": 576.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.171875,
+              "mean_decode_seconds": 0.0007395499997073784,
+              "mean_float_to_quantized_mad_delta": 2.53983989437212e-06,
+              "mean_quantized_mad_vs_gt": 0.04930273528295154,
+              "mean_quantized_psnr_vs_gt": 22.678987686174832,
+              "mean_quantized_ssim_global_vs_gt": 0.9359269433728594,
+              "mean_serialized_bits": 704.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.109375,
+              "mean_decode_seconds": 0.0010077999977511354,
+              "mean_float_to_quantized_mad_delta": 7.611531115422204e-05,
+              "mean_quantized_mad_vs_gt": 0.04937631075421138,
+              "mean_quantized_psnr_vs_gt": 22.67866513952847,
+              "mean_quantized_ssim_global_vs_gt": 0.9359460879728201,
+              "mean_serialized_bits": 448.0
+            }
+          },
+          "family": "model_e_single",
+          "mean_fit_seconds": 0.03536000000167405,
+          "mean_float_mad_vs_gt": 0.049300195443057165,
+          "mean_float_psnr_vs_gt": 22.679015555277033,
+          "parameter_count": 32
+        },
+        "rff_small": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.140625,
+              "mean_decode_seconds": 0.0008887000003596768,
+              "mean_float_to_quantized_mad_delta": 0.0018630837933062382,
+              "mean_quantized_mad_vs_gt": 0.05036465116629603,
+              "mean_quantized_psnr_vs_gt": 22.60753333350489,
+              "mean_quantized_ssim_global_vs_gt": 0.9354975759025873,
+              "mean_serialized_bits": 576.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.171875,
+              "mean_decode_seconds": 0.0008285500080091879,
+              "mean_float_to_quantized_mad_delta": 0.0018597275846250448,
+              "mean_quantized_mad_vs_gt": 0.050361294957614836,
+              "mean_quantized_psnr_vs_gt": 22.60781924026294,
+              "mean_quantized_ssim_global_vs_gt": 0.9354995801871073,
+              "mean_serialized_bits": 704.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.109375,
+              "mean_decode_seconds": 0.0008065500005614012,
+              "mean_float_to_quantized_mad_delta": 0.0016624795726243244,
+              "mean_quantized_mad_vs_gt": 0.05016404694561412,
+              "mean_quantized_psnr_vs_gt": 22.622809031116468,
+              "mean_quantized_ssim_global_vs_gt": 0.9355292905663972,
+              "mean_serialized_bits": 448.0
+            }
+          },
+          "family": "rff",
+          "mean_fit_seconds": 0.05106689999229275,
+          "mean_float_mad_vs_gt": 0.048501567372989794,
+          "mean_float_psnr_vs_gt": 22.733692947103158,
+          "parameter_count": 32
+        },
+        "siren_small": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.169921875,
+              "mean_decode_seconds": 0.0008706000007805414,
+              "mean_float_to_quantized_mad_delta": -0.00012832208318971222,
+              "mean_quantized_mad_vs_gt": 0.04910375323685578,
+              "mean_quantized_psnr_vs_gt": 22.660667169390564,
+              "mean_quantized_ssim_global_vs_gt": 0.9373702634480241,
+              "mean_serialized_bits": 696.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.2109375,
+              "mean_decode_seconds": 0.0006892000019433908,
+              "mean_float_to_quantized_mad_delta": -0.00013349040596821737,
+              "mean_quantized_mad_vs_gt": 0.04909858491407727,
+              "mean_quantized_psnr_vs_gt": 22.66090457102524,
+              "mean_quantized_ssim_global_vs_gt": 0.9373684183363662,
+              "mean_serialized_bits": 864.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.12890625,
+              "mean_decode_seconds": 0.000738450005883351,
+              "mean_float_to_quantized_mad_delta": -0.0001701445399849913,
+              "mean_quantized_mad_vs_gt": 0.0490619307800605,
+              "mean_quantized_psnr_vs_gt": 22.66285680974402,
+              "mean_quantized_ssim_global_vs_gt": 0.9373328210981815,
+              "mean_serialized_bits": 528.0
+            }
+          },
+          "family": "siren",
+          "mean_fit_seconds": 0.030133550004393328,
+          "mean_float_mad_vs_gt": 0.04923207532004549,
+          "mean_float_psnr_vs_gt": 22.721779162489177,
+          "parameter_count": 42
+        }
+      }
+    },
+    "evaluation": {
+      "baselines": {
+        "bicubic": {
+          "mean_mad_vs_gt": 0.08631355769511168,
+          "mean_psnr_vs_gt": 17.941927283657883,
+          "mean_ssim_global_vs_gt": 0.8125388088513714
+        },
+        "bilinear": {
+          "mean_mad_vs_gt": 0.0900951447066457,
+          "mean_psnr_vs_gt": 17.756194292785743,
+          "mean_ssim_global_vs_gt": 0.7948907101577601
+        },
+        "nearest": {
+          "mean_mad_vs_gt": 0.0894044464709712,
+          "mean_psnr_vs_gt": 17.203580941974053,
+          "mean_ssim_global_vs_gt": 0.7908221730462185
+        }
+      },
+      "candidates": {
+        "mlp_small": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.1728515625,
+              "mean_decode_seconds": 0.0007345999983954243,
+              "mean_float_to_quantized_mad_delta": 0.00019868696785130951,
+              "mean_quantized_mad_vs_gt": 0.08900945885419972,
+              "mean_quantized_psnr_vs_gt": 17.86362080593386,
+              "mean_quantized_ssim_global_vs_gt": 0.8036402240147158,
+              "mean_serialized_bits": 708.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.21484375,
+              "mean_decode_seconds": 0.0006417999975383282,
+              "mean_float_to_quantized_mad_delta": 0.0002039137299924415,
+              "mean_quantized_mad_vs_gt": 0.08901468561634085,
+              "mean_quantized_psnr_vs_gt": 17.86349103120451,
+              "mean_quantized_ssim_global_vs_gt": 0.8036276030300102,
+              "mean_serialized_bits": 880.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.130859375,
+              "mean_decode_seconds": 0.000781850001658313,
+              "mean_float_to_quantized_mad_delta": 0.0002462630778960681,
+              "mean_quantized_mad_vs_gt": 0.08905703496424447,
+              "mean_quantized_psnr_vs_gt": 17.863220086878197,
+              "mean_quantized_ssim_global_vs_gt": 0.8033286656787748,
+              "mean_serialized_bits": 536.0
+            }
+          },
+          "family": "mlp",
+          "mean_fit_seconds": 0.028900949997478165,
+          "mean_float_mad_vs_gt": 0.08881077188634841,
+          "mean_float_psnr_vs_gt": 17.896703106818915,
+          "parameter_count": 43
+        },
+        "model_e_coupled": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.1904296875,
+              "mean_decode_seconds": 0.0014137999969534576,
+              "mean_float_to_quantized_mad_delta": 0.0,
+              "mean_quantized_mad_vs_gt": 0.0900951447066457,
+              "mean_quantized_psnr_vs_gt": 17.756194292785743,
+              "mean_quantized_ssim_global_vs_gt": 0.7948907101577601,
+              "mean_serialized_bits": 780.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.23828125,
+              "mean_decode_seconds": 0.0016776000047684647,
+              "mean_float_to_quantized_mad_delta": 0.0,
+              "mean_quantized_mad_vs_gt": 0.0900951447066457,
+              "mean_quantized_psnr_vs_gt": 17.756194292785743,
+              "mean_quantized_ssim_global_vs_gt": 0.7948907101577601,
+              "mean_serialized_bits": 976.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.142578125,
+              "mean_decode_seconds": 0.0012963999906787649,
+              "mean_float_to_quantized_mad_delta": 0.0,
+              "mean_quantized_mad_vs_gt": 0.0900951447066457,
+              "mean_quantized_psnr_vs_gt": 17.756194292785743,
+              "mean_quantized_ssim_global_vs_gt": 0.7948907101577601,
+              "mean_serialized_bits": 584.0
+            }
+          },
+          "family": "model_e_coupled",
+          "mean_fit_seconds": 0.06930224999814527,
+          "mean_float_mad_vs_gt": 0.0900951447066457,
+          "mean_float_psnr_vs_gt": 17.756194292785743,
+          "parameter_count": 49
+        },
+        "model_e_single": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.140625,
+              "mean_decode_seconds": 0.0009626999963074923,
+              "mean_float_to_quantized_mad_delta": -9.419133709963334e-06,
+              "mean_quantized_mad_vs_gt": 0.09006086760613016,
+              "mean_quantized_psnr_vs_gt": 17.767117658080444,
+              "mean_quantized_ssim_global_vs_gt": 0.7951946739927742,
+              "mean_serialized_bits": 576.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.171875,
+              "mean_decode_seconds": 0.0009028499989653938,
+              "mean_float_to_quantized_mad_delta": -1.1158037414832345e-05,
+              "mean_quantized_mad_vs_gt": 0.0900591287024253,
+              "mean_quantized_psnr_vs_gt": 17.76710575347922,
+              "mean_quantized_ssim_global_vs_gt": 0.7951932354219592,
+              "mean_serialized_bits": 704.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.109375,
+              "mean_decode_seconds": 0.0007824499989510514,
+              "mean_float_to_quantized_mad_delta": 3.5778761521561286e-05,
+              "mean_quantized_mad_vs_gt": 0.09010606550136169,
+              "mean_quantized_psnr_vs_gt": 17.76720208304608,
+              "mean_quantized_ssim_global_vs_gt": 0.7952233697205162,
+              "mean_serialized_bits": 448.0
+            }
+          },
+          "family": "model_e_single",
+          "mean_fit_seconds": 0.03688520000287099,
+          "mean_float_mad_vs_gt": 0.09007028673984013,
+          "mean_float_psnr_vs_gt": 17.766243429565577,
+          "parameter_count": 32
+        },
+        "rff_small": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.140625,
+              "mean_decode_seconds": 0.0007899499978520907,
+              "mean_float_to_quantized_mad_delta": 0.0045915539972384845,
+              "mean_quantized_mad_vs_gt": 0.09341956090620418,
+              "mean_quantized_psnr_vs_gt": 17.716226024333977,
+              "mean_quantized_ssim_global_vs_gt": 0.79740602859605,
+              "mean_serialized_bits": 576.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.171875,
+              "mean_decode_seconds": 0.0008352499935426749,
+              "mean_float_to_quantized_mad_delta": 0.0045987981286823715,
+              "mean_quantized_mad_vs_gt": 0.09342680503764807,
+              "mean_quantized_psnr_vs_gt": 17.71607228791249,
+              "mean_quantized_ssim_global_vs_gt": 0.7974164737186284,
+              "mean_serialized_bits": 704.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.109375,
+              "mean_decode_seconds": 0.0007609499953105114,
+              "mean_float_to_quantized_mad_delta": 0.005018490307679507,
+              "mean_quantized_mad_vs_gt": 0.0938464972166452,
+              "mean_quantized_psnr_vs_gt": 17.70922692229552,
+              "mean_quantized_ssim_global_vs_gt": 0.7972560116583719,
+              "mean_serialized_bits": 448.0
+            }
+          },
+          "family": "rff",
+          "mean_fit_seconds": 0.04452804999164073,
+          "mean_float_mad_vs_gt": 0.0888280069089657,
+          "mean_float_psnr_vs_gt": 17.835779514691176,
+          "parameter_count": 32
+        },
+        "siren_small": {
+          "bit_depths": {
+            "12": {
+              "mean_bits_per_output_pixel": 0.169921875,
+              "mean_decode_seconds": 0.0006234500033315271,
+              "mean_float_to_quantized_mad_delta": 0.000805181483994534,
+              "mean_quantized_mad_vs_gt": 0.09054619603448284,
+              "mean_quantized_psnr_vs_gt": 17.737603562004566,
+              "mean_quantized_ssim_global_vs_gt": 0.7941276340239234,
+              "mean_serialized_bits": 696.0
+            },
+            "16": {
+              "mean_bits_per_output_pixel": 0.2109375,
+              "mean_decode_seconds": 0.0006938500009709969,
+              "mean_float_to_quantized_mad_delta": 0.0008018798987653591,
+              "mean_quantized_mad_vs_gt": 0.09054289444925367,
+              "mean_quantized_psnr_vs_gt": 17.73789637747101,
+              "mean_quantized_ssim_global_vs_gt": 0.7941330435548308,
+              "mean_serialized_bits": 864.0
+            },
+            "8": {
+              "mean_bits_per_output_pixel": 0.12890625,
+              "mean_decode_seconds": 0.0007593999980599619,
+              "mean_float_to_quantized_mad_delta": 0.0009283827126872687,
+              "mean_quantized_mad_vs_gt": 0.09066939726317558,
+              "mean_quantized_psnr_vs_gt": 17.73681937580976,
+              "mean_quantized_ssim_global_vs_gt": 0.7941232255590203,
+              "mean_serialized_bits": 528.0
+            }
+          },
+          "family": "siren",
+          "mean_fit_seconds": 0.03118679999897722,
+          "mean_float_mad_vs_gt": 0.0897410145504883,
+          "mean_float_psnr_vs_gt": 17.765841878387953,
+          "parameter_count": 42
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "baselines": {
+        "bicubic": {
+          "decode_seconds": 0.10317980000399984,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5428952235982283,
+            "gradient_magnitude_mad": 0.030252098929159532,
+            "laplacian_mad": 0.09290009461711275,
+            "mad_vs_gt": 0.0409439915609273,
+            "psnr_vs_gt": 23.63595598252261,
+            "ssim_global_vs_gt": 0.9625012402093998
+          }
+        },
+        "bilinear": {
+          "decode_seconds": 0.00020710000535473228,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.540954719955849,
+            "gradient_magnitude_mad": 0.03109482795169656,
+            "laplacian_mad": 0.0932591838276109,
+            "mad_vs_gt": 0.042436889170815895,
+            "psnr_vs_gt": 23.40809812112066,
+            "ssim_global_vs_gt": 0.959883034428115
+          }
+        },
+        "nearest": {
+          "decode_seconds": 0.00016120000509545207,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.379472430965159,
+            "gradient_magnitude_mad": 0.03357515664369773,
+            "laplacian_mad": 0.10992802638633578,
+            "mad_vs_gt": 0.04338624243642769,
+            "psnr_vs_gt": 22.69452669786756,
+            "ssim_global_vs_gt": 0.9535332475745674
+          }
+        }
+      },
+      "candidates": {
+        "mlp_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.1728515625,
+              "decode_seconds": 0.0006861000001663342,
+              "float_to_quantized_mad_delta": 9.105758624401022e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5412088159296412,
+                "gradient_magnitude_mad": 0.030861771386075803,
+                "laplacian_mad": 0.09326122215754962,
+                "mad_vs_gt": 0.04245906926636522,
+                "psnr_vs_gt": 23.583288929903425,
+                "ssim_global_vs_gt": 0.9619540956852972
+              },
+              "serialized_bits": 708
+            },
+            "16": {
+              "bits_per_output_pixel": 0.21484375,
+              "decode_seconds": 0.000702000004821457,
+              "float_to_quantized_mad_delta": 9.392639197426667e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.541203459694527,
+                "gradient_magnitude_mad": 0.030862115830470674,
+                "laplacian_mad": 0.09326121618200361,
+                "mad_vs_gt": 0.04246193807209547,
+                "psnr_vs_gt": 23.583113792204497,
+                "ssim_global_vs_gt": 0.9619490593092557
+              },
+              "serialized_bits": 880
+            },
+            "8": {
+              "bits_per_output_pixel": 0.130859375,
+              "decode_seconds": 0.000781099995947443,
+              "float_to_quantized_mad_delta": 8.953568677454171e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5411726910754106,
+                "gradient_magnitude_mad": 0.030851369891525298,
+                "laplacian_mad": 0.09326205736313456,
+                "mad_vs_gt": 0.04245754736689575,
+                "psnr_vs_gt": 23.58377292752234,
+                "ssim_global_vs_gt": 0.9621323684029252
+              },
+              "serialized_bits": 536
+            }
+          },
+          "family": "mlp",
+          "fit_seconds": 0.02981940000609029,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5413097612786986,
+            "gradient_magnitude_mad": 0.030839746249320378,
+            "laplacian_mad": 0.09325413830940282,
+            "mad_vs_gt": 0.042368011680121206,
+            "psnr_vs_gt": 23.603232585669623,
+            "ssim_global_vs_gt": 0.9621617257022774
+          },
+          "parameter_count": 43
+        },
+        "model_e_coupled": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.1904296875,
+              "decode_seconds": 0.001364399999147281,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.540954719955849,
+                "gradient_magnitude_mad": 0.03109482795169656,
+                "laplacian_mad": 0.0932591838276109,
+                "mad_vs_gt": 0.042436889170815895,
+                "psnr_vs_gt": 23.40809812112066,
+                "ssim_global_vs_gt": 0.959883034428115
+              },
+              "serialized_bits": 780
+            },
+            "16": {
+              "bits_per_output_pixel": 0.23828125,
+              "decode_seconds": 0.001958199994987808,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.540954719955849,
+                "gradient_magnitude_mad": 0.03109482795169656,
+                "laplacian_mad": 0.0932591838276109,
+                "mad_vs_gt": 0.042436889170815895,
+                "psnr_vs_gt": 23.40809812112066,
+                "ssim_global_vs_gt": 0.959883034428115
+              },
+              "serialized_bits": 976
+            },
+            "8": {
+              "bits_per_output_pixel": 0.142578125,
+              "decode_seconds": 0.0012973999982932582,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.540954719955849,
+                "gradient_magnitude_mad": 0.03109482795169656,
+                "laplacian_mad": 0.0932591838276109,
+                "mad_vs_gt": 0.042436889170815895,
+                "psnr_vs_gt": 23.40809812112066,
+                "ssim_global_vs_gt": 0.959883034428115
+              },
+              "serialized_bits": 584
+            }
+          },
+          "family": "model_e_coupled",
+          "fit_seconds": 0.06680499999492895,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.540954719955849,
+            "gradient_magnitude_mad": 0.03109482795169656,
+            "laplacian_mad": 0.0932591838276109,
+            "mad_vs_gt": 0.042436889170815895,
+            "psnr_vs_gt": 23.40809812112066,
+            "ssim_global_vs_gt": 0.959883034428115
+          },
+          "parameter_count": 49
+        },
+        "model_e_single": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.140625,
+              "decode_seconds": 0.0007964000105857849,
+              "float_to_quantized_mad_delta": 2.002458210130509e-06,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5395957418759613,
+                "gradient_magnitude_mad": 0.031088720746904684,
+                "laplacian_mad": 0.09325796656034063,
+                "mad_vs_gt": 0.04316983200055951,
+                "psnr_vs_gt": 23.44962066333099,
+                "ssim_global_vs_gt": 0.9605869187269063
+              },
+              "serialized_bits": 576
+            },
+            "16": {
+              "bits_per_output_pixel": 0.171875,
+              "decode_seconds": 0.0007360000017797574,
+              "float_to_quantized_mad_delta": 5.07967978874424e-06,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5395921011688455,
+                "gradient_magnitude_mad": 0.031088704216226542,
+                "laplacian_mad": 0.09325796025082622,
+                "mad_vs_gt": 0.04317290922213812,
+                "psnr_vs_gt": 23.449597672802245,
+                "ssim_global_vs_gt": 0.9605876810953728
+              },
+              "serialized_bits": 704
+            },
+            "8": {
+              "bits_per_output_pixel": 0.109375,
+              "decode_seconds": 0.0012257000053068623,
+              "float_to_quantized_mad_delta": 0.00015223062230844409,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.539427672010687,
+                "gradient_magnitude_mad": 0.031087467302345715,
+                "laplacian_mad": 0.09325781313803744,
+                "mad_vs_gt": 0.04332006016465782,
+                "psnr_vs_gt": 23.448952579509523,
+                "ssim_global_vs_gt": 0.9606259702952942
+              },
+              "serialized_bits": 448
+            }
+          },
+          "family": "model_e_single",
+          "fit_seconds": 0.035047299999860115,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5395899715214387,
+            "gradient_magnitude_mad": 0.03108871772280182,
+            "laplacian_mad": 0.09325795917684829,
+            "mad_vs_gt": 0.04316782954234938,
+            "psnr_vs_gt": 23.44965341100665,
+            "ssim_global_vs_gt": 0.9605896037151294
+          },
+          "parameter_count": 32
+        },
+        "rff_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.140625,
+              "decode_seconds": 0.0009157000022241846,
+              "float_to_quantized_mad_delta": 0.0037452384696044783,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5396258183616792,
+                "gradient_magnitude_mad": 0.03111880553368606,
+                "laplacian_mad": 0.09324807977258726,
+                "mad_vs_gt": 0.04561306766793019,
+                "psnr_vs_gt": 23.318845882609963,
+                "ssim_global_vs_gt": 0.9597708622155083
+              },
+              "serialized_bits": 576
+            },
+            "16": {
+              "bits_per_output_pixel": 0.171875,
+              "decode_seconds": 0.0008170000073732808,
+              "float_to_quantized_mad_delta": 0.0037379256425541796,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5396309332048026,
+                "gradient_magnitude_mad": 0.031118044578708242,
+                "laplacian_mad": 0.09324816069339834,
+                "mad_vs_gt": 0.04560575484087989,
+                "psnr_vs_gt": 23.31945010160463,
+                "ssim_global_vs_gt": 0.9597809296709064
+              },
+              "serialized_bits": 704
+            },
+            "8": {
+              "bits_per_output_pixel": 0.109375,
+              "decode_seconds": 0.0007267000037245452,
+              "float_to_quantized_mad_delta": 0.003356631527378237,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5396936468847324,
+                "gradient_magnitude_mad": 0.031130652277305965,
+                "laplacian_mad": 0.09324827491384663,
+                "mad_vs_gt": 0.04522446072570395,
+                "psnr_vs_gt": 23.336351377123275,
+                "ssim_global_vs_gt": 0.9597222152951271
+              },
+              "serialized_bits": 448
+            }
+          },
+          "family": "rff",
+          "fit_seconds": 0.05986119998851791,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.545432351734348,
+            "gradient_magnitude_mad": 0.03090548038788477,
+            "laplacian_mad": 0.09323276296531277,
+            "mad_vs_gt": 0.04186782919832571,
+            "psnr_vs_gt": 23.521463647193922,
+            "ssim_global_vs_gt": 0.961470367573766
+          },
+          "parameter_count": 32
+        },
+        "siren_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.169921875,
+              "decode_seconds": 0.0007585000130347908,
+              "float_to_quantized_mad_delta": 7.661142557586348e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5398049153011183,
+                "gradient_magnitude_mad": 0.03099717121671336,
+                "laplacian_mad": 0.09326815130368611,
+                "mad_vs_gt": 0.042601931005769936,
+                "psnr_vs_gt": 23.40552643953925,
+                "ssim_global_vs_gt": 0.9599588575473831
+              },
+              "serialized_bits": 696
+            },
+            "16": {
+              "bits_per_output_pixel": 0.2109375,
+              "decode_seconds": 0.0006780999974580482,
+              "float_to_quantized_mad_delta": 6.66058442522835e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5398218549843615,
+                "gradient_magnitude_mad": 0.031001194179585446,
+                "laplacian_mad": 0.09326780472702298,
+                "mad_vs_gt": 0.042591925424446356,
+                "psnr_vs_gt": 23.40584677088241,
+                "ssim_global_vs_gt": 0.9599584907150399
+              },
+              "serialized_bits": 864
+            },
+            "8": {
+              "bits_per_output_pixel": 0.12890625,
+              "decode_seconds": 0.0007149000011850148,
+              "float_to_quantized_mad_delta": 6.967043209538809e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5388488374997016,
+                "gradient_magnitude_mad": 0.03100570272813546,
+                "laplacian_mad": 0.0932681114645599,
+                "mad_vs_gt": 0.04259499001228946,
+                "psnr_vs_gt": 23.40324477188156,
+                "ssim_global_vs_gt": 0.9599152210175609
+              },
+              "serialized_bits": 528
+            }
+          },
+          "family": "siren",
+          "fit_seconds": 0.03063450001354795,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5414286020277944,
+            "gradient_magnitude_mad": 0.03098982255223407,
+            "laplacian_mad": 0.09325452948156579,
+            "mad_vs_gt": 0.04252531958019407,
+            "psnr_vs_gt": 23.42265456963638,
+            "ssim_global_vs_gt": 0.9600739399975295
+          },
+          "parameter_count": 42
+        }
+      },
+      "comparison_8bit": {
+        "best_classical": "mlp_small",
+        "best_model_e": "model_e_coupled"
+      },
+      "crop": {
+        "col": 0,
+        "height": 64,
+        "row": 0,
+        "width": 64
+      },
+      "name": "development_hobbema_landscape_tl",
+      "patch_name": "dev_hobbema_landscape",
+      "source_id": "hobbema_landscape",
+      "split": "development"
+    },
+    {
+      "baselines": {
+        "bicubic": {
+          "decode_seconds": 0.09859470000083093,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5544643750710218,
+            "gradient_magnitude_mad": 0.0359203524339173,
+            "laplacian_mad": 0.09756566305825537,
+            "mad_vs_gt": 0.05265664833103905,
+            "psnr_vs_gt": 22.229194107334017,
+            "ssim_global_vs_gt": 0.9204852295599737
+          }
+        },
+        "bilinear": {
+          "decode_seconds": 0.00012910000805277377,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5378870902396916,
+            "gradient_magnitude_mad": 0.03768537167945255,
+            "laplacian_mad": 0.09826005081937289,
+            "mad_vs_gt": 0.055432561343764945,
+            "psnr_vs_gt": 21.90837769954742,
+            "ssim_global_vs_gt": 0.9112662056503459
+          }
+        },
+        "nearest": {
+          "decode_seconds": 8.939999679569155e-05,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.3915760857509653,
+            "gradient_magnitude_mad": 0.041179178672058704,
+            "laplacian_mad": 0.12257475011488969,
+            "mad_vs_gt": 0.05698619169347426,
+            "psnr_vs_gt": 21.187239501662468,
+            "ssim_global_vs_gt": 0.9006879817503726
+          }
+        }
+      },
+      "candidates": {
+        "mlp_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.1728515625,
+              "decode_seconds": 0.0007391999970423058,
+              "float_to_quantized_mad_delta": 9.22306421523994e-06,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5431147441272394,
+                "gradient_magnitude_mad": 0.037359858173799804,
+                "laplacian_mad": 0.09825137503445083,
+                "mad_vs_gt": 0.05463045782506075,
+                "psnr_vs_gt": 22.085906200481013,
+                "ssim_global_vs_gt": 0.9162967923264569
+              },
+              "serialized_bits": 708
+            },
+            "16": {
+              "bits_per_output_pixel": 0.21484375,
+              "decode_seconds": 0.0007271999929798767,
+              "float_to_quantized_mad_delta": 1.4148009560614738e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5431139057828448,
+                "gradient_magnitude_mad": 0.03736034667900928,
+                "laplacian_mad": 0.09825135375991048,
+                "mad_vs_gt": 0.054635382770406124,
+                "psnr_vs_gt": 22.08570739136741,
+                "ssim_global_vs_gt": 0.9162960518269301
+              },
+              "serialized_bits": 880
+            },
+            "8": {
+              "bits_per_output_pixel": 0.130859375,
+              "decode_seconds": 0.0008607000054325908,
+              "float_to_quantized_mad_delta": -3.841163048514534e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5430553511228245,
+                "gradient_magnitude_mad": 0.037358576122308085,
+                "laplacian_mad": 0.09825181556166968,
+                "mad_vs_gt": 0.054582823130360364,
+                "psnr_vs_gt": 22.085341129585668,
+                "ssim_global_vs_gt": 0.9162739922206027
+              },
+              "serialized_bits": 536
+            }
+          },
+          "family": "mlp",
+          "fit_seconds": 0.03222789999563247,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5434846100988262,
+            "gradient_magnitude_mad": 0.03735257808855229,
+            "laplacian_mad": 0.0982493896523847,
+            "mad_vs_gt": 0.05462123476084551,
+            "psnr_vs_gt": 22.091782901071767,
+            "ssim_global_vs_gt": 0.9164247021498182
+          },
+          "parameter_count": 43
+        },
+        "model_e_coupled": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.1904296875,
+              "decode_seconds": 0.0013005000073462725,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5378870902396916,
+                "gradient_magnitude_mad": 0.03768537167945255,
+                "laplacian_mad": 0.09826005081937289,
+                "mad_vs_gt": 0.055432561343764945,
+                "psnr_vs_gt": 21.90837769954742,
+                "ssim_global_vs_gt": 0.9112662056503459
+              },
+              "serialized_bits": 780
+            },
+            "16": {
+              "bits_per_output_pixel": 0.23828125,
+              "decode_seconds": 0.0013418000016827136,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5378870902396916,
+                "gradient_magnitude_mad": 0.03768537167945255,
+                "laplacian_mad": 0.09826005081937289,
+                "mad_vs_gt": 0.055432561343764945,
+                "psnr_vs_gt": 21.90837769954742,
+                "ssim_global_vs_gt": 0.9112662056503459
+              },
+              "serialized_bits": 976
+            },
+            "8": {
+              "bits_per_output_pixel": 0.142578125,
+              "decode_seconds": 0.0019198999943910167,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5378870902396916,
+                "gradient_magnitude_mad": 0.03768537167945255,
+                "laplacian_mad": 0.09826005081937289,
+                "mad_vs_gt": 0.055432561343764945,
+                "psnr_vs_gt": 21.90837769954742,
+                "ssim_global_vs_gt": 0.9112662056503459
+              },
+              "serialized_bits": 584
+            }
+          },
+          "family": "model_e_coupled",
+          "fit_seconds": 0.06901649999781512,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5378870902396916,
+            "gradient_magnitude_mad": 0.03768537167945255,
+            "laplacian_mad": 0.09826005081937289,
+            "mad_vs_gt": 0.055432561343764945,
+            "psnr_vs_gt": 21.90837769954742,
+            "ssim_global_vs_gt": 0.9112662056503459
+          },
+          "parameter_count": 49
+        },
+        "model_e_single": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.140625,
+              "decode_seconds": 0.0009481000015512109,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5378870902396916,
+                "gradient_magnitude_mad": 0.03768537167945255,
+                "laplacian_mad": 0.09826005081937289,
+                "mad_vs_gt": 0.055432561343764945,
+                "psnr_vs_gt": 21.90837769954742,
+                "ssim_global_vs_gt": 0.9112662056503459
+              },
+              "serialized_bits": 576
+            },
+            "16": {
+              "bits_per_output_pixel": 0.171875,
+              "decode_seconds": 0.0007430999976349995,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5378870902396916,
+                "gradient_magnitude_mad": 0.03768537167945255,
+                "laplacian_mad": 0.09826005081937289,
+                "mad_vs_gt": 0.055432561343764945,
+                "psnr_vs_gt": 21.90837769954742,
+                "ssim_global_vs_gt": 0.9112662056503459
+              },
+              "serialized_bits": 704
+            },
+            "8": {
+              "bits_per_output_pixel": 0.109375,
+              "decode_seconds": 0.0007898999901954085,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5378870902396916,
+                "gradient_magnitude_mad": 0.03768537167945255,
+                "laplacian_mad": 0.09826005081937289,
+                "mad_vs_gt": 0.055432561343764945,
+                "psnr_vs_gt": 21.90837769954742,
+                "ssim_global_vs_gt": 0.9112662056503459
+              },
+              "serialized_bits": 448
+            }
+          },
+          "family": "model_e_single",
+          "fit_seconds": 0.03567270000348799,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5378870902396916,
+            "gradient_magnitude_mad": 0.03768537167945255,
+            "laplacian_mad": 0.09826005081937289,
+            "mad_vs_gt": 0.055432561343764945,
+            "psnr_vs_gt": 21.90837769954742,
+            "ssim_global_vs_gt": 0.9112662056503459
+          },
+          "parameter_count": 32
+        },
+        "rff_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.140625,
+              "decode_seconds": 0.000861699998495169,
+              "float_to_quantized_mad_delta": -1.9070882992001936e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5389593490276807,
+                "gradient_magnitude_mad": 0.03759855156787909,
+                "laplacian_mad": 0.09826360719239681,
+                "mad_vs_gt": 0.055116234664661874,
+                "psnr_vs_gt": 21.896220784399816,
+                "ssim_global_vs_gt": 0.9112242895896663
+              },
+              "serialized_bits": 576
+            },
+            "16": {
+              "bits_per_output_pixel": 0.171875,
+              "decode_seconds": 0.0008401000086450949,
+              "float_to_quantized_mad_delta": -1.8470473304089963e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.538961754663628,
+                "gradient_magnitude_mad": 0.03759907794158135,
+                "laplacian_mad": 0.09826354998916709,
+                "mad_vs_gt": 0.055116835074349786,
+                "psnr_vs_gt": 21.89618837892125,
+                "ssim_global_vs_gt": 0.9112182307033083
+              },
+              "serialized_bits": 704
+            },
+            "8": {
+              "bits_per_output_pixel": 0.109375,
+              "decode_seconds": 0.0008863999973982573,
+              "float_to_quantized_mad_delta": -3.167238212958834e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5387416509749361,
+                "gradient_magnitude_mad": 0.03761854143578145,
+                "laplacian_mad": 0.0982640958509322,
+                "mad_vs_gt": 0.05510363316552429,
+                "psnr_vs_gt": 21.909266685109657,
+                "ssim_global_vs_gt": 0.9113363658376674
+              },
+              "serialized_bits": 448
+            }
+          },
+          "family": "rff",
+          "fit_seconds": 0.042272599996067584,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.542098327634649,
+            "gradient_magnitude_mad": 0.03750463912572484,
+            "laplacian_mad": 0.09824488855040006,
+            "mad_vs_gt": 0.055135305547653876,
+            "psnr_vs_gt": 21.945922247012394,
+            "ssim_global_vs_gt": 0.9129052874766882
+          },
+          "parameter_count": 32
+        },
+        "siren_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.169921875,
+              "decode_seconds": 0.0009826999885262921,
+              "float_to_quantized_mad_delta": -0.0003332555919552879,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5358386435076137,
+                "gradient_magnitude_mad": 0.037227769244900566,
+                "laplacian_mad": 0.09829653852300468,
+                "mad_vs_gt": 0.05560557546794162,
+                "psnr_vs_gt": 21.91580789924188,
+                "ssim_global_vs_gt": 0.9147816693486651
+              },
+              "serialized_bits": 696
+            },
+            "16": {
+              "bits_per_output_pixel": 0.2109375,
+              "decode_seconds": 0.0007003000064287335,
+              "float_to_quantized_mad_delta": -0.00033358665618871824,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5358790951426476,
+                "gradient_magnitude_mad": 0.03722760715854377,
+                "laplacian_mad": 0.09829628552985754,
+                "mad_vs_gt": 0.05560524440370819,
+                "psnr_vs_gt": 21.915962371168078,
+                "ssim_global_vs_gt": 0.9147783459576925
+              },
+              "serialized_bits": 864
+            },
+            "8": {
+              "bits_per_output_pixel": 0.12890625,
+              "decode_seconds": 0.0007620000105816871,
+              "float_to_quantized_mad_delta": -0.0004099595120653707,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5365777849669904,
+                "gradient_magnitude_mad": 0.03724630549704647,
+                "laplacian_mad": 0.09829406044903878,
+                "mad_vs_gt": 0.05552887154783154,
+                "psnr_vs_gt": 21.92246884760648,
+                "ssim_global_vs_gt": 0.9147504211788022
+              },
+              "serialized_bits": 528
+            }
+          },
+          "family": "siren",
+          "fit_seconds": 0.029632599995238706,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5614185525050656,
+            "gradient_magnitude_mad": 0.036905296387553896,
+            "laplacian_mad": 0.0982974772660819,
+            "mad_vs_gt": 0.05593883105989691,
+            "psnr_vs_gt": 22.02090375534198,
+            "ssim_global_vs_gt": 0.915133404748446
+          },
+          "parameter_count": 42
+        }
+      },
+      "comparison_8bit": {
+        "best_classical": "mlp_small",
+        "best_model_e": "model_e_single"
+      },
+      "crop": {
+        "col": 64,
+        "height": 64,
+        "row": 64,
+        "width": 64
+      },
+      "name": "development_hobbema_landscape_br",
+      "patch_name": "dev_hobbema_landscape",
+      "source_id": "hobbema_landscape",
+      "split": "development"
+    },
+    {
+      "baselines": {
+        "bicubic": {
+          "decode_seconds": 0.10410779999801889,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5537597380202312,
+            "gradient_magnitude_mad": 0.0555315961417932,
+            "laplacian_mad": 0.18766279696489196,
+            "mad_vs_gt": 0.06970815826862094,
+            "psnr_vs_gt": 19.40880165495114,
+            "ssim_global_vs_gt": 0.8986440334897476
+          }
+        },
+        "bilinear": {
+          "decode_seconds": 0.00017079999088309705,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.5411929956208057,
+            "gradient_magnitude_mad": 0.05736565298308418,
+            "laplacian_mad": 0.18824205843361652,
+            "mad_vs_gt": 0.07249228806648528,
+            "psnr_vs_gt": 19.207097549215987,
+            "ssim_global_vs_gt": 0.8905158441207351
+          }
+        },
+        "nearest": {
+          "decode_seconds": 0.00018360000103712082,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.3819557479287656,
+            "gradient_magnitude_mad": 0.059168640763399276,
+            "laplacian_mad": 0.20692784926470587,
+            "mad_vs_gt": 0.0731158686619179,
+            "psnr_vs_gt": 18.48405468974251,
+            "ssim_global_vs_gt": 0.8776637460065428
+          }
+        }
+      },
+      "candidates": {
+        "mlp_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.1728515625,
+              "decode_seconds": 0.0008286999945994467,
+              "float_to_quantized_mad_delta": 0.00016759434940558093,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5452032042970675,
+                "gradient_magnitude_mad": 0.056918412592358615,
+                "laplacian_mad": 0.18825858669443796,
+                "mad_vs_gt": 0.07202242469257059,
+                "psnr_vs_gt": 19.297980536410407,
+                "ssim_global_vs_gt": 0.8931188225082375
+              },
+              "serialized_bits": 708
+            },
+            "16": {
+              "bits_per_output_pixel": 0.21484375,
+              "decode_seconds": 0.0006198999908519909,
+              "float_to_quantized_mad_delta": 0.00016719106083706858,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5452079283627247,
+                "gradient_magnitude_mad": 0.0569183203889151,
+                "laplacian_mad": 0.1882586225027656,
+                "mad_vs_gt": 0.07202202140400207,
+                "psnr_vs_gt": 19.297914084475554,
+                "ssim_global_vs_gt": 0.8931257295360211
+              },
+              "serialized_bits": 880
+            },
+            "8": {
+              "bits_per_output_pixel": 0.130859375,
+              "decode_seconds": 0.0007715999963693321,
+              "float_to_quantized_mad_delta": 1.7384685962282265e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5451128100205224,
+                "gradient_magnitude_mad": 0.05693479327221019,
+                "laplacian_mad": 0.18825715126998482,
+                "mad_vs_gt": 0.07187221502912729,
+                "psnr_vs_gt": 19.299609680578914,
+                "ssim_global_vs_gt": 0.892961793852042
+              },
+              "serialized_bits": 536
+            }
+          },
+          "family": "mlp",
+          "fit_seconds": 0.02884980000089854,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5470333634087988,
+            "gradient_magnitude_mad": 0.05685677217314356,
+            "laplacian_mad": 0.18824976947696614,
+            "mad_vs_gt": 0.071854830343165,
+            "psnr_vs_gt": 19.32804184334286,
+            "ssim_global_vs_gt": 0.8938141783104083
+          },
+          "parameter_count": 43
+        },
+        "model_e_coupled": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.1904296875,
+              "decode_seconds": 0.0014291999978013337,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5411929956208057,
+                "gradient_magnitude_mad": 0.05736565298308418,
+                "laplacian_mad": 0.18824205843361652,
+                "mad_vs_gt": 0.07249228806648528,
+                "psnr_vs_gt": 19.207097549215987,
+                "ssim_global_vs_gt": 0.8905158441207351
+              },
+              "serialized_bits": 780
+            },
+            "16": {
+              "bits_per_output_pixel": 0.23828125,
+              "decode_seconds": 0.0018684000096982345,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5411929956208057,
+                "gradient_magnitude_mad": 0.05736565298308418,
+                "laplacian_mad": 0.18824205843361652,
+                "mad_vs_gt": 0.07249228806648528,
+                "psnr_vs_gt": 19.207097549215987,
+                "ssim_global_vs_gt": 0.8905158441207351
+              },
+              "serialized_bits": 976
+            },
+            "8": {
+              "bits_per_output_pixel": 0.142578125,
+              "decode_seconds": 0.001291199994739145,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5411929956208057,
+                "gradient_magnitude_mad": 0.05736565298308418,
+                "laplacian_mad": 0.18824205843361652,
+                "mad_vs_gt": 0.07249228806648528,
+                "psnr_vs_gt": 19.207097549215987,
+                "ssim_global_vs_gt": 0.8905158441207351
+              },
+              "serialized_bits": 584
+            }
+          },
+          "family": "model_e_coupled",
+          "fit_seconds": 0.06985200000053737,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5411929956208057,
+            "gradient_magnitude_mad": 0.05736565298308418,
+            "laplacian_mad": 0.18824205843361652,
+            "mad_vs_gt": 0.07249228806648528,
+            "psnr_vs_gt": 19.207097549215987,
+            "ssim_global_vs_gt": 0.8905158441207351
+          },
+          "parameter_count": 49
+        },
+        "model_e_single": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.140625,
+              "decode_seconds": 0.0009708999859867617,
+              "float_to_quantized_mad_delta": -1.883826741992667e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5421931480170096,
+                "gradient_magnitude_mad": 0.05726743582073264,
+                "laplacian_mad": 0.18824978358549527,
+                "mad_vs_gt": 0.07242373386545423,
+                "psnr_vs_gt": 19.228944279805383,
+                "ssim_global_vs_gt": 0.8911237717907632
+              },
+              "serialized_bits": 576
+            },
+            "16": {
+              "bits_per_output_pixel": 0.171875,
+              "decode_seconds": 0.0009236999903805554,
+              "float_to_quantized_mad_delta": -2.231607482966469e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5421876772240581,
+                "gradient_magnitude_mad": 0.05726802430153802,
+                "laplacian_mad": 0.18824973799163025,
+                "mad_vs_gt": 0.07242025605804449,
+                "psnr_vs_gt": 19.228920470602937,
+                "ssim_global_vs_gt": 0.8911208946491332
+              },
+              "serialized_bits": 704
+            },
+            "8": {
+              "bits_per_output_pixel": 0.109375,
+              "decode_seconds": 0.0008560999995097518,
+              "float_to_quantized_mad_delta": 7.155752304312257e-05,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5423198372583803,
+                "gradient_magnitude_mad": 0.05725382871522816,
+                "laplacian_mad": 0.18825089207686022,
+                "mad_vs_gt": 0.07251412965591728,
+                "psnr_vs_gt": 19.229113129736653,
+                "ssim_global_vs_gt": 0.8911811632462473
+              },
+              "serialized_bits": 448
+            }
+          },
+          "family": "model_e_single",
+          "fit_seconds": 0.03587980000884272,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5422714129319264,
+            "gradient_magnitude_mad": 0.05726933173014401,
+            "laplacian_mad": 0.1882483113002068,
+            "mad_vs_gt": 0.07244257213287415,
+            "psnr_vs_gt": 19.22719582277565,
+            "ssim_global_vs_gt": 0.8911183639907523
+          },
+          "parameter_count": 32
+        },
+        "rff_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.140625,
+              "decode_seconds": 0.000789099998655729,
+              "float_to_quantized_mad_delta": 0.002743912695539877,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5401763164071242,
+                "gradient_magnitude_mad": 0.05701330050917202,
+                "laplacian_mad": 0.1882697299398824,
+                "mad_vs_gt": 0.07487577638278711,
+                "psnr_vs_gt": 19.18606368092434,
+                "ssim_global_vs_gt": 0.8933296237683034
+              },
+              "serialized_bits": 576
+            },
+            "16": {
+              "bits_per_output_pixel": 0.171875,
+              "decode_seconds": 0.0007856000011088327,
+              "float_to_quantized_mad_delta": 0.0027515025620695743,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5401805264411367,
+                "gradient_magnitude_mad": 0.05701340723247699,
+                "laplacian_mad": 0.18826969153638556,
+                "mad_vs_gt": 0.07488336624931681,
+                "psnr_vs_gt": 19.185852332201645,
+                "ssim_global_vs_gt": 0.8933325927833753
+              },
+              "serialized_bits": 704
+            },
+            "8": {
+              "bits_per_output_pixel": 0.109375,
+              "decode_seconds": 0.0007589000015286729,
+              "float_to_quantized_mad_delta": 0.002790968617654918,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5403446897564965,
+                "gradient_magnitude_mad": 0.05702589773805663,
+                "laplacian_mad": 0.1882689251625736,
+                "mad_vs_gt": 0.07492283230490215,
+                "psnr_vs_gt": 19.18823414943029,
+                "ssim_global_vs_gt": 0.8932159168142015
+              },
+              "serialized_bits": 448
+            }
+          },
+          "family": "rff",
+          "fit_seconds": 0.043051899992860854,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.5401887835028962,
+            "gradient_magnitude_mad": 0.05702327817765196,
+            "laplacian_mad": 0.1882685271322831,
+            "mad_vs_gt": 0.07213186368724724,
+            "psnr_vs_gt": 19.301965748913005,
+            "ssim_global_vs_gt": 0.8926123637821226
+          },
+          "parameter_count": 32
+        },
+        "siren_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.169921875,
+              "decode_seconds": 0.0006108999950811267,
+              "float_to_quantized_mad_delta": 0.0009485725444175613,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5369473722662783,
+                "gradient_magnitude_mad": 0.05742397033380114,
+                "laplacian_mad": 0.18832303076530033,
+                "mad_vs_gt": 0.07372186256992894,
+                "psnr_vs_gt": 19.169630560399217,
+                "ssim_global_vs_gt": 0.8894124557041406
+              },
+              "serialized_bits": 696
+            },
+            "16": {
+              "bits_per_output_pixel": 0.2109375,
+              "decode_seconds": 0.000672800000756979,
+              "float_to_quantized_mad_delta": 0.0009328666253595186,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5370715148752668,
+                "gradient_magnitude_mad": 0.057421751662744346,
+                "laplacian_mad": 0.18832151731349445,
+                "mad_vs_gt": 0.0737061566508709,
+                "psnr_vs_gt": 19.170376306703783,
+                "ssim_global_vs_gt": 0.8894303622811993
+              },
+              "serialized_bits": 864
+            },
+            "8": {
+              "bits_per_output_pixel": 0.12890625,
+              "decode_seconds": 0.0008052999910432845,
+              "float_to_quantized_mad_delta": 0.0009698148267714007,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.5377392076016801,
+                "gradient_magnitude_mad": 0.05741025584405466,
+                "laplacian_mad": 0.18831393202719987,
+                "mad_vs_gt": 0.07374310485228278,
+                "psnr_vs_gt": 19.16962473236303,
+                "ssim_global_vs_gt": 0.8894573279069694
+              },
+              "serialized_bits": 528
+            }
+          },
+          "family": "siren",
+          "fit_seconds": 0.02990979999594856,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.539847677816411,
+            "gradient_magnitude_mad": 0.05716535811246039,
+            "laplacian_mad": 0.18813973405696455,
+            "mad_vs_gt": 0.07277329002551138,
+            "psnr_vs_gt": 19.219190979307307,
+            "ssim_global_vs_gt": 0.8907197382757002
+          },
+          "parameter_count": 42
+        }
+      },
+      "comparison_8bit": {
+        "best_classical": "mlp_small",
+        "best_model_e": "model_e_coupled"
+      },
+      "crop": {
+        "col": 0,
+        "height": 64,
+        "row": 0,
+        "width": 64
+      },
+      "name": "evaluation_hokusai_wave_tl",
+      "patch_name": "eval_hokusai_wave",
+      "source_id": "hokusai_wave",
+      "split": "evaluation"
+    },
+    {
+      "baselines": {
+        "bicubic": {
+          "decode_seconds": 0.0973872000031406,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.3930233565249757,
+            "gradient_magnitude_mad": 0.07304959915239212,
+            "laplacian_mad": 0.20127679610325241,
+            "mad_vs_gt": 0.10291895712160241,
+            "psnr_vs_gt": 16.475052912364628,
+            "ssim_global_vs_gt": 0.7264335842129952
+          }
+        },
+        "bilinear": {
+          "decode_seconds": 0.00011649999942164868,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.3683973032649573,
+            "gradient_magnitude_mad": 0.07540653636712513,
+            "laplacian_mad": 0.20162928452631054,
+            "mad_vs_gt": 0.10769800134680611,
+            "psnr_vs_gt": 16.305291036355502,
+            "ssim_global_vs_gt": 0.6992655761947851
+          }
+        },
+        "nearest": {
+          "decode_seconds": 7.46000005165115e-05,
+          "metrics": {
+            "gradient_magnitude_correlation": 0.2797648609562647,
+            "gradient_magnitude_mad": 0.08116503800111395,
+            "laplacian_mad": 0.2343618355545343,
+            "mad_vs_gt": 0.1056930242800245,
+            "psnr_vs_gt": 15.923107194205597,
+            "ssim_global_vs_gt": 0.7039806000858941
+          }
+        }
+      },
+      "candidates": {
+        "mlp_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.1728515625,
+              "decode_seconds": 0.000640500002191402,
+              "float_to_quantized_mad_delta": 0.0002297795862970381,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.379898952198484,
+                "gradient_magnitude_mad": 0.07479367217032754,
+                "laplacian_mad": 0.2015797441867246,
+                "mad_vs_gt": 0.10599649301582885,
+                "psnr_vs_gt": 16.429261075457312,
+                "ssim_global_vs_gt": 0.7141616255211942
+              },
+              "serialized_bits": 708
+            },
+            "16": {
+              "bits_per_output_pixel": 0.21484375,
+              "decode_seconds": 0.0006637000042246655,
+              "float_to_quantized_mad_delta": 0.00024063639914781443,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3799106784958249,
+                "gradient_magnitude_mad": 0.07479408353078512,
+                "laplacian_mad": 0.20157960905969544,
+                "mad_vs_gt": 0.10600734982867963,
+                "psnr_vs_gt": 16.429067977933464,
+                "ssim_global_vs_gt": 0.7141294765239994
+              },
+              "serialized_bits": 880
+            },
+            "8": {
+              "bits_per_output_pixel": 0.130859375,
+              "decode_seconds": 0.0007921000069472939,
+              "float_to_quantized_mad_delta": 0.00047514146982985395,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.38007920629348685,
+                "gradient_magnitude_mad": 0.07479980786717266,
+                "laplacian_mad": 0.20157747986613744,
+                "mad_vs_gt": 0.10624185489936167,
+                "psnr_vs_gt": 16.42683049317748,
+                "ssim_global_vs_gt": 0.7136955375055077
+              },
+              "serialized_bits": 536
+            }
+          },
+          "family": "mlp",
+          "fit_seconds": 0.02895209999405779,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.38222648613820753,
+            "gradient_magnitude_mad": 0.07479127673954039,
+            "laplacian_mad": 0.2015648585159639,
+            "mad_vs_gt": 0.10576671342953181,
+            "psnr_vs_gt": 16.46536437029497,
+            "ssim_global_vs_gt": 0.7145750793461625
+          },
+          "parameter_count": 43
+        },
+        "model_e_coupled": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.1904296875,
+              "decode_seconds": 0.0013983999961055815,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3683973032649573,
+                "gradient_magnitude_mad": 0.07540653636712513,
+                "laplacian_mad": 0.20162928452631054,
+                "mad_vs_gt": 0.10769800134680611,
+                "psnr_vs_gt": 16.305291036355502,
+                "ssim_global_vs_gt": 0.6992655761947851
+              },
+              "serialized_bits": 780
+            },
+            "16": {
+              "bits_per_output_pixel": 0.23828125,
+              "decode_seconds": 0.001486799999838695,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3683973032649573,
+                "gradient_magnitude_mad": 0.07540653636712513,
+                "laplacian_mad": 0.20162928452631054,
+                "mad_vs_gt": 0.10769800134680611,
+                "psnr_vs_gt": 16.305291036355502,
+                "ssim_global_vs_gt": 0.6992655761947851
+              },
+              "serialized_bits": 976
+            },
+            "8": {
+              "bits_per_output_pixel": 0.142578125,
+              "decode_seconds": 0.0013015999866183847,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3683973032649573,
+                "gradient_magnitude_mad": 0.07540653636712513,
+                "laplacian_mad": 0.20162928452631054,
+                "mad_vs_gt": 0.10769800134680611,
+                "psnr_vs_gt": 16.305291036355502,
+                "ssim_global_vs_gt": 0.6992655761947851
+              },
+              "serialized_bits": 584
+            }
+          },
+          "family": "model_e_coupled",
+          "fit_seconds": 0.06875249999575317,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.3683973032649573,
+            "gradient_magnitude_mad": 0.07540653636712513,
+            "laplacian_mad": 0.20162928452631054,
+            "mad_vs_gt": 0.10769800134680611,
+            "psnr_vs_gt": 16.305291036355502,
+            "ssim_global_vs_gt": 0.6992655761947851
+          },
+          "parameter_count": 49
+        },
+        "model_e_single": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.140625,
+              "decode_seconds": 0.0009545000066282228,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3683973032649573,
+                "gradient_magnitude_mad": 0.07540653636712513,
+                "laplacian_mad": 0.20162928452631054,
+                "mad_vs_gt": 0.10769800134680611,
+                "psnr_vs_gt": 16.305291036355502,
+                "ssim_global_vs_gt": 0.6992655761947851
+              },
+              "serialized_bits": 576
+            },
+            "16": {
+              "bits_per_output_pixel": 0.171875,
+              "decode_seconds": 0.0008820000075502321,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3683973032649573,
+                "gradient_magnitude_mad": 0.07540653636712513,
+                "laplacian_mad": 0.20162928452631054,
+                "mad_vs_gt": 0.10769800134680611,
+                "psnr_vs_gt": 16.305291036355502,
+                "ssim_global_vs_gt": 0.6992655761947851
+              },
+              "serialized_bits": 704
+            },
+            "8": {
+              "bits_per_output_pixel": 0.109375,
+              "decode_seconds": 0.000708799998392351,
+              "float_to_quantized_mad_delta": 0.0,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3683973032649573,
+                "gradient_magnitude_mad": 0.07540653636712513,
+                "laplacian_mad": 0.20162928452631054,
+                "mad_vs_gt": 0.10769800134680611,
+                "psnr_vs_gt": 16.305291036355502,
+                "ssim_global_vs_gt": 0.6992655761947851
+              },
+              "serialized_bits": 448
+            }
+          },
+          "family": "model_e_single",
+          "fit_seconds": 0.037890599996899255,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.3683973032649573,
+            "gradient_magnitude_mad": 0.07540653636712513,
+            "laplacian_mad": 0.20162928452631054,
+            "mad_vs_gt": 0.10769800134680611,
+            "psnr_vs_gt": 16.305291036355502,
+            "ssim_global_vs_gt": 0.6992655761947851
+          },
+          "parameter_count": 32
+        },
+        "rff_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.140625,
+              "decode_seconds": 0.0007907999970484525,
+              "float_to_quantized_mad_delta": 0.006439195298937092,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.36720174682000756,
+                "gradient_magnitude_mad": 0.07506507207230062,
+                "laplacian_mad": 0.20168611897410404,
+                "mad_vs_gt": 0.11196334542962125,
+                "psnr_vs_gt": 16.24638836774361,
+                "ssim_global_vs_gt": 0.7014824334237967
+              },
+              "serialized_bits": 576
+            },
+            "16": {
+              "bits_per_output_pixel": 0.171875,
+              "decode_seconds": 0.0008848999859765172,
+              "float_to_quantized_mad_delta": 0.006446093695295169,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3671752405776986,
+                "gradient_magnitude_mad": 0.07506551152401322,
+                "laplacian_mad": 0.20168597178682193,
+                "mad_vs_gt": 0.11197024382597932,
+                "psnr_vs_gt": 16.246292243623333,
+                "ssim_global_vs_gt": 0.7015003546538817
+              },
+              "serialized_bits": 704
+            },
+            "8": {
+              "bits_per_output_pixel": 0.109375,
+              "decode_seconds": 0.00076299998909235,
+              "float_to_quantized_mad_delta": 0.0072460119977040965,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3671515080270975,
+                "gradient_magnitude_mad": 0.07506993392298476,
+                "laplacian_mad": 0.2016867392708105,
+                "mad_vs_gt": 0.11277016212838825,
+                "psnr_vs_gt": 16.23021969516075,
+                "ssim_global_vs_gt": 0.7012961065025423
+              },
+              "serialized_bits": 448
+            }
+          },
+          "family": "rff",
+          "fit_seconds": 0.0460041999904206,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.37009839065487293,
+            "gradient_magnitude_mad": 0.07481962078522815,
+            "laplacian_mad": 0.20171757465835793,
+            "mad_vs_gt": 0.10552415013068416,
+            "psnr_vs_gt": 16.36959328046935,
+            "ssim_global_vs_gt": 0.7129545732606117
+          },
+          "parameter_count": 32
+        },
+        "siren_small": {
+          "bit_depths": {
+            "12": {
+              "bits_per_output_pixel": 0.169921875,
+              "decode_seconds": 0.0006360000115819275,
+              "float_to_quantized_mad_delta": 0.0006617904235715066,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.36608772879763724,
+                "gradient_magnitude_mad": 0.07547816872070327,
+                "laplacian_mad": 0.20168490673936118,
+                "mad_vs_gt": 0.10737052949903675,
+                "psnr_vs_gt": 16.30557656360991,
+                "ssim_global_vs_gt": 0.6988428123437063
+              },
+              "serialized_bits": 696
+            },
+            "16": {
+              "bits_per_output_pixel": 0.2109375,
+              "decode_seconds": 0.0007149000011850148,
+              "float_to_quantized_mad_delta": 0.0006708931721711997,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.36615525298831225,
+                "gradient_magnitude_mad": 0.07547655234157882,
+                "laplacian_mad": 0.2016845877977687,
+                "mad_vs_gt": 0.10737963224763644,
+                "psnr_vs_gt": 16.30541644823824,
+                "ssim_global_vs_gt": 0.6988357248284623
+              },
+              "serialized_bits": 864
+            },
+            "8": {
+              "bits_per_output_pixel": 0.12890625,
+              "decode_seconds": 0.0007135000050766394,
+              "float_to_quantized_mad_delta": 0.0008869505986031367,
+              "metrics": {
+                "gradient_magnitude_correlation": 0.3655178691628139,
+                "gradient_magnitude_mad": 0.07549641889209473,
+                "laplacian_mad": 0.20168258192047134,
+                "mad_vs_gt": 0.10759568967406838,
+                "psnr_vs_gt": 16.304014019256485,
+                "ssim_global_vs_gt": 0.698789123211071
+              },
+              "serialized_bits": 528
+            }
+          },
+          "family": "siren",
+          "fit_seconds": 0.03246380000200588,
+          "float_metrics": {
+            "gradient_magnitude_correlation": 0.37191128067060975,
+            "gradient_magnitude_mad": 0.07531513875997946,
+            "laplacian_mad": 0.20164161433316266,
+            "mad_vs_gt": 0.10670873907546524,
+            "psnr_vs_gt": 16.312492777468602,
+            "ssim_global_vs_gt": 0.6995958780953137
+          },
+          "parameter_count": 42
+        }
+      },
+      "comparison_8bit": {
+        "best_classical": "mlp_small",
+        "best_model_e": "model_e_single"
+      },
+      "crop": {
+        "col": 64,
+        "height": 64,
+        "row": 64,
+        "width": 64
+      },
+      "name": "evaluation_hokusai_wave_br",
+      "patch_name": "eval_hokusai_wave",
+      "source_id": "hokusai_wave",
+      "split": "evaluation"
+    }
+  ]
+}
