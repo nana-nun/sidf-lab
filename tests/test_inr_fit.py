@@ -15,6 +15,12 @@ from sidf_lab.inr_fit import (
     quantize_vector,
     unflatten_parameters,
 )
+from sidf_lab.inr_torch_fit import (
+    OptimizerSpec,
+    TorchBackendUnavailable,
+    fit_inr_with_optimizer,
+    torch_available,
+)
 from sidf_lab.model_e import QuantizationSpec, bilinear_resize
 
 
@@ -129,6 +135,46 @@ class INRFitTests(unittest.TestCase):
         spec = INRSpec("fourier", order=1)
         with self.assertRaises(ValueError):
             unflatten_parameters(np.zeros(2), make_parameter_layout(spec))
+
+    def test_optimizer_spec_numpy_backend_matches_fit_result_shape(self) -> None:
+        high = cross(8, width=2)
+        low = bilinear_resize(high, (4, 4))
+        spec = INRSpec("fourier", order=1)
+        result = fit_inr_with_optimizer(
+            spec,
+            low,
+            high,
+            optimizer=OptimizerSpec(
+                backend="numpy_random_search",
+                method="adam",
+                steps=2,
+                learning_rate=0.01,
+                seed=7,
+            ),
+        )
+        self.assertEqual(result.float_decoded.shape, high.shape)
+        self.assertEqual(result.quantized_decoded.shape, high.shape)
+        self.assertIn("incremental_side_bits", result.bits)
+
+    def test_torch_backend_is_optional(self) -> None:
+        high = cross(8, width=2)
+        low = bilinear_resize(high, (4, 4))
+        spec = INRSpec("fourier", order=1)
+        optimizer = OptimizerSpec(
+            backend="torch",
+            method="adam",
+            steps=1,
+            learning_rate=0.01,
+            seed=7,
+        )
+        if not torch_available():
+            with self.assertRaises(TorchBackendUnavailable):
+                fit_inr_with_optimizer(spec, low, high, optimizer=optimizer)
+            return
+
+        result = fit_inr_with_optimizer(spec, low, high, optimizer=optimizer)
+        self.assertEqual(result.float_decoded.shape, high.shape)
+        self.assertIn("optimizer", result.bits)
 
 
 if __name__ == "__main__":
