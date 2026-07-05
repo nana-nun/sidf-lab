@@ -1,0 +1,16 @@
+{
+  "backend": "torch",
+  "date": "2026-07-05",
+  "default_dependency_added": false,
+  "experiment_seed": 20260705,
+  "high_size": 16,
+  "issue": 132,
+  "learning_rate": 0.03,
+  "low_size": 4,
+  "method": "adam",
+  "numpy_version": "2.3.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "steps": 8,
+  "torch_available": false
+}

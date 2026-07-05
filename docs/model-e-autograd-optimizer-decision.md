@@ -8,6 +8,8 @@ Related Issue: [#125](https://github.com/nana-nun/sidf-lab/issues/125)
 
 結論として、この時点では PyTorch、JAX、tinygrad のいずれも `requirements.txt` の必須依存には追加しない。続ける場合は、PyTorch CPU を optional backend として小さな実装Issueに分け、Model E と classical INR baseline の両方へ同じ optimizer 条件を適用できるかだけを検証する。
 
+Issue #132 では、この方針に沿って `src/sidf_lab/inr_torch_fit.py` に optional PyTorch backend adapter を追加した。PyTorch は default dependency に追加していない。PyTorch 未導入環境では `TorchBackendUnavailable` を明示的に返し、実験scriptはskip理由、config、metrics、notes、入力baseline PNGを保存する。Codex環境では PyTorch が未導入だったため、実際の autograd fit metrics と loss curve は #134 で追跡する。
+
 ## 背景
 
 Issue #117 では、依存追加を避けた有限差分 Adam / L-BFGS-like 診断を行った。結果として、L-BFGS相当の探索で一部の loss と MAD は改善したが、現行 Model E 候補は classical INR baseline や bicubic baseline を上回らなかった。
@@ -21,6 +23,8 @@ Issue #122 では、Candidate A/C が現行Model Eより少し改善したが、
 - PyTorch install selector: <https://pytorch.org/get-started/locally/>
 - JAX installation guide: <https://docs.jax.dev/en/latest/installation.html>
 - tinygrad project: <https://github.com/tinygrad/tinygrad>
+- Issue #132 optional backend spike: `results/2026-07-05-issue-132-model-e-autograd-optimizer-spike/notes.md`
+- Follow-up Issue #134: <https://github.com/nana-nun/sidf-lab/issues/134>
 - Issue #117 result: `results/2026-06-29-issue-117-model-e-fitting-diagnostics/notes.md`
 - Issue #122 result: `results/2026-06-29-issue-122-model-e-parameterization-redesign/notes.md`
 

@@ -1,0 +1,14 @@
+{
+  "baselines": {
+    "bilinear": {
+      "metrics": {
+        "mad_vs_gt": 0.169921875,
+        "psnr_vs_gt": 10.707807040211934,
+        "ssim_global_vs_gt": 5.450832477899994e-05
+      }
+    }
+  },
+  "outputs": {},
+  "skip_reason": "PyTorch is not installed; optional backend is intentionally not a default dependency.",
+  "status": "skipped"
+}
