@@ -38,6 +38,13 @@ autograd optimizer基盤を、採用済み候補ではなく未解決要因の�
 継続しない場合は、これらのIssueを実施せず一時保留にする理由を、測定済み結果と
 未測定範囲に分けて明文化する。
 
+Update 2026-07-04:
+
+Issue #125 では、autograd optimizer依存をdefault requirementsへ追加しない判断を
+文書化した。続ける場合は PyTorch CPU を optional backend として別Issueでspikeし、
+Model E と classical INR baseline の両方へ同じoptimizer条件を適用できるかだけを
+検証する。詳細は `docs/model-e-autograd-optimizer-decision.md` を参照する。
+
 ## 1. Positioning
 
 Model E は、量子回路由来の関数構造を古典計算上で評価する
@@ -308,8 +315,8 @@ Model E系列を継続する場合は、次のいずれかを事前に満たす�
 - candidate size、frequency count、depth、statesを増やしても、同じsource-split fixtureと
   `incremental_side_bits` でclassical baselineと比較できる。
 - #119 のbit-depth耐性で、量子化後もModel E候補の相対改善が残るかを確認できる。
-- #125 のautograd optimizer導入により、Model Eだけでなくclassical INR baselineにも
-  同じoptimizer条件を適用できる。
+- #125 のautograd optimizer判断に従い、PyTorch CPU optional backendを別Issueでspikeし、
+  Model Eだけでなくclassical INR baselineにも同じoptimizer条件を適用できる。
 - #118 のcoupling variationで、single-state / current coupled / new couplingの差を
   同じbit accountingで分離できる。
 
@@ -365,4 +372,5 @@ coupling設計を分けて再検証する。続けない場合は、Model E系�
 - `results/2026-06-28-issue-104-trainable-inr-source-split/notes.md`
 - `results/2026-06-29-issue-117-model-e-fitting-diagnostics/notes.md`
 - `results/2026-06-29-issue-122-model-e-parameterization-redesign/notes.md`
+- `docs/model-e-autograd-optimizer-decision.md`
 - `references/notes/model-e-parameterization-redesign.md`
