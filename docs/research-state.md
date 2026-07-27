@@ -324,12 +324,23 @@ parameter quantization depth comparison:
 
 #119 のrunでは、低bit parameter量子化でModel E候補がbest classical INRを上回るとは解釈しない。Model E single はfloat-to-quantized deltaが小さい条件もあったが、float時点のMADがclassical候補より高く、低bit耐性だけでは採用根拠にならなかった。この結果は小規模fixture、random-search fit、再量子化比較に限定され、Model E一般、実用圧縮、super-resolution、量子優位は示していない。
 
+coupling variation comparison:
+
+- `results/2026-07-27-issue-118-model-e-coupling-variants/`
+- #104 と同じsource-split grayscale fixtureを使い、Model E single-state、現行coupled-state、controlled-rotation風coupling、gated interaction風couplingを比較した。classical baselineとして `rff_small` と `mlp_small` も同じ12-bit量子化で含めた。
+- evaluation splitでは、best classical INR は `mlp_small` で mean quantized MAD `0.089009`、best Model E系候補は `model_e_gated_coupled` で `0.089183` だった。
+- 現行coupled `model_e_coupled_current` は mean quantized MAD `0.090095`、`model_e_gated_coupled` はこれを改善したが、現行coupled比で平均 `540` bits のcoupling overheadが増えた。`model_e_controlled_rotation` は `0.090181` で現行coupledを改善しなかった。
+
+解釈:
+
+#118 のrunでは、gated interaction風couplingが現行coupledを少し改善したが、best classical INRを上回らず、追加side bitsも増えた。したがって、この条件だけではcoupling variationを採用候補へ戻す根拠として不足している。この結果は2案の小規模coupling候補とrandom-search fitに限定され、Model E一般、実用圧縮、super-resolution、量子優位は示していない。
+
 ## Open Questions
 
 - Model D の white-noise texture term は、今回のsynthetic cross ablationでは改善要因とは見えなかった。この傾向は自然画像patchや他shapeでも再現するか。
 - 現行quadratic objectiveと有限温度Metropolisを不採用とした後、次のModel D objective / decoder procedureでどの仮定を変更するか。
 - structured textureのpair-contrast項ではbaseline改善に届かなかった。方向性や周波数統計まで進める価値があるか。
-- Model E は #98 の fixed feature dictionary + linear readout、#104 の最小trainable / source-split条件、#117 の有限差分optimizer診断、#122 のcompact parameterization redesign比較、#119 のparameter bit-depth比較のいずれでも、評価済み候補を採用する根拠がなかった。次に進めるなら、coupling variation、optional autograd optimizer実測、またはModel E系列を一時保留する判断を分けるべきか。
+- Model E は #98 の fixed feature dictionary + linear readout、#104 の最小trainable / source-split条件、#117 の有限差分optimizer診断、#122 のcompact parameterization redesign比較、#119 のparameter bit-depth比較、#118 のcoupling variation比較のいずれでも、評価済み候補を採用する根拠が不足している。次に進めるなら、optional autograd optimizer実測、またはModel E系列を一時保留する判断を分けるべきか。
 - Rust固定小数点実装に移したとき、同じ結果を再現できるか。
 - decode time は小画像以外で実用的か。
 
