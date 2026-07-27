@@ -36,6 +36,8 @@ class INRFitTests(unittest.TestCase):
             INRSpec("model_e_ladder", depth=2, states=2),
             INRSpec("model_e_frequency_table", depth=2, states=2, feature_count=4),
             INRSpec("model_e_modulated", depth=2, states=2),
+            INRSpec("model_e_controlled_rotation", depth=2, states=2),
+            INRSpec("model_e_gated_coupled", depth=2, states=2),
         ]
         for spec in specs:
             with self.subTest(spec=spec.family):
@@ -53,6 +55,8 @@ class INRFitTests(unittest.TestCase):
             INRSpec("model_e_ladder", states=2),
             INRSpec("model_e_frequency_table", states=2, feature_count=3),
             INRSpec("model_e_modulated", states=2),
+            INRSpec("model_e_controlled_rotation", states=2),
+            INRSpec("model_e_gated_coupled", states=2),
         ]
         for spec in specs:
             with self.subTest(spec=spec.family):
@@ -81,6 +85,8 @@ class INRFitTests(unittest.TestCase):
             INRSpec("model_e_ladder", depth=2, states=2, residual_limit=0.2),
             INRSpec("model_e_frequency_table", depth=2, states=2, feature_count=3, residual_limit=0.2),
             INRSpec("model_e_modulated", depth=2, states=2, residual_limit=0.2),
+            INRSpec("model_e_controlled_rotation", depth=2, states=2, residual_limit=0.2),
+            INRSpec("model_e_gated_coupled", depth=2, states=2, residual_limit=0.2),
         ]
         for spec in specs:
             with self.subTest(spec=spec.family):
@@ -117,6 +123,8 @@ class INRFitTests(unittest.TestCase):
             INRSpec("model_e_ladder", depth=2, states=2),
             INRSpec("model_e_frequency_table", depth=2, states=2, feature_count=3),
             INRSpec("model_e_modulated", depth=2, states=2),
+            INRSpec("model_e_controlled_rotation", depth=2, states=2),
+            INRSpec("model_e_gated_coupled", depth=2, states=2),
         ]
         for spec in specs:
             with self.subTest(spec=spec.family):
@@ -132,6 +140,10 @@ class INRFitTests(unittest.TestCase):
     def test_invalid_specs_and_vector_shapes_are_rejected(self) -> None:
         with self.assertRaises(ValueError):
             INRSpec("model_e_coupled", states=1)
+        with self.assertRaises(ValueError):
+            INRSpec("model_e_controlled_rotation", states=1)
+        with self.assertRaises(ValueError):
+            INRSpec("model_e_gated_coupled", states=1)
         spec = INRSpec("fourier", order=1)
         with self.assertRaises(ValueError):
             unflatten_parameters(np.zeros(2), make_parameter_layout(spec))

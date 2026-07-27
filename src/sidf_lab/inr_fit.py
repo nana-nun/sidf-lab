@@ -27,6 +27,8 @@ INRFamily = Literal[
     "model_e_ladder",
     "model_e_frequency_table",
     "model_e_modulated",
+    "model_e_controlled_rotation",
+    "model_e_gated_coupled",
 ]
 
 
@@ -52,6 +54,8 @@ class INRSpec:
             "model_e_ladder",
             "model_e_frequency_table",
             "model_e_modulated",
+            "model_e_controlled_rotation",
+            "model_e_gated_coupled",
         }:
             raise ValueError(f"unknown INR family: {self.family}")
         if self.order <= 0:
@@ -68,6 +72,8 @@ class INRSpec:
             raise ValueError("model_e_single must use exactly one state")
         if self.family == "model_e_coupled" and self.states < 2:
             raise ValueError("model_e_coupled must use at least two states")
+        if self.family in {"model_e_controlled_rotation", "model_e_gated_coupled"} and self.states < 2:
+            raise ValueError(f"{self.family} must use at least two states")
 
 
 @dataclass(frozen=True)
@@ -150,6 +156,16 @@ def make_parameter_layout(spec: INRSpec) -> ParameterLayout:
                 (spec.states,),
                 (1,),
             ),
+        )
+    if spec.family == "model_e_controlled_rotation":
+        return ParameterLayout(
+            ("layers", "control", "readout", "residual_scale"),
+            ((spec.depth, spec.states, 5), (spec.depth, spec.states, 5), (spec.states,), (1,)),
+        )
+    if spec.family == "model_e_gated_coupled":
+        return ParameterLayout(
+            ("layers", "gate", "readout", "residual_scale"),
+            ((spec.depth, spec.states, 5), (spec.depth, spec.states, 5), (spec.states,), (1,)),
         )
     return ParameterLayout(
         ("layers", "readout", "residual_scale"),
@@ -234,6 +250,22 @@ def initialize_parameters(spec: INRSpec, seed: int = 0) -> np.ndarray:
             "coord_frequency": rng.normal(0.0, 0.8, size=(spec.depth, spec.states, 4)),
             "phase": rng.uniform(-0.25, 0.25, size=(spec.depth, spec.states)),
             "gate": np.array([0.0, 0.5, 0.25, 0.25], dtype=np.float64),
+            "readout": np.linspace(0.5, 1.0, spec.states, dtype=np.float64),
+            "residual_scale": np.array([min(0.1, spec.residual_limit)], dtype=np.float64),
+        }
+        return flatten_parameters(params, layout)
+    if spec.family == "model_e_controlled_rotation":
+        params = {
+            "layers": rng.normal(0.0, 0.45, size=(spec.depth, spec.states, 5)),
+            "control": rng.normal(0.0, 0.25, size=(spec.depth, spec.states, 5)),
+            "readout": np.linspace(0.5, 1.0, spec.states, dtype=np.float64),
+            "residual_scale": np.array([min(0.1, spec.residual_limit)], dtype=np.float64),
+        }
+        return flatten_parameters(params, layout)
+    if spec.family == "model_e_gated_coupled":
+        params = {
+            "layers": rng.normal(0.0, 0.45, size=(spec.depth, spec.states, 5)),
+            "gate": rng.normal(0.0, 0.25, size=(spec.depth, spec.states, 5)),
             "readout": np.linspace(0.5, 1.0, spec.states, dtype=np.float64),
             "residual_scale": np.array([min(0.1, spec.residual_limit)], dtype=np.float64),
         }
@@ -377,6 +409,10 @@ def _residual_from_features(spec: INRSpec, features: np.ndarray, parameters: np.
         return _frequency_table_model_e_residual(features, params, spec.residual_limit)
     if spec.family == "model_e_modulated":
         return _modulated_model_e_residual(features, params, spec.residual_limit)
+    if spec.family == "model_e_controlled_rotation":
+        return _controlled_rotation_model_e_residual(features, params, spec.residual_limit)
+    if spec.family == "model_e_gated_coupled":
+        return _gated_coupled_model_e_residual(features, params, spec.residual_limit)
 
     residual_scale = float(np.clip(params["residual_scale"][0], 0.0, spec.residual_limit))
     kind = "single_state" if spec.family == "model_e_single" else "coupled_state"
@@ -536,6 +572,38 @@ def _modulated_model_e_residual(
         states = np.tanh(rotated)
     residual_scale = float(np.clip(params["residual_scale"][0], 0.0, residual_limit))
     return (gate * _readout_residual(states, params["readout"], residual_scale)).reshape(-1)
+
+
+def _controlled_rotation_model_e_residual(
+    features: np.ndarray,
+    params: dict[str, np.ndarray],
+    residual_limit: float,
+) -> np.ndarray:
+    states = _initial_states(features.shape[:2], params["readout"].size)
+    for layer, control in zip(params["layers"], params["control"]):
+        angles = np.tensordot(features, layer, axes=([-1], [-1]))
+        control_gate = _sigmoid(np.tensordot(features, control, axes=([-1], [-1])))
+        neighbor_delta = _couple_candidate_states(states) - states
+        rotated = np.sin(angles + states + control_gate * neighbor_delta)
+        states = np.tanh(rotated)
+    residual_scale = float(np.clip(params["residual_scale"][0], 0.0, residual_limit))
+    return _readout_residual(states, params["readout"], residual_scale).reshape(-1)
+
+
+def _gated_coupled_model_e_residual(
+    features: np.ndarray,
+    params: dict[str, np.ndarray],
+    residual_limit: float,
+) -> np.ndarray:
+    states = _initial_states(features.shape[:2], params["readout"].size)
+    for layer, gate_params in zip(params["layers"], params["gate"]):
+        angles = np.tensordot(features, layer, axes=([-1], [-1]))
+        rotated = np.sin(angles + states)
+        coupled = _couple_candidate_states(rotated)
+        gate = _sigmoid(np.tensordot(features, gate_params, axes=([-1], [-1])))
+        states = np.tanh((1.0 - gate) * rotated + gate * coupled)
+    residual_scale = float(np.clip(params["residual_scale"][0], 0.0, residual_limit))
+    return _readout_residual(states, params["readout"], residual_scale).reshape(-1)
 
 
 def _couple_candidate_states(states: np.ndarray) -> np.ndarray:
