@@ -1,8 +1,8 @@
 # Model D/E 採否判断マップ
 
 Status: Draft decision map
-Date: 2026-07-27
-Related Issues: [#106](https://github.com/nana-nun/sidf-lab/issues/106), [#113](https://github.com/nana-nun/sidf-lab/issues/113), [#118](https://github.com/nana-nun/sidf-lab/issues/118), [#125](https://github.com/nana-nun/sidf-lab/issues/125), [#127](https://github.com/nana-nun/sidf-lab/issues/127), [#138](https://github.com/nana-nun/sidf-lab/issues/138)
+Date: 2026-07-28
+Related Issues: [#106](https://github.com/nana-nun/sidf-lab/issues/106), [#113](https://github.com/nana-nun/sidf-lab/issues/113), [#118](https://github.com/nana-nun/sidf-lab/issues/118), [#119](https://github.com/nana-nun/sidf-lab/issues/119), [#125](https://github.com/nana-nun/sidf-lab/issues/125), [#127](https://github.com/nana-nun/sidf-lab/issues/127), [#136](https://github.com/nana-nun/sidf-lab/issues/136), [#138](https://github.com/nana-nun/sidf-lab/issues/138)
 
 この文書は、Model D / Model E の保存済み実験から「現時点で採用しない候補」「再設計候補」「未評価候補」を追跡するための人間向けメモである。
 
@@ -34,6 +34,7 @@ SIDF は現段階では実用圧縮形式ではない。この文書は、負の
 | Model E | fixed feature dictionary + linear readout の single-state / coupled-state 最小候補 | 採用しない現行候補 | Issue #98 | 同一side-bit比較でRFF / bicubicを上回らなかった。最小候補をSIDF draft仕様へ採用する根拠はない。 |
 | Model E | trainable / source-split の single-state / coupled-state 候補 | 採用しない現行候補 | Issue #104 | source分割評価で最良classical候補を上回らなかった。#104条件の現行候補を採用する根拠はない。 |
 | Model E | compact parameterization redesign Candidate A/B/C | 採用しない現行候補、ただし一部改善あり | Issue #122 | Candidate A/Cは現行Model Eより少し良かったが、best classical INR、nearest、bicubicを上回らなかった。採用根拠には不足。 |
+| Model E | 8 / 12 / 16-bit parameter量子化における現行single-state / coupled-state | 採用しない現行候補 | Issue #119 | 全bit depthでbest classical INRを上回らず、低bit耐性だけでは採用根拠にならなかった。 |
 | Model E | gated interaction風coupling | 採用しない現行候補、ただし現行coupledを小さく改善 | Issue #118 | evaluation splitで現行coupledよりMADを改善したが、best classical INRに届かず、平均540 bitsのcoupling overheadを要した。 |
 | Model E | trainable small MLP / RFF / SIREN / Fourier baseline | 比較基準として継続 | Issues #103, #104 | `mlp_small` が#104のevaluation splitで最良parameterized候補だった。Model E再設計時の比較対象として残す。 |
 
@@ -100,6 +101,16 @@ Evaluation splitでは、best classical INR は `fourier_mid` で、mean seriali
 | candidate_a_ladder | new Model E candidate | 636 | 0.089839 |
 | candidate_c_modulated | new Model E candidate | 636 | 0.089848 |
 
+Issue #119 では、#104と同じsource-split fixtureで、同じfloat parameterを8-bit、12-bit、16-bitへ再量子化し、classical INRと現行Model E single-state / coupled-stateを比較した。結果は `results/2026-07-05-issue-119-inr-quantization-depth/` に保存した。
+
+Evaluation splitでは、すべてのbit depthで `mlp_small` がbest classical INRだった。best Model E候補は8-bitでは `model_e_coupled`、12-bit / 16-bitでは `model_e_single` だったが、いずれも `mlp_small` を上回らなかった。
+
+| Bit depth | Best classical INR | Mean quantized MAD | Best Model E | Mean quantized MAD |
+| ---: | --- | ---: | --- | ---: |
+| 8 | mlp_small | 0.089057 | model_e_coupled | 0.090095 |
+| 12 | mlp_small | 0.089009 | model_e_single | 0.090061 |
+| 16 | mlp_small | 0.089015 | model_e_single | 0.090059 |
+
 Issue #118 では、#104と同じsource-split fixture、48-stepのdependency-free random-search fit、12-bit量子化、incremental side-bit accountingで、現行coupled-stateと2種類のcoupling variationを比較した。結果は `results/2026-07-27-issue-118-model-e-coupling-variants/` に保存した。
 
 Evaluation splitでは、best classical INRは `mlp_small` で mean quantized MAD `0.089009`、最良Model E系候補は `model_e_gated_coupled` で `0.089183` だった。現行 `model_e_coupled_current` は `0.090095`、controlled-rotation風候補は `0.090181`、gated interaction風候補は `0.089183` だった。新coupling候補は現行coupled比で平均 `540` bits のcoupling overheadを要した。
@@ -119,6 +130,8 @@ Evaluation splitでは、best classical INRは `mlp_small` で mean quantized MA
 
 #122 のcompact parameterization redesignでは、Candidate A/C が現行Model Eより少し改善した。しかし best classical INR、nearest、bicubic baselineを上回らなかったため、この設定のCandidate A/B/Cを採用候補へ戻す根拠は不足している。これはcandidate size、bit-depth耐性、autograd optimizer、別coupling設計の否定ではない。
 
+#119 の量子化比較では、Model E single-stateにfloat-to-quantized MAD deltaが小さい条件はあったが、float時点のMADがclassical候補より高かった。したがって、今回のfixture、random-search fit、再量子化protocolでは、低bit耐性だけで現行Model E候補を採用候補へ戻す根拠にはならない。
+
 #118 のgated interaction風couplingは現行coupled-stateを小さく改善したが、best classical INRには届かず、追加side bitsも増えた。したがって、今回の2案、source-split fixture、random-search fit条件では、coupling variationを採用候補へ戻す根拠として不足している。これは別のcoupling式やautograd optimizer条件を含むModel E一般の否定ではない。
 
 ### Current Decision
@@ -126,28 +139,30 @@ Evaluation splitでは、best classical INRは `mlp_small` で mean quantized MA
 - #98 の fixed feature dictionary + linear readout 最小Model E候補は、SIDF draft仕様へ採用しない。
 - #104 の trainable / source-split Model E single-state / coupled-state候補も、SIDF draft仕様へ採用しない。
 - #122 のcompact parameterization redesign Candidate A/B/Cも、現時点ではSIDF draft仕様へ採用しない。
+- #119 の8 / 12 / 16-bit量子化条件で評価した現行Model E single-state / coupled-state候補も、現時点ではSIDF draft仕様へ採用しない。
 - #118 のcontrolled-rotation風 / gated interaction風coupling候補も、現時点ではSIDF draft仕様へ採用しない。
-- #98、#104、#117、#118、#122 はModel E全体の否定ではなく、それぞれ評価した構造とprotocolの結果として扱う。
+- #98、#104、#117、#118、#119、#122 はModel E全体の否定ではなく、それぞれ評価した構造とprotocolの結果として扱う。
 - #117 のoptimizer診断も、現行Model E候補を採用候補へ戻す根拠にはならなかった。
 - #125 では autograd optimizer依存をdefault requirementsへ追加しない。続ける場合はPyTorch CPU optional backendの小さなspikeに分ける。
-- Model Eを継続する場合は、candidate size、bit-depth耐性、optimizer依存、coupling設計を分ける。継続しない場合は、Model E系列を一時保留として扱い、残Issueを再優先度付けする。
+- Model Eを継続する場合は、candidate size、bit-depthごとの再fit、optimizer依存を分ける。継続しない場合は、Model E系列を一時保留として扱い、残Issueを再優先度付けする。
 
 ### Continue / Pause Decision
 
 Model Eを継続する価値があるのは、次の切り分けを小さく検証する場合に限る。
 
-- #119: 量子化bit-depth比較の結果は別途保存済みであり、gated couplingの改善や540-bit overheadとは別軸である。判断文書への反映は [#136](https://github.com/nana-nun/sidf-lab/issues/136) で扱う。
+- #119: 8 / 12 / 16-bitの全条件でbest classical INRを上回らなかった。低bit耐性の有無だけを継続理由にしない。
 - #125: default dependencyとしては導入せず、続ける場合はPyTorch CPU optional backendのspikeでModel Eとclassical INRへ同じoptimizer条件を適用できるかを測る。
 - #118: gated interaction風候補は現行coupledを小さく改善したが、best classical INRを上回らず、平均540 bitsのoverheadを要した。この条件ではcoupling設計だけを理由に継続しない。
 - #134: PyTorch導入済み環境で、Model Eとclassical INRに同じoptional autograd optimizerを適用した実測は未完了である。
 
-一時保留の根拠は、#98 / #104 / #117 / #118 / #122 の全てで評価済みModel E候補が採用基準に届いていないことである。#122のCandidate A/Cと#118のgated interaction風候補には現行候補に対する小さな改善があったが、いずれもbest classical INRを上回らなかった。このため、Model Eを継続する場合でも「採用へ進む」ではなく、#134のoptimizer条件など未測定要因を切り分ける扱いにする。
+一時保留の根拠は、#98 / #104 / #117 / #118 / #119 / #122 の全てで評価済みModel E候補が採用基準に届いていないことである。#122のCandidate A/Cと#118のgated interaction風候補には現行候補に対する小さな改善があったが、いずれもbest classical INRを上回らなかった。#119も全bit depthでこの関係を反転させなかった。このため、Model Eを継続する場合でも「採用へ進む」ではなく、#134のoptimizer条件など未測定要因を切り分ける扱いにする。
 
 ### Limitations
 
 - small SIREN baselineは通常のtrainable multi-layer SIRENではない。
 - #104 のtrainable比較は小規模source-split fixtureと最小optimizerに基づく。
 - #118 のcoupling比較は2案、64x64 crop各split 2件、48-step random-search fitに限られる。
+- #119 は同じfit後のparameterを再量子化した比較であり、bit depthごとの再fitではない。
 - serialized bitsはparameter side informationの簡易見積もりであり、guide bits、entropy coding、container overheadを含まない。
 - extrapolated outputはartifact診断であり、外挿解像度のGround Truth品質測定ではない。
 - quantum advantage、compression、super-resolutionは未測定である。
@@ -174,11 +189,12 @@ Model Eを継続する価値があるのは、次の切り分けを小さく検�
 | [#113](https://github.com/nana-nun/sidf-lab/issues/113) | `t:docs` | current update | #104 の負の結果を採否判断へ反映する。 |
 | [#117](https://github.com/nana-nun/sidf-lab/issues/117) | `t:exp` | reflected | 現行Model E fittingのoptimizer / initializationを診断した。 |
 | [#118](https://github.com/nana-nun/sidf-lab/issues/118) | `t:exp` | reflected | coupling variationを比較し、gated interaction風候補の小さな改善とbit overheadを記録した。 |
-| [#119](https://github.com/nana-nun/sidf-lab/issues/119) | `t:exp` | result saved | INR parameter量子化bit深度耐性を比較した。判断文書への反映は #136 で扱う。 |
+| [#119](https://github.com/nana-nun/sidf-lab/issues/119) | `t:exp` | reflected | 8 / 12 / 16-bit量子化で、全条件のbest Model E候補がbest classical INRを上回らなかった。 |
 | [#122](https://github.com/nana-nun/sidf-lab/issues/122) | `t:exp` | reflected | Candidate A/B/C parameterization redesignをsource-splitで比較した。 |
 | [#125](https://github.com/nana-nun/sidf-lab/issues/125) | `t:impl` | current update | autograd optimizer基盤はdefault依存に追加せず、PyTorch CPU optional backendのspikeに分ける判断を文書化する。 |
 | [#127](https://github.com/nana-nun/sidf-lab/issues/127) | `t:docs` | current update | Model E系列の継続/保留判断を整理する。 |
 | [#134](https://github.com/nana-nun/sidf-lab/issues/134) | `t:exp` | unmeasured | PyTorch導入済み環境でoptional autograd optimizerを実測する。 |
+| [#136](https://github.com/nana-nun/sidf-lab/issues/136) | `t:docs` | current update | #119の量子化bit-depth結果を採否判断へ反映する。 |
 | [#138](https://github.com/nana-nun/sidf-lab/issues/138) | `t:docs` | current update | #118のcoupling variation結果を採否判断へ反映する。 |
 
 ## References
@@ -192,5 +208,6 @@ Model Eを継続する価値があるのは、次の切り分けを小さく検�
 - `results/2026-06-27-issue-98-model-e-bit-budget/notes.md`
 - `results/2026-06-28-issue-104-trainable-inr-source-split/notes.md`
 - `results/2026-06-29-issue-122-model-e-parameterization-redesign/notes.md`
+- `results/2026-07-05-issue-119-inr-quantization-depth/notes.md`
 - `results/2026-07-27-issue-118-model-e-coupling-variants/notes.md`
 - `docs/model-e-autograd-optimizer-decision.md`
