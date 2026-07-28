@@ -58,6 +58,19 @@ fixture、48-step dependency-free random-search fit、比較した2案に限定�
 一般や別のcoupling式の否定ではない。coupling設計を継続理由にせず、次に進める場合は#134で
 未測定のoptional autograd optimizer条件を、classical INRと同じ条件で切り分ける。
 
+Update 2026-07-28:
+
+Issue #119 では、#104と同じsource-split fixtureで、同じfloat parameterを8-bit、12-bit、
+16-bitへ再量子化して比較した。evaluation splitでは、全bit depthで `mlp_small` がbest
+classical INRだった。best Model E候補は8-bitで `model_e_coupled`、12-bit / 16-bitで
+`model_e_single` だったが、mean quantized MADはそれぞれ `0.090095`、`0.090061`、
+`0.090059` で、対応する `mlp_small` の `0.089057`、`0.089009`、`0.089015` を上回らなかった。
+
+Model E singleにはfloat-to-quantized MAD deltaが小さい条件もあったが、float時点のMADが
+classical候補より高かった。このため、今回のfixture、48-step dependency-free random-search
+fit、再量子化protocolでは、低bit耐性だけで現行Model E候補をSIDF draft仕様へ採用する根拠は
+ない。これはModel E一般ではなく、評価した候補とprotocolに限定した判断である。
+
 ## 1. Positioning
 
 Model E は、量子回路由来の関数構造を古典計算上で評価する
@@ -323,6 +336,9 @@ coupled-state候補は、#104のevaluation splitで最良classical INR候補を�
 best classical INRには届かず、平均540 bitsのcoupling overheadを要した。controlled-rotation風
 候補も現行coupledを改善しなかった。
 
+#119 の8 / 12 / 16-bit量子化条件も、この区分に入る。全bit depthでbest Model E候補はbest
+classical INRを上回らず、Model E singleの小さなfloat-to-quantized deltaは採用根拠にならない。
+
 不採用はquantum-inspired representation一般ではなく、評価した構造とprotocolに対する判断とする。
 
 ### Continue Or Pause Gate
@@ -331,7 +347,7 @@ Model E系列を継続する場合は、次のいずれかを事前に満たす�
 
 - candidate size、frequency count、depth、statesを増やしても、同じsource-split fixtureと
   `incremental_side_bits` でclassical baselineと比較できる。
-- #119 のbit-depth耐性は別途保存済みであり、gated couplingの改善や540-bit overheadとは別軸として [#136](https://github.com/nana-nun/sidf-lab/issues/136) で判断文書へ反映する。
+- #119 のbit-depth比較では全bit depthでbest classical INRを上回らなかった。量子化耐性だけを継続理由にしない。
 - #125 のautograd optimizer判断に従い、PyTorch CPU optional backendを別Issueでspikeし、
   Model Eだけでなくclassical INR baselineにも同じoptimizer条件を適用できる。
 - #118 のcoupling variationは完了し、gated interaction風候補の小さな改善、classical基準未達、
@@ -341,13 +357,15 @@ Model E系列を継続する場合は、次のいずれかを事前に満たす�
 
 Model E系列を一時保留する場合は、次を根拠にできる。
 
-- #98、#104、#117、#118、#122 のいずれでも、評価済みModel E候補は採用基準を満たしていない。
+- #98、#104、#117、#118、#119、#122 のいずれでも、評価済みModel E候補は採用基準を満たしていない。
 - #122 では再設計候補が現行候補を少し改善したが、best classical INR、nearest、
   bicubic baselineを上回らなかった。
 - #118 ではgated interaction風候補が現行coupledを小さく改善したが、best classical INRを
   上回らず、追加side bitsも増えた。
-- 現時点で未解決の改善仮説は、candidate size、bit-depth、optimizerに分かれており、どれも
-  採用済み仕様ではなく追加検証の候補である。coupling variationは今回の条件で比較済みである。
+- #119 では全bit depthでbest Model E候補がbest classical INRを上回らず、低bit耐性だけでは
+  採用根拠にならなかった。
+- 現時点で未解決の改善仮説は、candidate size、bit-depthごとの再fit、optimizerに分かれており、
+  どれも採用済み仕様ではなく追加検証の候補である。coupling variationは今回の条件で比較済みである。
 - 実用圧縮、super-resolution、quantum advantageは未測定であり、Model E継続の理由にしない。
 
 ## 12. Research Sequence
@@ -363,10 +381,12 @@ Model E系列を一時保留する場合は、次を根拠にできる。
 9. Issue #121: Candidate A/B/C parameterizationの最小実装。
 10. Issue #122: Candidate A/B/Cをsource-split条件で比較。
 11. Issue #127: Model E系列の継続/保留判断の整理。
-12. Issue #118: coupling variationをsource-split条件で比較。
-13. Issue #138: #118の結果を継続/保留判断へ反映。
+12. Issue #119: parameter量子化bit深度をsource-split条件で比較。
+13. Issue #136: #119の結果を継続/保留判断へ反映。
+14. Issue #118: coupling variationをsource-split条件で比較。
+15. Issue #138: #118の結果を継続/保留判断へ反映。
 
-#98、#104、#117、#118、#122 の結果から、評価済みModel E候補はSIDF draft specificationへ採用しない。
+#98、#104、#117、#118、#119、#122 の結果から、評価済みModel E候補はSIDF draft specificationへ採用しない。
 Model Eを続ける場合は、採用保留のまま candidate size、bit-depth耐性、optimizer、
 coupling設計を分けて再検証する。続けない場合は、Model E系列を一時保留として扱う。
 
@@ -391,13 +411,16 @@ coupling設計を分けて再検証する。続けない場合は、Model E系�
 - [Issue #104](https://github.com/nana-nun/sidf-lab/issues/104)
 - [Issue #117](https://github.com/nana-nun/sidf-lab/issues/117)
 - [Issue #118](https://github.com/nana-nun/sidf-lab/issues/118)
+- [Issue #119](https://github.com/nana-nun/sidf-lab/issues/119)
 - [Issue #122](https://github.com/nana-nun/sidf-lab/issues/122)
 - [Issue #127](https://github.com/nana-nun/sidf-lab/issues/127)
 - [Issue #134](https://github.com/nana-nun/sidf-lab/issues/134)
+- [Issue #136](https://github.com/nana-nun/sidf-lab/issues/136)
 - [Issue #138](https://github.com/nana-nun/sidf-lab/issues/138)
 - `results/2026-06-28-issue-104-trainable-inr-source-split/notes.md`
 - `results/2026-06-29-issue-117-model-e-fitting-diagnostics/notes.md`
 - `results/2026-06-29-issue-122-model-e-parameterization-redesign/notes.md`
+- `results/2026-07-05-issue-119-inr-quantization-depth/notes.md`
 - `results/2026-07-27-issue-118-model-e-coupling-variants/notes.md`
 - `docs/model-e-autograd-optimizer-decision.md`
 - `references/notes/model-e-parameterization-redesign.md`
