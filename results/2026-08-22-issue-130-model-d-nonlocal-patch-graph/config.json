@@ -1,0 +1,57 @@
+{
+  "circle_high_radius": 16.0,
+  "circle_high_size": 64,
+  "circle_low_radius": 4.0,
+  "circle_low_size": 16,
+  "cross_high_size": 64,
+  "cross_high_width": 7,
+  "cross_low_size": 16,
+  "cross_low_width": 2,
+  "date": "2026-08-22",
+  "experiment_seed": 20260822,
+  "guidance_policy": "No independent high-resolution guidance; all patch similarity derives from the low guide only. Ground Truth is used only for metrics.",
+  "guided_filter_config": {
+    "description": "self-guided filter on the bilinear-upscaled low guide",
+    "epsilon": 0.0001,
+    "high_resolution_guidance": false,
+    "radius": 3
+  },
+  "joint_bilateral_config": {
+    "description": "nearest-upscaled values refined with the bilinear-upscaled low guide",
+    "high_resolution_guidance": false,
+    "radius": 3,
+    "sigma_range": 0.08,
+    "sigma_spatial": 2.0
+  },
+  "license_note": "Wikimedia Commons marks the faithful reproduction of this public-domain artwork as Public Domain / PD-Art.",
+  "natural_high_size": 128,
+  "natural_low_size": 32,
+  "nlm_config": {
+    "description": "self-guided Non-local Means over the bilinear-upscaled low guide",
+    "h": 0.08,
+    "high_resolution_guidance": false,
+    "patch_radius": 1,
+    "search_radius": 5
+  },
+  "numpy_version": "2.3.5",
+  "patch_graph_config": {
+    "description": "non-local patch graph decoder on the bilinear-upscaled low guide",
+    "gamma": 35.0,
+    "h": 0.08,
+    "high_resolution_guidance": false,
+    "j_base": 1.8,
+    "j_nonlocal": 1.0,
+    "lambda_data": 6.0,
+    "local_exclude_radius": 1,
+    "max_sweeps": 80,
+    "num_neighbors": 5,
+    "patch_radius": 1,
+    "search_radius": 7,
+    "tol": 1e-06
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.13",
+  "source_asset": "experiments/assets/landscape_pd_128.npy",
+  "source_page": "https://commons.wikimedia.org/wiki/File:Landscape.jpg",
+  "source_title": "Meindert Hobbema: Landscape"
+}
