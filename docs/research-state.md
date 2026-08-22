@@ -257,6 +257,19 @@ low-guide-only条件でもjoint bilateral refinementは比較対象として有�
 
 追加指標はModel Dの優位性を示すものではなく、画素差、勾配強度、勾配位置、方向、局所高周波差を分けて観察するための補助値である。今回の2ケースではModel Dが単純補間を総合的に上回る結果はなく、LPIPSのような学習済み知覚指標との関係も未確認である。
 
+non-local self-similarity 比較:
+
+- `results/2026-08-22-issue-130-model-d-nonlocal-patch-graph/`
+- Issue #120 の整理を受け、low-guide-only 条件で self-guided Non-local Means baseline と non-local patch graph decoder 候補を、nearest / bilinear / bicubic、既存 guided filter / joint bilateral baseline と比較した。
+- patch similarity と graph 構造は bilinear-upscaled low guide からのみ計算し、Ground Truth は metrics 計算にのみ使った。#87 / #88 と異なり、有限温度Metropolisやwhite-noise textureは使わず、非局所edgeを加えたquadratic objectiveを決定論的Jacobi solverで解いた。
+- cross では nearest `0.0138` が最小MADで、self-guided NLM `0.0327` は bilinear `0.0331` をわずかに下回ったが joint bilateral `0.0194` と nearest には届かず、nonlocal patch graph `0.0355` は補間baselineを上回らなかった。
+- circle では joint bilateral `0.0161` が最小MADで、self-guided NLM `0.0177` は bilinear / bicubic を下回ったが nearest `0.0166` には届かず、nonlocal patch graph `0.0196` は最悪寄りだった。
+- natural patch では bicubic `0.0424` が最小MADで、nonlocal patch graph `0.0453` と self-guided NLM `0.0476` はいずれも補間baselineを上回らなかった。
+
+解釈:
+
+この最小比較では、low-guide-only の非局所自己類似性を加えた2候補は、cross / circle / 1枚の自然画像patchのどれでも最小MADのbaselineを上回らなかった。self-guided NLM は一部で bilinear / bicubic を下回ったが、最良baseline（nearest または joint bilateral / bicubic）には届かない。nonlocal patch graph は決定論的Jacobiでobjectiveを下げるが、#88 と同様にobjective低下はreference metrics改善と一致しなかった。patch descriptor を bilinear-upscaled low guide から作るため、選ばれる非局所neighborが補間結果の滑らかさを再表現しているだけの可能性があり、この条件では非局所edgeを次objectiveへ入れる強い根拠は得られていない。これは super-resolution / compression の否定でも肯定でもなく、限定fixtureでの初期測定である。
+
 ### Model E
 
 Model E は、量子回路由来の data re-uploading / coupled state 構造を、量子SDKに依存しない古典的なimplicit residual representationとして評価する研究系列である。Issue #95で文献整理、Issue #96で研究設計、Issue #97で最小実装を追加した。Issue #98 と Issue #104 の結果を踏まえ、評価済みの現行Model E候補はSIDF draft仕様へ採用しない方針とした。

@@ -1,0 +1,344 @@
+{
+  "circle": {
+    "graph_info": {
+      "graph_statistics": {
+        "max_nonlocal_degree": 220.0,
+        "max_patch_distance": 0.0029000262236422714,
+        "mean_nonlocal_degree": 9.984375,
+        "mean_patch_distance": 0.00010191561518281219,
+        "median_patch_distance": 0.0,
+        "min_patch_distance": -3.157967714489334e-15,
+        "nonlocal_edge_count": 20448.0
+      },
+      "local_edge_count": 16128.0,
+      "solver": {
+        "final_max_delta": 8.204331188865766e-07,
+        "final_objective": 7.5673333340202005,
+        "sweeps_run": 24.0
+      }
+    },
+    "metrics": {
+      "bicubic": {
+        "background_mean": 0.018817915440847325,
+        "background_variance": 0.004669977079324077,
+        "edge_leakage": 0.26519428564910136,
+        "edge_width_pixels": 3.3636363636363638,
+        "foreground_mean": 0.5006801046009479,
+        "foreground_variance": 0.0013638921766737009,
+        "gradient_mad_vs_reference": 0.07108559903692421,
+        "mad_vs_reference": 0.018965202199830868,
+        "mean_error_vs_reference": 0.015222236143484431,
+        "psnr_vs_reference": 23.66675300423517,
+        "ssim_global_vs_reference": 0.9405610920237354
+      },
+      "bilinear": {
+        "background_mean": 0.019554715918035932,
+        "background_variance": 0.004324102547580231,
+        "edge_leakage": 0.2578279538765863,
+        "edge_width_pixels": 4.2727272727272725,
+        "foreground_mean": 0.48613764060632464,
+        "foreground_variance": 0.0014156129549770713,
+        "gradient_mad_vs_reference": 0.07556089841678174,
+        "mad_vs_reference": 0.018426250708616792,
+        "mean_error_vs_reference": 0.01293004180839004,
+        "psnr_vs_reference": 23.88043773400593,
+        "ssim_global_vs_reference": 0.9432393664418719
+      },
+      "guided_filter": {
+        "background_mean": 0.01960798736570907,
+        "background_variance": 0.004307699868148759,
+        "edge_leakage": 0.2576505882244427,
+        "edge_width_pixels": 4.2727272727272725,
+        "foreground_mean": 0.48592219302731143,
+        "foreground_variance": 0.001392970133680974,
+        "gradient_mad_vs_reference": 0.07521326526376704,
+        "mad_vs_reference": 0.01851167230732708,
+        "mean_error_vs_reference": 0.012930041808390013,
+        "psnr_vs_reference": 23.896145091446396,
+        "ssim_global_vs_reference": 0.9433892323218115
+      },
+      "joint_bilateral": {
+        "background_mean": 0.019019914846332156,
+        "background_variance": 0.006081172789955187,
+        "edge_leakage": 0.29545688822196864,
+        "edge_width_pixels": 2.5454545454545454,
+        "foreground_mean": 0.49583560973592505,
+        "foreground_variance": 0.00035943898834735655,
+        "gradient_mad_vs_reference": 0.05848884134048886,
+        "mad_vs_reference": 0.01607492315668546,
+        "mean_error_vs_reference": 0.014423807485577617,
+        "psnr_vs_reference": 22.80638600237278,
+        "ssim_global_vs_reference": 0.9298624748066364
+      },
+      "nearest": {
+        "background_mean": 0.0194884287454324,
+        "background_variance": 0.009364415517750408,
+        "edge_leakage": 0.30851063829787234,
+        "edge_width_pixels": 0.0,
+        "foreground_mean": 0.49507389162561577,
+        "foreground_variance": 0.0024387876434759396,
+        "gradient_mad_vs_reference": 0.04991474450410946,
+        "mad_vs_reference": 0.0166015625,
+        "mean_error_vs_reference": 0.0146484375,
+        "psnr_vs_reference": 20.808810309255193,
+        "ssim_global_vs_reference": 0.8959062089645006
+      },
+      "nonlocal_patch_graph": {
+        "background_mean": 0.020271683017599428,
+        "background_variance": 0.004238855654080103,
+        "edge_leakage": 0.2561039344861198,
+        "edge_width_pixels": 4.181818181818182,
+        "foreground_mean": 0.48323759043141956,
+        "foreground_variance": 0.0014469563508958045,
+        "gradient_mad_vs_reference": 0.08049730396085333,
+        "mad_vs_reference": 0.019575996972530235,
+        "mean_error_vs_reference": 0.012929963491237595,
+        "psnr_vs_reference": 23.90345790311873,
+        "ssim_global_vs_reference": 0.9431379998934124
+      },
+      "self_guided_nlm": {
+        "background_mean": 0.018884309894446498,
+        "background_variance": 0.004206815987456609,
+        "edge_leakage": 0.256995584494767,
+        "edge_width_pixels": 3.8181818181818183,
+        "foreground_mean": 0.48725812253062717,
+        "foreground_variance": 0.00101865291052875,
+        "gradient_mad_vs_reference": 0.0712452620220923,
+        "mad_vs_reference": 0.017666620653928974,
+        "mean_error_vs_reference": 0.012614665329158089,
+        "psnr_vs_reference": 24.097274375110203,
+        "ssim_global_vs_reference": 0.9460182621835693
+      }
+    },
+    "timings": {
+      "bicubic": 0.09273019999818644,
+      "bilinear": 0.0001072999948519282,
+      "guided_filter": 0.0005317999966791831,
+      "joint_bilateral": 0.0011802000008174218,
+      "nearest": 4.7100002120714635e-05,
+      "nonlocal_patch_graph": 0.03641130000323756,
+      "self_guided_nlm": 0.010365100002672989
+    }
+  },
+  "cross": {
+    "graph_info": {
+      "graph_statistics": {
+        "max_nonlocal_degree": 220.0,
+        "max_patch_distance": 0.006721879143863808,
+        "mean_nonlocal_degree": 9.83740234375,
+        "mean_patch_distance": 5.213674970915988e-05,
+        "median_patch_distance": 0.0,
+        "min_patch_distance": -4.736951571734001e-15,
+        "nonlocal_edge_count": 20147.0
+      },
+      "local_edge_count": 16128.0,
+      "solver": {
+        "final_max_delta": 9.526653496627624e-07,
+        "final_objective": 13.076920519428986,
+        "sweeps_run": 26.0
+      }
+    },
+    "metrics": {
+      "bicubic": {
+        "background_mean": 0.03092889364782378,
+        "background_variance": 0.006691399489356174,
+        "edge_leakage": 0.21189385673256492,
+        "edge_width_pixels": 1.9649122807017543,
+        "foreground_mean": 0.4961461948118427,
+        "foreground_variance": 0.004221257386268206,
+        "gradient_mad_vs_reference": 0.12968767680310078,
+        "mad_vs_reference": 0.03511914759598131,
+        "mean_error_vs_reference": 0.02373627989927007,
+        "psnr_vs_reference": 21.584865041672874,
+        "ssim_global_vs_reference": 0.9043748443555926
+      },
+      "bilinear": {
+        "background_mean": 0.03285853173730765,
+        "background_variance": 0.0067778661864535674,
+        "edge_leakage": 0.2197278911564626,
+        "edge_width_pixels": 2.8771929824561404,
+        "foreground_mean": 0.4657655269900167,
+        "foreground_variance": 0.002958825375891868,
+        "gradient_mad_vs_reference": 0.14255892958424923,
+        "mad_vs_reference": 0.033143058655753996,
+        "mean_error_vs_reference": 0.018984563226332206,
+        "psnr_vs_reference": 21.49543042651308,
+        "ssim_global_vs_reference": 0.9016677036787233
+      },
+      "guided_filter": {
+        "background_mean": 0.032978706686917277,
+        "background_variance": 0.006774360284314873,
+        "edge_leakage": 0.21970127183282168,
+        "edge_width_pixels": 2.8771929824561404,
+        "foreground_mean": 0.46530454893655565,
+        "foreground_variance": 0.002913862609619275,
+        "gradient_mad_vs_reference": 0.1421619199411393,
+        "mad_vs_reference": 0.03333370729407509,
+        "mean_error_vs_reference": 0.018984563226332254,
+        "psnr_vs_reference": 21.494959848586568,
+        "ssim_global_vs_reference": 0.9015565179949031
+      },
+      "joint_bilateral": {
+        "background_mean": 0.021131395670689068,
+        "background_variance": 0.006194837950044393,
+        "edge_leakage": 0.15558779125808062,
+        "edge_width_pixels": 1.912280701754386,
+        "foreground_mean": 0.48746607009143944,
+        "foreground_variance": 0.0009331203304560053,
+        "gradient_mad_vs_reference": 0.06812875701272382,
+        "mad_vs_reference": 0.01935355057778798,
+        "mean_error_vs_reference": 0.0141698403079878,
+        "psnr_vs_reference": 22.601535019639485,
+        "ssim_global_vs_reference": 0.9283528960632135
+      },
+      "nearest": {
+        "background_mean": 0.017389966143428748,
+        "background_variance": 0.008392572149244777,
+        "edge_leakage": 0.12840909090909092,
+        "edge_width_pixels": 0.0,
+        "foreground_mean": 0.5,
+        "foreground_variance": 0.0,
+        "gradient_mad_vs_reference": 0.03944421188013683,
+        "mad_vs_reference": 0.0137939453125,
+        "mean_error_vs_reference": 0.0137939453125,
+        "psnr_vs_reference": 21.613414958123172,
+        "ssim_global_vs_reference": 0.9155456470206351
+      },
+      "nonlocal_patch_graph": {
+        "background_mean": 0.034322619094743864,
+        "background_variance": 0.006762305868058167,
+        "edge_leakage": 0.22100535936936322,
+        "edge_width_pixels": 2.8771929824561404,
+        "foreground_mean": 0.46014936865928185,
+        "foreground_variance": 0.0028056274234088386,
+        "gradient_mad_vs_reference": 0.15103944770570377,
+        "mad_vs_reference": 0.03546574076767847,
+        "mean_error_vs_reference": 0.01898454704424673,
+        "psnr_vs_reference": 21.42248671652176,
+        "ssim_global_vs_reference": 0.8990104468861995
+      },
+      "self_guided_nlm": {
+        "background_mean": 0.03259909060208203,
+        "background_variance": 0.006885019369448923,
+        "edge_leakage": 0.21775064222182175,
+        "edge_width_pixels": 1.9649122807017543,
+        "foreground_mean": 0.46708693124625156,
+        "foreground_variance": 0.0022961375838069877,
+        "gradient_mad_vs_reference": 0.12659391447938026,
+        "mad_vs_reference": 0.032664017236472026,
+        "mean_error_vs_reference": 0.019052020539975484,
+        "psnr_vs_reference": 21.5471265122534,
+        "ssim_global_vs_reference": 0.9028511137960613
+      }
+    },
+    "timings": {
+      "bicubic": 0.09061429999565007,
+      "bilinear": 0.0001505999971413985,
+      "guided_filter": 0.0006761000040569343,
+      "joint_bilateral": 0.0011680000025080517,
+      "nearest": 0.00012059999426128343,
+      "nonlocal_patch_graph": 0.04344729999866104,
+      "self_guided_nlm": 0.009372299995447975
+    }
+  },
+  "natural_patch": {
+    "graph_info": {
+      "graph_statistics": {
+        "max_nonlocal_degree": 58.0,
+        "max_patch_distance": 0.007217258814190182,
+        "mean_nonlocal_degree": 9.8553466796875,
+        "mean_patch_distance": 0.00017291580161769084,
+        "median_patch_distance": 4.6672058985564036e-05,
+        "min_patch_distance": 1.2880730556238025e-09,
+        "nonlocal_edge_count": 80735.0
+      },
+      "local_edge_count": 65024.0,
+      "solver": {
+        "final_max_delta": 7.734227429612162e-07,
+        "final_objective": 25.115983345225075,
+        "sweeps_run": 26.0
+      }
+    },
+    "metrics": {
+      "bicubic": {
+        "absolute_mean_error": 0.0031307055358363034,
+        "flat_region_mad_vs_gt": 0.02373018519751091,
+        "gradient_mad_vs_gt": 0.09041917262141969,
+        "mad_vs_gt": 0.042397076611570106,
+        "mean_error": -0.0031307055358363034,
+        "psnr_vs_gt": 23.578064577373357,
+        "ssim_global_vs_gt": 0.9628200345864278,
+        "strong_edge_mad_vs_gt": 0.08115221813571545
+      },
+      "bilinear": {
+        "absolute_mean_error": 0.003177488713094625,
+        "flat_region_mad_vs_gt": 0.02598590229002826,
+        "gradient_mad_vs_gt": 0.09431894370062494,
+        "mad_vs_gt": 0.04436869258550216,
+        "mean_error": -0.003177488713094625,
+        "psnr_vs_gt": 23.27577348967339,
+        "ssim_global_vs_gt": 0.9594795379002731,
+        "strong_edge_mad_vs_gt": 0.08282967714302555
+      },
+      "guided_filter": {
+        "absolute_mean_error": 0.0031645529365825044,
+        "flat_region_mad_vs_gt": 0.026580775751046552,
+        "gradient_mad_vs_gt": 0.09242669348074876,
+        "mad_vs_gt": 0.04475521152467052,
+        "mean_error": -0.0031645529365825044,
+        "psnr_vs_gt": 23.248013180975896,
+        "ssim_global_vs_gt": 0.9591714112255665,
+        "strong_edge_mad_vs_gt": 0.08298874265014172
+      },
+      "joint_bilateral": {
+        "absolute_mean_error": 0.004118382835539427,
+        "flat_region_mad_vs_gt": 0.025428534796796607,
+        "gradient_mad_vs_gt": 0.07317143461896497,
+        "mad_vs_gt": 0.04352182866684405,
+        "mean_error": -0.004118382835539427,
+        "psnr_vs_gt": 23.396155895150166,
+        "ssim_global_vs_gt": 0.9606461542938702,
+        "strong_edge_mad_vs_gt": 0.08171759490269308
+      },
+      "nearest": {
+        "absolute_mean_error": 0.0040173848470052105,
+        "flat_region_mad_vs_gt": 0.024514619148452547,
+        "gradient_mad_vs_gt": 0.09245520261767926,
+        "mad_vs_gt": 0.04538408167221967,
+        "mean_error": -0.0040173848470052105,
+        "psnr_vs_gt": 22.577881005788953,
+        "ssim_global_vs_gt": 0.953421361906625,
+        "strong_edge_mad_vs_gt": 0.08996628780812155
+      },
+      "nonlocal_patch_graph": {
+        "absolute_mean_error": 0.0031775381444367357,
+        "flat_region_mad_vs_gt": 0.02696236444134827,
+        "gradient_mad_vs_gt": 0.09618932404827575,
+        "mad_vs_gt": 0.04533567372395492,
+        "mean_error": -0.0031775381444367357,
+        "psnr_vs_gt": 23.14228973054658,
+        "ssim_global_vs_gt": 0.9580365169624885,
+        "strong_edge_mad_vs_gt": 0.08374365787918653
+      },
+      "self_guided_nlm": {
+        "absolute_mean_error": 0.004192388933500286,
+        "flat_region_mad_vs_gt": 0.0299669899823517,
+        "gradient_mad_vs_gt": 0.08882505042379923,
+        "mad_vs_gt": 0.04762797297741289,
+        "mean_error": -0.004192388933500286,
+        "psnr_vs_gt": 22.9016123174208,
+        "ssim_global_vs_gt": 0.9555955867873533,
+        "strong_edge_mad_vs_gt": 0.08536217367158856
+      }
+    },
+    "timings": {
+      "bicubic": 0.365278400000534,
+      "bilinear": 0.00036029999318998307,
+      "guided_filter": 0.0014322999995783903,
+      "joint_bilateral": 0.004783800002769567,
+      "nearest": 0.00019020000036107376,
+      "nonlocal_patch_graph": 0.19069979999767384,
+      "self_guided_nlm": 0.05188600000110455
+    }
+  }
+}
